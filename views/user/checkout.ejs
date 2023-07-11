@@ -1,0 +1,528 @@
+<!doctype html>
+    <%-include('./_header.ejs') -%>
+
+
+    <!--header area start-->
+
+    <!--offcanvas menu area start-->
+    <div class="off_canvars_overlay">
+
+    </div>
+    <div class="offcanvas_menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="canvas_open">
+                        <a href="javascript:void(0)"><i class="icon-menu"></i></a>
+                    </div>
+                    <div class="offcanvas_menu_wrapper">
+                        <div class="canvas_close">
+                            <a href="javascript:void(0)"><i class="icon-x"></i></a>
+                        </div>
+                        <div class="welcome-text">
+                            <p>Free Delivery: Take advantage of our time to save event</p>
+                        </div>
+                        <div class="language_currency text-center">
+                            <ul>
+                                <li class="currency"><a href="#"> USD <i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown_currency">
+                                        <li><a href="#">EUR</a></li>
+                                        <li><a href="#">GPB</a></li>
+                                        <li><a href="#">RUP</a></li>
+                                    </ul>
+                                </li>
+                                <li class="language"><a href="#"> English <i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown_language">
+                                        <li><a href="#">French</a></li>
+                                        <li><a href="#">Spanish</a></li>
+                                        <li><a href="#">Russian</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search_container">
+                            <form action="#">
+                                <div class="hover_category">
+                                    <select class="select_option" name="select" id="categori2">
+                                        <option selected value="1">All Categories</option>
+                                        <option value="2">Accessories</option>
+                                        <option value="3">Accessories & More</option>
+                                        <option value="4">Butters & Eggs</option>
+                                        <option value="5">Camera & Video </option>
+                                        <option value="6">Mornitors</option>
+                                        <option value="7">Tablets</option>
+                                        <option value="8">Laptops</option>
+                                        <option value="9">Handbags</option>
+                                        <option value="10">Headphone & Speaker</option>
+                                        <option value="11">Herbs & botanicals</option>
+                                        <option value="12">Vegetables</option>
+                                        <option value="13">Shop</option>
+                                        <option value="14">Laptops & Desktops</option>
+                                        <option value="15">Watchs</option>
+                                        <option value="16">Electronic</option>
+                                    </select>
+                                </div>
+                                <div class="search_box">
+                                    <input placeholder="Search product..." type="text">
+                                    <button type="submit"><i class="icon-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="call-support">
+                            <p>Call Support: <a href="tel:0123456789">0123456789</a></p>
+                        </div>
+                        <div id="menu" class="text-left ">
+                            <ul class="offcanvas_main_menu">
+                                <li class="menu-item-has-children active">
+                                    <a href="#">Home</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="index.html">Home 1</a></li>
+                                        <li><a href="index-2.html">Home 2</a></li>
+                                        <li><a href="index-3.html">Home 3</a></li>
+                                        <li><a href="index-4.html">Home 4</a></li>
+                                        <li><a href="index-5.html">Home 5</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Shop</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Shop Layouts</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/shop">shop</a></li>
+                                                <li><a href="shop-fullwidth.html">Full Width</a></li>
+                                                <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
+                                                <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
+                                                <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
+                                                <li><a href="shop-list.html">List View</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">other Pages</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="cart.html">cart</a></li>
+                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="my-account.html">my account</a></li>
+                                                <li><a href="404.html">Error 404</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Product Types</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="product-details.html">product details</a></li>
+                                                <li><a href="product-sidebar.html">product sidebar</a></li>
+                                                <li><a href="product-grouped.html">product grouped</a></li>
+                                                <li><a href="variable-product.html">product variable</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">blog</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="blog.html">blog</a></li>
+                                        <li><a href="blog-details.html">blog details</a></li>
+                                        <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
+                                        <li><a href="blog-sidebar.html">blog sidebar</a></li>
+                                    </ul>
+
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">pages </a>
+                                    <ul class="sub-menu">
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="services.html">services</a></li>
+                                        <li><a href="faq.html">Frequently Questions</a></li>
+                                        <li><a href="contact.html">contact</a></li>
+                                        <li><a href="login.html">login</a></li>
+                                        <li><a href="404.html">Error 404</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="my-account.html">my account</a>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="about.html">about Us</a>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="contact.html"> Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="offcanvas_footer">
+                            <span><a href="#"><i class="fa fa-envelope-o"></i> demo@example.com</a></span>
+                            <ul>
+                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--offcanvas menu area end-->
+    <%-include('./_head_section.ejs') -%>
+    <!--header area end-->
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <h3>Checkout</h3>
+                        <ul>
+                            <li><a href="index.html">home</a></li>
+                            <li>Checkout</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--Checkout page section-->
+    <div class="Checkout_section  mt-100" id="accordion">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="user-actions">
+                        <h3>
+                            <i class="fa fa-file-o" aria-hidden="true"></i>
+                            Returning customer?
+                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_login"
+                                aria-expanded="true">Click here to login</a>
+                        </h3>
+                        <div id="checkout_login" class="collapse" data-parent="#accordion">
+                            <div class="checkout_info">
+                                <p>If you have shopped with us before, please enter your details in the boxes below. If
+                                    you are a new customer please proceed to the Billing & Shipping section.</p>
+                                <form action="#">
+                                    <div class="form_group">
+                                        <label>Username or email <span>*</span></label>
+                                        <input type="text">
+                                    </div>
+                                    <div class="form_group">
+                                        <label>Password <span>*</span></label>
+                                        <input type="text">
+                                    </div>
+                                    <div class="form_group group_3 ">
+                                        <button type="submit">Login</button>
+                                        <label for="remember_box">
+                                            <input id="remember_box" type="checkbox">
+                                            <span> Remember me </span>
+                                        </label>
+                                    </div>
+                                    <a href="#">Lost your password?</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-actions">
+                        <h3>
+                            <i class="fa fa-file-o" aria-hidden="true"></i>
+                            Returning customer?
+                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_coupon"
+                                aria-expanded="true">Click here to enter your code</a>
+
+                        </h3>
+                        <div id="checkout_coupon" class="collapse" data-parent="#accordion">
+                            <div class="checkout_info coupon_info">
+                                <form action="#">
+                                    <input placeholder="Coupon code" type="text">
+                                    <button type="submit">Apply coupon</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout_form">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <form action="#">
+                            <h3>Billing Details</h3>
+                            <div class="row">
+
+                                <div class="col-lg-6 mb-20">
+                                    <label>First Name <span>*</span></label>
+                                    <input type="text">
+                                </div>
+                                <div class="col-lg-6 mb-20">
+                                    <label>Last Name <span>*</span></label>
+                                    <input type="text">
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <label>Company Name</label>
+                                    <input type="text">
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <label for="country">country <span>*</span></label>
+                                    <select class="select_option" name="cuntry" id="country">
+                                        <option value="2">bangladesh</option>
+                                        <option value="3">Algeria</option>
+                                        <option value="4">Afghanistan</option>
+                                        <option value="5">Ghana</option>
+                                        <option value="6">Albania</option>
+                                        <option value="7">Bahrain</option>
+                                        <option value="8">Colombia</option>
+                                        <option value="9">Dominican Republic</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="col-12 mb-20">
+                                    <label>Street address <span>*</span></label>
+                                    <input placeholder="House number and street name" type="text">
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <label>Town / City <span>*</span></label>
+                                    <input type="text">
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <label>State / County <span>*</span></label>
+                                    <input type="text">
+                                </div>
+                                <div class="col-lg-6 mb-20">
+                                    <label>Phone<span>*</span></label>
+                                    <input type="text">
+
+                                </div>
+                                <div class="col-lg-6 mb-20">
+                                    <label> Email Address <span>*</span></label>
+                                    <input type="text">
+
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <input id="account" type="checkbox" data-bs-target="createp_account" />
+                                    <label for="account" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                        aria-controls="collapseOne">Create an account?</label>
+
+                                    <div id="collapseOne" class="collapse one" data-parent="#accordion">
+                                        <div class="card-body1">
+                                            <label> Account password <span>*</span></label>
+                                            <input placeholder="password" type="password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <input id="address" type="checkbox" data-bs-target="createp_account" />
+                                    <label class="righ_0" for="address" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsetwo" aria-controls="collapseOne">Ship to a different
+                                        address?</label>
+
+                                    <div id="collapsetwo" class="collapse one" data-parent="#accordion">
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-20">
+                                                <label>First Name <span>*</span></label>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-lg-6 mb-20">
+                                                <label>Last Name <span>*</span></label>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <label>Company Name</label>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <div class="select_form_select">
+                                                    <label for="countru_name">country <span>*</span></label>
+                                                    <select class="select_option" name="cuntry" id="countru_name">
+                                                        <option value="2">bangladesh</option>
+                                                        <option value="3">Algeria</option>
+                                                        <option value="4">Afghanistan</option>
+                                                        <option value="5">Ghana</option>
+                                                        <option value="6">Albania</option>
+                                                        <option value="7">Bahrain</option>
+                                                        <option value="8">Colombia</option>
+                                                        <option value="9">Dominican Republic</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 mb-20">
+                                                <label>Street address <span>*</span></label>
+                                                <input placeholder="House number and street name" type="text">
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <label>Town / City <span>*</span></label>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <label>State / County <span>*</span></label>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-lg-6 mb-20">
+                                                <label>Phone<span>*</span></label>
+                                                <input type="text">
+
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label> Email Address <span>*</span></label>
+                                                <input type="text">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="order-notes">
+                                        <label for="order_note">Order Notes</label>
+                                        <textarea id="order_note"
+                                            placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <form action="#">
+                            <h3>Your order</h3>
+                            <div class="order_table table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> Handbag fringilla <strong> × 2</strong></td>
+                                            <td> $165.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td> Handbag justo <strong> × 2</strong></td>
+                                            <td> $50.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td> Handbag elit <strong> × 2</strong></td>
+                                            <td> $50.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td> Handbag Rutrum <strong> × 1</strong></td>
+                                            <td> $50.00</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Cart Subtotal</th>
+                                            <td>$215.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Shipping</th>
+                                            <td><strong>$5.00</strong></td>
+                                        </tr>
+                                        <tr class="order_total">
+                                            <th>Order Total</th>
+                                            <td><strong>$220.00</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="payment_method">
+                                <div class="panel-default">
+                                    <input id="payment" name="check_method" type="radio"
+                                        data-bs-target="createp_account" />
+                                    <label for="payment" data-bs-toggle="collapse" data-bs-target="#method"
+                                        aria-controls="method">Create an account?</label>
+
+                                    <div id="method" class="collapse one" data-parent="#accordion">
+                                        <div class="card-body1">
+                                            <p>Please send a check to Store Name, Store Street, Store Town, Store State
+                                                / County, Store Postcode.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-default">
+                                    <input id="payment_defult" name="check_method" type="radio"
+                                        data-bs-target="createp_account" />
+                                    <label for="payment_defult" data-bs-toggle="collapse" data-bs-target="#collapsedefult"
+                                        aria-controls="collapsedefult">PayPal <img src="assets/img/icon/papyel.png"
+                                            alt=""></label>
+
+                                    <div id="collapsedefult" class="collapse one" data-parent="#accordion">
+                                        <div class="card-body1">
+                                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a
+                                                PayPal account.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order_button">
+                                    <button type="submit">Proceed to PayPal</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Checkout page section end-->
+
+    <!--brand area start-->
+  
+    <!--brand area end-->
+
+    <!--footer area start-->
+    <%-include('./_footer.ejs') -%>
+
+    <!--footer area end-->
+
+
+    <!-- JS
+============================================ -->
+    <!--jquery min js-->
+    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <!--popper min js-->
+    <script src="assets/js/popper.js"></script>
+    <!--bootstrap min js-->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!--owl carousel min js-->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!--slick min js-->
+    <script src="assets/js/slick.min.js"></script>
+    <!--magnific popup min js-->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!--counterup min js-->
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <!--jquery countdown min js-->
+    <script src="assets/js/jquery.countdown.js"></script>
+    <!--jquery ui min js-->
+    <script src="assets/js/jquery.ui.js"></script>
+    <!--jquery elevatezoom min js-->
+    <script src="assets/js/jquery.elevatezoom.js"></script>
+    <!--isotope packaged min js-->
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <!--slinky menu js-->
+    <script src="assets/js/slinky.menu.js"></script>
+    <!-- Plugins JS -->
+    <script src="assets/js/plugins.js"></script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+
+
+
+
+</body>
+
+
+<!-- Mirrored from htmldemo.net/lukani/lukani/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:47 GMT -->
+</html>

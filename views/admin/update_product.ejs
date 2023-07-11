@@ -1,0 +1,607 @@
+
+<%-include('./_header')-%>
+
+<body>
+  <%-include('_left_sidebar')-%>
+  
+
+
+  <nav class="navbar navbar-vertical navbar-vertical-sm fixed-left navbar-expand-lg navbar-light bg-white" role="navigation" style="display: none">
+    <div class="container-fluid">
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <a class="navbar-brand" href="index.html">
+        <svg width="26px" height="19px" viewBox="0 0 26 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M3.375,18 L0,18 L0,0.45 L10.75,0.45 L10.75,3.3 L3.375,3.3 L3.375,7.675 L9.2,7.675 L9.2,10.525 L3.375,10.525 L3.375,18 Z M25.35,1.525 L24.275,4.35 C23.225,3.775 21.575,3.15 20.325,3.15 C18.65,3.15 17.425,3.9 17.425,5.075 C17.425,6.3 18.85,7.025 20.775,7.75 C24.85,9.35 26.025,11.225 25.95,13.4 C25.875,16.55 23.05,18.375 19.6,18.35 C17.05,18.325 14.85,17.25 13.725,16.35 L15,13.75 C15.975,14.475 17.675,15.35 19.375,15.35 C20.925,15.35 22.575,14.75 22.575,13.45 C22.575,12 20.575,11.35 18.475,10.425 C15.75,9.175 14.025,7.65 14.025,5.075 C14.025,2.575 16.15,0.1 20.025,0.1 C22.075,0.1 24.425,1.05 25.35,1.525 Z" fill="currentColor"></path>
+        </svg>
+
+      </a>
+
+      <div class="dropdown d-flex d-lg-none">
+        <a href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar">
+            <img src="/assets_admin/img/uifaces/9.jpg" class="avatar-image rounded-circle" alt="">
+          </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a class="dropdown-item" href="profile.html">My profile</a>
+          <a class="dropdown-item" href="account.html">Account settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="sign-in.html">Log out</a>
+        </div>
+      </div>
+
+      <div class="collapse navbar-collapse mt-md-3" id="navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown dropend">
+            <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="svg-icon text-primary me-2 me-md-0 relative-top--2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-c</title><polyline points="352 144 464 144 464 256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,368,169.37,246.63a32,32,0,0,1,45.26,0l50.74,50.74a32,32,0,0,0,45.26,0L448,160" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+              </span>
+              <span class="d-md-none">Dashboard</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header d-none d-md-block">
+                <span class="text-uppercase-xs fw-bolder">Dashboard</span>
+              </li>
+              <li>
+                <a href="index.html" class="dropdown-item">
+                  Default
+                </a>
+              </li>
+              <li>
+                <a href="/earnings" class="dropdown-item">
+                  Ecommerce
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown dropend">
+            <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="svg-icon text-primary me-2 me-md-0 relative-top--2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-n</title><rect x="48" y="96" width="416" height="304" rx="32.14" ry="32.14" style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"/><line x1="16" y1="416" x2="496" y2="416" style="stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"/></svg>
+              </span>
+              <span class="d-md-none">Reports</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header d-none d-md-block">
+                <span class="text-uppercase-xs fw-bolder">Reports</span>
+              </li>
+              <li>
+                <a href="companies.html" class="dropdown-item">
+                  Companies
+                </a>
+              </li>
+              <li>
+                <a href="/customers" class="dropdown-item">
+                  Customers
+                </a>
+              </li>
+              <li>
+                <a href="projects.html" class="dropdown-item">
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a href="/payments" class="dropdown-item">
+                  Payments
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown dropend">
+            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">
+              <span class="svg-icon text-primary me-2 me-md-0 relative-top--2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-e</title><rect x="128" y="128" width="336" height="336" rx="57" ry="57" style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"/><path d="M383.5,128l.5-24a56.16,56.16,0,0,0-56-56H112a64.19,64.19,0,0,0-64,64V328a56.16,56.16,0,0,0,56,56h24" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+              </span>
+              <span class="d-md-none">Pages</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header d-none d-md-block">
+                <span class="text-uppercase-xs fw-bolder">Pages</span>
+              </li>
+              <li class="dropdown dropend">
+                <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Profile
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="profile.html">Feed</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="profile-projects.html">Projects</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="profile-files.html">Files</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown dropend">
+                <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Project
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="project.html">Overview</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="project-files.html">Files</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="project-activity.html">Activity</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/add_product">Settings</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown dropend">
+                <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Account
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="account.html">General</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="account-notifications.html">Notifications</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="account-billing.html">Billing & Payments</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="account-teammates.html">Teammates</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="pricing.html" class="dropdown-item">
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href="invoice.html" class="dropdown-item">
+                  Invoice
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown dropend">
+            <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">
+              <span class="svg-icon text-primary me-2 me-md-0 relative-top--2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-s</title><polyline points="336 176 225.2 304 176 255.8" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M463.1,112.37C373.68,96.33,336.71,84.45,256,48,175.29,84.45,138.32,96.33,48.9,112.37,32.7,369.13,240.58,457.79,256,464,271.42,457.79,479.3,369.13,463.1,112.37Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+              </span>
+              <span class="d-md-none">Authentication</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header d-none d-md-block">
+                <span class="text-uppercase-xs fw-bolder">Authentication</span>
+              </li>
+              <li class="dropdown dropend">
+                <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Sign up
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="sign-up.html">Basic</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="sign-up-quote.html">Side quote</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="sign-up-cover.html">Side cover</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown dropend">
+                <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Sign in
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="sign-in.html">Basic</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="sign-in-quote.html">Side quote</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="sign-in-cover.html">Side cover</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown dropend">
+                <a href="#" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Recover password
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="recover-password.html">Basic</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="recover-password-cover.html">Side cover</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="email-verification.html" class="dropdown-item">
+                  Email verification
+                </a>
+              </li>
+              <li>
+                <a href="two-step-verification.html" class="dropdown-item">
+                  2-step verification
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown dropend">
+            <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">
+              <span class="svg-icon text-primary me-2 me-md-0 relative-top--2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-h</title><path d="M452.37,59.63h0a40.49,40.49,0,0,0-57.26,0L184,294.74c23.08,4.7,46.12,27.29,49.26,49.26L452.37,116.89A40.49,40.49,0,0,0,452.37,59.63Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M138,336c-29.88,0-54,24.5-54,54.86,0,23.95-20.88,36.57-36,36.57C64.56,449.74,92.82,464,120,464c39.78,0,72-32.73,72-73.14C192,360.5,167.88,336,138,336Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+              </span>
+              <span class="d-md-none">Landing</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header d-none d-md-block">
+                <span class="text-uppercase-xs fw-bolder">Landing</span>
+              </li>
+              <li>
+                <a href="landing.html" class="dropdown-item">
+                  Home page
+                </a>
+              </li>
+              <li>
+                <a href="landing-about.html" class="dropdown-item">
+                  About us
+                </a>
+              </li>
+              <li>
+                <a href="landing-contact.html" class="dropdown-item">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="landing-pricing.html" class="dropdown-item">
+                  Pricing
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown dropend">
+            <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="svg-icon text-primary me-2 me-md-0 relative-top--1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-h</title><path d="M256,160c16-63.16,76.43-95.41,208-96a15.94,15.94,0,0,1,16,16V368a16,16,0,0,1-16,16c-128,0-177.45,25.81-208,64-30.37-38-80-64-208-64-9.88,0-16-8.05-16-17.93V80A15.94,15.94,0,0,1,48,64C179.57,64.59,240,96.84,256,160Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="256" y1="160" x2="256" y2="448" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+              </span>
+              <span class="d-md-none">Theme docs</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header d-none d-md-block">
+                <span class="text-uppercase-xs fw-bolder">Theme docs</span>
+              </li>
+              <li>
+                <a href="docs/index.html" class="dropdown-item">
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a href="docs/changelog.html" class="dropdown-item">
+                  Changelog
+                </a>
+              </li>
+              <li>
+                <a href="mailto:e.adrian90@gmail.com" class="dropdown-item">
+                  Support
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <a href="https://wrapbootstrap.com/theme/foresight-admin-bootstrap-5-theme-WB0M81L86" target="_blank" class="btn btn-light btn-sm text-primary mt-2 mt-lg-auto mb-2">
+          <span class="svg-icon text-primary d-none d-lg-block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-f</title><path d="M320,336h76c55,0,100-21.21,100-75.6s-53-73.47-96-75.6C391.11,99.74,329,48,256,48c-69,0-113.44,45.79-128,91.2-60,5.7-112,35.88-112,98.4S70,336,136,336h56" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><polyline points="192 400.1 256 464 320 400.1" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="256" y1="224" x2="256" y2="448.03" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+          </span>
+          <span class="text-primary d-lg-none">Buy now</span>
+        </a>
+
+        <a href="#!" class="btn btn-light btn-sm d-none d-lg-block" data-toggle="sidebar" data-sidebar="sm">
+          <span class="svg-icon text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-j</title><path d="M176,176V136a40,40,0,0,1,40-40H424a40,40,0,0,1,40,40V376a40,40,0,0,1-40,40H216a40,40,0,0,1-40-40V336" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><polyline points="272 336 352 256 272 176" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="48" y1="256" x2="336" y2="256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="main-content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white d-none d-lg-flex">
+      <div class="container-fluid">
+        <!-- Form -->
+        <form>
+          <div class="input-group input-group-flush">
+            <div class="input-group-text">
+              <i class="fas fa-search relative-top--2"></i>
+            </div>
+
+            <input type="text" class="form-control dropdown-toggle" data-bs-toggle="dropdown" placeholder="Search..." aria-label="Search" aria-expanded="false">
+
+            <div class="dropdown-menu dropdown-menu-card shadow-light-sm">
+              <div class="card-body">
+                <h6 class="text-uppercase-xs text-gray-500 mb-3">
+                  Recent searches
+                </h6>
+                <div class="d-flex justify-content-between">
+                  <a href="#!" class="fs-sm text-primary">Order #3</a>
+                  <a href="#!" class="fs-sm text-primary">User notifications</a>
+                  <a href="#!" class="fs-sm text-primary">Slow queries</a>
+                </div>
+
+                <hr>
+
+                <h6 class="text-uppercase-xs text-gray-500 mb-3">
+                  Customers
+                </h6>
+                <div class="mb-3">
+                  <span class="avatar avatar-sm me-2">
+                    <img src="/assets_admin/img/uifaces/10.jpg" class="avatar-image rounded-circle" alt="">
+                  </span>
+                  <a href="#!" class="link-darkblue">Ernest Hemingway</a>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <span class="avatar avatar-sm me-2">
+                    <img src="/assets_admin/img/uifaces/7.jpg" class="avatar-image rounded-circle" alt="">
+                  </span>
+                  <a href="#!" class="link-darkblue">Maria Popova</a>
+                  <span class="badge bg-pastel-purple text-darkblue text-uppercase-xs ms-auto">
+                    NEW
+                  </span>
+                </div>
+                <div class="mb-3">
+                  <span class="avatar avatar-sm me-2">
+                    <img src="/assets_admin/img/uifaces/6.jpg" class="avatar-image rounded-circle" alt="">
+                  </span>
+                  <a href="#!" class="link-darkblue">Mark Twain</a>
+                </div>
+                <div class="mb-3">
+                  <span class="avatar avatar-sm me-2">
+                    <img src="/assets_admin/img/uifaces/4.jpg" class="avatar-image rounded-circle" alt="">
+                  </span>
+                  <a href="#!" class="link-darkblue">Joan Didion</a>
+                </div>
+                <div class="mb-3">
+                  <span class="avatar avatar-sm me-2">
+                    <img src="/assets_admin/img/uifaces/3.jpg" class="avatar-image rounded-circle" alt="">
+                  </span>
+                  <a href="#!" class="link-darkblue">F. Scott Fitzgerald</a>
+                </div>
+                <div class="mb-3">
+                  <span class="avatar avatar-sm me-2">
+                    <img src="/assets_admin/img/uifaces/2.jpg" class="avatar-image rounded-circle" alt="">
+                  </span>
+                  <a href="#!" class="link-darkblue">Virgina Woolf</a>
+                </div>
+                <div>
+                  <span class="avatar avatar-sm me-2">
+                    <img src="/assets_admin/img/uifaces/1.jpg" class="avatar-image rounded-circle" alt="">
+                  </span>
+                  <a href="#!" class="link-darkblue">J.R.R. Tolkien</a>
+                </div>
+              </div>
+              <a href="#!" class="card-footer-btn btn btn-purple justify-content-center">
+                See all results <i class="fas fa-chevron-right fa-xs ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </form>
+
+        <!-- User -->
+        <div class="d-flex align-items-center">
+          <div class="dropdown d-none d-md-flex">
+            <a href="#" class="svg-icon svg-icon-sm" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-j</title><path d="M427.68,351.43C402,320,383.87,304,383.87,217.35,383.87,138,343.35,109.73,310,96c-4.43-1.82-8.6-6-9.95-10.55C294.2,65.54,277.8,48,256,48S217.79,65.55,212,85.47c-1.35,4.6-5.52,8.71-9.95,10.53-33.39,13.75-73.87,41.92-73.87,121.35C128.13,304,110,320,84.32,351.43,73.68,364.45,83,384,101.61,384H410.49C429,384,438.26,364.39,427.68,351.43Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M320,384v16a64,64,0,0,1-128,0V384" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+              <div class="rounded-circle bg-primary position-absolute top-0 start-100 translate-middle p-1"></div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-card shadow-light-sm me-n3">
+              <div class="card-header">
+                <h6 class="card-header-title">
+                  Notifications (2)
+                </h6>
+                <a href="#!" class="small">
+                  View all
+
+                  <i class="fas fa-chevron-right fa-xs ms-1"></i>
+                </a>
+              </div>
+              <div class="card-body">
+                <a href="#!" class="row text-reset text-decoration-none bg-light rounded py-2 gx-3">
+                  <div class="col-auto">
+                    <div class="avatar">
+                      <img src="/assets_admin/img/uifaces/10.jpg" class="avatar-image rounded-circle" alt="">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="fs-sm">
+                      <strong>John Smith</strong> mentioned you in a comment.
+                    </div>
+                    <div class="fs-xs fw-bold text-gray-500 mt-2">
+                      3m ago
+                    </div>
+                  </div>
+                </a>
+                <a href="#!" class="row text-reset text-decoration-none bg-light rounded py-2 gx-3 mt-3">
+                  <div class="col-auto">
+                    <div class="avatar">
+                      <img src="/assets_admin/img/uifaces/12.jpg" class="avatar-image rounded-circle" alt="">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="fs-sm">
+                      <strong>Mark Twain</strong> added a new project Website.
+                    </div>
+                    <div class="fs-xs fw-bold text-gray-500 mt-2">
+                      1d ago
+                    </div>
+                  </div>
+                </a>
+                <a href="#!" class="row text-reset text-decoration-none py-2 gx-3 mt-3">
+                  <div class="col-auto">
+                    <div class="avatar">
+                      <img src="/assets_admin/img/uifaces/9.jpg" class="avatar-image rounded-circle" alt="">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="fs-sm">
+                      <strong>Maria Popova</strong> archived the to-do list April Tasks 📂.
+                    </div>
+                    <div class="fs-xs fw-bold text-gray-500 mt-2">
+                      3d ago
+                    </div>
+                  </div>
+                </a>
+                <a href="#!" class="row text-reset text-decoration-none py-2 gx-3 mt-3">
+                  <div class="col-auto">
+                    <div class="avatar">
+                      <img src="/assets_admin/img/uifaces/8.jpg" class="avatar-image rounded-circle" alt="">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="fs-sm">
+                      <strong>Joan Didion</strong> commented on a project you're assigned in.
+                    </div>
+                    <div class="fs-xs fw-bold text-gray-500 mt-2">
+                      1 week ago
+                    </div>
+                  </div>
+                </a>
+                <a href="#!" class="row text-reset text-decoration-none py-2 gx-3 mt-3">
+                  <div class="col-auto">
+                    <div class="avatar">
+                      <img src="/assets_admin/img/uifaces/7.jpg" class="avatar-image rounded-circle" alt="">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="fs-sm">
+                      <strong>Ernest Hemingway</strong> mentioned you in a comment.
+                    </div>
+                    <div class="fs-xs fw-bold text-gray-500 mt-2">
+                      1 month ago
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown mx-4">
+            <a href="#" class="svg-icon" data-bs-toggle="dropdown">
+              <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-g</title><line x1="192" y1="448" x2="320" y2="448" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M384,208v32c0,70.4-57.6,128-128,128h0c-70.4,0-128-57.6-128-128V208" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="256" y1="368" x2="256" y2="448" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M256,64a63.68,63.68,0,0,0-64,64V239c0,35.2,29,65,64,65s64-29,64-65V128C320,92,292,64,256,64Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end me-n3">
+              <a class="dropdown-item" href="#!">
+                New podcast
+              </a>
+              <a class="dropdown-item" href="#!">
+                New video
+              </a>
+              <a class="dropdown-item" href="#!">
+                Go live
+              </a>
+            </div>
+          </div>
+
+          <div class="dropdown ms-2">
+            <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown">
+              <span class="avatar">
+                <img src="/assets_admin/img/uifaces/9.jpg" class="avatar-image rounded-circle" alt="">
+              </span>
+              <span class="text-dark ms-2">Adrian, G.</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item" href="profile.html">My profile</a>
+              <a class="dropdown-item" href="account.html">Account settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="sign-in.html">Log out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container-fluid pb-7">
+      
+
+     
+
+    
+
+      <div class="row justify-content-center mt-5">
+        <div class="col-12 col-xl-7">
+          <h3 class="mb-3 mb-md-0">
+            Update Product
+          </h3>
+          <form>
+           
+
+            <div class="from-group mt-4 pt-3">
+              <label class="form-label">
+                Product name:
+              </label>
+              <input type="text" class="form-control" name="" >
+            </div>
+
+            <div class="from-group mt-4">
+              <label class="form-label">
+                Project details:
+              </label>
+              <textarea rows="4" class="form-control" name=""></textarea>
+            </div>
+
+            <div class="from-group mt-4">
+              <label class="form-label">
+                Price:
+              </label>
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="from-group mt-4">
+              <label class="form-label mb-0">
+                Product Image:
+              </label>
+              <p class="form-text">
+                Upload a JPG or PNG. No larger than 1200px.
+              </p>
+              <input type="file" class="form-control">
+            </div>
+
+         
+
+            <div class="d-grid gap-3 mt-5">
+              <button class="btn btn-primary btn-lg hover-lift-light" type="submit">Add</button>
+              <button class="btn btn-link">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT
+  ============================================-->
+
+  <!-- Vendor -->
+  <script src="/assets_admin/js/vendor.min.js"></script>
+
+
+  <!-- Main Theme file -->
+  <script src="/assets_admin/js/theme.min.js"></script>
+
+</body>
+
+<!-- Mirrored from themeforesight.netlify.app//add_product by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Jul 2023 05:40:28 GMT -->
+</html>
