@@ -18,6 +18,8 @@ user_route.get('/cart', userController.cart)
 user_route.get('/wishlist', userController.wishlist)
 user_route.get('/product_details', userController.product_details)
 user_route.get('/user_login', userController.user_login)
+user_route.get('/user_logout', userController.user_logout)
+
 user_route.get('/user_register', userController.user_register)
 user_route.get('/otp_verification', userController.otp_verification)
 
@@ -28,6 +30,8 @@ user_route.get('/otp_verification', userController.otp_verification)
 
 user_route.post('/user_login', userController.user_login_post)
 user_route.post("/user_register", userController.user_register_post)
+user_route.post("/user_login_post", userController.user_login_post)
+
 
 
 user_route.post('/index', userController.index)

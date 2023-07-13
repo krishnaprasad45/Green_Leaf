@@ -37,15 +37,19 @@ module.exports = {
     otp_verification: (req, res) => {
         res.render('otp_verification');
     },
-
     user_login: (req, res) => {
-        // res.render('user_login');
         if (req.session.user) {
             res.redirect('my_account')
         } else {
-            res.render("user_login")
+            res.render("user_login",{err_message:""})
         }
     },
+
+    user_logout: (req, res) => {
+        delete req.session.user;
+        res.redirect("user_login")
+    },
+ 
     user_register: (req, res) => {
         res.render('user_register');
         // if (req.session.user) {
@@ -66,9 +70,9 @@ module.exports = {
         console.log(`inside if`)
 
             if (exist.phone == phone) {
-                res.render("user_login", { message: "The user with same Mobile Number already Exists", user_register: true })
+                res.render("user_login", { err_message: "The user with same Mobile Number already Exists", user_register: true })
             } else {
-                res.render("user_login", { message: "The user already Exist please Login", user_register: true })
+                res.render("user_login", { err_message: "The user already Exist please Login", user_register: true })
             }
         } else {
             console.log("else part")
@@ -84,7 +88,7 @@ module.exports = {
             try {
                 await user.save()
                 console.log("try section")
-                res.render("user_login")
+                res.render("user_login",{err_message:""})
             } catch (error) {
                 res.send(error)
             }
@@ -96,17 +100,22 @@ module.exports = {
         if (req.session.user) {
             res.redirect("index")
         } else {
-            const { email, password } = req.body
+            const { user_name, password } = req.body
+            console.log(`**********************${req.body.user_name}`)
+            const email=req.body.user_name
             const exist = await userData.findOne({ email: email })
+            
+            console.log("######################### ")
+            console.log(exist)
             if (exist) {
                 if (exist.password === password) {
                     req.session.user = email
                     res.redirect("index")
                 } else {
-                    res.render("user_login", { message: "The password is incorrect" })
+                    res.render("user_login", { err_message: "The password is incorrect" })
                 }
             } else {
-                res.render("user_login", { message: "User not found please signUP" })
+                res.render("user_login", { err_message: "User not found please signUP" })
             }
         }
     },

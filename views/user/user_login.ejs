@@ -193,14 +193,17 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="account_form">
                         
-                        <form method="post" action="/index">
+                        <form method="post" action="/user_login_post">
+                            <p>
+                                <label ><%=err_message %></label>
+                            </p>
                             <p>
                                 <label>Username or email <span>*</span></label>
-                                <input type="text">
+                                <input type="text" name="user_name">
                             </p>
                             <p>
                                 <label>Passwords <span>*</span></label>
-                                <input type="password">
+                                <input type="password" name="password">
                             </p>
                             <div class="login_submit">
                                 <a href="/user_register">Don't have ab account? Signup here</a>
