@@ -11,14 +11,12 @@ user_route.get('/user_register', userController.user_register)
 user_route.post("/user_register", userController.user_register_post)
 
 user_route.get('/otp_verification', userController.otp_verification)
-user_route.post('/otp_verification', userController.otp_verification_post)
-user_route.get('/show_otp', userController.showOtp)
+user_route.post('/otp_verification_post', userController.otp_verification_post)
 
 
 user_route.get('/user_login', userController.user_login)
 
 
-user_route.get('/user_login_after_otp', userController.verifyLogin)
 user_route.get('/index', userController.index)
 
 

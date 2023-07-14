@@ -6,12 +6,15 @@ const nodemailer = require('nodemailer')
 const userData = model.user_register
 
 
-let saveOtp;
+let generatedOtp;
+
 let user_name;
 let email;
 let phone;
+let address;
 let password;
-let forgotPasswordOtp;
+let confirm_password;
+
 
 
 
@@ -68,10 +71,10 @@ module.exports = {
         var txt3 = req.body.txt3
         var txt4 = req.body.txt4
         const EnteredOtp = txt1 + txt2 + txt3 + txt4
-        console.log(`entered otp${EnteredOtp}`);
-        console.log(`saveotp${saveOtp}`);
-        // const categoryData = await Category.find({ is_blocked: false });
-        if (EnteredOtp === saveOtp) {
+        console.log(`**********entered otp${EnteredOtp}`);
+        console.log(`generated_otp${generatedOtp}`);
+
+        if (EnteredOtp === generatedOtp) {
 
             const securedPassword = await securePassword(password);
 
@@ -82,62 +85,28 @@ module.exports = {
                 address: address,
                 password: securedPassword,
                 confirm_password: securedPassword,
-                is_blocked: false,
+                
 
             });
-            console.log(newUser);
+            
+            console.log(`###### newuser:${newUser}`);
 
 
             try {
                 await newUser.save();
-
-                res.render("user_login_after_otp", { message: "Successfully registered!", loggedIn: false, blocked: false, categoryData });
+                console.log("............user data saved in the database")
+                res.render("user_login", { message: "Successfully registered!", loggedIn: false, blocked: false });
 
             } catch (error) {
                 console.log(error);
-                res.render("otp_verification", { message: "Error registering new user", loggedIn: false, categoryData });
+                res.render("otp_verification", { message: "Error registering new user", loggedIn: false});
             }
 
         } else {
-            res.render("otp_verification", { message: "wrong OTP", categoryData });
-        }
-    }
-    ,
-    verifyLogin: async (req, res) => {
-        try {
-
-            let email = req.body.email;
-            console.log(email);
-            const password = req.body.password;
-            const userData = await userData.findOne({ email: email });
-            console.log(userData);
-            const categoryData = await Category.find({ is_blocked: false });
-            if (userData) {
-
-                const passwordMatch = await bcrypt.compare(password, userData.password);
-                if (userData.is_blocked === true) {
-
-                    return res.render("user_login", { message: "Your account is blocked", user: req.session.user, loggedIn: false, categoryData });
-                }
-
-                if (passwordMatch) {
-                    console.log("verified pass");
-                    req.session.user = userData;
-                    req.session.logged = true
-                    // res.render('home',{user:req.session.user.email,blocked:false,loggedIn:true, 
-                    //     bannerData })
-                    res.redirect("/index")
-                }
-                if (!passwordMatch) {
-                    res.render("user_login", { message: "Entered password is wrong", blocked: false, loggedIn: false, categoryData });
-                }
-            } else {
-                res.render("user_login", { message: "You are not registered. please register now!!", blocked: false, loggedIn: false, categoryData });
-            }
-        } catch (error) {
-            console.log(error.message);
+            res.render("otp_verification", { message: "wrong OTP"});
         }
     },
+   
     user_login: (req, res) => {
         
         res.render("user_login",{message:""})
@@ -150,7 +119,7 @@ module.exports = {
 
         user_register: (req, res) => {
 
-        res.render('user_register');
+        res.render('user_register',{message:""});
         // if (req.session.user) {
         //     res.redirect("my_account")
         // } else {
@@ -172,18 +141,19 @@ module.exports = {
 
             if (emailExist) {
 
-                return res.status(401).json({ message: "user with same Email already Exists" })
+                render("/user_register",{ message: "user with same Email already Exists" })
 
-            } else if (phoneExist) {
+            } 
+            // if (phoneExist) {
 
-                return res.status(409).json({ message: "The user with same Mobile Number already Exist please try another Number" })
-            }
+            //     return res.status(409).json({ message: "The user with same Mobile Number already Exist please try another Number" })
+            // }
             // } else if (!valid.isValid) {  //dbt
             //     return res.status(400).json({ message: valid.errors })
             // }
             else {
-                var generatedOtp = generateOTP();
-                saveOtp = generatedOtp; //dbt
+                generatedOtp = generateOTP();
+            
                 user_name = req.body.user_name;
                 email = req.body.email;
                 phone = req.body.phone;
@@ -192,8 +162,10 @@ module.exports = {
                 confirm_password = req.body.confirm_password
                 sendOtpMail(email, generatedOtp);
 
+                res.render("otp_verification")
 
-                return res.status(200).end();
+
+                // return res.status(200).end();
 
             }
         } catch (error) {
@@ -207,7 +179,7 @@ module.exports = {
             return otp;
         }
         async function sendOtpMail(email, otp) {
-            console.log(otp);
+            console.log(`...otp is ${otp}...`);
             try {
                 const transporter = nodemailer.createTransport({
                     service: "gmail",
@@ -225,17 +197,12 @@ module.exports = {
                 };
 
                 const result = await transporter.sendMail(mailOptions);
-                console.log(result);
+                console.log(`nodemailer result ${result}`);
             } catch (error) {
                 console.log(error.message);
             }
         };
-        const showOtp = async (req, res) => {
-            try {
-                const categoryData = await Category.find({ is_blocked: false });
-                res.render("otp",{loggedIn:false,categoryData});
-            } catch (error) {}
-        };
+ 
     },
     //POST
     user_login_post: async (req, res) => {

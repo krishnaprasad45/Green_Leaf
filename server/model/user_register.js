@@ -13,7 +13,7 @@ var schema = new mongoose.Schema({
         unique: true
     },
     phone: {
-        type: Number,
+        type: String,
         require: true
     },
     address: {

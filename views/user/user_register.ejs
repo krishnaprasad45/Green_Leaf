@@ -195,17 +195,18 @@
                         
                         <div class="form-container">
                             <form method="post" action="/user_register">
-                                <p>
-                                    <label> <%=locals.message %></label>
-                                </p>
+                                <P>
+                                    <label > <%=message %></label>
+                                </P>
+                               
                                 <p>
                                     <input type="text" id="user_name" name="user_name" placeholder="Enter your name" >
                                 </p>
                                 <p>
-                                    <input type="email" id="email" name="email" placeholder="Enter your email" >
+                                    <input type="text" id="email" name="email" placeholder="Enter your email" >
                                 </p>
                                 <p>
-                                    <input type="tel" name="phone" placeholder="Enter your mobile number" >
+                                    <input type="text" id="phone" name="phone" placeholder="Enter your mobile number" >
                                 </p>
                                 <p>
                                     <textarea id="address" name="address" placeholder="Enter your shipping address here.." ></textarea>
