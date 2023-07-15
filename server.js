@@ -35,6 +35,6 @@ app.use(session({
 app.use(nocache())
 
 app.use('/',user_route)
-app.use('/admin',admin_route)
+app.use('/',admin_route)
 
 app.listen(port,()=>{ console.log("Listening to the server: http://localhost:3000")})

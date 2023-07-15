@@ -2,16 +2,17 @@ const mongoose = require("mongoose")
 
 var schema = new mongoose.Schema({
 
-    category: {
-        type: String,
-        require: true
-    },
+   
     product_name: {
         type: String,
         require: true,
-        unique: true
+        
     },
     product_details: {
+        type: String,
+        require: true
+    },
+    category: {
         type: String,
         require: true
     },
@@ -29,7 +30,7 @@ var schema = new mongoose.Schema({
     },
 
 })
-const Usersignup = mongoose.model("userSignUp", schema)
+const Usersignup = mongoose.model("productCollection", schema)
 // module.exports.Usersignup= Usersignup
 
 module.exports = {

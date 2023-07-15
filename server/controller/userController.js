@@ -9,8 +9,8 @@ const userData = model.user_register
 let generatedOtp;
 
 let user_name;
-let email;
-let phone;
+let emailId;
+let mobile;
 let address;
 let password;
 let confirm_password;
@@ -80,15 +80,21 @@ module.exports = {
 
             const newUser = new userData({
                 user_name: user_name,
-                email: email,
-                phone: phone,
+                email: emailId,
+                phone: mobile,
                 address: address,
                 password: securedPassword,
                 confirm_password: securedPassword,
                 
 
             });
-            
+            console.log(newUser.user_name)
+
+            console.log(newUser.email)
+            console.log(newUser.phone)
+            console.log(newUser.address)
+
+
             console.log(`###### newuser:${newUser}`);
 
 
@@ -155,8 +161,10 @@ module.exports = {
                 generatedOtp = generateOTP();
             
                 user_name = req.body.user_name;
-                email = req.body.email;
-                phone = req.body.phone;
+                emailId = req.body.email;
+                mobile = req.body.phone;
+                
+                console.log(`-----------${mobile}`)
                 address = req.body.address
                 password = req.body.password;
                 confirm_password = req.body.confirm_password

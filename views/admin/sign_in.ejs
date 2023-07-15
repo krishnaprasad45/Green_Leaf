@@ -7,13 +7,15 @@
       <img src="assets/img/svg/logo.svg" alt="">
     </a>
 
-    <h4 class="font-weight-normal text-dark mt-5">
-      Log in to your account
-    </h4>
+    <h3 class="font-weight-normal text-dark mt-5">
+     Admin
+    </h3>
 
     <div class="row justify-content-center mt-4 pt-3">
       <div class="col-md-6 col-lg-4">
-        <form>
+        <form action="/admin_signin_post" method="post">
+          
+          <label style="color: red;"><%= message%></label>
           <div class="mb-3">
             <input type="email" name="email" placeholder="Email" class="form-control form-control-lg bg-pastel-darkblue">
           </div>
@@ -23,15 +25,15 @@
           </div>
 
           <input type="submit" class="btn btn-primary btn-lg shadow-light text-uppercase-bold-sm hover-lift mt-4" value="Sign in">
-
-          <a href="recover-password.html" class="d-block font-size-sm mt-5">
+         
+          <!-- <a href="recover-password.html" class="d-block font-size-sm mt-5">
             Forgot your password?
-          </a>
+          </a> -->
 
-          <div class="text-secondary font-size-sm mt-5">
+          <!-- <div class="text-secondary font-size-sm mt-5">
             Don't have an account?
             <a href="sign-up.html">Sign up</a>
-          </div>
+          </div> -->
         </form>
       </div>
     </div>
