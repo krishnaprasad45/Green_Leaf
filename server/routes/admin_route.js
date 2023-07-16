@@ -21,6 +21,8 @@ admin_route.get('/payments',adminController.payments)
 admin_route.get('/customers',adminController.customers)
 admin_route.get('/add_product',adminController.add_product)
 admin_route.get('/view_products',adminController.view_products)
+admin_route.get('/delete_product/:id',adminController.delete_product)
+
 
 
 module.exports = admin_route

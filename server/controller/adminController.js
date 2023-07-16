@@ -55,6 +55,16 @@ module.exports = {
 
 
         },
+    delete_product: async (req, res) => {
+        try {
+            const deleteId = req.params.id;
+            console.log(`>>>>>>>>>>>${deleteId}`)
+            await productData.findByIdAndDelete(deleteId);
+
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
 
 
     admin_dashboard: (req, res) => {
@@ -73,15 +83,15 @@ module.exports = {
 
     view_products: async (req, res) => {
         try {
-           
+
             const data = await productData.find();
             console.log(`**********${data}`)
             res.render('view_products', { data });
-          } catch (err) {
+        } catch (err) {
             console.error(err);
             res.status(500).send('Internal Server Error');
-          }
-        
-        
+        }
+
+
     },
 }
