@@ -542,19 +542,19 @@
           <h3 class="mb-3 mb-md-0">
             Add Product
           </h3>
-          <form>
+          <form action="/add_product_post" method="post">
             <div class="from-group mt-4 pt-3">
               <label class="form-label">
                 Product name:
               </label>
-              <input type="text" class="form-control yellow-border" name="">
+              <input type="text" class="form-control yellow-border" name="product_name">
             </div>
         
             <div class="from-group mt-4">
               <label class="form-label">
                 Project details:
               </label>
-              <textarea rows="4" class="form-control yellow-border" name=""></textarea>
+              <textarea rows="4" class="form-control yellow-border" name="product_details"></textarea>
             </div>
         
             <div class="from-group mt-4">
@@ -562,7 +562,7 @@
                 Category:
               </label>
               <div class="input-group">
-                <input type="text" class="form-control yellow-border">
+                <input type="text" class="form-control yellow-border" name="category">
               </div>
             </div>
         
@@ -571,19 +571,19 @@
                 Price:
               </label>
               <div class="input-group">
-                <input type="text" class="form-control yellow-border">
+                <input type="text" class="form-control yellow-border" name="price">
               </div>
             </div>
         
-            <div class="from-group mt-4">
+            <!-- <div class="from-group mt-4">
               <label class="form-label mb-0">
                 Product Image:
               </label>
               <p class="form-text">
                 Upload a JPG or PNG. No larger than 1200px.
               </p>
-              <input type="file" class="form-control yellow-border">
-            </div>
+              <input type="file" class="form-control yellow-border" name="product_img">
+            </div> -->
         
             <div class="d-grid gap-3 mt-5">
               <button class="btn btn-primary btn-lg hover-lift-light" type="submit">Add</button>

@@ -82,6 +82,7 @@ module.exports = {
                 user_name: user_name,
                 email: emailId,
                 phone: mobile,
+                
                 address: address,
                 password: securedPassword,
                 confirm_password: securedPassword,
@@ -143,20 +144,17 @@ module.exports = {
             const emailExist = await userData.findOne({ email: email })
             const phoneExist = await userData.findOne({ phone: phone })
 
-            // const valid = validate(req.body)
 
             if (emailExist) {
 
                 render("/user_register",{ message: "user with same Email already Exists" })
 
             } 
-            // if (phoneExist) {
+            if (phoneExist) {
 
-            //     return res.status(409).json({ message: "The user with same Mobile Number already Exist please try another Number" })
-            // }
-            // } else if (!valid.isValid) {  //dbt
-            //     return res.status(400).json({ message: valid.errors })
-            // }
+                return res.status(409).json({ message: "The user with same Mobile Number already Exist please try another Number" })
+            }
+          
             else {
                 generatedOtp = generateOTP();
             
@@ -164,7 +162,6 @@ module.exports = {
                 emailId = req.body.email;
                 mobile = req.body.phone;
                 
-                console.log(`-----------${mobile}`)
                 address = req.body.address
                 password = req.body.password;
                 confirm_password = req.body.confirm_password

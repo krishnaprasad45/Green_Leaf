@@ -12,6 +12,10 @@ admin_route.get('/admin_sign_in',adminController.admin_signin)
 admin_route.post('/admin_signin_post',adminController.admin_signin_post)
 
 admin_route.get('/admin_dashboard',adminController.admin_dashboard)
+admin_route.get('/add_product',adminController.add_product)
+admin_route.post('/add_product_post',adminController.add_product_post)
+
+
 admin_route.get('/earnings',adminController.earnings)
 admin_route.get('/payments',adminController.payments)
 admin_route.get('/customers',adminController.customers)

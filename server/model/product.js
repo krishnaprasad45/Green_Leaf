@@ -20,19 +20,14 @@ var schema = new mongoose.Schema({
         type: Number,
         require: true
     },
-    quantity: {
-        type: String,
-        require: true
-    },
-    product_img: {
-        type: String,
-        require: true
-    },
+    // product_img: {
+    //     type: String,
+    //     require: true
+    // },
 
 })
-const Usersignup = mongoose.model("productCollection", schema)
-// module.exports.Usersignup= Usersignup
+const products = mongoose.model("productCollection", schema)
 
 module.exports = {
-    Usersignup: Usersignup,
+    products: products
 };
