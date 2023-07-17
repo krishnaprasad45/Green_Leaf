@@ -16,6 +16,67 @@ let password;
 let confirm_password;
 
 
+function validateRegister(data) {
+    const { user_name, email,address, phone, password, confirm_password } = data;
+    const errors = {}
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^\d{10}$/;
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+
+    const addressPattern  = /^[\w\s\-.,]+(?:\n[\w\s\-.,]+)*$/;
+
+
+    // /Name validation //
+    if (!user_name) {
+        errors.nameError = "Please Enter Your first Name"
+    } else if (user_name.length < 3 || user_name[0] == " ") {
+        errors.nameError = "Enter a Valid Name"
+    }
+   
+
+    // email validation //
+    if (!email) {
+        errors.emailError = "please enter your email address";
+    } else if (email.length < 1 || email.trim() === "" || !emailPattern.test(email)) {
+        errors.emailError = "please Enter a Valid email";
+    }
+
+    // Phone No Validation //
+    if (!phone) {
+        errors.phoneError = "please Enter your mobile number";
+    } else if (!phonePattern.test(phone)) {
+        errors.phoneError = "please check your number and provide a valid one";
+    }
+
+    // Address Validation //
+
+    if(!address){
+        errors.addressError = "please Enter your address";
+    }else if(!addressPattern.test(address)){
+        errors.addressError = "please enter a valid address"
+    }
+
+    // Password Validation //
+    if (!password) {
+        errors.passwordError = "please Enter Your  password"
+    } else if (!passwordPattern.test(password)) {
+        errors.passwordError = "password must be atleast 8 characters with atleast one uppercase, lowercase, digit and special character";
+    }
+
+    // Comfirm Password Validation //
+    if (password && !confirm_password) {
+        errors.confirmPasswordError = "please Enter Your password"
+    } else if (password && confirm_password && password !== confirm_password) {
+        errors.confirmPasswordError = "passwords doesn't match";
+    }
+
+    return {
+        isValid: Object.keys(errors).length === 0,
+        errors
+    }
+}
+
 
 
 
@@ -27,6 +88,9 @@ const securePassword = async (password) => {
         console.log(error.message);
     }
 };
+
+
+
 module.exports = {
 
     // exports.shop = ((req,res)=>{
@@ -135,6 +199,9 @@ module.exports = {
     },
 
 
+
+
+
     user_register_post: async (req, res) => {
         console.log(req.body);
         try {
@@ -144,15 +211,17 @@ module.exports = {
             const emailExist = await userData.findOne({ email: email })
             const phoneExist = await userData.findOne({ phone: phone })
 
-
+            const valid = validateRegister(req.body)
             if (emailExist) {
 
-                render("/user_register",{ message: "user with same Email already Exists" })
-
-            } 
-            if (phoneExist) {
-
-                return res.status(409).json({ message: "The user with same Mobile Number already Exist please try another Number" })
+                return res.status(401).json({ error: "user with same Email already Exists" })
+    
+            } else if (phoneExist) {
+    
+                return res.status(405).json({ error: "The user with same Mobile Number already Exist please try another Number" })
+    
+            } else if (!valid.isValid) {
+                return res.status(400).json({ error: valid.errors })
             }
           
             else {
@@ -167,10 +236,10 @@ module.exports = {
                 confirm_password = req.body.confirm_password
                 sendOtpMail(email, generatedOtp);
 
-                res.render("otp_verification")
+                
 
 
-                // return res.status(200).end();
+                return res.status(200).end();
 
             }
         } catch (error) {

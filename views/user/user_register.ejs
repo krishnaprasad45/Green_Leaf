@@ -1,4 +1,4 @@
-<%-include('./_header.ejs') -%>
+<%-include('. /_header.ejs') -%>
 
 
     <!--header area start-->
@@ -167,55 +167,64 @@
     </div>
 
     <!--offcanvas menu area end-->
-    <%-include('./_head_section.ejs') -%>
-    <!--header area end-->
+    <%-include('. /_head_section.ejs') -%>
+        <!--header area end-->
 
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <h3>Register Page</h3>
-                       
+        <!--breadcrumbs area start-->
+        <div class="breadcrumbs_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb_content">
+                            <h3>Register Page</h3>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--breadcrumbs area end-->
+        <!--breadcrumbs area end-->
 
-    <!-- customer login start -->
-    <div class="customer_login">
-        <div class="container">
-            <div class="row">
-                <!--login area start-->
-                <div class="col-lg-12 col-md-12">
-                    
-                        
+        <!-- customer login start -->
+        <div class="customer_login">
+            <div class="container">
+                <div class="row">
+                    <!--login area start-->
+                    <div class="col-lg-12 col-md-12">
+
+
                         <div class="form-container">
-                            <form method="post" action="/user_register">
+                            <form id="signupForm">
                                 <P>
-                                    <label > <%=message %></label>
+                                    <label>
+                                        <%=message %>
+                                    </label>
                                 </P>
-                               
+
                                 <p>
-                                    <input type="text" id="user_name" name="user_name" placeholder="Enter your name" >
+                                    <input type="text" id="user_name" name="user_name" placeholder="Enter your name">
+                                <p id="nameError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
-                                    <input type="text" id="email" name="email" placeholder="Enter your email" >
+                                    <input type="text" id="email" name="email" placeholder="Enter your email">
+                                <p id="emailError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
-                                    <input type="text" id="phone" name="phone" placeholder="Enter your mobile number" >
+                                    <input type="text" id="phone" name="phone" placeholder="Enter your mobile number">
+                                <p id="phoneError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
-                                    <textarea id="address" name="address" placeholder="Enter your shipping address here.." ></textarea>
+                                    <textarea id="address" name="address"
+                                        placeholder="Enter your shipping address here.."></textarea>
+                                <p id="addressError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
-                                    <input type="password" name="password" placeholder="Enter password" >
+                                    <input type="password" name="password" placeholder="Enter password">
+                                <p id="passwordError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
-                                    <input type="password" name="confirm_password" placeholder="Confirm password" >
+                                    <input type="password" name="confirm_password" placeholder="Confirm password">
+                                <p id="confirmPasswordError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
                                     <label for="remember">
@@ -227,15 +236,15 @@
                                     <button type="submit">Register</button>
                                 </div>
                             </form>
-                            
-                        </div>
-                      
-                    
-                </div>
-                <!--login area start-->
 
-                <!--register area start-->
-                <!-- <div class="col-lg-6 col-md-6">
+                        </div>
+
+
+                    </div>
+                    <!--login area start-->
+
+                    <!--register area start-->
+                    <!-- <div class="col-lg-6 col-md-6">
                     <div class="account_form register">
                         <h2>Register</h2>
                         <form action="#">
@@ -253,58 +262,115 @@
                         </form>
                     </div>
                 </div> -->
-                <!--register area end-->
+                    <!--register area end-->
+                </div>
             </div>
         </div>
-    </div>
-    <!-- customer login end -->
+        <!-- customer login end -->
 
-    <!--brand area start-->
- 
-    <!--brand area end-->
+        <!--brand area start-->
 
-    <!--footer area start-->
-<%-include('./_footer.ejs') -%>
-    
-    <!--footer area end-->
+        <!--brand area end-->
+
+        <!--footer area start-->
+        <%-include('. /_footer.ejs') -%>
+
+            <!--footer area end-->
 
 
-    <!-- JS
+            <!-- JS
 ============================================ -->
-    <!--jquery min js-->
-    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
-    <!--popper min js-->
-    <script src="assets/js/popper.js"></script>
-    <!--bootstrap min js-->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!--owl carousel min js-->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <!--slick min js-->
-    <script src="assets/js/slick.min.js"></script>
-    <!--magnific popup min js-->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!--counterup min js-->
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <!--jquery countdown min js-->
-    <script src="assets/js/jquery.countdown.js"></script>
-    <!--jquery ui min js-->
-    <script src="assets/js/jquery.ui.js"></script>
-    <!--jquery elevatezoom min js-->
-    <script src="assets/js/jquery.elevatezoom.js"></script>
-    <!--isotope packaged min js-->
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <!--slinky menu js-->
-    <script src="assets/js/slinky.menu.js"></script>
-    <!-- Plugins JS -->
-    <script src="assets/js/plugins.js"></script>
+            <!--jquery min js-->
+            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+            <!--popper min js-->
+            <script src="assets/js/popper.js"></script>
+            <!--bootstrap min js-->
+            <script src="assets/js/bootstrap.min.js"></script>
+            <!--owl carousel min js-->
+            <script src="assets/js/owl.carousel.min.js"></script>
+            <!--slick min js-->
+            <script src="assets/js/slick.min.js"></script>
+            <!--magnific popup min js-->
+            <script src="assets/js/jquery.magnific-popup.min.js"></script>
+            <!--counterup min js-->
+            <script src="assets/js/jquery.counterup.min.js"></script>
+            <!--jquery countdown min js-->
+            <script src="assets/js/jquery.countdown.js"></script>
+            <!--jquery ui min js-->
+            <script src="assets/js/jquery.ui.js"></script>
+            <!--jquery elevatezoom min js-->
+            <script src="assets/js/jquery.elevatezoom.js"></script>
+            <!--isotope packaged min js-->
+            <script src="assets/js/isotope.pkgd.min.js"></script>
+            <!--slinky menu js-->
+            <script src="assets/js/slinky.menu.js"></script>
+            <!-- Plugins JS -->
+            <script src="assets/js/plugins.js"></script>
 
-    <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
+            <!-- Main JS -->
+            <script src="assets/js/main.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+            <script>
+
+                const handleSubmit = async (event) => {
+                    event.preventDefault();
+
+
+                    const formData = new FormData(event.target);
+                    try {
+                        const response = await axios.post('/user_register', formData, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+
+
+                        if (response.status === 200) {
+                            window.location.href = '/otp_verification'
+                        }
+                    } catch (error) {
+
+
+                        if (error.response.status == 400) {
+                            const errors = error.response.data.error;
+                            Object.keys(errors).forEach((key) => {
+                                let element = document.getElementById(key).textContent = errors[key];
+                            });
+                        } else if (error.response.status == 401) {
+                            document.getElementById('emailError').textContent = error.response.data.error;
+                        }
+                        else if (error.response.status == 409) {
+                            document.getElementById('passwordError').textContent = error.response.data.error;
+                        }
+                        else {
+                            alert("something went wrong");
+                        }
+
+                    }
+                };
+
+                document.getElementById('signupForm').addEventListener('submit', handleSubmit);
 
 
 
-</body>
+
+                function togglePasswordVisibility() {
+                    const passwordField = document.getElementById("password");
+                    if (passwordField.type === "password") {
+                        passwordField.type = "text";
+                    } else {
+                        passwordField.type = "password";
+                    }
+                }
+
+            </script>
 
 
-<!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
-</html>
+            </body>
+
+
+            <!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
+
+            </html>
