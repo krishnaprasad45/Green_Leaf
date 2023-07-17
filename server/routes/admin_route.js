@@ -22,6 +22,10 @@ admin_route.get('/customers',adminController.customers)
 admin_route.get('/add_product',adminController.add_product)
 admin_route.get('/view_products',adminController.view_products)
 admin_route.get('/delete_product/:id',adminController.delete_product)
+admin_route.get('/update_product/:id',adminController.update_product)
+admin_route.post('/update_product_post/:id',adminController.update_product_post)
+
+
 
 
 

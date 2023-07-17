@@ -58,11 +58,51 @@ module.exports = {
     delete_product: async (req, res) => {
         try {
             const deleteId = req.params.id;
-            console.log(`>>>>>>>>>>>${deleteId}`)
             await productData.findByIdAndDelete(deleteId);
 
         } catch (error) {
             console.log(error.message);
+        }
+    },
+    update_product: async (req, res) => {
+        const productId  = req.params.id; // Assuming the product_id is passed as a route parameter
+         console.log(`..........  ${productId}`)
+        try {
+            const product = await productData.findById(productId);
+         console.log(`.......... product ${product}`)
+
+            if (!product) {
+                return res.render("update_product", { message: "Product not found" });
+            }
+
+            // Render the update_product form with the existing product data
+            res.render("update_product", { product });
+        } catch (error) {
+            res.send(error.message);
+        }
+    },
+    update_product_post: async (req, res) => {
+        const { product_name, product_details, category, price } = req.body;
+        console.log(`///////// ${req.body}`)
+        const id = req.params.id
+        console.log(`///////// ${id}`)
+
+        try {
+            const product = await productData.findById(id);
+            if (!product) {
+                return res.render("update_product", { message: "Product not found" });
+            }
+
+            product.product_name = product_name;
+            product.product_details = product_details;
+            product.category = category;
+            product.price = price;
+
+            await product.save();
+
+            res.redirect("/view_products"); // Redirect to the product list or some other appropriate page
+        } catch (error) {
+            res.send(error.message);
         }
     },
 
@@ -85,7 +125,6 @@ module.exports = {
         try {
 
             const data = await productData.find();
-            console.log(`**********${data}`)
             res.render('view_products', { data });
         } catch (err) {
             console.error(err);
