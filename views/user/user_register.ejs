@@ -1,4 +1,4 @@
-<%-include('. /_header.ejs') -%>
+<%-include('./_header.ejs') -%>
 
 
     <!--header area start-->
@@ -167,7 +167,7 @@
     </div>
 
     <!--offcanvas menu area end-->
-    <%-include('. /_head_section.ejs') -%>
+    <%-include('./_head_section.ejs') -%>
         <!--header area end-->
 
         <!--breadcrumbs area start-->
@@ -195,36 +195,41 @@
 
                         <div class="form-container">
                             <form id="signupForm">
-                                <P>
+                                <p>
                                     <label>
                                         <%=message %>
                                     </label>
-                                </P>
-
+                                </p>
+                        
                                 <p>
+                                    <label for="user_name">Name:</label>
                                     <input type="text" id="user_name" name="user_name" placeholder="Enter your name">
-                                <p id="nameError" class="p-1 text-danger"></p>
+                                    <p id="nameError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
+                                    <label for="email">Email:</label>
                                     <input type="text" id="email" name="email" placeholder="Enter your email">
-                                <p id="emailError" class="p-1 text-danger"></p>
+                                    <p id="emailError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
+                                    <label for="phone">Mobile Number:</label>
                                     <input type="text" id="phone" name="phone" placeholder="Enter your mobile number">
-                                <p id="phoneError" class="p-1 text-danger"></p>
+                                    <p id="phoneError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
-                                    <textarea id="address" name="address"
-                                        placeholder="Enter your shipping address here.."></textarea>
-                                <p id="addressError" class="p-1 text-danger"></p>
+                                    <label for="address">Shipping Address:</label>
+                                    <textarea id="address" name="address" placeholder="Enter your shipping address here.."></textarea>
+                                    <p id="addressError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
+                                    <label for="password">Password:</label>
                                     <input type="password" name="password" placeholder="Enter password">
-                                <p id="passwordError" class="p-1 text-danger"></p>
+                                    <p id="passwordError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
+                                    <label for="confirm_password">Confirm Password:</label>
                                     <input type="password" name="confirm_password" placeholder="Confirm password">
-                                <p id="confirmPasswordError" class="p-1 text-danger"></p>
+                                    <p id="confirmPasswordError" class="p-1 text-danger"></p>
                                 </p>
                                 <p>
                                     <label for="remember">
@@ -236,8 +241,8 @@
                                     <button type="submit">Register</button>
                                 </div>
                             </form>
-
                         </div>
+                        
 
 
                     </div>
@@ -273,7 +278,7 @@
         <!--brand area end-->
 
         <!--footer area start-->
-        <%-include('. /_footer.ejs') -%>
+        <%-include('./_footer.ejs') -%>
 
             <!--footer area end-->
 

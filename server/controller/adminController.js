@@ -1,5 +1,7 @@
 const model = require("../model/product")
+const Usermodel = require("../model/user_register")
 
+const customerData = Usermodel.user_register
 
 const productData = model.products
 
@@ -15,13 +17,20 @@ module.exports = {
     admin_signin_post: (req, res) => {
 
         const { email, password } = req.body
-        if (email === "admin@gmail.com" && password === "123") {
+        if (email === "admin@gmail.com" && password === "admin123") {
             req.session.admin = email
+           
             res.redirect("admin_dashboard")
         } else {
             res.render("sign_in", { message: "Invalid username or password", admin: true })
 
         }
+    },
+    admin_logout: (req, res) => {
+ 
+        delete req.session.admin;
+        
+        res.redirect("/admin_sign_in"); // Redirect to the login page after logout
     },
     add_product: (req, res) => {
         res.render('add_product');
@@ -126,6 +135,19 @@ module.exports = {
 
             const data = await productData.find();
             res.render('view_products', { data });
+        } catch (err) {
+            console.error(err);
+            res.status(500).send('Internal Server Error');
+        }
+
+
+    },
+    
+    view_customers: async (req, res) => {
+        try {
+
+            const data = await customerData.find();
+            res.render('customers', { data });
         } catch (err) {
             console.error(err);
             res.status(500).send('Internal Server Error');

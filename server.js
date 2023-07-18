@@ -16,6 +16,7 @@ const user_route = require('./server/routes/user_route')
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}))
+app.use(nocache())
 
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views/user'))
@@ -32,7 +33,6 @@ app.use(session({
     resave:false,
     saveUninitialized:true
 }))
-app.use(nocache())
 
 app.use('/',user_route)
 app.use('/',admin_route)

@@ -15,6 +15,8 @@ user_route.post('/otp_verification_post', userController.otp_verification_post)
 
 
 user_route.get('/user_login', userController.user_login)
+user_route.post("/user_login_post", userController.user_login_post)
+
 
 
 user_route.get('/index', userController.index)
@@ -36,10 +38,9 @@ user_route.get('/user_logout', userController.user_logout)
 
 
 
-// USER POST
 
 
-user_route.post("/user_login_post", userController.user_login_post)
+
 
 
 

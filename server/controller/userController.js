@@ -17,14 +17,14 @@ let confirm_password;
 
 
 function validateRegister(data) {
-    const { user_name, email,address, phone, password, confirm_password } = data;
+    const { user_name, email, address, phone, password, confirm_password } = data;
     const errors = {}
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phonePattern = /^\d{10}$/;
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
 
-    const addressPattern  = /^[\w\s\-.,]+(?:\n[\w\s\-.,]+)*$/;
+    const addressPattern = /^[\w\s\-.,]+(?:\n[\w\s\-.,]+)*$/;
 
 
     // /Name validation //
@@ -33,7 +33,7 @@ function validateRegister(data) {
     } else if (user_name.length < 3 || user_name[0] == " ") {
         errors.nameError = "Enter a Valid Name"
     }
-   
+
 
     // email validation //
     if (!email) {
@@ -51,9 +51,9 @@ function validateRegister(data) {
 
     // Address Validation //
 
-    if(!address){
+    if (!address) {
         errors.addressError = "please Enter your address";
-    }else if(!addressPattern.test(address)){
+    } else if (!addressPattern.test(address)) {
         errors.addressError = "please enter a valid address"
     }
 
@@ -125,7 +125,7 @@ module.exports = {
         res.render('product_details');
     },
     otp_verification: async (req, res) => {
-        res.render('otp_verification',{message:""});
+        res.render('otp_verification', { message: "" });
 
     },
     otp_verification_post: async (req, res) => {
@@ -146,11 +146,11 @@ module.exports = {
                 user_name: user_name,
                 email: emailId,
                 phone: mobile,
-                
+
                 address: address,
                 password: securedPassword,
                 confirm_password: securedPassword,
-                
+
 
             });
             console.log(newUser.user_name)
@@ -170,32 +170,36 @@ module.exports = {
 
             } catch (error) {
                 console.log(error);
-                res.render("otp_verification", { message: "Error registering new user", loggedIn: false});
+                res.render("otp_verification", { message: "Error registering new user", loggedIn: false });
             }
 
         } else {
-            res.render("otp_verification", { message: "wrong OTP"});
+            res.render("otp_verification", { message: "wrong OTP" });
         }
     },
-   
+
     user_login: (req, res) => {
+        if (req.session.user) {
+            res.redirect("/my_account")
+        } else {
+            res.render("user_login", { message: "" })
+        }
         
-        res.render("user_login",{message:""})
     },
 
     user_logout: (req, res) => {
         delete req.session.user;
-        res.redirect("user_login",{message:""})
+        res.redirect("/user_login"); // Redirect to the login page after logout
     },
+    
+    user_register: (req, res) => {
 
-        user_register: (req, res) => {
-
-        res.render('user_register',{message:""});
-        // if (req.session.user) {
-        //     res.redirect("my_account")
-        // } else {
-        //     res.render("user_register", { userSignup: true })
-        // }
+        res.render('user_register', { message: "" });
+        if (req.session.user) {
+            res.redirect("my_account")
+        } else {
+            res.render("user_register", { userSignup: true })
+        }
     },
 
 
@@ -214,29 +218,29 @@ module.exports = {
             const valid = validateRegister(req.body)
             if (emailExist) {
 
-                return res.status(401).json({ error: "user with same Email already Exists" })
-    
+                return res.status(401).json({ error: "user with same email Id already exists please try another email" })
+
             } else if (phoneExist) {
-    
-                return res.status(405).json({ error: "The user with same Mobile Number already Exist please try another Number" })
-    
+
+                return res.status(405).json({ error: "The user with same mobile number already exist please try another number" })
+
             } else if (!valid.isValid) {
                 return res.status(400).json({ error: valid.errors })
             }
-          
+
             else {
                 generatedOtp = generateOTP();
-            
+
                 user_name = req.body.user_name;
                 emailId = req.body.email;
                 mobile = req.body.phone;
-                
+
                 address = req.body.address
                 password = req.body.password;
                 confirm_password = req.body.confirm_password
                 sendOtpMail(email, generatedOtp);
 
-                
+
 
 
                 return res.status(200).end();
@@ -276,7 +280,7 @@ module.exports = {
                 console.log(error.message);
             }
         };
- 
+
     },
     //POST
     user_login_post: async (req, res) => {
@@ -286,9 +290,9 @@ module.exports = {
             const { user_name, password } = req.body
             let email = req.body.user_name
             let exist = await userData.findOne({ email: email })
-
+            const decodedPassword = await bcrypt.compare(password, exist.password);
             if (exist) {
-                if (exist.password === password) {
+                if (decodedPassword) {
                     req.session.user = email
                     res.redirect("index")
                 } else {
