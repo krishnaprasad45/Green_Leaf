@@ -5,13 +5,15 @@ user_route.set('views', './views/user')
 
 const userController = require("../controller/userController")
 
-//USER GET
+
 user_route.get('/', userController.index)
 user_route.get('/user_register', userController.user_register)
 user_route.post("/user_register", userController.user_register_post)
 
 user_route.get('/otp_verification', userController.otp_verification)
 user_route.post('/otp_verification_post', userController.otp_verification_post)
+user_route.get("/resentOtp",userController.resendOtp )
+
 
 
 user_route.get('/user_login', userController.user_login)

@@ -24,6 +24,7 @@
 
 
             <div class="row mt-4 pt-2">
+              <p style="color: red;"><%=message%></p>
               <div class="col">
                 <input type="text" name="txt1" class="form-control form-control-lg text-center py-4" maxlength="1" autofocus>
               </div>
@@ -47,15 +48,17 @@
 
       <p class="text-center text-muted mt-4">
         Didn't receive it?
-        <a href="#!" class="text-decoration-none ms-2">
+        <a id="resendLink" href="/resentOtp" class="text-decoration-none ms-2">
           Resend code
         </a>
       </p>
+      
     </div>
   </div>
 
   <!-- JAVASCRIPT
   ============================================-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 
   <!-- Vendor -->
   <script src="/assets_admin/js/vendor.min.js"></script>
@@ -79,6 +82,21 @@
       })
     })
   </script>
+  <script>
+    // Add an event listener to the "Resend code" link
+    document.getElementById('resendLink').addEventListener('click', function(event) {
+      // Prevent the default behavior of the link (i.e., navigating to "/resentOtp")
+      event.preventDefault();
+  
+      // Show the SweetAlert with the message "OTP Sent"
+      Swal.fire({
+        icon: 'success',
+        title: 'OTP Sent',
+        text: 'Your one-time password has been resent.',
+      });
+    });
+  </script>
+  
 </body>
 
 <!-- Mirrored from themeforesight.netlify.app/two-step-verification.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Jul 2023 05:40:28 GMT -->

@@ -1212,9 +1212,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 .search_container form {
   display: flex;
-  border-radius: 30px;
-  border: 1px solid #e1e1e1;
-  background: #fff;
+  border-radius: 0px;
+  border: 0px solid #ffffff;
+  background: #ffffff;
   width: 520px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1239,9 +1239,17 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 
+
+
+
 .search_box {
   position: relative;
   width: 100%;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  padding: 1px 1px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .search_box {
