@@ -1,8 +1,24 @@
 const model = require("../model/product");
-const productData = model.products;
+const categoryModel = require("../model/category");
 
-const addProduct = (req, res) => {
-  res.render("add_product");
+const productData = model.products;
+const categoryData = categoryModel.category
+
+
+
+const cloudinary = require("../../config/cloudinary");
+require("dotenv").config();
+
+
+
+const addProduct = async (req, res) => {
+  try {
+    const data = await categoryData.find();
+    res.render("add_product", { data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 const addProductPost = async (req, res) => {
@@ -34,6 +50,7 @@ const updateProduct = async (req, res) => {
   console.log(`..........  ${productId}`);
   try {
     const product = await productData.findById(productId);
+
     console.log(`.......... product ${product}`);
 
     if (!product) {
@@ -88,6 +105,70 @@ const viewProducts = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+////                                CATEGORY                                                  ///
+
+const addCategory = (req,res) => {
+   res.render('addCategory')
+};
+
+const viewCategory = async (req, res) => {
+  try {
+    const data = await categoryData.find();
+    res.render("viewCategory", { data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+const addCategoryPost = async (req, res) => {
+  console.log('addCategoryPost entered')
+  const categoryName = req.body.category_name;
+  const categoryDescription = req.body.category_details;
+  console.log(`+++++++++++ ${req.body.category_name}`)
+  console.log(`+++++++++++ ${req.body.category_details}`)
+ 
+  const image = req.file; //dbt
+  console.log(`.................gbgbvgajbjahs.....${image}`)
+  console.log(1)
+  const lowerCategoryName = categoryName.toLowerCase();
+  console.log("..........................")
+  try {
+    console.log("........try section just entered")
+
+      const result = await cloudinary.uploader.upload(image.path, {
+          folder: "Categories",  //dbt
+      });
+      console.log(result)
+      console.log(".......")
+      const categoryExist = await categoryData.findOne({ category: lowerCategoryName });
+      console.log(`>>>>>>>>> category exist : ${categoryExist}`)
+      if (!categoryExist) {
+
+            console.log(139,"hh")
+          const category = new categoryData({
+              category: lowerCategoryName,
+              imageUrl: {
+                  public_id: result.public_id,
+                  url: result.secure_url,
+              },
+              description: categoryDescription,
+          });
+
+          await category.save();
+          console.log("******Data stored in the database******")
+          req.session.categorySave = true;
+          res.redirect("/viewCategory");
+      } else {
+          req.session.categoryExist = true;
+          res.redirect("/viewCategory");
+      }
+  } catch (error) {
+      console.log(error);
+  }
+};
+
+
 
 module.exports = {
   addProduct,
@@ -96,4 +177,7 @@ module.exports = {
   updateProductPost,
   deleteProduct,
   viewProducts,
+  addCategory,
+  addCategoryPost,
+  viewCategory
 };

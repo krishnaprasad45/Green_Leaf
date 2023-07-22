@@ -1,107 +1,222 @@
-<nav class="navbar navbar-vertical navbar-expand-lg navbar-light bg-white" role="navigation">
-    <div class="container-fluid">
-      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<nav
+  class="navbar navbar-vertical navbar-expand-lg navbar-light bg-white"
+  role="navigation"
+>
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar-collapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <a class="navbar-brand" href="index.html">
-        <h5>GREEN LEAF ADMIN</h5>
+    <a class="navbar-brand" href="index.html">
+      <h5>GREEN LEAF ADMIN</h5>
+    </a>
+
+    <div class="dropdown d-flex d-lg-none">
+      <a href="#" data-bs-toggle="dropdown">
+        <span class="avatar">
+          <img
+            src="assets_admin/img/uifaces/9.jpg"
+            class="avatar-image rounded-circle"
+            alt=""
+          />
+        </span>
       </a>
-
-      <div class="dropdown d-flex d-lg-none">
-        <a href="#" data-bs-toggle="dropdown">
-          <span class="avatar">
-            <img src="assets_admin/img/uifaces/9.jpg" class="avatar-image rounded-circle" alt="">
-          </span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end">
-          <a class="dropdown-item" href="profile.html">My profile</a>
-          <a class="dropdown-item" href="account.html">Account settings</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="sign-in.html">Log out</a>
-        </div>
-      </div>
-
-      <div class="collapse navbar-collapse mt-md-2" id="navbar-collapse">
-        <ul class="navbar-nav" id="sidebar-nav">
-          <li class="nav-item">
-            <a href="#sidebar-blogs" class="nav-link" data-bs-toggle="collapse" aria-expanded="true" aria-controls="sidebar-blogs">
-              <span class="svg-icon text-primary me-2 relative-top--2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-c</title><polyline points="352 144 464 144 464 256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,368,169.37,246.63a32,32,0,0,1,45.26,0l50.74,50.74a32,32,0,0,0,45.26,0L448,160" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-              </span>
-              Dashboards
-              <i class="fas fa-chevron-down fa-xs collapse-icon ms-auto"></i>
-            </a>
-
-            <div class="collapse show" id="sidebar-blogs" data-bs-parent="#sidebar-nav">
-              <ul class="nav nav-sm flex-column pb-2">
-              
-                <li class="nav-item">
-                  <a href="/earnings" class="nav-link ">
-                    Earnings
-                  </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="/payments">
-                      Payments
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="/customers">
-                      Customers
-                    </a>
-                  </li>
-              </ul>
-            </div>
-          </li>
-
-        
-
-          <li class="nav-item">
-            <a href="#sidebar-pages" class="nav-link" data-bs-toggle="collapse" aria-expanded="" aria-controls="sidebar-pages">
-              <span class="svg-icon text-primary me-2 relative-top--2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-e</title><rect x="128" y="128" width="336" height="336" rx="57" ry="57" style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"/><path d="M383.5,128l.5-24a56.16,56.16,0,0,0-56-56H112a64.19,64.19,0,0,0-64,64V328a56.16,56.16,0,0,0,56,56h24" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-              </span>
-              Product
-              <i class="fas fa-chevron-down fa-xs collapse-icon ms-auto"></i>
-            </a>
-            <div class="collapse " id="sidebar-pages" data-bs-parent="#sidebar-nav">
-              <ul class="nav nav-sm flex-column pb-2">
-               
-
-                <li class="nav-item">
-                    <li class="nav-item">
-                        <a class="nav-link " href="/add_product">
-                          Add product
-                        </a>
-                      </li>
-                
-                </li>
-                <li class="nav-item">
-                    <li class="nav-item">
-                        <a class="nav-link " href="/view_products">
-                          View products
-                        </a>
-                      </li>
-                
-                </li>
-
-           
-
-              </ul>
-            </div>
-          </li>
-
-        
-
-         
-
-          
-        </ul>
-
-      
-
-     
+      <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item" href="profile.html">My profile</a>
+        <a class="dropdown-item" href="account.html">Account settings</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="sign-in.html">Log out</a>
       </div>
     </div>
-  </nav>
+
+    <div class="collapse navbar-collapse mt-md-2" id="navbar-collapse">
+      <ul class="navbar-nav" id="sidebar-nav">
+        <li class="nav-item">
+          <a
+            href="#sidebar-blogs"
+            class="nav-link"
+            data-bs-toggle="collapse"
+            aria-expanded="true"
+            aria-controls="sidebar-blogs"
+          >
+            <span class="svg-icon text-primary me-2 relative-top--2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="512"
+                height="512"
+                viewBox="0 0 512 512"
+              >
+                <title>ionicons-v5-c</title>
+                <polyline
+                  points="352 144 464 144 464 256"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+                <path
+                  d="M48,368,169.37,246.63a32,32,0,0,1,45.26,0l50.74,50.74a32,32,0,0,0,45.26,0L448,160"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+              </svg>
+            </span>
+            Dashboards
+            <i class="fas fa-chevron-down fa-xs collapse-icon ms-auto"></i>
+          </a>
+
+          <div
+            class="collapse show"
+            id="sidebar-blogs"
+            data-bs-parent="#sidebar-nav"
+          >
+            <ul class="nav nav-sm flex-column pb-2">
+              <li class="nav-item">
+                <a href="/earnings" class="nav-link"> Earnings </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/payments"> Payments </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/customers"> Customers </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a
+            href="#sidebar-pages-product"
+            class="nav-link"
+            data-bs-toggle="collapse"
+            aria-expanded=""
+            aria-controls="sidebar-pages-product"
+          >
+            <span class="svg-icon text-primary me-2 relative-top--2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="512"
+                height="512"
+                viewBox="0 0 512 512"
+              >
+                <title>ionicons-v5-e</title>
+                <rect
+                  x="128"
+                  y="128"
+                  width="336"
+                  height="336"
+                  rx="57"
+                  ry="57"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+                <path
+                  d="M383.5,128l.5-24a56.16,56.16,0,0,0-56-56H112a64.19,64.19,0,0,0-64,64V328a56.16,56.16,0,0,0,56,56h24"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+              </svg>
+            </span>
+            Product
+            <i class="fas fa-chevron-down fa-xs collapse-icon ms-auto"></i>
+          </a>
+          <div
+            class="collapse"
+            id="sidebar-pages-product"
+            data-bs-parent="#sidebar-nav"
+          >
+            <ul class="nav nav-sm flex-column pb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="/add_product"> Add product </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/view_products"> View products </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a
+            href="#sidebar-pages-category"
+            class="nav-link"
+            data-bs-toggle="collapse"
+            aria-expanded=""
+            aria-controls="sidebar-pages-category"
+          >
+            <span class="svg-icon text-primary me-2 relative-top--2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="512"
+                height="512"
+                viewBox="0 0 512 512"
+              >
+                <title>ionicons-v5-e</title>
+                <rect
+                  x="128"
+                  y="128"
+                  width="336"
+                  height="336"
+                  rx="57"
+                  ry="57"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+                <path
+                  d="M383.5,128l.5-24a56.16,56.16,0,0,0-56-56H112a64.19,64.19,0,0,0-64,64V328a56.16,56.16,0,0,0,56,56h24"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+              </svg>
+            </span>
+            Category
+            <i class="fas fa-chevron-down fa-xs collapse-icon ms-auto"></i>
+          </a>
+          <div
+            class="collapse"
+            id="sidebar-pages-category"
+            data-bs-parent="#sidebar-nav"
+          >
+            <ul class="nav nav-sm flex-column pb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="/addCategory"> Add Category </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/viewCategory"> View Category </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

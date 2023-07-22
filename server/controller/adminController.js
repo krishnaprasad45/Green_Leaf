@@ -1,6 +1,8 @@
 const Usermodel = require("../model/user_register");
 const customerData = Usermodel.user_register;
 
+
+
 const adminSignin = (req, res) => {
     if (req.session.admin) {
         res.redirect("/admin_dashboard");
@@ -11,7 +13,7 @@ const adminSignin = (req, res) => {
 
 const adminSigninPost = (req, res) => {
     const { email, password } = req.body;
-    if (email === "admin@gmail.com" && password === "admin123") {
+    if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
         req.session.admin = email;
         res.redirect("admin_dashboard");
     } else {
