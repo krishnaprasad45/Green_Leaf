@@ -52,6 +52,22 @@ const viewCustomers = async (req, res) => {
     }
 };
 
+//user block
+
+const blockUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const blockUser = await customerData.findById(id);
+
+        await customerData.findByIdAndUpdate(id, { $set: { is_blocked: !blockUser.is_blocked } }, { new: true });
+
+        res.redirect("/customers");
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 module.exports = {
     adminSignin,
     adminSigninPost,
@@ -61,4 +77,5 @@ module.exports = {
     payments,
     customers,
     viewCustomers,
+    blockUser,
 };

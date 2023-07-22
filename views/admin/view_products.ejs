@@ -108,16 +108,26 @@
               <% data.forEach(async (product)=> { %>
                 <tr>
                   <td>
-                    <span class="avatar avatar-sm me-3">
-                      <img src="/assets_admin/img/uifaces/14.jpg" class="avatar-image rounded-circle" alt="">
-                    </span>
-                    <a href="#!" class="item-name text-dark relative-top-2">
-                      <%= product.product_name %>
-                    </a>
+                    <div class="item-name-wrapper">
+                      <a href="#!" class="item-name text-dark">
+                        <%= product.product_name %>
+                      </a>
+                    </div>
+                    <div class="avatar-wrapper">
+                      <span class="avatar avatar-lg me-3">
+                        <img src="<%= product.imageUrl.url %>" class="avatar-image" alt="">
+                      </span>
+                    </div>
                   </td>
+                  
+                  
+                  
                   <td class="item-email">
-                    <%= product.product_details %>
+                    <div class="product-details">
+                      <%= product.product_details %>
+                    </div>
                   </td>
+                  
                   <td class="item-role">
                     <%= product.category %>
                   </td>
@@ -207,6 +217,27 @@
       var customersList = new List('customers', options);
     })
   </script>
+<!-- JavaScript code to apply word wrapping for each product -->
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const productDetailContainers = document.querySelectorAll(".product-details");
+    const wordsPerLine = 6;
+
+    productDetailContainers.forEach((productDetailsContainer) => {
+      const words = productDetailsContainer.innerText.split(" ");
+      let formattedContent = "";
+      for (let i = 0; i < words.length; i++) {
+        formattedContent += words[i] + " ";
+        if ((i + 1) % wordsPerLine === 0) {
+          formattedContent += "<br>";
+        }
+      }
+      productDetailsContainer.innerHTML = formattedContent.trim();
+    });
+  });
+</script>
+
+
 </body>
 
 <!-- Mirrored from themeforesight.netlify.app//customers by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Jul 2023 05:40:24 GMT -->

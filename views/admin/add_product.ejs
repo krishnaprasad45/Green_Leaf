@@ -24,7 +24,7 @@
               <h3 class="mb-3 mb-md-0">
                 Add Product
               </h3>
-              <form action="/add_product_post" method="post">
+              <form action="/add_product_post" method="post" enctype="multipart/form-data">
                 <div class="form-group mt-4 pt-3">
                   <label class="form-label">
                     Product name:
@@ -64,15 +64,17 @@
                     <input type="text" class="form-control yellow-border" name="price">
                   </div>
                 </div>
-              
-                <div class="form-group mt-4">
+            
+                <div class="from-group mt-4">
                   <label class="form-label mb-0">
                     Product Image:
                   </label>
                   <p class="form-text">
                     Upload a JPG or PNG. No larger than 1200px.
                   </p>
-                  <input type="file" class="form-control yellow-border" name="product_img">
+                  <input type="file" id="product_image" class="form-control yellow-border" name="product_image" accept="image" >
+                  <img id="preview" src="#" alt="Image Preview" style="display: none;">
+  
                 </div>
               
                 <div class="d-grid gap-3 mt-5">

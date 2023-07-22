@@ -101,19 +101,20 @@
               </tr>
             </thead>
             <tbody class="list">
-              <% data.forEach(async (product)=> { %>
+              <% data.forEach(async (category)=> { %>
                 <tr>
                   <td>
                     <span class="avatar avatar-sm me-3">
-                      <img src="/assets_admin/img/uifaces/14.jpg" class="avatar-image rounded-circle" alt="">
+                      
+                      <img src="<%= category.imageUrl.url %>" class="avatar-image rounded-circle" alt="">
                     </span>
                     <a href="#!" class="item-name text-dark relative-top-2">
-                      <%= product.category %>
-                      <% console.log(product) %>
+                      <%= category.category %>
+                      
                     </a>
                   </td>
                   <td class="item-email">
-                    <%= product.description %>
+                    <%= category.description %>
                   </td>
                  
                  
@@ -125,8 +126,8 @@
                         </span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/update_product/<%=product._id %>">Edit</a>
-                        <a class="dropdown-item text-danger" href="/delete_product/<%=product._id %>">Remove</a>
+                        <a class="dropdown-item" href="/update_product/<%=category._id %>">Edit</a>
+                        <a class="dropdown-item text-danger" href="/delete_product/<%=category._id %>">Remove</a>
                       </div>
                     </div>
                   </td>

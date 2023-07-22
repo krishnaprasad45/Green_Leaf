@@ -22,10 +22,13 @@ const addProduct = async (req, res) => {
 };
 
 const addProductPost = async (req, res) => {
-  console.log(req.body);
   const { product_name } = req.body;
-
+  const image = req.file; 
+  
   try {
+    const result = await cloudinary.uploader.upload(image.path, {
+      folder: "Products",  
+  });
     const exist = await productData.findOne({ product_name: product_name });
     if (exist) {
       res.render("add_product", { message: "The product already exists" });
@@ -35,9 +38,15 @@ const addProductPost = async (req, res) => {
         product_details: req.body.product_details,
         category: req.body.category,
         price: req.body.price,
+        imageUrl: {
+          public_id: result.public_id,
+          url: result.secure_url,
+      },
       });
 
       await product.save();
+      console.log("******Data stored in the database******")
+
       res.redirect("/view_products");
     }
   } catch (error) {
@@ -122,30 +131,19 @@ const viewCategory = async (req, res) => {
 };
 
 const addCategoryPost = async (req, res) => {
-  console.log('addCategoryPost entered')
   const categoryName = req.body.category_name;
   const categoryDescription = req.body.category_details;
-  console.log(`+++++++++++ ${req.body.category_name}`)
-  console.log(`+++++++++++ ${req.body.category_details}`)
  
-  const image = req.file; //dbt
-  console.log(`.................gbgbvgajbjahs.....${image}`)
-  console.log(1)
+  const image = req.file; 
   const lowerCategoryName = categoryName.toLowerCase();
-  console.log("..........................")
   try {
-    console.log("........try section just entered")
 
       const result = await cloudinary.uploader.upload(image.path, {
-          folder: "Categories",  //dbt
+          folder: "Categories",  
       });
-      console.log(result)
-      console.log(".......")
       const categoryExist = await categoryData.findOne({ category: lowerCategoryName });
-      console.log(`>>>>>>>>> category exist : ${categoryExist}`)
       if (!categoryExist) {
 
-            console.log(139,"hh")
           const category = new categoryData({
               category: lowerCategoryName,
               imageUrl: {

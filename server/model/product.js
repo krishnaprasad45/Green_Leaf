@@ -20,10 +20,16 @@ var schema = new mongoose.Schema({
         type: Number,
         require: true
     },
-    // product_img: {
-    //     type: String,
-    //     require: true
-    // },
+    imageUrl:{
+        public_id:{
+            type: String,
+            required: true
+        },
+        url:{
+            type: String,
+            required:true
+        }
+    },
 
 })
 const products = mongoose.model("productCollection", schema)

@@ -29,6 +29,10 @@ var schema = new mongoose.Schema({
         type: String,
         require: true
     },
+    is_blocked: {
+        type: Boolean,
+        required: true,
+      },
   
 })
 const user_register = mongoose.model("usercollection", schema)

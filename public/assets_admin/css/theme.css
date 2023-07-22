@@ -14400,5 +14400,36 @@ code {
     border-color: yellow!important;
 }
 
+.dropdown-menu {
+    background-color: lightgrey;
+    font-weight: bold;
+  }
+/* Default styles for the avatar */
+.avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Styles for larger avatars on larger screens */
+  @media (min-width: 768px) {
+    .avatar {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
+  /* Styles for positioning the product name below the avatar */
+  .avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .item-name-wrapper {
+    text-align: center; /* Center align the product name */
+    margin-top: 5px;
+  }
+  
+
 
 /*# sourceMappingURL=theme.min.css.map */
