@@ -33,7 +33,7 @@ user_route.get('/checkout', userController.checkout)
 user_route.get('/my_account', userController.my_account)
 user_route.get('/cart', userController.cart)
 user_route.get('/wishlist', userController.wishlist)
-user_route.get('/product_details', userController.product_details)
+user_route.get('/product_details/:id', userController.product_details)
 user_route.get('/user_logout', userController.user_logout)
 
 

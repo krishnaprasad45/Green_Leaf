@@ -2,6 +2,10 @@
 const model = require("../model/user_register");
 const bcrypt = require('bcrypt');
 const helperFunction = require('../../helperFunctions/userHelper');
+const productmodel = require("../model/product");
+
+const productData = productmodel.products;
+
 
 const userData = model.user_register;
 let generatedOtp;
@@ -16,8 +20,15 @@ const shop = (req, res) => {
     res.render('shop');
 };
 
-const index = (req, res) => {
-    res.render('index');
+const index = async (req, res) => {
+
+    try {
+        const data = await productData.find();
+        res.render("index", { data });
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+      }
 };
 
 const contact = (req, res) => {
@@ -44,8 +55,14 @@ const wishlist = (req, res) => {
     res.render('wishlist');
 };
 
-const product_details = (req, res) => {
-    res.render('product_details');
+const product_details = async (req, res) => {
+    const productId = req.params.id;
+    try{
+        const product = await productData.findById(productId)
+    res.render('product_details', {product});
+    } catch(error){
+        res.status(500).send(error.message);
+    }
 };
 
 // OTP Verification
