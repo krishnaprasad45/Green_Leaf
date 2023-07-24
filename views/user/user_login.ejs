@@ -7,126 +7,115 @@
     <div class="off_canvars_overlay">
 
     </div>
-
+   
 
     <!--offcanvas menu area end-->
     <%-include('./_head_section.ejs') -%>
-        <!--header area end-->
+    <!--header area end-->
 
-        <!--breadcrumbs area start-->
-        <div class="breadcrumbs_area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="breadcrumb_content">
-                            <h3>Login Page</h3>
-
-                        </div>
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <h3>Login Page</h3>
+                       
                     </div>
                 </div>
             </div>
         </div>
-        <!--breadcrumbs area end-->
+    </div>
+    <!--breadcrumbs area end-->
 
-        <!-- customer login start -->
-        <div class="customer_login">
-            <div class="container">
-                <div class="row">
-                    <!--login area start-->
-                    <div class="col-lg-12 col-md-12">
-                        <div class="account_form">
+    <!-- customer login start -->
+    <div class="customer_login">
+        <div class="container">
+            <div class="row">
+                <!--login area start-->
+                <div class="col-lg-12 col-md-12">
+                    <div class="account_form">
+                        
+                        <form method="post" action="/user_login_post">
+                            <p>
+                                <label style="<%= message === 'Successfully registered!' ? 'color: green;' : 'color: rgb(179, 15, 15);' %>"><%= message %></label>
+                            </p>
+                            
+                            <p>
+                                <label>Username  <span>*</span></label>
+                                <input type="text" name="user_name">
+                            </p>
+                            <p>
+                                <label>Password <span>*</span></label>
+                                <input type="password" name="password">
+                            </p>
+                            <div class="login_submit">
+                                <a href="/user_register">Don't have ab account? Signup here</a>
+                                <label for="remember">
+                                    <input id="remember" type="checkbox">
+                                    Remember me
+                                </label>
+                                <button type="submit">login</button>
 
-                            <form id="user_login_post">
-                                <p>
-                                    <label style="color: rgb(5, 139, 39);">
-                                        <%=message %>
-                                    </label>
-                                </p>
+                            </div>
 
-                                <p>
-                                    <label>Username or email <span>*</span></label>
-                                    <input type="text" name="user_name">
-                                </p>
-
-                                <p>
-                                    <label>Passwords <span>*</span></label>
-                                    <input type="password" name="password">
-                                </p>
-                                <div class="login_submit">
-                                    <a href="/user_register">Don't have ab account? Signup here</a>
-                                    <label for="remember">
-                                        <input id="remember" type="checkbox">
-                                        Remember me
-                                    </label>
-                                    <button type="submit">login</button>
-
-                                </div>
-
-                            </form>
-                        </div>
+                        </form>
                     </div>
-                    <!--login area start-->
-
                 </div>
+                <!--login area start-->
+
+               
             </div>
         </div>
-        <!-- customer login end -->
+    </div>
+    <!-- customer login end -->
 
-        <!--brand area start-->
+    <!--brand area start-->
+ 
+    <!--brand area end-->
 
-        <!--brand area end-->
-
-        <!--footer area start-->
-        <%-include('./_footer.ejs') -%>
-
-            <!--footer area end-->
+    <!--footer area start-->
+<%-include('./_footer.ejs') -%>
+    
+    <!--footer area end-->
 
 
-            <!-- JS
+    <!-- JS
 ============================================ -->
-            <!--jquery min js-->
-            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
-            <!--popper min js-->
-            <script src="assets/js/popper.js"></script>
-            <!--bootstrap min js-->
-            <script src="assets/js/bootstrap.min.js"></script>
-            <!--owl carousel min js-->
-            <script src="assets/js/owl.carousel.min.js"></script>
-            <!--slick min js-->
-            <script src="assets/js/slick.min.js"></script>
-            <!--magnific popup min js-->
-            <script src="assets/js/jquery.magnific-popup.min.js"></script>
-            <!--counterup min js-->
-            <script src="assets/js/jquery.counterup.min.js"></script>
-            <!--jquery countdown min js-->
-            <script src="assets/js/jquery.countdown.js"></script>
-            <!--jquery ui min js-->
-            <script src="assets/js/jquery.ui.js"></script>
-            <!--jquery elevatezoom min js-->
-            <script src="assets/js/jquery.elevatezoom.js"></script>
-            <!--isotope packaged min js-->
-            <script src="assets/js/isotope.pkgd.min.js"></script>
-            <!--slinky menu js-->
-            <script src="assets/js/slinky.menu.js"></script>
-            <!-- Plugins JS -->
-            <script src="assets/js/plugins.js"></script>
+    <!--jquery min js-->
+    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <!--popper min js-->
+    <script src="assets/js/popper.js"></script>
+    <!--bootstrap min js-->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!--owl carousel min js-->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!--slick min js-->
+    <script src="assets/js/slick.min.js"></script>
+    <!--magnific popup min js-->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!--counterup min js-->
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <!--jquery countdown min js-->
+    <script src="assets/js/jquery.countdown.js"></script>
+    <!--jquery ui min js-->
+    <script src="assets/js/jquery.ui.js"></script>
+    <!--jquery elevatezoom min js-->
+    <script src="assets/js/jquery.elevatezoom.js"></script>
+    <!--isotope packaged min js-->
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <!--slinky menu js-->
+    <script src="assets/js/slinky.menu.js"></script>
+    <!-- Plugins JS -->
+    <script src="assets/js/plugins.js"></script>
 
-            <!-- Main JS -->
-            <script src="assets/js/main.js"></script>
-
-            <!-- AXIOS LINK -->
-             <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-
-
-            <!--USER LOGIN POST VALIDATION USING AXIOS-->
-            
-            
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
 
 
 
-            </body>
+</body>
 
 
-            <!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
-
-            </html>
+<!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
+</html>

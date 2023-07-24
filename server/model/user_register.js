@@ -25,10 +25,7 @@ var schema = new mongoose.Schema({
         type: String,
         require: true
     },
-    confirm_password: {
-        type: String,
-        require: true
-    },
+  
     is_blocked: {
         type: Boolean,
         required: true,

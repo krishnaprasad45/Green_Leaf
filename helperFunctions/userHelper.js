@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer')
+const bcrypt = require("bcrypt");
+
 
 
 const validateRegister = function (data) {
@@ -14,46 +16,46 @@ const validateRegister = function (data) {
 
     // /Name validation //
     if (!user_name) {
-        errors.nameError = "Please Enter Your first Name"
+        errors.nameError = "Please enter your name"
     } else if (user_name.length < 3 || user_name[0] == " ") {
-        errors.nameError = "Enter a Valid Name"
+        errors.nameError = "Enter a valid name"
     }
 
 
     // email validation //
     if (!email) {
-        errors.emailError = "please enter your email address";
+        errors.emailError = "Please enter your email address";
     } else if (email.length < 1 || email.trim() === "" || !emailPattern.test(email)) {
-        errors.emailError = "please Enter a Valid email";
+        errors.emailError = "Please enter a valid email";
     }
 
     // Phone No Validation //
     if (!phone) {
-        errors.phoneError = "please Enter your mobile number";
+        errors.phoneError = "Please enter your mobile number";
     } else if (!phonePattern.test(phone)) {
-        errors.phoneError = "please check your number and provide a valid one";
+        errors.phoneError = "Please check your number and provide a valid one";
     }
 
     // Address Validation //
 
     if (!address) {
-        errors.addressError = "please Enter your address";
+        errors.addressError = "Please enter your address";
     } else if (!addressPattern.test(address)) {
-        errors.addressError = "please enter a valid address"
+        errors.addressError = "Please enter a valid address"
     }
 
     // Password Validation //
     if (!password) {
-        errors.passwordError = "please Enter Your  password"
+        errors.passwordError = "Please enter your  password"
     } else if (!passwordPattern.test(password)) {
-        errors.passwordError = "password must be atleast 8 characters with atleast one uppercase, lowercase, digit and special character";
+        errors.passwordError = "Password must be atleast 8 characters with atleast one uppercase, lowercase, digit and special character";
     }
 
     // Comfirm Password Validation //
     if (password && !confirm_password) {
-        errors.confirmPasswordError = "please Enter Your password"
+        errors.confirmPasswordError = "Please enter your password"
     } else if (password && confirm_password && password !== confirm_password) {
-        errors.confirmPasswordError = "passwords doesn't match";
+        errors.confirmPasswordError = "Passwords doesn't match";
     }
 
     return {
@@ -65,6 +67,7 @@ const validateRegister = function (data) {
 
 
 const securePassword = async (password) => {
+    console.log("secure pass")
     try {
         const passwordHash = await bcrypt.hash(password, 10);
         return passwordHash;

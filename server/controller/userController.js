@@ -1,6 +1,7 @@
 // userController.js
 const model = require("../model/user_register");
 const bcrypt = require("bcrypt");
+
 const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 
@@ -104,12 +105,15 @@ const otp_verification_post = async (req, res) => {
         phone: mobile,
         address: address,
         password: securedPassword,
-        confirm_password: securedPassword,
+        
+        is_blocked: false,
       });
       console.log(newUser.user_name);
       console.log(newUser.email);
       console.log(newUser.phone);
       console.log(newUser.address);
+      console.log(newUser.password);
+
       console.log(`###### newuser:${newUser}`);
 
       await newUser.save();
@@ -154,12 +158,18 @@ const user_login = (req, res) => {
 
 const user_logout = (req, res) => {
   try {
-    delete req.session.user;
-    res.redirect("/user_login"); // Redirect to the login page after logout
+    req.session.destroy((err) => {
+      if (err) {
+        console.log("Error destroying session:", err);
+      } else {
+        res.redirect("/user_login"); // Redirect to the login page after logout
+      }
+    });
   } catch (error) {
     console.log(error);
   }
 };
+
 
 // User Registration
 const user_register = (req, res) => {
@@ -179,24 +189,26 @@ const user_register_post = async (req, res) => {
   console.log(req.body);
   try {
     let { email, phone } = req.body;
+    console.log(email,phone)
     const emailExist = await userData.findOne({ email: email });
+    console.log(`email exist: ${emailExist}`)
     const phoneExist = await userData.findOne({ phone: phone });
+    console.log(`email exist: ${phoneExist}`)
+
 
     const valid = helperFunction.validateRegister(req.body);
+    console.log(`valid: ${valid}`)
+    
     if (emailExist) {
-      return res
-        .status(401)
-        .json({
-          error:
-            "user with same email Id already exists please try another email",
-        });
+      return res.status(401).json({
+        error:
+          "user with same email Id already exists please try another email",
+      });
     } else if (phoneExist) {
-      return res
-        .status(405)
-        .json({
-          error:
-            "The user with same mobile number already exist please try another number",
-        });
+      return res.status(405).json({
+        error:
+          "The user with same mobile number already exist please try another number",
+      });
     } else if (!valid.isValid) {
       return res.status(400).json({ error: valid.errors });
     } else {
@@ -207,6 +219,23 @@ const user_register_post = async (req, res) => {
       address = req.body.address;
       password = req.body.password;
       confirm_password = req.body.confirm_password;
+
+      console.log(`username: ${user_name}`)
+      console.log(`emailid: ${emailId}`)
+      console.log(`mobile: ${mobile}`)
+      console.log(`address: ${address}`)
+      console.log(`password: ${password}`)
+      console.log(`c password: ${confirm_password}`)
+
+
+
+
+
+
+
+
+
+
       helperFunction.sendOtpMail(email, generatedOtp);
       return res.status(200).end();
     }
@@ -218,24 +247,36 @@ const user_register_post = async (req, res) => {
 // User Login Post
 const user_login_post = async (req, res) => {
   try {
-     
-          const { user_name, password } = req.body;
-          let email = user_name;
-          let exist = await userData.findOne({ email: email });
-          const decodedPassword = await bcrypt.compare(password, exist.password);
-          if (exist) {
-              if (decodedPassword) {
-                  req.session.user = email;
-                  res.redirect("index");
-              } else {
-                  res.render("user_login", { message: "The password is incorrect" });
-              }
-          } else {
-              res.render("user_login", { message: "User not found please signup" });
-          }
+    const { user_name, password } = req.body;
+    if (!user_name || !password) {
+      res.render("user_login", {
+        message: "Username and Password can't be empty",
+      });
+    }
+    let email = user_name;
+    let exist = await userData.findOne({ email: email });
+    if (exist) {
+      if(exist.is_blocked){
+        res.render("user_login", { message: "You account is blocked !!" });
+        
+      }
+      console.log(`password: ${password}`);
+      console.log(` exist password: ${exist.password}`);
+
+      const decodedPassword = await bcrypt.compare(password, exist.password);
+      const userStatus = exist.is_blocked;
       
+      if (decodedPassword && userStatus == false) {
+        req.session.user = email;
+        res.redirect("index");
+      } else {
+        res.render("user_login", { message: "The password is incorrect" });
+      }
+    } else {
+      res.render("user_login", { message: "User not found please signup" });
+    }
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 };
 
