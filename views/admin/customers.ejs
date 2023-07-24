@@ -649,7 +649,7 @@
                         </span>
                       </a>
                       <div class="dropdown-menu" style="background-color: #ffffff; border: 1px solid #00000023;" aria-labelledby="dropdownMenuButton">
-                        <% if (user.is_blocked) { %>
+                        <% if (data.is_blocked) { %>
                         
                         <a class="dropdown-item text-danger"   href="/blockUser/<%= data.id %>"><b>Block</b></a>
                         <a class="dropdown-item text-success"  href="/blockUser/<%= data.id %>"><b>Unblock</b></a>

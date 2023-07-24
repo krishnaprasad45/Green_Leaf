@@ -153,10 +153,11 @@
                                             <article class="single_product">
                                                 <figure>
                                                     <div class="product_thumb">
-                                                        <a class="primary_img" href="product_details/<%=product.id%>">
+                                                        <a class="primary_img" href="/productMore/<%=product.id%>">
                                                             <img src="<%= product.imageUrl.url %>" alt="">
                                                         </a>
                                                         <div class="label_product">
+                                                            <!-- Add any product labels or badges here -->
                                                         </div>
                                                         <div class="action_links">
                                                             <ul>
@@ -176,8 +177,7 @@
                                                                     </a>
                                                                 </li>
                                                                 <li class="quick_button">
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal_box" title="quick view">
+                                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box" title="quick view">
                                                                         <i class="icon-eye"></i>
                                                                     </a>
                                                                 </li>
@@ -186,17 +186,18 @@
                                                     </div>
                                                     <figcaption class="product_content">
                                                         <h4 class="product_name">
-                                                            <a href="product_details/<%=product.id%>">
+                                                            <a href="/productMore/<%=product.id%>">
                                                                 <%= product.product_name %>
                                                             </a>
                                                         </h4>
                                                         <div class="price_box">
                                                             <span class="current_price">
-                                                                <%= product.price %>
+                                                                ₹<%= product.price %>/-
                                                             </span>
                                                         </div>
                                                     </figcaption>
                                                 </figure>
+                                                
                                             </article>
 
                                     </div>

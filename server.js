@@ -20,13 +20,14 @@ const user_route = require('./server/routes/user_route')
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}))
 
+// while rendering
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views/user'))
 app.set('views',path.join(__dirname,'views/admin'))
 
 
 
-//load static files
+//load static files (public/css)
 app.use('/assets',express.static(path.join(__dirname,'public/assets_user')))
 app.use('/user',express.static(path.join(__dirname,'views/user/')))
 app.use('/assets_admin',express.static(path.join(__dirname,'public/assets_admin')))

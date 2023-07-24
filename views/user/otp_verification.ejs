@@ -48,7 +48,7 @@
 
       <p class="text-center text-muted mt-4">
         Didn't receive it?
-        <a id="resendLink" href="/resentOtp" class="text-decoration-none ms-2">
+        <a id="resendLink" href="#" class="text-decoration-none ms-2">
           Resend code
         </a>
       </p>
@@ -82,20 +82,23 @@
       })
     })
   </script>
-  <script>
-    // Add an event listener to the "Resend code" link
-    document.getElementById('resendLink').addEventListener('click', function(event) {
-      // Prevent the default behavior of the link (i.e., navigating to "/resentOtp")
-      event.preventDefault();
-  
-      // Show the SweetAlert with the message "OTP Sent"
-      Swal.fire({
-        icon: 'success',
-        title: 'OTP Sent',
-        text: 'Your one-time password has been resent.',
-      });
+ <script>
+  // Add an event listener to the "Resend code" link
+  document.getElementById('resendLink').addEventListener('click', function(event) {
+    // Prevent the default behavior of the link (i.e., navigating to "/resentOtp")
+    event.preventDefault();
+
+    // Show the SweetAlert with the message "OTP Sent"
+    Swal.fire({
+      icon: 'success',
+      title: 'OTP Sent',
+      text: 'Your one-time password has been resent.',
+    }).then(function() {
+      // After the user confirms the SweetAlert, navigate to the "/resentOtp" route
+      window.location.href = '/resentOtp';
     });
-  </script>
+  });
+</script>
   
 </body>
 

@@ -16,8 +16,14 @@ let address;
 let password;
 
 // Function to render views
-const shop = (req, res) => {
-    res.render('shop');
+const shop = async(req, res) => {
+    try {
+        const data = await productData.find();
+        res.render("shop", { data });
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+      }
 };
 
 const index = async (req, res) => {
@@ -65,6 +71,19 @@ const product_details = async (req, res) => {
     }
 };
 
+const productMore = async (req,res) => {
+    const productId = req.params.id;
+    try{
+        const product = await productData.findById(productId)
+        console.log(product)
+        res.render('productM',{product})
+    }catch(error){
+
+        res.status(500).send(error.message);
+       
+    }
+}
+
 // OTP Verification
 const otp_verification = async (req, res) => {
     res.render('otp_verification', { message: "" });
@@ -110,6 +129,7 @@ const otp_verification_post = async (req, res) => {
 };
 
 const resendOtp = (req, res) => {
+    console.log("hello")
     try {
         const newOtp = helperFunction.generateOTP();
         generatedOtp = newOtp;
@@ -189,10 +209,12 @@ const user_login_post = async (req, res) => {
             res.redirect("index");
         } else {
             const { user_name, password } = req.body;
-            let email = req.body.user_name;
+            
+            let email = user_name;
             let exist = await userData.findOne({ email: email });
-            const decodedPassword = await bcrypt.compare(password, exist.password);
             if (exist) {
+            const decodedPassword = await bcrypt.compare(password, exist.password);
+
                 if (decodedPassword) {
                     req.session.user = email;
                     res.redirect("index");
@@ -226,5 +248,6 @@ module.exports = {
     user_logout,
     user_register,
     user_register_post,
-    user_login_post
+    user_login_post,
+    productMore,
 };

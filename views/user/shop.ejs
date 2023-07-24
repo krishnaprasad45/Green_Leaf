@@ -70,13 +70,16 @@
                         </div>
                     </div>
                     <!--shop toolbar end-->
+
                     <div class="row shop_wrapper grid_list">
+                        <% data.forEach(async (product)=> { %>
+
                         <div class="col-12 ">
                             <article class="single_product">
                                 <figure>
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="/product_details"><img
-                                                src="assets/img/product/product1.jpg" alt=""></a>
+                                        <a class="primary_img" href="/productMore"><img
+                                                src="<%=product.imageUrl.url%>" alt=""></a>
                                         <div class="label_product">
                                             <span class="label_sale">-7%</span>
                                         </div>
@@ -111,11 +114,12 @@
                                                     <li><a href="#"><i class="icon-star"></i></a></li>
                                                 </ul>
                                             </div>
-                                            <h4 class="product_name"><a href="/product_details">commodo augue
-                                                    nisi</a></h4>
+                                            <h4 class="product_name"><a href="/productMore"><%=product.product_name%>
+                                                    </a></h4>
                                             <div class="price_box">
-                                                <span class="current_price">£69.00</span>
-                                                <span class="old_price">£74.00</span>
+                                                <span class="current_price"><%=product.price%>/-</span>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -129,16 +133,13 @@
                                                 <li><a href="#"><i class="icon-star"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h4 class="product_name"><a href="/product_details">commodo augue nisi</a>
+                                        <h4 class="product_name"><a href="/productMore"><%=product.product_name%></a>
                                         </h4>
                                         <div class="price_box">
-                                            <span class="current_price">£69.00</span>
-                                            <span class="old_price">£74.00</span>
+                                            <span class="current_price"><%=product.price%>/-</span>
                                         </div>
                                         <div class="product_desc">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam, quis nostrud exercitation ullamco…</p>
+                                            <p><%=product.product_details%></p>
                                         </div>
                                         <div class="action_links list_action_right">
                                             <ul>
@@ -155,259 +156,15 @@
                             </article>
                         </div>
                       
-                        
+                        <% }) %>
                        
                         
                        
                         
                       
                       
-                        <div class="col-12 ">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="/product_details"><img
-                                                src="assets/img/product/product10.jpg" alt=""></a>
-                                        <div class="label_product">
-                                            <span class="label_sale">-4%</span>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart"><a href="/cart" title="Add to cart"><i
-                                                            class="icon-shopping-bag"></i></a></li>
-                                                
-                                                <li class="wishlist"><a href="/wishlist" title="Add to Wishlist"><i
-                                                            class="icon-heart"></i></a></li>
-                                                <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box" title="quick view"> <i
-                                                            class="icon-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="action_links list_action">
-                                            <ul>
-                                                <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box" title="quick view"> <i
-                                                            class="icon-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product_content grid_content">
-                                        <div class="product_price_rating">
-                                            <div class="product_rating">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h4 class="product_name"><a href="/product_details">massa massa</a></h4>
-                                            <div class="price_box">
-                                                <span class="current_price">£69.00</span>
-                                                <span class="old_price">£74.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product_content list_content">
-                                        <div class="product_rating">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <h4 class="product_name"><a href="/product_details">massa massa</a></h4>
-                                        <div class="price_box">
-                                            <span class="current_price">£69.00</span>
-                                            <span class="old_price">£74.00</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam, quis nostrud exercitation ullamco…</p>
-                                        </div>
-                                        <div class="action_links list_action_right">
-                                            <ul>
-                                                <li class="add_to_cart"><a href="/cart" title="Add to cart">Add to
-                                                        cart</a></li>
-                                                <li class="wishlist"><a href="/wishlist" title="Add to Wishlist"><i
-                                                            class="icon-heart"></i></a></li>
-                                                
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                        <div class="col-12 ">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="/product_details"><img
-                                                src="assets/img/product/product11.jpg" alt=""></a>
-                                        <div class="label_product">
-                                            <span class="label_sale">-6%</span>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart"><a href="/cart" title="Add to cart"><i
-                                                            class="icon-shopping-bag"></i></a></li>
-                                                
-                                                <li class="wishlist"><a href="/wishlist" title="Add to Wishlist"><i
-                                                            class="icon-heart"></i></a></li>
-                                                <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box" title="quick view"> <i
-                                                            class="icon-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="action_links list_action">
-                                            <ul>
-                                                <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box" title="quick view"> <i
-                                                            class="icon-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product_content grid_content">
-                                        <div class="product_price_rating">
-                                            <div class="product_rating">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h4 class="product_name"><a href="/product_details">Morbi ornare</a>
-                                            </h4>
-                                            <div class="price_box">
-                                                <span class="current_price">£69.00</span>
-                                                <span class="old_price">£74.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product_content list_content">
-                                        <div class="product_rating">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <h4 class="product_name"><a href="/product_details">Morbi ornare</a></h4>
-                                        <div class="price_box">
-                                            <span class="current_price">£69.00</span>
-                                            <span class="old_price">£74.00</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam, quis nostrud exercitation ullamco…</p>
-                                        </div>
-                                        <div class="action_links list_action_right">
-                                            <ul>
-                                                <li class="add_to_cart"><a href="/cart" title="Add to cart">Add to
-                                                        cart</a></li>
-                                                <li class="wishlist"><a href="/wishlist" title="Add to Wishlist"><i
-                                                            class="icon-heart"></i></a></li>
-                                                
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                        <div class="col-12 ">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="/product_details"><img
-                                                src="assets/img/product/product12.jpg" alt=""></a>
-                                        <div class="label_product">
-                                            <span class="label_sale">-9%</span>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart"><a href="/cart" title="Add to cart"><i
-                                                            class="icon-shopping-bag"></i></a></li>
-                                                
-                                                <li class="wishlist"><a href="/wishlist" title="Add to Wishlist"><i
-                                                            class="icon-heart"></i></a></li>
-                                                <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box" title="quick view"> <i
-                                                            class="icon-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="action_links list_action">
-                                            <ul>
-                                                <li class="quick_button"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box" title="quick view"> <i
-                                                            class="icon-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product_content grid_content">
-                                        <div class="product_price_rating">
-                                            <div class="product_rating">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h4 class="product_name"><a href="/product_details">placerat
-                                                    vestibulum</a></h4>
-                                            <div class="price_box">
-                                                <span class="current_price">£69.00</span>
-                                                <span class="old_price">£74.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product_content list_content">
-                                        <div class="product_rating">
-                                            <ul>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <h4 class="product_name"><a href="/product_details">placerat vestibulum</a>
-                                        </h4>
-                                        <div class="price_box">
-                                            <span class="current_price">£69.00</span>
-                                            <span class="old_price">£74.00</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam, quis nostrud exercitation ullamco…</p>
-                                        </div>
-                                        <div class="action_links list_action_right">
-                                            <ul>
-                                                <li class="add_to_cart"><a href="/cart" title="Add to cart">Add to
-                                                        cart</a></li>
-                                                <li class="wishlist"><a href="/wishlist" title="Add to Wishlist"><i
-                                                            class="icon-heart"></i></a></li>
-                                                
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
+                    
+                       
                     </div>
 
                     <div class="shop_toolbar t_bottom">
