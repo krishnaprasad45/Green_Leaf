@@ -56,53 +56,36 @@
           <div class="row justify-content-center mt-5">
             <div class="col-12 col-xl-7">
               <h3 class="mb-3 mb-md-0">
-                Update Product
+                Update Category
               </h3>
-              <form action="/update_product_post/<%= product._id %>" method="post">
+              <form action="/updateCategoryPost/<%= category._id %>" method="post">
 
                 <div class="from-group mt-4 pt-3">
                   <label class="form-label">
-                    Product name:
+                    Category name:
                   </label>
-                  <input type="text" class="form-control yellow-border" value="<%=product.product_name %>"
-                    name="product_name">
+                  <input type="text" class="form-control yellow-border" value="<%=category.category %>"
+                    name="category_name">
                 </div>
 
                 <div class="from-group mt-4">
                   <label class="form-label">
-                    Project details:
+                    Description:
                   </label>
                   <textarea rows="4" class="form-control yellow-border"
-                    name="product_details"><%=product.product_details %></textarea>
+                    name="category_details"><%=category.description %></textarea>
                 </div>
 
-                <div class="from-group mt-4">
-                  <label class="form-label">
-                    Category:
-                  </label>
-                  <div class="input-group">
-                    <input type="text" class="form-control yellow-border" value="<%=product.category %>"
-                      name="category">
-                  </div>
-                </div>
-
-                <div class="from-group mt-4">
-                  <label class="form-label">
-                    Price:
-                  </label>
-                  <div class="input-group">
-                    <input type="text" class="form-control yellow-border" value="<%=product.price %>" name="price">
-                  </div>
-                </div>
+            
 
                 <div class="form-group mt-4">
                   <label class="form-label mb-0">
-                    Product Image:
+                    Category Image:
                   </label>
                   <p class="form-text">
                     Upload a JPG or PNG. No larger than 1200px.
                   </p>
-                  <input type="file" id="product_image" class="form-control yellow-border" value="<%=product.price%>" name="product_image" accept="image">
+                  <input type="file" id="category_image" class="form-control yellow-border"  value="<%=category.category %>" name="category_image" accept="image">
                   <img id="preview" src="#" alt="Image Preview" style="display: none;">
                 </div>
 

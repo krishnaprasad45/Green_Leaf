@@ -1,6 +1,8 @@
 var express = require('express')
 var user_route = express();
 user_route.set('views', './views/user')
+const auth = require("../../middleware/userAuth.js")
+
 
 
 const userController = require("../controller/userController")

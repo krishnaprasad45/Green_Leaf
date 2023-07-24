@@ -71,6 +71,23 @@ const updateProduct = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+const updateCategory = async (req, res) => {
+  const categoryId = req.params.id;
+  console.log(`..........  ${categoryId}`);
+  try {
+    const category = await categoryData.findById(categoryId);
+
+    console.log(`.......... category ${category}`);
+
+    if (!category) {
+      return res.render("updateCategory", { message: "Category not found" });
+    }
+
+    res.render("updateCategory", { category });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 
 const updateProductPost = async (req, res) => {
   const { product_name, product_details, category, price } = req.body;
@@ -94,6 +111,42 @@ const updateProductPost = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+
+const updateCategoryPost = async (req, res) => {
+  const { category, description, imageUrl } = req.body;
+  console.log(`........${req.body}`);
+  const id = req.params.id;
+
+  try {
+    const categoryFields = await category.findById(id);
+    console.log(`....>>....${categoryFields}`);
+
+    if (!categoryFields) {
+      return res.render("updateCategory", { message: "Category not found" });
+    }
+
+    // Update individual properties of categoryFields
+    categoryFields.category = category;
+    categoryFields.description = description;
+
+    // Since imageUrl is an object with public_id and url properties,
+    // we need to update them separately
+    categoryFields.imageUrl.public_id = imageUrl.public_id;
+    categoryFields.imageUrl.url = imageUrl.url;
+
+    await categoryFields.save();
+
+    res.redirect("/viewCategory");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+
+
+
+
 
 const deleteProduct = async (req, res) => {
   try {
@@ -166,6 +219,16 @@ const addCategoryPost = async (req, res) => {
   }
 };
 
+const deleteCategory = async (req, res) => {
+  try {
+    const deleteId = req.params.id;
+    await categoryData.findByIdAndDelete(deleteId);
+    res.redirect("/viewCategory");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 
 
 module.exports = {
@@ -177,5 +240,8 @@ module.exports = {
   viewProducts,
   addCategory,
   addCategoryPost,
-  viewCategory
+  viewCategory,
+  updateCategory,
+  updateCategoryPost,
+  deleteCategory,
 };
