@@ -42,13 +42,11 @@
                                         <%=message %>
                                     </label>
                                 </p>
-                                <p id="emailError" class="p-1 text-danger"></p>
 
                                 <p>
                                     <label>Username or email <span>*</span></label>
                                     <input type="text" name="user_name">
                                 </p>
-                                <p id="passwordError" class="p-1 text-danger"></p>
 
                                 <p>
                                     <label>Passwords <span>*</span></label>
@@ -115,46 +113,13 @@
 
             <!-- Main JS -->
             <script src="assets/js/main.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+            <!-- AXIOS LINK -->
+             <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
 
             <!--USER LOGIN POST VALIDATION USING AXIOS-->
-            <script>
-                const handleSubmit = async (event) => {
-                    event.preventDefault();
             
-                    const formData = new FormData(event.target);
-                    console.log(`............${formData.user_name}`)
-                    try {
-                        
-                        const response = await axios.post('/user_login_post', formData, {
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                        console.log(222)
-            
-                        if (response.status === 200) {
-                            window.location.href = '/index'
-                        }
-                    } catch (error) {
-                       
-                        document.getElementById('emailError').textContent = '';
-                        document.getElementById('passwordError').textContent = '';
-            
-                        if (error.response && error.response.status == 400) {
-                            document.getElementById('emailError').textContent = error.response.data.error;
-                        } else if (error.response && error.response.status == 401) {
-
-                            document.getElementById('passwordError').textContent = error.response.data.error;
-                        } else {
-                            alert("Something went wrong");
-                        }
-                    }
-                };
-            
-                document.getElementById('user_login_post').addEventListener('submit', handleSubmit);
-            </script>
             
 
 

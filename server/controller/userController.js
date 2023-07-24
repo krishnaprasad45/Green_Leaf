@@ -218,38 +218,24 @@ const user_register_post = async (req, res) => {
 // User Login Post
 const user_login_post = async (req, res) => {
   try {
-    
-       console.log("try..")
-    
-      const { user_name, password } = req.body;
-      console.log(user_name)
-      console.log(password)
-
-      //current state
      
-      let email = user_name;
-      let exist = await userData.findOne({ email: email });
-
-       if (exist) {
-        const decodedPassword = await bcrypt.compare(password, exist.password);
-       console.log("if exist..")
-         
-        if (decodedPassword) {
-          req.session.user = email;
-          // user blocked or not
-       console.log("password decoded..")
-
-          return res.status(200).end();
-          
-        } else {
-          res.render("user_login", { message: "The password is incorrect" });
-        }
-      } else {
-        res.render("user_login", { message: "User not found please signup" });
-      }
-    
+          const { user_name, password } = req.body;
+          let email = user_name;
+          let exist = await userData.findOne({ email: email });
+          const decodedPassword = await bcrypt.compare(password, exist.password);
+          if (exist) {
+              if (decodedPassword) {
+                  req.session.user = email;
+                  res.redirect("index");
+              } else {
+                  res.render("user_login", { message: "The password is incorrect" });
+              }
+          } else {
+              res.render("user_login", { message: "User not found please signup" });
+          }
+      
   } catch (error) {
-    console.log(error);
+      console.log(error);
   }
 };
 
