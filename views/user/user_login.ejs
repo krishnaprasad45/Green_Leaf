@@ -7,134 +7,161 @@
     <div class="off_canvars_overlay">
 
     </div>
-   
+
 
     <!--offcanvas menu area end-->
     <%-include('./_head_section.ejs') -%>
-    <!--header area end-->
+        <!--header area end-->
 
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <h3>Login Page</h3>
-                       
+        <!--breadcrumbs area start-->
+        <div class="breadcrumbs_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb_content">
+                            <h3>Login Page</h3>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--breadcrumbs area end-->
+        <!--breadcrumbs area end-->
 
-    <!-- customer login start -->
-    <div class="customer_login">
-        <div class="container">
-            <div class="row">
-                <!--login area start-->
-                <div class="col-lg-12 col-md-12">
-                    <div class="account_form">
-                        
-                        <form method="post" action="/user_login_post">
-                            <p>
-                                <label  style="color: rgb(5, 139, 39);" ><%=message %></label>
-                                
-                            </p>
-                            <p>
-                                <label>Username or email <span>*</span></label>
-                                <input type="text" name="user_name">
-                            </p>
-                            <p>
-                                <label>Passwords <span>*</span></label>
-                                <input type="password" name="password">
-                            </p>
-                            <div class="login_submit">
-                                <a href="/user_register">Don't have ab account? Signup here</a>
-                                <label for="remember">
-                                    <input id="remember" type="checkbox">
-                                    Remember me
-                                </label>
-                                <button type="submit">login</button>
+        <!-- customer login start -->
+        <div class="customer_login">
+            <div class="container">
+                <div class="row">
+                    <!--login area start-->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="account_form">
 
-                            </div>
+                            <form id="user_login_post">
+                                <p>
+                                    <label style="color: rgb(5, 139, 39);">
+                                        <%=message %>
+                                    </label>
+                                </p>
+                                <p id="emailError" class="p-1 text-danger"></p>
 
-                        </form>
+                                <p>
+                                    <label>Username or email <span>*</span></label>
+                                    <input type="text" name="user_name">
+                                </p>
+                                <p id="passwordError" class="p-1 text-danger"></p>
+
+                                <p>
+                                    <label>Passwords <span>*</span></label>
+                                    <input type="password" name="password">
+                                </p>
+                                <div class="login_submit">
+                                    <a href="/user_register">Don't have ab account? Signup here</a>
+                                    <label for="remember">
+                                        <input id="remember" type="checkbox">
+                                        Remember me
+                                    </label>
+                                    <button type="submit">login</button>
+
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
+                    <!--login area start-->
+
                 </div>
-                <!--login area start-->
-
-                <!--register area start-->
-                <!-- <div class="col-lg-6 col-md-6">
-                    <div class="account_form register">
-                        <h2>Register</h2>
-                        <form action="#">
-                            <p>
-                                <label>Email address <span>*</span></label>
-                                <input type="text">
-                            </p>
-                            <p>
-                                <label>Passwords <span>*</span></label>
-                                <input type="password">
-                            </p>
-                            <div class="login_submit">
-                                <button type="submit">Register</button>
-                            </div>
-                        </form>
-                    </div>
-                </div> -->
-                <!--register area end-->
             </div>
         </div>
-    </div>
-    <!-- customer login end -->
+        <!-- customer login end -->
 
-    <!--brand area start-->
- 
-    <!--brand area end-->
+        <!--brand area start-->
 
-    <!--footer area start-->
-<%-include('./_footer.ejs') -%>
-    
-    <!--footer area end-->
+        <!--brand area end-->
+
+        <!--footer area start-->
+        <%-include('./_footer.ejs') -%>
+
+            <!--footer area end-->
 
 
-    <!-- JS
+            <!-- JS
 ============================================ -->
-    <!--jquery min js-->
-    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
-    <!--popper min js-->
-    <script src="assets/js/popper.js"></script>
-    <!--bootstrap min js-->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!--owl carousel min js-->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <!--slick min js-->
-    <script src="assets/js/slick.min.js"></script>
-    <!--magnific popup min js-->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!--counterup min js-->
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <!--jquery countdown min js-->
-    <script src="assets/js/jquery.countdown.js"></script>
-    <!--jquery ui min js-->
-    <script src="assets/js/jquery.ui.js"></script>
-    <!--jquery elevatezoom min js-->
-    <script src="assets/js/jquery.elevatezoom.js"></script>
-    <!--isotope packaged min js-->
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <!--slinky menu js-->
-    <script src="assets/js/slinky.menu.js"></script>
-    <!-- Plugins JS -->
-    <script src="assets/js/plugins.js"></script>
+            <!--jquery min js-->
+            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+            <!--popper min js-->
+            <script src="assets/js/popper.js"></script>
+            <!--bootstrap min js-->
+            <script src="assets/js/bootstrap.min.js"></script>
+            <!--owl carousel min js-->
+            <script src="assets/js/owl.carousel.min.js"></script>
+            <!--slick min js-->
+            <script src="assets/js/slick.min.js"></script>
+            <!--magnific popup min js-->
+            <script src="assets/js/jquery.magnific-popup.min.js"></script>
+            <!--counterup min js-->
+            <script src="assets/js/jquery.counterup.min.js"></script>
+            <!--jquery countdown min js-->
+            <script src="assets/js/jquery.countdown.js"></script>
+            <!--jquery ui min js-->
+            <script src="assets/js/jquery.ui.js"></script>
+            <!--jquery elevatezoom min js-->
+            <script src="assets/js/jquery.elevatezoom.js"></script>
+            <!--isotope packaged min js-->
+            <script src="assets/js/isotope.pkgd.min.js"></script>
+            <!--slinky menu js-->
+            <script src="assets/js/slinky.menu.js"></script>
+            <!-- Plugins JS -->
+            <script src="assets/js/plugins.js"></script>
 
-    <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
-
-
-
-</body>
+            <!-- Main JS -->
+            <script src="assets/js/main.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
 
-<!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
-</html>
+            <!--USER LOGIN POST VALIDATION USING AXIOS-->
+            <script>
+                const handleSubmit = async (event) => {
+                    event.preventDefault();
+            
+                    const formData = new FormData(event.target);
+                    console.log(`............${formData.user_name}`)
+                    try {
+                        
+                        const response = await axios.post('/user_login_post', formData, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        console.log(222)
+            
+                        if (response.status === 200) {
+                            window.location.href = '/index'
+                        }
+                    } catch (error) {
+                       
+                        document.getElementById('emailError').textContent = '';
+                        document.getElementById('passwordError').textContent = '';
+            
+                        if (error.response && error.response.status == 400) {
+                            document.getElementById('emailError').textContent = error.response.data.error;
+                        } else if (error.response && error.response.status == 401) {
+
+                            document.getElementById('passwordError').textContent = error.response.data.error;
+                        } else {
+                            alert("Something went wrong");
+                        }
+                    }
+                };
+            
+                document.getElementById('user_login_post').addEventListener('submit', handleSubmit);
+            </script>
+            
+
+
+
+            </body>
+
+
+            <!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
+
+            </html>

@@ -597,7 +597,43 @@
               Filter
             </button>
 
-          
+            <!-- <div class="dropdown-menu dropdown-menu-card shadow-light">
+              <div class="card-header">
+                <div class="card-header-title">
+                  Filters
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex align-items-center justify-content-between px-4">
+                    <span>
+                      Location
+                    </span>
+                    <select class="form-select form-select-sm w-auto">
+                      <option>America</option>
+                      <option>Europe</option>
+                      <option>Asia</option>
+                      <option>Africa</option>
+                      <option>Oceania</option>
+                    </select>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center justify-content-between px-4">
+                    <span>
+                      Created at
+                    </span>
+                    <select class="form-select form-select-sm w-auto">
+                      <option>Last week</option>
+                      <option>This year</option>
+                      <option>Last year</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+              <a href="#!" class="card-footer-btn btn btn-purple justify-content-center">
+                Apply filter
+              </a>
+            </div> -->
+          </div>
         </div>
 
         <div class="table-responsive">
@@ -648,15 +684,19 @@
                           <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-f</title><circle cx="256" cy="256" r="32" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px"/><circle cx="416" cy="256" r="32" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px"/><circle cx="96" cy="256" r="32" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px"/></svg>
                         </span>
                       </a>
-                      <div class="dropdown-menu" style="background-color: #ffffff; border: 1px solid #00000023;" aria-labelledby="dropdownMenuButton">
+                      <div class="dropdown-menu bg-pastel-purple" aria-labelledby="dropdownMenuButton">
                         <% if (data.is_blocked) { %>
-                        
-                        <a class="dropdown-item text-danger"   href="/blockUser/<%= data.id %>"><b>Block</b></a>
-                        <a class="dropdown-item text-success"  href="/blockUser/<%= data.id %>"><b>Unblock</b></a>
-                        <% } %>
 
+                        <a class="dropdown-item text-success" href="/blockUser/<%= customer.id %>">Unblock</a>
+
+                        <% } else { %>
+                          <a class="dropdown-item text-danger " href="/blockUser/<%= customer.id %>">Block</a>
+
+                          <% } %>
                       </div>
-                      
+
+                   
+
                     </div>
                   </td>
                 </tr>
