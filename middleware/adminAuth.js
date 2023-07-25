@@ -1,15 +1,15 @@
 const isLogin = async(req,res,next)=>{
-    next()
+    // next()
 
-    // try {
+    try {
 
-    //     if(!req.session.admin){
-    //       return res.redirect('/admin_sign_in')
-    //     }
-    //     next()
-    // } catch (error) {
-    //     console.log(error.message);
-    // }
+        if(!req.session.admin){
+          return res.redirect('/admin_sign_in')
+        }
+        next()
+    } catch (error) {
+        console.log(error.message);
+    }
 
 }
 

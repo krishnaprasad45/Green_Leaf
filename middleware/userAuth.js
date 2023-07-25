@@ -1,5 +1,5 @@
 const isLogin = async(req,res,next)=>{
-    next()
+    // next()
     try {
 
         if(!req.session.user){
