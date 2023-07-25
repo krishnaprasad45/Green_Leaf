@@ -60,21 +60,12 @@ const wishlist = (req, res) => {
   res.render("wishlist");
 };
 
-const product_details = async (req, res) => {
-  const productId = req.params.id;
-  try {
-    const product = await productData.findById(productId);
-    res.render("product_details", { product });
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-};
+
 
 const productMore = async (req, res) => {
-  const productId = req.params.id;
+  const productId = req.query.id;
   try {
     const product = await productData.findById(productId);
-    console.log(product);
     res.render("productM", { product });
   } catch (error) {
     res.status(500).send(error.message);
@@ -290,7 +281,7 @@ module.exports = {
   my_account,
   cart,
   wishlist,
-  product_details,
+ 
   otp_verification,
   otp_verification_post,
   resendOtp,

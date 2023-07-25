@@ -73,12 +73,12 @@
 
                     <div class="row shop_wrapper grid_list">
                         <% data.forEach(async (product)=> { %>
-
+                         <%console.log(product.id)%>
                         <div class="col-12 ">
                             <article class="single_product">
                                 <figure>
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="/productMore"><img
+                                        <a class="primary_img" href="/productMore/?id=<%=product.id %>"><img
                                                 src="<%=product.imageUrl.url%>" alt=""></a>
                                         <div class="label_product">
                                             <span class="label_sale">-7%</span>
@@ -114,7 +114,7 @@
                                                     <li><a href="#"><i class="icon-star"></i></a></li>
                                                 </ul>
                                             </div>
-                                            <h4 class="product_name"><a href="/productMore"><%=product.product_name%>
+                                            <h4 class="product_name"><a href="/productMore/<%=product.id %>"><%=product.product_name%>
                                                     </a></h4>
                                             <div class="price_box">
                                                 <span class="current_price"><%=product.price%>/-</span>
@@ -133,7 +133,8 @@
                                                 <li><a href="#"><i class="icon-star"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h4 class="product_name"><a href="/productMore"><%=product.product_name%></a>
+                                        <h4 class="product_name"><a href="/productMore/<%=product.id %>"><%=product.product_name%></a>
+                                            
                                         </h4>
                                         <div class="price_box">
                                             <span class="current_price"><%=product.price%>/-</span>

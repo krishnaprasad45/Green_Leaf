@@ -22,50 +22,20 @@ user_route.get("/resentOtp",isLogout,userController.resendOtp )
 user_route.get('/user_login',isLogout, userController.user_login)
 user_route.post("/user_login_post",isLogout, userController.user_login_post)
 
-
-
 user_route.get('/index', userController.index)
-
-
-
-
-user_route.get('/shop',isLogin, userController.shop)
-user_route.get('/contact',isLogin, userController.contact)
-user_route.get('/about',isLogin, userController.about)
+user_route.get('/shop', userController.shop)
+user_route.get('/contact', userController.contact)
+user_route.get('/about', userController.about)
 user_route.get('/checkout',isLogin, userController.checkout)
 user_route.get('/my_account',isLogin, userController.my_account)
 user_route.get('/cart',isLogin, userController.cart)
 user_route.get('/wishlist',isLogin, userController.wishlist)
-user_route.get('/productMore/:id',isLogin, userController.productMore)
+user_route.get('/productMore', userController.productMore)
 user_route.get('/user_logout',isLogin, userController.user_logout)
-
-
-
-
-
-
-
-
-
 
 
 user_route.post('/index', userController.index)
 user_route.post('/otp_verification', userController.otp_verification)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = user_route
 
