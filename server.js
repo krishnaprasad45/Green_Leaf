@@ -45,4 +45,4 @@ app.use('/',admin_route)
 
 
 
-app.listen(port,()=>{ console.log("Listening to the server: http://localhost:3000")})
+app.listen(port,()=>{ console.log("Server on: http://localhost:3000")})

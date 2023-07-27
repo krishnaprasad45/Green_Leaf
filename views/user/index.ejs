@@ -153,8 +153,8 @@
                                             <article class="single_product">
                                                 <figure>
                                                     <div class="product_thumb">
-                                                        <a class="primary_img" href="/productMore/<%=product.id%>">
-                                                            <img src="<%= product.imageUrl.url %>" alt="">
+                                                        <a class="primary_img" href="/productDetails/?id=<%=product.id%>">
+                                                            <img src="<%= product.imageUrl[0].url %>" alt="">
                                                         </a>
                                                         <div class="label_product">
                                                             <!-- Add any product labels or badges here -->
@@ -186,7 +186,7 @@
                                                     </div>
                                                     <figcaption class="product_content">
                                                         <h4 class="product_name">
-                                                            <a href="/productMore/<%=product.id%>">
+                                                            <a href="/productDetails/<%=product.id%>">
                                                                 <%= product.product_name %>
                                                             </a>
                                                         </h4>

@@ -55,7 +55,7 @@ const viewCustomers = async (req, res) => {
 //user block
 
 const blockUser = async (req, res) => {
-    console.log("hello.........")
+ 
     try {
         const id = req.params.id;
 

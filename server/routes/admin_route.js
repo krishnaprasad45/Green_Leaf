@@ -15,7 +15,7 @@ admin_route.post('/admin_signin_post',isLogout, adminController.adminSigninPost)
 
 admin_route.get('/admin_dashboard',isLogin, adminController.adminDashboard)
 admin_route.get('/add_product',isLogin,productController.addProduct)
-admin_route.post('/add_product_post',store.single("product_image"),isLogin,productController.addProductPost)
+admin_route.post('/add_product_post',store.array("product_image",4),isLogin,productController.addProductPost)
 
 
 admin_route.get('/earnings',isLogin,adminController.earnings)
@@ -27,7 +27,7 @@ admin_route.get('/add_product',isLogin,productController.addProduct)
 admin_route.get('/view_products',isLogin,productController.viewProducts)
 admin_route.get('/delete_product/:id',isLogin,productController.deleteProduct)
 admin_route.get('/update_product/:id',isLogin,productController.updateProduct)
-admin_route.post('/update_product_post/:id',store.single("product_image"),isLogin,productController.updateProductPost)
+admin_route.post('/update_product_post/:id',isLogin,store.array("product_image",4),productController.updateProductPost)
 
 admin_route.get('/addCategory',isLogin,productController.addCategory)
 admin_route.post('/addCategory',store.single("category_image"),isLogin,productController.addCategoryPost)

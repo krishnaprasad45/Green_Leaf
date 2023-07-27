@@ -23,12 +23,23 @@ const addProduct = async (req, res) => {
 
 const addProductPost = async (req, res) => {
   const { product_name } = req.body;
-  const image = req.file; 
-  
+ 
+
   try {
-    const result = await cloudinary.uploader.upload(image.path, {
-      folder: "Products",  
-  });
+    const files = req.files;
+    const productImages = [];
+    for (const file of files) {
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: "Products",
+      });
+
+      const image = {
+        public_id: result.public_id,
+        url: result.secure_url
+      };
+      productImages.push(image)
+
+    }
     const exist = await productData.findOne({ product_name: product_name });
     if (exist) {
       res.render("add_product", { message: "The product already exists" });
@@ -38,10 +49,7 @@ const addProductPost = async (req, res) => {
         product_details: req.body.product_details,
         category: req.body.category,
         price: req.body.price,
-        imageUrl: {
-          public_id: result.public_id,
-          url: result.secure_url,
-      },
+        imageUrl:productImages
       });
 
       await product.save();
@@ -56,11 +64,11 @@ const addProductPost = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const productId = req.params.id;
-  console.log(`..........  ${productId}`);
+
   try {
     const product = await productData.findById(productId);
 
-    console.log(`.......... product ${product}`);
+
 
     if (!product) {
       return res.render("update_product", { message: "Product not found" });
@@ -73,11 +81,11 @@ const updateProduct = async (req, res) => {
 };
 const updateCategory = async (req, res) => {
   const categoryId = req.params.id;
-  console.log(`..........  ${categoryId}`);
+
   try {
     const category = await categoryData.findById(categoryId);
 
-    console.log(`.......... category ${category}`);
+
 
     if (!category) {
       return res.render("updateCategory", { message: "Category not found" });
@@ -115,12 +123,11 @@ const updateProductPost = async (req, res) => {
 
 const updateCategoryPost = async (req, res) => {
   const { category, description, imageUrl } = req.body;
-  console.log(`........${req.body}`);
+
   const id = req.params.id;
 
   try {
     const categoryFields = await category.findById(id);
-    console.log(`....>>....${categoryFields}`);
 
     if (!categoryFields) {
       return res.render("updateCategory", { message: "Category not found" });
@@ -169,8 +176,8 @@ const viewProducts = async (req, res) => {
 };
 ////                                CATEGORY                                                  ///
 
-const addCategory = (req,res) => {
-   res.render('addCategory')
+const addCategory = (req, res) => {
+  res.render('addCategory')
 };
 
 const viewCategory = async (req, res) => {
@@ -186,36 +193,36 @@ const viewCategory = async (req, res) => {
 const addCategoryPost = async (req, res) => {
   const categoryName = req.body.category_name;
   const categoryDescription = req.body.category_details;
- 
-  const image = req.file; 
+
+  const image = req.file;
   const lowerCategoryName = categoryName.toLowerCase();
   try {
 
-      const result = await cloudinary.uploader.upload(image.path, {
-          folder: "Categories",  
+    const result = await cloudinary.uploader.upload(image.path, {
+      folder: "Categories",
+    });
+    const categoryExist = await categoryData.findOne({ category: lowerCategoryName });
+    if (!categoryExist) {
+
+      const category = new categoryData({
+        category: lowerCategoryName,
+        imageUrl: {
+          public_id: result.public_id,
+          url: result.secure_url,
+        },
+        description: categoryDescription,
       });
-      const categoryExist = await categoryData.findOne({ category: lowerCategoryName });
-      if (!categoryExist) {
 
-          const category = new categoryData({
-              category: lowerCategoryName,
-              imageUrl: {
-                  public_id: result.public_id,
-                  url: result.secure_url,
-              },
-              description: categoryDescription,
-          });
-
-          await category.save();
-          console.log("******Data stored in the database******")
-          req.session.categorySave = true;
-          res.redirect("/viewCategory");
-      } else {
-          req.session.categoryExist = true;
-          res.redirect("/viewCategory");
-      }
+      await category.save();
+      console.log("******Data stored in the database******")
+      req.session.categorySave = true;
+      res.redirect("/viewCategory");
+    } else {
+      req.session.categoryExist = true;
+      res.redirect("/viewCategory");
+    }
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 };
 

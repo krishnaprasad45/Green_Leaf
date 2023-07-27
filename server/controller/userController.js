@@ -62,11 +62,11 @@ const wishlist = (req, res) => {
 
 
 
-const productMore = async (req, res) => {
+const productDetails = async (req, res) => {
   const productId = req.query.id;
   try {
     const product = await productData.findById(productId);
-    res.render("productM", { product });
+    res.render("productDetails", { product });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -84,8 +84,6 @@ const otp_verification_post = async (req, res) => {
     var txt3 = req.body.txt3;
     var txt4 = req.body.txt4;
     const EnteredOtp = txt1 + txt2 + txt3 + txt4;
-    console.log(`**********entered otp${EnteredOtp}`);
-    console.log(`generated_otp${generatedOtp}`);
 
     if (EnteredOtp === generatedOtp) {
       const securedPassword = await helperFunction.securePassword(password);
@@ -99,16 +97,11 @@ const otp_verification_post = async (req, res) => {
         
         is_blocked: false,
       });
-      console.log(newUser.user_name);
-      console.log(newUser.email);
-      console.log(newUser.phone);
-      console.log(newUser.address);
-      console.log(newUser.password);
+    
 
-      console.log(`###### newuser:${newUser}`);
 
       await newUser.save();
-      console.log("............user data saved in the database");
+      console.log("-user data saved in the database-");
       res.render("user_login", {
         message: "Successfully registered!",
         loggedIn: false,
@@ -132,7 +125,7 @@ const resendOtp = (req, res) => {
     const newOtp = helperFunction.generateOTP();
     generatedOtp = newOtp;
     helperFunction.sendOtpMail(emailId, newOtp);
-    console.log(`++++++ new_otp ${newOtp}`);
+    console.log(`+ new_otp ${newOtp}`);
   } catch (error) {
     console.log(error);
   }
@@ -180,15 +173,11 @@ const user_register_post = async (req, res) => {
   console.log(req.body);
   try {
     let { email, phone } = req.body;
-    console.log(email,phone)
     const emailExist = await userData.findOne({ email: email });
-    console.log(`email exist: ${emailExist}`)
     const phoneExist = await userData.findOne({ phone: phone });
-    console.log(`email exist: ${phoneExist}`)
 
 
     const valid = helperFunction.validateRegister(req.body);
-    console.log(`valid: ${valid}`)
     
     if (emailExist) {
       return res.status(401).json({
@@ -211,12 +200,6 @@ const user_register_post = async (req, res) => {
       password = req.body.password;
       confirm_password = req.body.confirm_password;
 
-      console.log(`username: ${user_name}`)
-      console.log(`emailid: ${emailId}`)
-      console.log(`mobile: ${mobile}`)
-      console.log(`address: ${address}`)
-      console.log(`password: ${password}`)
-      console.log(`c password: ${confirm_password}`)
 
 
 
@@ -251,8 +234,7 @@ const user_login_post = async (req, res) => {
         res.render("user_login", { message: "You account is blocked !!" });
         
       }
-      console.log(`password: ${password}`);
-      console.log(` exist password: ${exist.password}`);
+      
 
       const decodedPassword = await bcrypt.compare(password, exist.password);
       const userStatus = exist.is_blocked;
@@ -290,5 +272,5 @@ module.exports = {
   user_register,
   user_register_post,
   user_login_post,
-  productMore,
+  productDetails,
 };
