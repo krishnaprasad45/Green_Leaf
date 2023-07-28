@@ -10,6 +10,15 @@
 
 
     <%-include('./_head_section.ejs') -%>
+    <style>
+        /* Custom CSS for small pop-up */
+        .small-dialog {
+            width: 100px;
+            background-color: green; /* Set the background color to green */
+        }
+    </style>
+
+      
 
         <!--header area end-->
 
@@ -161,26 +170,20 @@
                                                         </div>
                                                         <div class="action_links">
                                                             <ul>
+                                                              
                                                                 <li class="add_to_cart">
-                                                                    <a href="cart.html" title="Add to cart">
-                                                                        <i class="icon-shopping-bag"></i>
+                                                                    <a  class="addToCartButton" href=""  title="Add to cart">
+                                                                      <i class="icon-shopping-bag"></i>
                                                                     </a>
-                                                                </li>
-                                                                <li class="compare">
-                                                                    <a href="#" title="Add to Compare">
-                                                                        <i class="icon-sliders"></i>
-                                                                    </a>
-                                                                </li>
+                                                                  </li>
+                                                                  
+                                                             
                                                                 <li class="wishlist">
                                                                     <a href="wishlist.html" title="Add to Wishlist">
                                                                         <i class="icon-heart"></i>
                                                                     </a>
                                                                 </li>
-                                                                <li class="quick_button">
-                                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box" title="quick view">
-                                                                        <i class="icon-eye"></i>
-                                                                    </a>
-                                                                </li>
+                                                            
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -340,12 +343,40 @@
 
             <!-- Main JS -->
             <script src="assets/js/main.js"></script>
+            
 
-
+            <!-- //addToCart  popup -->
+            <script>
+                // Function to show the "Added to Cart" pop-up
+                function showAddedToCartPopup() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Added to Cart',
+                        text: 'The item has been successfully added to your cart.',
+                        customClass: {
+                            popup: 'small-dialog', // Add a CSS class to customize the pop-up size
+                        },
+                        position: 'center',
+                        toast: true, // Use toast mode to display the pop-up
+                        timer: 2000, // Automatically close the pop-up after 2 seconds (adjust as needed)
+                        timerProgressBar: true, // Show progress bar for the timer
+                    });
+                }
+            
+                // Add event listeners to all elements with the class "addToCartButton"
+                const addToCartButtons = document.querySelectorAll('.addToCartButton');
+                addToCartButtons.forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        showAddedToCartPopup();
+                    });
+                });
+            </script>
+            
+          
 
             </body>
 
 
-            <!-- Mirrored from htmldemo.net/lukani/lukani/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:28 GMT -->
 
             </html>

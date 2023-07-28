@@ -52,7 +52,7 @@ const my_account = (req, res) => {
   res.render("my_account");
 };
 
-const cart = (req, res) => {
+const addToCart = (req, res) => {
   res.render("cart");
 };
 
@@ -261,7 +261,7 @@ module.exports = {
   about,
   checkout,
   my_account,
-  cart,
+  addToCart,
   wishlist,
  
   otp_verification,
