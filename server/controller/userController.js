@@ -59,13 +59,60 @@ const addToCart = (req, res) => {
 
 
 
+// const addToCartPost = async (req, res) => {
+//   try {
+//     const productId = req.query.id;
+
+//     const product = await productData.findById(productId);
+//     const exist = await userData.findOne({ "cart.id": productId });
+//     if (exist) {
+//       await userData.findOneAndUpdate(
+//         { _id: userId, "cart.product": productId },
+//         { $inc: { "cart.$.quantity": quantity ? quantity : 1 } },
+//         { new: true }
+//       );
+
+
+//       return res.json({ message: "Item already in cart!!" });
+//     } else {
+//       await Product.findOneAndUpdate(filter, { isOnCart: true });
+//       await User.findByIdAndUpdate(
+//         userId,
+//         {
+//           $push: {
+//             cart: {
+//               product: product._id,
+//               quantity: quantity ? quantity : 1,
+//             },
+//           },
+//         },
+//         { new: true }
+//       );
+//       console.log(User)
+
+//       return res.json({ message: "Item added to cart" });
+//     }
+//   } catch (error) {
+//     console.log(error.message);
+//     const userData = req.session.user;
+//     return res.status(500).json({ error: "Internal Server Error" });
+//   }
+
+
+
+// }
 const addToCartPost = async (req, res) => {
-  try{
-        const productId = req.query.id;
-        
-        const productMeta = await productData.findById(productId);
-        const exist = await userData.findOne({"cart.id": productMeta });
-        if (exist) {
+  try {
+     
+      const userData = req.session.user;
+      const productId = req.query.id;
+      const quantity = req.query.quantity;
+      const userId = userData._id;
+
+      const product = await productData.findById(productId);
+      const existed = await userData.findOne({ _id: userId, "cart.product": productId });
+      // const filter={_id:productId}
+      if (existed) {
           await userData.findOneAndUpdate(
               { _id: userId, "cart.product": productId },
               { $inc: { "cart.$.quantity": quantity ? quantity : 1 } },
@@ -97,16 +144,13 @@ const addToCartPost = async (req, res) => {
       const userData = req.session.user;
       return res.status(500).json({ error: "Internal Server Error" });
   }
-        
-
-
-  }   
-        
-
-
-
-  
 };
+
+
+
+
+
+
 
 const wishlist = (req, res) => {
   res.render("wishlist");
@@ -149,10 +193,10 @@ const otp_verification_post = async (req, res) => {
         phone: mobile,
         address: address,
         password: securedPassword,
-        
+
         is_blocked: false,
       });
-    
+
 
 
       await newUser.save();
@@ -233,7 +277,7 @@ const user_register_post = async (req, res) => {
 
 
     const valid = helperFunction.validateRegister(req.body);
-    
+
     if (emailExist) {
       return res.status(401).json({
         error:
@@ -286,17 +330,17 @@ const user_login_post = async (req, res) => {
     let exist = await userData.findOne({ email: email });
 
     if (exist) {
-      if(exist.is_blocked){
+      if (exist.is_blocked) {
         res.render("user_login", { message: "You account is blocked !!" });
-        
+
       }
-      
+
 
       const decodedPassword = await bcrypt.compare(password, exist.password);
       const userStatus = exist.is_blocked;
-      
+
       if (decodedPassword && userStatus == false) {
-        req.session.user =exist;
+        req.session.user = exist;
         res.redirect("index");
       } else {
         res.render("user_login", { message: "The password is incorrect" });
@@ -319,7 +363,7 @@ module.exports = {
   my_account,
   addToCart,
   wishlist,
- 
+
   otp_verification,
   otp_verification_post,
   resendOtp,

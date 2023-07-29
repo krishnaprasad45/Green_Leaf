@@ -30,6 +30,20 @@ var schema = new mongoose.Schema({
             required:true
         }
     }],
+    stock:{
+        type:Number,
+        required:true
+    },
+
+    isOnCart:{
+        type:Boolean,
+        default:false
+    },
+
+    isWishlisted:{
+        type:Boolean,
+        default:false
+    },
 
 })
 const products = mongoose.model("productCollection", schema)
