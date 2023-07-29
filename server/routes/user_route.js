@@ -4,7 +4,7 @@ user_route.set('views', './views/user')
 const auth = require("../../middleware/userAuth.js")
 
 
-const {isLogin,isLogout} = auth
+const {isLogin,isLogout,blockCheck} = auth
 
 const userController = require("../controller/userController")
 
@@ -22,14 +22,16 @@ user_route.get("/resentOtp",isLogout,userController.resendOtp )
 user_route.get('/user_login',isLogout, userController.user_login)
 user_route.post("/user_login_post",isLogout, userController.user_login_post)
 
-user_route.get('/index', userController.index)
-user_route.get('/shop', userController.shop)
+user_route.get('/index',blockCheck, userController.index)
+user_route.get('/shop',blockCheck, userController.shop)
 user_route.get('/contact', userController.contact)
 user_route.get('/about', userController.about)
 user_route.get('/checkout',isLogin, userController.checkout)
-user_route.get('/my_account',isLogin, userController.my_account)
-user_route.get('/addToCart',isLogin, userController.addToCart)
-user_route.get('/wishlist',isLogin, userController.wishlist)
+user_route.get('/my_account',isLogin,blockCheck, userController.my_account)
+// user_route.get('/addToCart',isLogin,blockCheck, userController.addToCart)
+user_route.get('/addToCart', userController.addToCartPost)
+
+user_route.get('/wishlist',isLogin,blockCheck, userController.wishlist)
 user_route.get('/productDetails', userController.productDetails)
 user_route.get('/user_logout',isLogin, userController.user_logout)
 

@@ -10,15 +10,16 @@
 
 
     <%-include('./_head_section.ejs') -%>
-    <style>
-        /* Custom CSS for small pop-up */
-        .small-dialog {
-            width: 100px;
-            background-color: green; /* Set the background color to green */
-        }
-    </style>
+        <style>
+            /* Custom CSS for small pop-up */
+            .small-dialog {
+                width: 100px;
+                background-color: green;
+                /* Set the background color to green */
+            }
+        </style>
 
-      
+
 
         <!--header area end-->
 
@@ -156,13 +157,14 @@
                             <div class="product_carousel product_column4 owl-carousel">
                                 <% data.forEach(async (product)=> { %>
 
-                                <div class="col-lg-3">
-                                    <div class="product_container">
+                                    <div class="col-lg-3">
+                                        <div class="product_container">
 
                                             <article class="single_product">
                                                 <figure>
                                                     <div class="product_thumb">
-                                                        <a class="primary_img" href="/productDetails/?id=<%=product.id%>">
+                                                        <a class="primary_img"
+                                                            href="/productDetails/?id=<%=product.id%>">
                                                             <img src="<%= product.imageUrl[0].url %>" alt="">
                                                         </a>
                                                         <div class="label_product">
@@ -170,20 +172,22 @@
                                                         </div>
                                                         <div class="action_links">
                                                             <ul>
-                                                              
+
                                                                 <li class="add_to_cart">
-                                                                    <a  class="addToCartButton" href=""  title="Add to cart">
-                                                                      <i class="icon-shopping-bag"></i>
+                                                                    <a class="addToCartButton" href="#"
+                                                                        title="Add to cart"
+                                                                        onclick="addToCart('<%=product.id%>')">
+                                                                        <i class="icon-shopping-bag"></i>
                                                                     </a>
-                                                                  </li>
-                                                                  
-                                                             
+                                                                </li>
+
+
                                                                 <li class="wishlist">
                                                                     <a href="wishlist.html" title="Add to Wishlist">
                                                                         <i class="icon-heart"></i>
                                                                     </a>
                                                                 </li>
-                                                            
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -200,35 +204,35 @@
                                                         </div>
                                                     </figcaption>
                                                 </figure>
-                                                
+
                                             </article>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <% }) %>
+                                    <% }) %>
 
-                                <div class="col-lg-3">
-                                    <div class="product_items">
-
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                        <div class="col-lg-3">
+                                            <div class="product_items">
 
 
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="product_items">
 
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="product_items">
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="product_items">
+
+                                            </div>
+                                        </div>
                             </div>
                         </div>
                     </div>
@@ -343,12 +347,35 @@
 
             <!-- Main JS -->
             <script src="assets/js/main.js"></script>
-            
+            <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.17/fetch.js"
+                integrity="sha512-McVX4MrYSYimPqeGVUK8I17212Bv/B2xIHk+ySbKPC+HYei0YkAMITKT8nxcCIScNeZMpKIGBWomfqic26VBgg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
             <!-- //addToCart  popup -->
             <script>
                 // Function to show the "Added to Cart" pop-up
-                function showAddedToCartPopup() {
+                async function addToCart(productId) {
+                    console.log(productId)
+                    const response = await fetch(`/addToCart?id=${productId}`, {
+                   
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+
+                    })
+                    console.log(response)
+
+
+
+
+
+
+
+
                     Swal.fire({
                         icon: 'success',
                         title: 'Added to Cart',
@@ -362,18 +389,8 @@
                         timerProgressBar: true, // Show progress bar for the timer
                     });
                 }
-            
-                // Add event listeners to all elements with the class "addToCartButton"
-                const addToCartButtons = document.querySelectorAll('.addToCartButton');
-                addToCartButtons.forEach(button => {
-                    button.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        showAddedToCartPopup();
-                    });
-                });
             </script>
-            
-          
+
 
             </body>
 

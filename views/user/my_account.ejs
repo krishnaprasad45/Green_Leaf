@@ -7,6 +7,7 @@
     <div class="off_canvars_overlay">
 
     </div>
+
    
 
     <!--offcanvas menu area end-->
@@ -45,7 +46,14 @@
                                 <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
                                 <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Edit details</a>
                                 </li>
-                                <li><a href="/user_logout" class="nav-link">logout</a></li>
+                                <!-- <li><a href="/user_logout" class="nav-link">logout</a></li> -->
+                                <li><a href="/user_logout" class="nav-link" id="logoutLink">logout</a></li>
+                                <div id="logoutPopup" class="popup">
+                                    <div class="progress-container">
+                                        <div class="progress-bar"></div>
+                                    </div>
+                                    <p id="progressText">Logging out...</p>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -208,6 +216,35 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <!-- loging out pop up -->
+    <script>
+  document.getElementById("logoutLink").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+
+    var popup = document.getElementById("logoutPopup");
+    var progressBar = document.querySelector(".progress-bar");
+
+    popup.style.display = "block";
+
+    // Simulate logout process with a decreasing progress bar
+    var width = 100;
+    var interval = setInterval(frame, 10);
+
+    function frame() {
+        if (width <= 0) {
+            clearInterval(interval);
+            popup.style.display = "none";
+            // Redirect to the logout page after progress bar completes
+            window.location.href = "/user_logout";
+        } else {
+            width--;
+            progressBar.style.width = width + "%";
+        }
+    }
+});
+
+
+    </script>
 
 
 

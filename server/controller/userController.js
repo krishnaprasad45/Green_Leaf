@@ -56,9 +56,64 @@ const addToCart = (req, res) => {
   res.render("cart");
 };
 
+
+
+
+const addToCartPost = async (req, res) => {
+  try{
+        const productId = req.query.id;
+        
+        const productMeta = await productData.findById(productId);
+        const exist = await userData.findOne({"cart.id": productMeta });
+        if (exist) {
+          await userData.findOneAndUpdate(
+              { _id: userId, "cart.product": productId },
+              { $inc: { "cart.$.quantity": quantity ? quantity : 1 } },
+              { new: true }
+          );
+        
+
+         return res.json({ message: "Item already in cart!!" });
+      } else {
+          await Product.findOneAndUpdate(filter, { isOnCart: true });
+          await User.findByIdAndUpdate(
+              userId,
+              {
+                  $push: {
+                      cart: {
+                          product: product._id,
+                          quantity: quantity ? quantity : 1,
+                      },
+                  },
+              },
+              { new: true }
+          );
+          console.log(User)
+
+        return  res.json({ message: "Item added to cart" });
+      }
+  } catch (error) {
+      console.log(error.message);
+      const userData = req.session.user;
+      return res.status(500).json({ error: "Internal Server Error" });
+  }
+        
+
+
+  }   
+        
+
+
+
+  
+};
+
 const wishlist = (req, res) => {
   res.render("wishlist");
 };
+
+
+
 
 
 
@@ -229,6 +284,7 @@ const user_login_post = async (req, res) => {
     }
     let email = user_name;
     let exist = await userData.findOne({ email: email });
+
     if (exist) {
       if(exist.is_blocked){
         res.render("user_login", { message: "You account is blocked !!" });
@@ -240,7 +296,7 @@ const user_login_post = async (req, res) => {
       const userStatus = exist.is_blocked;
       
       if (decodedPassword && userStatus == false) {
-        req.session.user = email;
+        req.session.user =exist;
         res.redirect("index");
       } else {
         res.render("user_login", { message: "The password is incorrect" });
@@ -273,4 +329,5 @@ module.exports = {
   user_register_post,
   user_login_post,
   productDetails,
+  addToCartPost,
 };
