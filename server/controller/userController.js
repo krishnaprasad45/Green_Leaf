@@ -133,9 +133,9 @@ const productDetails = async (req, res) => {
 
   try {
     const product = await productData.findById(productId);
-    // console.log(`product:${product}`)
-
-    res.render("productDetails", { product });
+    // console.log(`product:${product.imageUrl[0].url}`)
+    const image=product.imageUrl
+    res.render("productDetails", { product ,image});
   } catch (error) {
     res.status(500).send(error.message);
   }

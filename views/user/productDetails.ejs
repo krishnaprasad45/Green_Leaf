@@ -1,6 +1,6 @@
 <%-include('./_header.ejs') -%>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--header area start-->
 
     <!--offcanvas menu area start-->
@@ -39,41 +39,41 @@
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a >
-                                <img id="zoom1" src="<%= product.imageUrl[0].url%>"
-                                    data-zoom-image="<%=product.imageUrl[0].url%>" alt="big-1">
+                                <img id="zoom1" src="<%= image[0].url%>"
+                                    data-zoom-image="<%= image[0].url%>" alt="big-1">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                 <li>
                                     <a  class="elevatezoom-gallery active" data-update=""
-                                        data-image="<%=product.imageUrl[1].url%>"
-                                        data-zoom-image="<%=product.imageUrl[1].url%>">
-                                        <img src="<%=product.imageUrl[1].url%>" alt="zo-th-1" />
+                                        data-image="<%= image[0].url %>"
+                                        data-zoom-image="<%=image[0].url%>">
+                                        <img src="<%= image[0].url%>" alt="zo-th-1" />
                                     </a>
 
                                 </li>
                                 <li>
                                     <a  class="elevatezoom-gallery active" data-update=""
-                                        data-image="<%=product.imageUrl[2].url%>"
-                                        data-zoom-image="<%=product.imageUrl[2].url%>">
-                                        <img src="<%=product.imageUrl[2].url%>" alt="zo-th-1" />
+                                        data-image="<%=image[0].url%>"
+                                        data-zoom-image="<%=image[0].url%>">
+                                        <img src="<%=image[0].url%>" alt="zo-th-1" />
                                     </a>
 
                                 </li>
                                 <li>
                                     <a   class="elevatezoom-gallery active" data-update=""
-                                        data-image="<%=product.imageUrl[3].url%>"
-                                        data-zoom-image="<%=product.imageUrl[3].url%>">
-                                        <img src="<%=product.imageUrl[3].url%>" alt="zo-th-1" />
+                                        data-image="<%=image[0].url%>"
+                                        data-zoom-image="<%=image[0].url%>">
+                                        <img src="<%=image[0].url%>" alt="zo-th-1" />
                                     </a>
 
                                 </li>
                                 <li>
                                     <a   class="elevatezoom-gallery active" data-update=""
-                                        data-image="<%=product.imageUrl[0].url%>"
-                                        data-zoom-image="<%=product.imageUrl[0].url%>">
-                                        <img src="<%=product.imageUrl[0].url%>" alt="zo-th-1" />
+                                        data-image="<%=image[0].url%>"
+                                        data-zoom-image="<%=image[0].url%>">
+                                        <img src="<%=image[0].url%>" alt="zo-th-1" />
                                     </a>
 
                                 </li>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
-                        <form action="#">
+                        <form >
 
                             <h1><a  ><%=product.product_name%></a></h1>
                       
@@ -111,7 +111,7 @@
                                 <input min="1" max="100" id="<%= product.id %>" value="1" type="number">
                                 
                           
-                                <button class="button" onclick="addToCart('<%= product.id %>')" id="addToCartBtn" type="submit">add to cart</button>
+                                <button class="button" onclick="addToCart('<%= product.id %>')" id="addToCartBtn">add to cart</button>
 
                             </div>
                     
@@ -327,11 +327,9 @@
     <!-- Main JS -->
     <script src="/assets/js/main.js"></script>
     <script src="/assets/js/user.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.17/fetch.js"
-                integrity="sha512-McVX4MrYSYimPqeGVUK8I17212Bv/B2xIHk+ySbKPC+HYei0YkAMITKT8nxcCIScNeZMpKIGBWomfqic26VBgg=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     
 
 

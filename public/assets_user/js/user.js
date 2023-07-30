@@ -1,18 +1,19 @@
 const addToCart = async (productId) => {
     console.log(111);
+    
     console.log(productId);
 
 
     try {
     console.log("try");
-
+    event.preventDefault();
         const addToCartButton = document.getElementById("addToCartBtn");
         // const productName = document.getElementsByName("productName")[0].value;
         const quantity = document.getElementById(productId).value;
         console.log(`quantity: ${quantity}`);
 
-        // const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
-        const response = await fetch(`/addToCart?id=${productId}`, {
+        const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
+        // const response = await fetch(`/addToCart?id=${productId}`, {
 
             method: "GET",
             headers: {
