@@ -38,15 +38,15 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
-                            <a href="#">
-                                <img id="zoom1" src="<%=product.imageUrl[0].url%>"
+                            <a >
+                                <img id="zoom1" src="<%= product.imageUrl[0].url%>"
                                     data-zoom-image="<%=product.imageUrl[0].url%>" alt="big-1">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                 <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
+                                    <a  class="elevatezoom-gallery active" data-update=""
                                         data-image="<%=product.imageUrl[1].url%>"
                                         data-zoom-image="<%=product.imageUrl[1].url%>">
                                         <img src="<%=product.imageUrl[1].url%>" alt="zo-th-1" />
@@ -54,7 +54,7 @@
 
                                 </li>
                                 <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
+                                    <a  class="elevatezoom-gallery active" data-update=""
                                         data-image="<%=product.imageUrl[2].url%>"
                                         data-zoom-image="<%=product.imageUrl[2].url%>">
                                         <img src="<%=product.imageUrl[2].url%>" alt="zo-th-1" />
@@ -62,7 +62,7 @@
 
                                 </li>
                                 <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
+                                    <a   class="elevatezoom-gallery active" data-update=""
                                         data-image="<%=product.imageUrl[3].url%>"
                                         data-zoom-image="<%=product.imageUrl[3].url%>">
                                         <img src="<%=product.imageUrl[3].url%>" alt="zo-th-1" />
@@ -70,7 +70,7 @@
 
                                 </li>
                                 <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
+                                    <a   class="elevatezoom-gallery active" data-update=""
                                         data-image="<%=product.imageUrl[0].url%>"
                                         data-zoom-image="<%=product.imageUrl[0].url%>">
                                         <img src="<%=product.imageUrl[0].url%>" alt="zo-th-1" />
@@ -85,16 +85,16 @@
                     <div class="product_d_right">
                         <form action="#">
 
-                            <h1><a href="#"><%=product.product_name%></a></h1>
+                            <h1><a  ><%=product.product_name%></a></h1>
                       
                             <div class=" product_ratting">
                                 <ul>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li class="review"><a href="#"> (customer review ) </a></li>
+                                    <li><a  ><i class="icon-star"></i></a></li>
+                                    <li><a  ><i class="icon-star"></i></a></li>
+                                    <li><a  ><i class="icon-star"></i></a></li>
+                                    <li><a  ><i class="icon-star"></i></a></li>
+                                    <li><a  ><i class="icon-star"></i></a></li>
+                                    <li class="review"><a  > (customer review ) </a></li>
                                 </ul>
 
                             </div>
@@ -108,17 +108,20 @@
                       
                             <div class="product_variant quantity">
                                 <label>quantity</label>
-                                <input min="1" max="100" value="1" type="number">
-                                <button class="button" type="submit">add to cart</button>
+                                <input min="1" max="100" id="<%= product.id %>" value="1" type="number">
+                                
+                          
+                                <button class="button" onclick="addToCart('<%= product.id %>')" id="addToCartBtn" type="submit">add to cart</button>
 
                             </div>
+                    
                             <div class=" product_d_action">
                                 <ul>
-                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                                    <li><a   title="Add to wishlist">+ Add to Wishlist</a></li>
                                 </ul>
                             </div>
                             <div class="product_meta">
-                                <span>Category: <a href="#"><%=product.category%></a></span>
+                                <span>Category: <a  ><%=product.category%></a></span>
                             </div>
 
                         </form>
@@ -213,11 +216,11 @@
                                             <div class="reviews_meta">
                                                 <div class="star_rating">
                                                     <ul>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
+                                                        <li><a  ><i class="icon-star"></i></a></li>
+                                                        <li><a  ><i class="icon-star"></i></a></li>
+                                                        <li><a  ><i class="icon-star"></i></a></li>
+                                                        <li><a  ><i class="icon-star"></i></a></li>
+                                                        <li><a  ><i class="icon-star"></i></a></li>
                                                     </ul>
                                                 </div>
                                                 <p><strong>admin </strong>- September 12, 2018</p>
@@ -233,11 +236,11 @@
                                     <div class="product_ratting mb-10">
                                         <h3>Your rating</h3>
                                         <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                            <li><a  ><i class="icon-star"></i></a></li>
+                                            <li><a  ><i class="icon-star"></i></a></li>
+                                            <li><a  ><i class="icon-star"></i></a></li>
+                                            <li><a  ><i class="icon-star"></i></a></li>
+                                            <li><a  ><i class="icon-star"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product_review_form">
@@ -323,11 +326,18 @@
 
     <!-- Main JS -->
     <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/user.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.17/fetch.js"
+                integrity="sha512-McVX4MrYSYimPqeGVUK8I17212Bv/B2xIHk+ySbKPC+HYei0YkAMITKT8nxcCIScNeZMpKIGBWomfqic26VBgg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+
 
 
 
 </body>
 
 
-<!-- Mirrored from htmldemo.net/lukani/lukani/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:48 GMT -->
 </html>

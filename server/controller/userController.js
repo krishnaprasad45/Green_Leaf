@@ -52,62 +52,28 @@ const my_account = (req, res) => {
   res.render("my_account");
 };
 
-const addToCart = (req, res) => {
+const viewCart = (req, res) => {
   res.render("cart");
 };
 
 
 
 
-// const addToCartPost = async (req, res) => {
-//   try {
-//     const productId = req.query.id;
 
-//     const product = await productData.findById(productId);
-//     const exist = await userData.findOne({ "cart.id": productId });
-//     if (exist) {
-//       await userData.findOneAndUpdate(
-//         { _id: userId, "cart.product": productId },
-//         { $inc: { "cart.$.quantity": quantity ? quantity : 1 } },
-//         { new: true }
-//       );
-
-
-//       return res.json({ message: "Item already in cart!!" });
-//     } else {
-//       await Product.findOneAndUpdate(filter, { isOnCart: true });
-//       await User.findByIdAndUpdate(
-//         userId,
-//         {
-//           $push: {
-//             cart: {
-//               product: product._id,
-//               quantity: quantity ? quantity : 1,
-//             },
-//           },
-//         },
-//         { new: true }
-//       );
-//       console.log(User)
-
-//       return res.json({ message: "Item added to cart" });
-//     }
-//   } catch (error) {
-//     console.log(error.message);
-//     const userData = req.session.user;
-//     return res.status(500).json({ error: "Internal Server Error" });
-//   }
-
-
-
-// }
-const addToCartPost = async (req, res) => {
+const addToCart = async (req, res) => {
   try {
-     
-      const userData = req.session.user;
+      console.log("addToCart middleware")
+      const userDatas = req.session.user;
+      console.log(`userdata:${userDatas}`)
       const productId = req.query.id;
+      console.log(`productid:${productId}`)
+
       const quantity = req.query.quantity;
-      const userId = userData._id;
+      console.log(`quantity:${quantity}`)
+
+      const userId = userDatas._id;
+      console.log(`userid:${userId}`)
+
 
       const product = await productData.findById(productId);
       const existed = await userData.findOne({ _id: userId, "cart.product": productId });
@@ -119,11 +85,11 @@ const addToCartPost = async (req, res) => {
               { new: true }
           );
         
-
+          console.log("existed to response : already in cart")
          return res.json({ message: "Item already in cart!!" });
       } else {
-          await Product.findOneAndUpdate(filter, { isOnCart: true });
-          await User.findByIdAndUpdate(
+          // await productData.findOneAndUpdate(filter, { isOnCart: true });
+          await userData.findByIdAndUpdate(
               userId,
               {
                   $push: {
@@ -135,7 +101,7 @@ const addToCartPost = async (req, res) => {
               },
               { new: true }
           );
-          console.log(User)
+          console.log("not existed so ,data inserted to cart")
 
         return  res.json({ message: "Item added to cart" });
       }
@@ -163,8 +129,12 @@ const wishlist = (req, res) => {
 
 const productDetails = async (req, res) => {
   const productId = req.query.id;
+  // console.log(`productId:${productId}`)
+
   try {
     const product = await productData.findById(productId);
+    // console.log(`product:${product}`)
+
     res.render("productDetails", { product });
   } catch (error) {
     res.status(500).send(error.message);
@@ -373,5 +343,6 @@ module.exports = {
   user_register_post,
   user_login_post,
   productDetails,
-  addToCartPost,
+  addToCart,
+  viewCart,
 };

@@ -358,16 +358,25 @@
             <script>
                 // Function to show the "Added to Cart" pop-up
                 async function addToCart(productId) {
-                    console.log(productId)
-                    const response = await fetch(`/addToCart?id=${productId}`, {
-                   
+                    console.log(`productId:${productId}`)
+
+
+                    const quantity = document.getElementById(productId).value;
+
+
+                    console.log(`quantity: ${quantity}`)
+
+
+
+                    const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
+
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
                         },
 
                     })
-                    console.log(response)
+
 
 
 
