@@ -2,11 +2,14 @@ var express = require('express')
 var user_route = express();
 user_route.set('views', './views/user')
 const auth = require("../../middleware/userAuth.js")
+const userController = require("../controller/userController")
+const cartController = require("../controller/cartController")
+
+
 
 
 const {isLogin,isLogout,blockCheck} = auth
 
-const userController = require("../controller/userController")
 
 
 user_route.get('/', userController.index)
@@ -26,10 +29,10 @@ user_route.get('/index',blockCheck, userController.index)
 user_route.get('/shop',blockCheck, userController.shop)
 user_route.get('/contact', userController.contact)
 user_route.get('/about', userController.about)
-user_route.get('/checkout',isLogin, userController.checkout)
+user_route.get('/checkout', userController.checkout)
 user_route.get('/my_account',isLogin,blockCheck, userController.my_account)
-user_route.get('/viewCart',isLogin,blockCheck, userController.viewCart)
-user_route.get('/addToCart', userController.addToCart)
+user_route.get('/viewCart', cartController.viewCart)
+user_route.get('/addToCart', cartController.addToCart)
 
 user_route.get('/wishlist',isLogin,blockCheck, userController.wishlist)
 user_route.get('/productDetails', userController.productDetails)

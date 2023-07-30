@@ -8,12 +8,17 @@ const addToCart = async (productId) => {
     console.log("try");
     event.preventDefault();
         const addToCartButton = document.getElementById("addToCartBtn");
-        // const productName = document.getElementsByName("productName")[0].value;
-        const quantity = document.getElementById(productId).value;
+        let quantity = document.getElementById(productId).value;
+        console.log(`quantity before: ${quantity}`);
+        
+        if(quantity === null){
+            quantity = 1
+        }
+        
+        
         console.log(`quantity: ${quantity}`);
 
         const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
-        // const response = await fetch(`/addToCart?id=${productId}`, {
 
             method: "GET",
             headers: {

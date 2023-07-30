@@ -174,9 +174,12 @@
                                                             <ul>
 
                                                                 <li class="add_to_cart">
-                                                                    <a class="addToCartButton" href="#"
+                                                <input min="1" max="100" id="<%= product.id %>" value="1" type="number" hidden>
+                                                                    
+                                                                    <a class="addToCartButton" 
                                                                         title="Add to cart"
-                                                                        onclick="addToCart('<%=product.id%>')">
+                                                                        onclick="addToCart('<%=product.id%>')"
+                                                                        id="addToCartBtn">
                                                                         <i class="icon-shopping-bag"></i>
                                                                     </a>
                                                                 </li>
@@ -348,14 +351,15 @@
             <!-- Main JS -->
             <script src="assets/js/main.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.17/fetch.js"
-                integrity="sha512-McVX4MrYSYimPqeGVUK8I17212Bv/B2xIHk+ySbKPC+HYei0YkAMITKT8nxcCIScNeZMpKIGBWomfqic26VBgg=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/js/user.js"></script>
 
-
+            
             <!-- //addToCart  popup -->
-            <script>
+            <!-- <script>
                 // Function to show the "Added to Cart" pop-up
                 async function addToCart(productId) {
                     console.log(`productId:${productId}`)
@@ -398,7 +402,7 @@
                         timerProgressBar: true, // Show progress bar for the timer
                     });
                 }
-            </script>
+            </script> -->
 
 
             </body>

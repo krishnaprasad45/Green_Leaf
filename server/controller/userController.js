@@ -52,65 +52,13 @@ const my_account = (req, res) => {
   res.render("my_account");
 };
 
-const viewCart = (req, res) => {
-  res.render("cart");
-};
 
 
 
 
 
-const addToCart = async (req, res) => {
-  try {
-      console.log("addToCart middleware")
-      const userDatas = req.session.user;
-      console.log(`userdata:${userDatas}`)
-      const productId = req.query.id;
-      console.log(`productid:${productId}`)
-
-      const quantity = req.query.quantity;
-      console.log(`quantity:${quantity}`)
-
-      const userId = userDatas._id;
-      console.log(`userid:${userId}`)
 
 
-      const product = await productData.findById(productId);
-      const existed = await userData.findOne({ _id: userId, "cart.product": productId });
-      // const filter={_id:productId}
-      if (existed) {
-          await userData.findOneAndUpdate(
-              { _id: userId, "cart.product": productId },
-              { $inc: { "cart.$.quantity": quantity ? quantity : 1 } },
-              { new: true }
-          );
-        
-          console.log("existed to response : already in cart")
-         return res.json({ message: "Item already in cart!!" });
-      } else {
-          // await productData.findOneAndUpdate(filter, { isOnCart: true });
-          await userData.findByIdAndUpdate(
-              userId,
-              {
-                  $push: {
-                      cart: {
-                          product: product._id,
-                          quantity: quantity ? quantity : 1,
-                      },
-                  },
-              },
-              { new: true }
-          );
-          console.log("not existed so ,data inserted to cart")
-
-        return  res.json({ message: "Item added to cart" });
-      }
-  } catch (error) {
-      console.log(error.message);
-      const userData = req.session.user;
-      return res.status(500).json({ error: "Internal Server Error" });
-  }
-};
 
 
 
@@ -331,7 +279,7 @@ module.exports = {
   about,
   checkout,
   my_account,
-  addToCart,
+  
   wishlist,
 
   otp_verification,
@@ -343,6 +291,5 @@ module.exports = {
   user_register_post,
   user_login_post,
   productDetails,
-  addToCart,
-  viewCart,
+  
 };

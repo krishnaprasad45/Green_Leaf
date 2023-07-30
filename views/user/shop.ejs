@@ -144,7 +144,10 @@
                                         </div>
                                         <div class="action_links list_action_right">
                                             <ul>
-                                                <li class="add_to_cart"><a href="/cart" title="Add to cart">Add to
+                                                <input min="1" max="100" id="<%= product.id %>" value="1" type="number" hidden>
+
+                                                <li class="add_to_cart"><a class="addToCartButton" title="Add to cart" onclick="addToCart('<%=product.id%>')"
+                                                    id="addToCartBtn">Add to
                                                         cart</a></li>
                                                 <li class="wishlist"><a href="/wishlist" title="Add to Wishlist"><i
                                                             class="icon-heart"></i></a></li>
@@ -228,6 +231,10 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script src="/assets/js/user.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    
 
 
 
