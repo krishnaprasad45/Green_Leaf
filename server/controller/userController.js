@@ -19,7 +19,7 @@ let password;
 const shop = async (req, res) => {
   try {
     const data = await productData.find();
-    res.render("shop", { data });
+    res.render("shop", { data,message:"" });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -29,13 +29,12 @@ const shop = async (req, res) => {
 const index = async (req, res) => {
   try {
     const productDatas = await productData.find();
-    console.log(`productDatas:${productDatas}`)
     if(req.session.user){
       const userDatas = req.session.user
       console.log(`userDatas..:${userDatas}`)
-  
+      console.log(` userid>>:${userDatas.id}`)
+      
       res.render("index", { productDatas, userDatas, message: "true" });
-
     }else{
       res.render("index",{productDatas, message:"false"});
 
@@ -94,7 +93,7 @@ const productDetails = async (req, res) => {
     const product = await productData.findById(productId);
     // console.log(`product:${product.imageUrl[0].url}`)
     const image=product.imageUrl
-    res.render("productDetails", { product ,image});
+    res.render("productDetails", { product ,image, message:""});
   } catch (error) {
     res.status(500).send(error.message);
   }
