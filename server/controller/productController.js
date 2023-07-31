@@ -1,8 +1,6 @@
 const model = require("../model/product");
-const categoryModel = require("../model/category");
-
 const productData = model.products;
-const categoryData = categoryModel.category
+const categoryData = require("../model/category");
 
 
 
