@@ -28,8 +28,19 @@ const shop = async (req, res) => {
 
 const index = async (req, res) => {
   try {
-    const data = await productData.find();
-    res.render("index", { data });
+    const productDatas = await productData.find();
+    console.log(`productDatas:${productDatas}`)
+    if(req.session.user){
+      const userDatas = req.session.user
+      console.log(`userDatas..:${userDatas}`)
+  
+      res.render("index", { productDatas, userDatas, message: "true" });
+
+    }else{
+      res.render("index",{productDatas, message:"false"});
+
+    }
+   
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
