@@ -32,7 +32,7 @@ const index = async (req, res) => {
     if(req.session.user){
       const userDatas = req.session.user
       console.log(`userDatas..:${userDatas}`)
-      console.log(` userid>>:${userDatas.id}`)
+      console.log(` userid>>:${userDatas._id}`)
       
       res.render("index", { productDatas, userDatas, message: "true" });
     }else{

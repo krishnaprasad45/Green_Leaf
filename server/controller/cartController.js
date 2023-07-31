@@ -62,7 +62,7 @@ const addToCart = async (req, res) => {
 };
 
 const viewCart = (req, res) => {
-    res.render("Viewcart");
+    res.render("Viewcart",{message:""});
 };
 
 module.exports = {
