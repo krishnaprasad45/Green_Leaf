@@ -31,8 +31,7 @@ const index = async (req, res) => {
     const productDatas = await productData.find();
     if(req.session.user){
       const userDatas = req.session.user
-      console.log(`userDatas..:${userDatas}`)
-      console.log(` userid>>:${userDatas._id}`)
+      
       
       res.render("index", { productDatas, userDatas, message: "true" });
     }else{
@@ -87,11 +86,9 @@ const wishlist = (req, res) => {
 
 const productDetails = async (req, res) => {
   const productId = req.query.id;
-  // console.log(`productId:${productId}`)
 
   try {
     const product = await productData.findById(productId);
-    // console.log(`product:${product.imageUrl[0].url}`)
     const image=product.imageUrl
     res.render("productDetails", { product ,image, message:""});
   } catch (error) {
@@ -147,7 +144,6 @@ const otp_verification_post = async (req, res) => {
 };
 
 const resendOtp = (req, res) => {
-  console.log("hello");
   try {
     const newOtp = helperFunction.generateOTP();
     generatedOtp = newOtp;
@@ -197,7 +193,6 @@ const user_register = (req, res) => {
 };
 
 const user_register_post = async (req, res) => {
-  console.log(req.body);
   try {
     let { email, phone } = req.body;
     const emailExist = await userData.findOne({ email: email });

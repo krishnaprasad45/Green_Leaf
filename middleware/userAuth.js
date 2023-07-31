@@ -34,12 +34,9 @@ const blockCheck = async (req, res, next) => {
 
         if (req.session.user) {
             const userData = req.session.user;
-            console.log(userData)
             const id = userData._id
-            console.log(id)
 
             const user = await User.findById(id)
-            console.log(user)
 
 
             if (user.is_blocked) {

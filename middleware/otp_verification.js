@@ -20,7 +20,6 @@ function generateOTP() {
 }
 
 async function sendOtpMail(email, otp) {
-    console.log(otp);
     try {
         const transporter = nodemailer.createTransport({
             service: "gmail",
@@ -38,14 +37,12 @@ async function sendOtpMail(email, otp) {
         };
 
         const result = await transporter.sendMail(mailOptions);
-        console.log(result);
     } catch (error) {
         console.log(error.message);
     }
 }
 
 async function sendOtp(req, res) {
-    console.log(req.body);
     try {
         const { emailvalid, phonenumber } = req.body;
 
@@ -102,7 +99,6 @@ async function verifyOtp(req, res) {
             is_blocked: false,
         });
 
-        console.log(newUser);
 
         try {
             await newUser.save();
