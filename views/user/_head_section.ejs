@@ -31,10 +31,11 @@
                                     <a href="/user_login"><i class="icon-users"></i></a>
                                   
                                 </div>
-                                
+                                <% if (message === "true") { %>
                                 <div class="header_account-list header_wishlist">
                                     <a href="/wishlist"><i class="icon-heart"></i></a>
                                 </div>
+                                
                                 <div class="header_account-list  mini_cart_wrapper">
                                     <a href="javascript:void(0)"><i class="icon-shopping-bag"></i><span
                                             class="item_count">2</span></a>
@@ -43,6 +44,7 @@
                                   
                                     <!--mini cart end-->
                                 </div>
+                                <%}%>
                             </div>
                         </div>
                     </div>
