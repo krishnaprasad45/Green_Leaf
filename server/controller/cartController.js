@@ -5,7 +5,7 @@ const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 
 const productData = productmodel.products;
-
+const Category = require("../model/category");
 const userData = model.user_register;
 
 const addToCart = async (req, res) => {
@@ -61,8 +61,44 @@ const addToCart = async (req, res) => {
     }
 };
 
-const viewCart = (req, res) => {
-    res.render("Viewcart",{message:""});
+var  walletBalance=0
+const viewCart = async (req, res) => {
+    try {
+        console.log(" viewcart-try ")
+        req.session.checkout = true
+        const userDatas = req.session.user;
+        console.log(`userDatas: ${userDatas}`)
+
+        const userId = userDatas._id
+        console.log(`userid>>>>>>>: ${userId}`)
+        // walletBalance=userDatas.wallet.balance
+        const categoryData = await Category.find({ is_blocked: false });
+        console.log(`categoryData: ${categoryData}`)
+
+
+        const user = await userData.findOne({ userId }).populate("cart.product").lean();
+       console.log(`user..${user}`);
+        const cart = user.cart;
+        console.log(`cart: ${cart}`)
+        
+        let subTotal = 0;
+
+        cart.forEach((val) => {
+            val.total = val.product.price * val.quantity;
+            subTotal += val.total;
+        });
+      
+        if (cart.length === 0) {
+            res.render("emptyCart", { userDatas, categoryData ,loggedIn:true, walletBalance});
+        } else {
+            res.render("cart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,walletBalance});
+        }
+    } catch (error) {
+        console.log(error.message);
+        const userDatas = req.session.user;
+        const categoryData = await Category.find({ is_blocked: false });
+        res.render("404", { userDatas, categoryData ,loggedIn:true,walletBalance});
+    }
 };
 
 module.exports = {

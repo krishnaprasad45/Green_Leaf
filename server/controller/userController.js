@@ -59,7 +59,7 @@ const checkout = (req, res) => {
 };
 
 const my_account = (req, res) => {
-  res.render("my_account");
+  res.render("my_account",{message:""});
 };
 
 
