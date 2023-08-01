@@ -20,7 +20,7 @@
                 <p><%= item.quantity %> x <span> <%= item.product.price %>/-</span></p>
             </div>
             <div class="cart_remove">
-                <a href="#"><i class="icon-x"></i></a>
+                <a href="#" onclick="removeCartalert('<%= item.product.id %>', '<%= item.id %>')"><i class="icon-x"></i></a>
             </div>
         </div>
         <% }) %>

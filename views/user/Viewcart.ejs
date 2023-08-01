@@ -53,27 +53,36 @@
                                             </tr>
                                         </thead>
                                         <tbody id="cart-container">
-                                            <% cart.forEach((item) => { %>
-                                                <tr id="row<%= item.product.id %>"> 
-                                                  <input type="hidden" id="product_id<%= item.product.id %>" value="<%= item.product.id %>">
-                                                  <input type="hidden" name="cart_id" value="<%= item.id %>">
-                                                  <td class="product_remove">
-                                                    <a onclick="removeCartalert('<%= item.product.id %>', '<%= item.id %>')">
-                                                      <i class="fa fa-trash-o"></i>
-                                                    </a>
-                                                  </td>
-                                                  <td class="product_thumb">
-                                                    <a><img src="<%= item.product.imageUrl[0].url %>" alt=""></a>
-                                                  </td>
-                                                  <td class="product_name"><%= item.product.product_name %></td>
-                                                  <td class="product-price" id="product-price-<%= item.product.id %>"><%= item.product.price %>/-</td>
-                                                  <td class="product_quantity" id="product-quantity-<%= item.product.id %>">
-                                                    <label>Quantity</label>
-                                                    <input onclick="findTotal('<%= item.product.id %>')" min="1" max="100" value="<%= item.quantity %>" type="number">
-                                                  </td>
-                                                  <td class="product_total" id="product_total-<%= item.product.id %>"></td>
+                                            <% cart.forEach((item)=> { %>
+                                                <tr id="row<%= item.product.id %>">
+                                                    <input type="hidden" id="product_id<%= item.product.id %>"
+                                                        value="<%= item.product.id %>">
+                                                    <input type="hidden" name="cart_id" value="<%= item.id %>">
+                                                    <td class="product_remove">
+                                                        <a
+                                                            onclick="removeCartalert('<%= item.product.id %>', '<%= item.id %>')">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="product_thumb">
+                                                        <a><img src="<%= item.product.imageUrl[0].url %>" alt=""></a>
+                                                    </td>
+                                                    <td class="product_name">
+                                                        <%= item.product.product_name %>
+                                                    </td>
+                                                    <td class="product-price" id="product-price-<%= item.product.id %>">
+                                                        <%= item.product.price %>/-
+                                                    </td>
+                                                    <td class="product_quantity"
+                                                        id="product-quantity-<%= item.product.id %>">
+                                                        <label>Quantity</label>
+                                                        <input onclick="findTotal('<%= item.product.id %>')" min="1"
+                                                            max="100" value="<%= item.quantity %>" type="number">
+                                                    </td>
+                                                    <td class="product_total" id="product_total-<%= item.product.id %>">
+                                                    </td>
                                                 </tr>
-                                              <% }) %>
+                                                <% }) %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -102,17 +111,20 @@
                                     <div class="coupon_inner">
                                         <div class="cart_subtotal">
                                             <p>Subtotal</p>
-                                            <p class="cart_amount">£215.00</p>
+                                            <p class="cart_amount subtotal-placeholder" ></p>
+
+                                            
                                         </div>
-                                        <div class="cart_subtotal ">
+                                        <!-- <div class="cart_subtotal ">
                                             <p>Shipping</p>
                                             <p class="cart_amount"><span>Flat Rate:</span> £255.00</p>
                                         </div>
-                                        <a href="#">Calculate shipping</a>
+                                        <a href="#">Calculate shipping</a> -->
 
                                         <div class="cart_subtotal">
                                             <p>Total</p>
-                                            <p class="cart_amount">£215.00</p>
+                                            <p class="cart_amount subtotal-placeholder" ></p>
+
                                         </div>
                                         <div class="checkout_btn">
                                             <a href="#">Proceed to Checkout</a>
@@ -178,29 +190,37 @@
             <script src="assets/js/main.js"></script>
             <script src="assets/js/user.js"></script>
 
-            
+
 
             <script>
                 // Function to update the product total
                 function findTotal(productId) {
-                  const priceElement = document.getElementById('product-price-' + productId);
-                  const quantityElement = document.getElementById('product-quantity-' + productId).querySelector('input');
-              
-                  const price = parseFloat(priceElement.innerHTML);
-                  const quantity = parseInt(quantityElement.value);
-              
-                  const total = price * quantity;
-              
-                  const totalElement = document.getElementById('product_total-' + productId);
-                  totalElement.innerHTML = total + '/-';
-                }
-              
-                document.addEventListener('DOMContentLoaded', function () {
-                  <% cart.forEach((item) => { %>
-                    findTotal('<%= item.product.id %>');
-                  <% }) %>
-                });
-              </script>
+  const priceElement = document.getElementById('product-price-' + productId);
+  const quantityElement = document.getElementById('product-quantity-' + productId).querySelector('input');
+
+  const price = parseFloat(priceElement.textContent.replace('/-', '')); // Extract the price from the inner text
+  const quantity = parseInt(quantityElement.value);
+
+  const total = price * quantity;
+
+  const totalElement = document.getElementById('product_total-' + productId);
+  totalElement.textContent = `${total}/-`; // Update the total in the HTML
+
+  // Call the calculateSubtotal function to update the subtotal
+  calculateSubtotal();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  <% cart.forEach((item) => { %>
+    findTotal('<%= item.product.id %>');
+  <% }) %>
+});
+
+            </script>
+            <!-- ... Existing HTML code ... -->
+
+          
+
             </body>
 
 

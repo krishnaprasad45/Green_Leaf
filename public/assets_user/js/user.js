@@ -90,6 +90,35 @@ const totalPrice = async (id, act, stock) => {
 };
 
 
+
+function calculateSubtotal() {
+    let cartItems = document.querySelectorAll('tbody#cart-container tr');
+    let subtotal = 0;
+  
+    cartItems.forEach((item) => {
+      let productId = item.querySelector('[id^="product_id"]').value;
+      let productPrice = parseFloat(item.querySelector(`#product-price-${productId}`).textContent.replace('/-', ''));
+      let quantity = parseInt(item.querySelector(`#product-quantity-${productId} input`).value);
+      let productTotalElement = item.querySelector(`#product_total-${productId}`);
+  
+      let productTotal = productPrice * quantity;
+      subtotal += productTotal;
+  
+      productTotalElement.textContent = `${productTotal}/-`;
+    });
+  
+    // Display the subtotal in all the places with the class "subtotal-placeholder"
+    let subtotalElements = document.querySelectorAll('.subtotal-placeholder');
+    subtotalElements.forEach((element) => {
+      element.textContent = `${subtotal}/-`;
+    });
+  }
+  
+
+
+
+
+
 const addToWishlist = async (productId, cartId) => {
     const response = await fetch(`/addToWishlist?productId=${productId}&cartId=${cartId}`, {
         method: "GET",
