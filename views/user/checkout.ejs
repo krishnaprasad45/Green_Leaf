@@ -32,191 +32,111 @@
     <!--Checkout page section-->
     <div class="Checkout_section  mt-3" id="accordion">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="user-actions">
-                        
-                        <div id="checkout_login" class="collapse" data-parent="#accordion">
-                            <div class="checkout_info">
-                                <p>If you have shopped with us before, please enter your details in the boxes below. If
-                                    you are a new customer please proceed to the Billing & Shipping section.</p>
-                                <form action="#">
-                                    <div class="form_group">
-                                        <label>Username or email <span>*</span></label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="form_group">
-                                        <label>Password <span>*</span></label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="form_group group_3 ">
-                                        <button type="submit">Login</button>
-                                        <label for="remember_box">
-                                            <input id="remember_box" type="checkbox">
-                                            <span> Remember me </span>
-                                        </label>
-                                    </div>
-                                    <a href="#">Lost your password?</a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="user-actions">
-                       
-                        <div id="checkout_coupon" class="collapse" data-parent="#accordion">
-                            <div class="checkout_info coupon_info">
-                                <form action="#">
-                                    <input placeholder="Coupon code" type="text">
-                                    <button type="submit">Apply coupon</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <form action="#">
-                            <h3>Billing Details</h3>
+                            <h3>SHIPPING ADDRESS</h3>
                             <div class="row">
+                            <!-- List of address here -->
+                            <div class="ec-checkout-wrap margin-bottom-30">
+                                <% addressData.forEach(address => { %>
+                                    <div class="col-lg-5">
+                                        <div class="card card-dashboard">
+                                            <div class="card-body">
+                                                <input type="radio" id="address<%= address.id %>" name="selectedAddress" value="<%= address.id %>" onchange="handleAddressSelection()">
+                                                <label for="address<%= address.id %>">
+                                                    <strong>Name:</strong> <%= address.name %><br>
+                                                    <strong>State</strong> <%= address.state %><br>
+                                                    <strong>City:</strong> <%= address.city %><br>
+                                                    <strong>Address:</strong> <%= address.addressLine %><br>
 
-                                <div class="col-lg-6 mb-20">
-                                    <label>First Name <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-lg-6 mb-20">
-                                    <label>Last Name <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12 mb-20">
-                                    <label>Company Name</label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12 mb-20">
-                                    <label for="city">city <span>*</span></label>
-                                    <select class="select_option" name="city" id="city">
-                                        <option value="2">Bangalore</option>
-                                        <option value="3">Kochi</option>
-                                        <option value="4">Chennai</option>
-                                        <option value="5">Managalore</option>
-                                        <option value="6">Mumbai</option>
-                                        <option value="7">Hydrabad</option>
-                                        <option value="8">Kolkata</option>
-                                        <option value="9">Delhi</option>
+                                                    <strong>Pincode:</strong> <%= address.pincode %><br>
 
-                                    </select>
-                                </div>
+                                                    <strong>Phone number:</strong> <%= address.mobile %><br>
 
-                                <div class="col-12 mb-20">
-                                    <label>Street address <span>*</span></label>
-                                    <input placeholder="House number and street name" type="text">
-                                </div>
-                                <div class="col-12 mb-20">
-                                    <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                </div>
-                                <div class="col-12 mb-20">
-                                    <label>Town / City <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12 mb-20">
-                                    <label>State / County <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="col-lg-6 mb-20">
-                                    <label>Phone<span>*</span></label>
-                                    <input type="text">
+                                                    <strong>Email:</strong> <%= address.email %><br>
+                                                    <!-- <a href="/profile">Edit <i class="icon-edit"></i></a> -->
+                                                </label>
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .card-dashboard -->
+                                    </div><!-- End .col-lg-6 -->
+                                <% }); %>
+    
+                                
+                        
+    
+                            </div>
 
-                                </div>
-                                <div class="col-lg-6 mb-20">
-                                    <label> Email Address <span>*</span></label>
-                                    <input type="text">
+                            <!-- List of address here ends here -->
 
-                                </div>
-                                <div class="col-12 mb-20">
-                                    <input id="account" type="checkbox" data-bs-target="createp_account" />
-                                    <label for="account" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                        aria-controls="collapseOne">Create an account?</label>
-
-                                    <div id="collapseOne" class="collapse one" data-parent="#accordion">
-                                        <div class="card-body1">
-                                            <label> Account password <span>*</span></label>
-                                            <input placeholder="password" type="password">
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                
                                 <div class="col-12 mb-20">
                                     <!-- <input id="address" type="checkbox" data-bs-target="createp_account" /> -->
-                                    <label class="righ_0" for="address" data-bs-toggle="collapse"
-                                        data-bs-target="#collapsetwo" aria-controls="collapseOne">Ship to a different
-                                        address?</label>
+                                    <label class="righ_0" for="address" data-bs-toggle="collapse" data-bs-target="#collapsetwo" aria-controls="collapseOne">
+                                        <i class="bi bi-plus-circle text-white"></i> Add address +
+                                      </label>
+                                      
+                                      <br>
 
                                     <div id="collapsetwo" class="collapse one" data-parent="#accordion">
-                                        <div class="row">
-                                            <div class="col-lg-6 mb-20">
-                                                <label>First Name <span>*</span></label>
-                                                <input type="text">
-                                            </div>
-                                            <div class="col-lg-6 mb-20">
-                                                <label>Last Name <span>*</span></label>
-                                                <input type="text">
-                                            </div>
-                                            <div class="col-12 mb-20">
-                                                <label>Company Name</label>
-                                                <input type="text">
-                                            </div>
-                                            <div class="col-12 mb-20">
-                                                <div class="select_form_select">
-                                                    <label for="city_name">country <span>*</span></label>
-                                                    <select class="select_option" name="city" id="countru_name">
-                                                        <option value="2">Bangalore</option>
-                                                        <option value="3">Kochi</option>
-                                                        <option value="4">Chennai</option>
-                                                        <option value="5">Managalore</option>
-                                                        <option value="6">Mumbai</option>
-                                                        <option value="7">Hydrabad</option>
-                                                        <option value="8">Kolkata</option>
-                                                        <option value="9">Delhi</option>
+                                      <!-- Form starts -->
+<form id="addAddressCheckout">
+    <div class="row">
+        <div class="col-12 mb-20">
+            <label><strong>Name</strong> <span>*</span></label>
+            <input type="text" name="name">
+        </div>
+        <div class="col-12 mb-20">
+            <label><strong>State</strong> <span>*</span></label>
+            <input type="text" name="state">
+        </div>
+        <div class="col-12 mb-20">
+            <div class="select_form_select">
+                <label><strong>City</strong> <span></span></label>
+                <select class="select_option" name="city" id="city_name">
+                    <option value="1">Bangalore</option>
+                    <option value="2">Kochi</option>
+                    <option value="3">Chennai</option>
+                    <option value="4">Mangalore</option>
+                    <option value="5">Mumbai</option>
+                    <option value="6">Hyderabad</option>
+                    <option value="7">Kolkata</option>
+                    <option value="8">Delhi</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 mb-20">
+            <label><strong>Street Address</strong> <span>*</span></label>
+            <input placeholder="House number and street name" type="text" name="addressLine">
+        </div>
+        <div class="col-12 mb-20">
+            <label><strong>PIN:</strong> <span>*</span></label>
+            <input type="number" name="pincode">
+        </div>
+        <div class="col-lg-6 mb-20">
+            <label><strong>Phone</strong> <span>*</span></label>
+            <input type="text" name="phone">
+        </div>
+        <div class="col-lg-6">
+            <label><strong>Email Address</strong> <span>*</span></label>
+            <input type="text" name="email">
+        </div>
 
-                                                    </select>
-                                                </div>
-                                            </div>
+        <!-- Save Address button -->
+        <div class="col-12 mt-20 text-end">
+            <button type="submit">Save Address</button>
+        </div>
+    </div>
+</form>
+<!-- Form end -->
 
-                                            <div class="col-12 mb-20">
-                                                <label>Street address <span>*</span></label>
-                                                <input placeholder="House number and street name" type="text">
-                                            </div>
-                                            <div class="col-12 mb-20">
-                                                <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                            </div>
-                                            <div class="col-12 mb-20">
-                                                <label>Town / City <span>*</span></label>
-                                                <input type="text">
-                                            </div>
-                                            <div class="col-12 mb-20">
-                                                <label>State / County <span>*</span></label>
-                                                <input type="text">
-                                            </div>
-                                            <div class="col-lg-6 mb-20">
-                                                <label>Phone<span>*</span></label>
-                                                <input type="text">
 
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label> Email Address <span>*</span></label>
-                                                <input type="text">
-
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="order-notes">
-                                        <label for="order_note">Order Notes</label>
-                                        <textarea id="order_note"
-                                            placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                    </div>
-                                </div>
+                              
                             </div>
                         </form>
                     </div>
@@ -311,7 +231,7 @@
     <!-- JS
 ============================================ -->
     <!--jquery min js-->
-    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.4.1.min.js"></scrip>
     <!--popper min js-->
     <script src="assets/js/popper.js"></script>
     <!--bootstrap min js-->
@@ -339,6 +259,10 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+    <script src="assets/js/user.js"></script>
+
 
 
 

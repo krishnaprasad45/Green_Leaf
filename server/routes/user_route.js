@@ -46,5 +46,8 @@ user_route.get('/user_logout',isLogin, userController.user_logout)
 user_route.post('/index', userController.index)
 user_route.post('/otp_verification', userController.otp_verification)
 
+user_route.post('/addNewAddress', userController.addNewAddress)
+
+
 module.exports = user_route
 

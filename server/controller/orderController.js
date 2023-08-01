@@ -4,6 +4,8 @@ const productmodel = require("../model/product");
 
 const productData = productmodel.products;
 const Category = require("../model/category");
+const Address = require("../model/address");
+
 const userData = model.user_register;
 
 
@@ -11,14 +13,15 @@ const checkout = async (req, res) => {
 
     try {
         const productDatas = await productData.find();
-      
+        
     
         if(req.session.user){
           const userDatas = req.session.user
-          //PASSING MINI CART DETAILS
         req.session.checkout = true
     
         const userId = userDatas._id
+        const addressData = await Address.find({ userId: userId });
+
         // walletBalance=userDatas.wallet.balance
         const categoryData = await Category.find({ is_blocked: false });
     
@@ -32,7 +35,7 @@ const checkout = async (req, res) => {
         });
     
         //
-          res.render("checkout", { productDatas,userDatas, cart, subTotal, categoryData,loggedIn:true , message: "true" });
+          res.render("checkout", { addressData,productDatas,userDatas, cart, subTotal, categoryData,loggedIn:true , message: "true" });
         }
        
       } catch (error) {
@@ -53,4 +56,5 @@ const checkout = async (req, res) => {
 
   module.exports = {
     checkout,
+
   }

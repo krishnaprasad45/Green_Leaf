@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 const Category = require("../model/category");
-
+const Address =  require("../model/address");
 const productData = productmodel.products;
 
 const userData = model.user_register;
@@ -78,29 +78,9 @@ const my_account = (req, res) => {
   res.render("my_account",{message:""});
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const wishlist = (req, res) => {
   res.render("wishlist");
 };
-
-
-
-
-
-
 const productDetails = async (req, res) => {
   const productId = req.query.id;
 
@@ -238,17 +218,6 @@ const user_register_post = async (req, res) => {
       address = req.body.address;
       password = req.body.password;
       confirm_password = req.body.confirm_password;
-
-
-
-
-
-
-
-
-
-
-
       helperFunction.sendOtpMail(email, generatedOtp);
       return res.status(200).end();
     }
@@ -293,6 +262,35 @@ const user_login_post = async (req, res) => {
   }
 };
 
+
+const addNewAddress = async (req, res) => {
+  try {
+      const userData = req.session.user;
+      const userId = userData._id;
+
+      const address = new Address({
+          userId: userId,
+          name: req.body.name,
+          mobile: req.body.mobileNumber,
+          addressLine: req.body.addressLine,
+          city: req.body.city,
+          email: req.body.email,
+          state: req.body.state,
+          pincode: req.body.pincode,
+          is_default: false,
+      });
+      console.log(`ship adrs..${address}`);
+
+      await address.save();
+      res.status(200).send();
+  } catch (error) {
+      res.status(500).send();
+      console.log(error.message);
+  }
+};
+
+
+
 // Exporting the functions
 module.exports = {
   shop,
@@ -310,5 +308,6 @@ module.exports = {
   user_register_post,
   user_login_post,
   productDetails,
+  addNewAddress,
   
 };
