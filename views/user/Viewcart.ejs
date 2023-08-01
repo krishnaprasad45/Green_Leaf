@@ -52,23 +52,28 @@
                                                 <th class="product_total">Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <% cart.forEach((item)=> { %>
-                                                <tr> 
-                                                    <input type="hidden" id="product_id<%= item.product.id %>" value="<%= item.product.id %>">
-                                                    <input type="hidden" name="cart_id" value="<%= item.id %>">
-                                                     
-                                                    <td class="product_remove"><a onclick="removeCartalert('<%= item.product.id %>')"><i class="fa fa-trash-o"></i></a></td>
-                                                    <td class="product_thumb"><a><img src="<%= item.product.imageUrl[0].url %>" alt=""></a></td>
-                                                    <td class="product_name"><%= item.product.product_name %></td>
-                                                    <td class="product-price" id="product-price-<%= item.product.id %>"><%= item.product.price %>/-</td>
-                                                    <td class="product_quantity" id="product-quantity-<%= item.product.id %>">
-                                                      <label>Quantity</label>
-                                                      <input onclick="findTotal('<%= item.product.id %>')" min="1" max="100" value="<%= item.quantity %>" type="number">
-                                                    </td>
-                                                    <td class="product_total" id="product_total-<%= item.product.id %>"></td>
-                                                  </tr>
-                                                <%})%>
+                                        <tbody id="cart-container">
+                                            <% cart.forEach((item) => { %>
+                                                <tr id="row<%= item.product.id %>"> 
+                                                  <input type="hidden" id="product_id<%= item.product.id %>" value="<%= item.product.id %>">
+                                                  <input type="hidden" name="cart_id" value="<%= item.id %>">
+                                                  <td class="product_remove">
+                                                    <a onclick="removeCartalert('<%= item.product.id %>', '<%= item.id %>')">
+                                                      <i class="fa fa-trash-o"></i>
+                                                    </a>
+                                                  </td>
+                                                  <td class="product_thumb">
+                                                    <a><img src="<%= item.product.imageUrl[0].url %>" alt=""></a>
+                                                  </td>
+                                                  <td class="product_name"><%= item.product.product_name %></td>
+                                                  <td class="product-price" id="product-price-<%= item.product.id %>"><%= item.product.price %>/-</td>
+                                                  <td class="product_quantity" id="product-quantity-<%= item.product.id %>">
+                                                    <label>Quantity</label>
+                                                    <input onclick="findTotal('<%= item.product.id %>')" min="1" max="100" value="<%= item.quantity %>" type="number">
+                                                  </td>
+                                                  <td class="product_total" id="product_total-<%= item.product.id %>"></td>
+                                                </tr>
+                                              <% }) %>
                                         </tbody>
                                     </table>
                                 </div>

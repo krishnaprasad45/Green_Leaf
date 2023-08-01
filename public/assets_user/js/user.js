@@ -136,47 +136,43 @@ const addToWishlist = async (productId, cartId) => {
 
 const removeFromCart = async (productId, cartId) => {
     const response = await fetch(`/removeCart?productId=${productId}&cartId=${cartId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-
+  
     if (response.ok) {
-        Swal.fire({
-            icon: "success",
-            title: "Product has been removed successfully",
-            showConfirmButton: true,
-            confirmButtonText: "OK",
-            confirmButtonColor: "#4CAF50",
-        });
-        document.getElementById("row" + productId).innerHTML = "";
+      Swal.fire({
+        icon: "success",
+        title: "Product has been removed successfully",
+        showConfirmButton: true,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#4CAF50",
+      });
+      document.getElementById("row" + productId).innerHTML = "";
     }
-};
-
-const removeCartalert = async (id) => {
-    const productId = document.getElementById("product_id" + id).value;
-    const cartId = document.getElementsByName("cart_id")[0].value;
-
-    const idObj = { proId: productId, cartId: cartId };
-
+  };
+  
+  const removeCartalert = async (productId, cartId) => {
     const result = await Swal.fire({
-        title: "Remove item from cart",
-        text: "Do you want to remove this\nproduct from your cart?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Move to wishlist",
-        cancelButtonText: "Yes, remove",
+      title: "Remove item from cart",
+      text: "Do you want to remove this product from your cart?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Move to wishlist",
+      cancelButtonText: "Yes, remove",
     });
-
+  
     // Handle the user's response
     if (result.value) {
-        addToWishlist(productId, cartId);
+      addToWishlist(productId, cartId);
     } else if (result.dismiss === Swal.DismissReason.cancel) {
-        removeFromCart(productId, cartId);
+      removeFromCart(productId, cartId);
     }
-};
+  };
+  
 
 
