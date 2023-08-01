@@ -54,7 +54,7 @@
 
                                                     <strong>Pincode:</strong> <%= address.pincode %><br>
 
-                                                    <strong>Phone number:</strong> <%= address.mobile %><br>
+                                                    <strong>Mobile number:</strong> <%= address.mobile %><br>
 
                                                     <strong>Email:</strong> <%= address.email %><br>
                                                     <!-- <a href="/profile">Edit <i class="icon-edit"></i></a> -->
@@ -117,8 +117,8 @@
                                                 <input type="number" name="pincode">
                                             </div>
                                             <div class="col-lg-6 mb-20">
-                                                <label><strong>Phone</strong> <span>*</span></label>
-                                                <input type="text" name="phone">
+                                                <label><strong>Mobile</strong> <span>*</span></label>
+                                                <input type="text" name="mobile">
                                             </div>
                                             <div class="col-lg-6">
                                                 <label><strong>Email Address</strong> <span>*</span></label>
@@ -138,11 +138,7 @@
 
 
 
-<script>
-    const addAddressCheckout = document.getElementById("addAddressCheckout");
-console.log(455)
-console.log(addAddressCheckout)
-</script>
+
 
                                     </div>
                                 </div>
@@ -193,12 +189,11 @@ console.log(addAddressCheckout)
                                     <input id="payment" name="check_method" type="radio"
                                         data-bs-target="createp_account" />
                                     <label for="payment" data-bs-toggle="collapse" data-bs-target="#method"
-                                        aria-controls="method">Create an account?</label>
+                                        aria-controls="method">Cash On Delivery (COD)</label>
 
                                     <div id="method" class="collapse one" data-parent="#accordion">
                                         <div class="card-body1">
-                                            <p>Please send a check to Store Name, Store Street, Store Town, Store State
-                                                / County, Store Postcode.</p>
+                                            <p>Cash on delivery take time to deliver..</p>
                                         </div>
                                     </div>
                                 </div>
@@ -217,7 +212,7 @@ console.log(addAddressCheckout)
                                     </div>
                                 </div>
                                 <div class="order_button">
-                                    <button type="submit">Proceed to PayPal</button>
+                                    <button type="submit" disable onclick="placeOrder()" id="place-order-btn">Place Order</button>
                                 </div>
                             </div>
                         <!-- </form> -->
@@ -236,7 +231,23 @@ console.log(addAddressCheckout)
     <%-include('./_footer.ejs') -%>
 
     <!--footer area end-->
-
+<!-- Place the JavaScript code in a <script> tag at the end of your file, just before the closing </body> tag -->
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get all radio buttons with the name "selectedAddress"
+            var radioButtons = document.querySelectorAll('input[name="selectedAddress"]');
+    
+            // Loop through each radio button and apply the desired styles to make them smaller
+            radioButtons.forEach(function (radioBtn) {
+                radioBtn.style.width = "16px";
+                radioBtn.style.height = "16px";
+                radioBtn.style.margin = "0";
+                radioBtn.style.padding = "0";
+            });
+        });
+    </script>
+    
 
     <!-- JS
 ============================================ -->

@@ -271,7 +271,7 @@ const addNewAddress = async (req, res) => {
       const address = new Address({
           userId: userId,
           name: req.body.name,
-          mobile: req.body.mobileNumber,
+          mobile: req.body.mobile,
           addressLine: req.body.addressLine,
           city: req.body.city,
           email: req.body.email,

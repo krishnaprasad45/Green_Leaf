@@ -229,10 +229,10 @@ console.log(11)
         event.preventDefault();
 
         const form = event.target;
-        console.log(form);
+        console.log(`f-details ${form}`);
         const formData = new FormData(form);
        
-        if ($(form).valid()) {
+        // if ($(form).valid()) {
             try {
                 console.log("try")
                 const response = await fetch("/addNewAddress", {
@@ -267,7 +267,7 @@ console.log(11)
             } catch (error) {
                 console.log("Error:", error.message);
             }
-        }
+        // }
     });
 }
 
