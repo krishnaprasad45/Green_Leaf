@@ -111,9 +111,9 @@
                                     <div class="coupon_inner">
                                         <div class="cart_subtotal">
                                             <p>Subtotal</p>
-                                            <p class="cart_amount subtotal-placeholder" ></p>
+                                            <p class="cart_amount subtotal-placeholder"></p>
 
-                                            
+
                                         </div>
                                         <!-- <div class="cart_subtotal ">
                                             <p>Shipping</p>
@@ -123,7 +123,7 @@
 
                                         <div class="cart_subtotal">
                                             <p>Total</p>
-                                            <p class="cart_amount subtotal-placeholder" ></p>
+                                            <p class="cart_amount subtotal-placeholder"></p>
 
                                         </div>
                                         <div class="checkout_btn">
@@ -195,31 +195,31 @@
             <script>
                 // Function to update the product total
                 function findTotal(productId) {
-  const priceElement = document.getElementById('product-price-' + productId);
-  const quantityElement = document.getElementById('product-quantity-' + productId).querySelector('input');
+                    const priceElement = document.getElementById('product-price-' + productId);
+                    const quantityElement = document.getElementById('product-quantity-' + productId).querySelector('input');
 
-  const price = parseFloat(priceElement.textContent.replace('/-', '')); // Extract the price from the inner text
-  const quantity = parseInt(quantityElement.value);
+                    const price = parseFloat(priceElement.textContent.replace('/-', '')); // Extract the price from the inner text
+                    const quantity = parseInt(quantityElement.value);
 
-  const total = price * quantity;
+                    const total = price * quantity;
 
-  const totalElement = document.getElementById('product_total-' + productId);
-  totalElement.textContent = `${total}/-`; // Update the total in the HTML
+                    const totalElement = document.getElementById('product_total-' + productId);
+                    totalElement.textContent = `${total}/-`; // Update the total in the HTML
 
-  // Call the calculateSubtotal function to update the subtotal
-  calculateSubtotal();
-}
+                    // Call the calculateSubtotal function to update the subtotal
+                    calculateSubtotal();
+                }
 
-document.addEventListener('DOMContentLoaded', function () {
-  <% cart.forEach((item) => { %>
-    findTotal('<%= item.product.id %>');
-  <% }) %>
-});
+                document.addEventListener('DOMContentLoaded', function () {
+                    <% cart.forEach((item) => { %>
+                    findTotal('<%= item.product.id %>');
+                    <% }) %>
+                });
 
             </script>
             <!-- ... Existing HTML code ... -->
 
-          
+
 
             </body>
 

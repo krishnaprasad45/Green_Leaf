@@ -1,7 +1,5 @@
 const model = require("../model/user_register");
-const bcrypt = require("bcrypt");
 
-const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 
 const productData = productmodel.products;

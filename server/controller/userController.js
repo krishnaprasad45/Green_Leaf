@@ -72,9 +72,7 @@ const about = (req, res) => {
   res.render("about",{message:""});
 };
 
-const checkout = (req, res) => {
-  res.render("checkout",{message:""});
-};
+
 
 const my_account = (req, res) => {
   res.render("my_account",{message:""});
@@ -301,11 +299,8 @@ module.exports = {
   index,
   contact,
   about,
-  checkout,
   my_account,
-  
   wishlist,
-
   otp_verification,
   otp_verification_post,
   resendOtp,

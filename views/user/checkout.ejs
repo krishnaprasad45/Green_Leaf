@@ -94,16 +94,16 @@
                                     <input type="text">
                                 </div>
                                 <div class="col-12 mb-20">
-                                    <label for="country">country <span>*</span></label>
-                                    <select class="select_option" name="cuntry" id="country">
-                                        <option value="2">bangladesh</option>
-                                        <option value="3">Algeria</option>
-                                        <option value="4">Afghanistan</option>
-                                        <option value="5">Ghana</option>
-                                        <option value="6">Albania</option>
-                                        <option value="7">Bahrain</option>
-                                        <option value="8">Colombia</option>
-                                        <option value="9">Dominican Republic</option>
+                                    <label for="city">city <span>*</span></label>
+                                    <select class="select_option" name="city" id="city">
+                                        <option value="2">Bangalore</option>
+                                        <option value="3">Kochi</option>
+                                        <option value="4">Chennai</option>
+                                        <option value="5">Managalore</option>
+                                        <option value="6">Mumbai</option>
+                                        <option value="7">Hydrabad</option>
+                                        <option value="8">Kolkata</option>
+                                        <option value="9">Delhi</option>
 
                                     </select>
                                 </div>
@@ -146,7 +146,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mb-20">
-                                    <input id="address" type="checkbox" data-bs-target="createp_account" />
+                                    <!-- <input id="address" type="checkbox" data-bs-target="createp_account" /> -->
                                     <label class="righ_0" for="address" data-bs-toggle="collapse"
                                         data-bs-target="#collapsetwo" aria-controls="collapseOne">Ship to a different
                                         address?</label>
@@ -167,16 +167,16 @@
                                             </div>
                                             <div class="col-12 mb-20">
                                                 <div class="select_form_select">
-                                                    <label for="countru_name">country <span>*</span></label>
-                                                    <select class="select_option" name="cuntry" id="countru_name">
-                                                        <option value="2">bangladesh</option>
-                                                        <option value="3">Algeria</option>
-                                                        <option value="4">Afghanistan</option>
-                                                        <option value="5">Ghana</option>
-                                                        <option value="6">Albania</option>
-                                                        <option value="7">Bahrain</option>
-                                                        <option value="8">Colombia</option>
-                                                        <option value="9">Dominican Republic</option>
+                                                    <label for="city_name">country <span>*</span></label>
+                                                    <select class="select_option" name="city" id="countru_name">
+                                                        <option value="2">Bangalore</option>
+                                                        <option value="3">Kochi</option>
+                                                        <option value="4">Chennai</option>
+                                                        <option value="5">Managalore</option>
+                                                        <option value="6">Mumbai</option>
+                                                        <option value="7">Hydrabad</option>
+                                                        <option value="8">Kolkata</option>
+                                                        <option value="9">Delhi</option>
 
                                                     </select>
                                                 </div>
@@ -232,35 +232,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+        <% cart.forEach((item) => { %>
+                                      
                                         <tr>
-                                            <td> Handbag fringilla <strong> × 2</strong></td>
-                                            <td> $165.00</td>
+                                            <td> <%= item.product.product_name %> <strong> × 2</strong></td>
+                                            <td> <%= item.product.price %></td>
                                         </tr>
-                                        <tr>
-                                            <td> Handbag justo <strong> × 2</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td> Handbag elit <strong> × 2</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td> Handbag Rutrum <strong> × 1</strong></td>
-                                            <td> $50.00</td>
-                                        </tr>
+
+        <% }) %>
+                                    
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>Cart Subtotal</th>
-                                            <td>$215.00</td>
+                                            <td><%=subTotal%>/-</td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th>Shipping</th>
                                             <td><strong>$5.00</strong></td>
-                                        </tr>
+                                        </tr> -->
                                         <tr class="order_total">
                                             <th>Order Total</th>
-                                            <td><strong>$220.00</strong></td>
+                                            <td><strong><%=subTotal%>/-</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
