@@ -54,27 +54,11 @@
                                         </thead>
                                         <tbody>
                                             <% cart.forEach((item)=> { %>
-
-                                                <!-- <tr>
-                                                    <td class="product_remove"><a><i class="fa fa-trash-o"></i></a></td>
-                                                    <td class="product_thumb"><a><img
-                                                                src="<%=item.product.imageUrl[0].url%>" alt=""></a></td>
-                                                    <td class="product_name">
-                                                        <%=item.product.product_name%>
-                                                    </td>
-                                                    <td class="product-price" id="product-price">
-                                                        <%=item.product.price%>/-
-                                                    </td>
-                                                    <td class="product_quantity" id="product-quantity">
-                                                        <label>Quantity</label> <input onclick="findTotal()" min="1"
-                                                            max="100" value="<%=item.quantity%>" type="number"></td>
-                                                    <td class="product_total" id="product_total"></td>
-
-
-
-                                                </tr> -->
-                                                <tr>
-                                                    <td class="product_remove"><a><i class="fa fa-trash-o"></i></a></td>
+                                                <tr> 
+                                                    <input type="hidden" id="product_id<%= item.product.id %>" value="<%= item.product.id %>">
+                                                    <input type="hidden" name="cart_id" value="<%= item.id %>">
+                                                     
+                                                    <td class="product_remove"><a onclick="removeCartalert('<%= item.product.id %>')"><i class="fa fa-trash-o"></i></a></td>
                                                     <td class="product_thumb"><a><img src="<%= item.product.imageUrl[0].url %>" alt=""></a></td>
                                                     <td class="product_name"><%= item.product.product_name %></td>
                                                     <td class="product-price" id="product-price-<%= item.product.id %>"><%= item.product.price %>/-</td>
@@ -187,65 +171,33 @@
 
             <!-- Main JS -->
             <script src="assets/js/main.js"></script>
-            <!-- <script>
-                // Function to update the product total
-                function findTotal() {
-                    // Get the product price and quantity elements
-                    const priceElement = document.getElementById('product-price');
-                    const quantityElement = document.getElementById('product-quantity').querySelector('input');
+            <script src="assets/js/user.js"></script>
 
-                    // Get the price and quantity values as numbers
-                    const price = parseFloat(priceElement.innerHTML);
-                    const quantity = parseInt(quantityElement.value);
-
-                    // Calculate the total
-                    const total = price * quantity;
-
-                    // Get the product_total element and update its content
-                    const totalElement = document.getElementById('product_total')
-                    console.log(totalElement)
-                    totalElement.innerHTML = total + '/-';
-                }
-
-                // Call the function initially to set the total for the default quantity
-                findTotal();
-            </script> -->
+            
 
             <script>
                 // Function to update the product total
                 function findTotal(productId) {
-                  // Get the product price and quantity elements
                   const priceElement = document.getElementById('product-price-' + productId);
                   const quantityElement = document.getElementById('product-quantity-' + productId).querySelector('input');
               
-                  // Get the price and quantity values as numbers
                   const price = parseFloat(priceElement.innerHTML);
                   const quantity = parseInt(quantityElement.value);
               
-                  // Calculate the total
                   const total = price * quantity;
               
-                  // Get the product_total element and update its content
                   const totalElement = document.getElementById('product_total-' + productId);
                   totalElement.innerHTML = total + '/-';
                 }
               
-                // Call the function initially to set the total for the default quantity
                 document.addEventListener('DOMContentLoaded', function () {
-                  // Loop through each product in the cart and call the function for each one
                   <% cart.forEach((item) => { %>
                     findTotal('<%= item.product.id %>');
                   <% }) %>
                 });
               </script>
-
-
-
-
-
             </body>
 
 
-            <!-- Mirrored from htmldemo.net/lukani/lukani/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:47 GMT -->
 
             </html>

@@ -33,6 +33,8 @@ user_route.get('/checkout', userController.checkout)
 user_route.get('/my_account',isLogin,blockCheck, userController.my_account)
 user_route.get('/viewCart', cartController.viewCart)
 user_route.get('/addToCart', cartController.addToCart)
+user_route.get('/removeCart',cartController.removeCart)
+
 
 user_route.get('/wishlist',isLogin,blockCheck, userController.wishlist)
 user_route.get('/productDetails', userController.productDetails)
