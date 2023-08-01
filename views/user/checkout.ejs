@@ -36,7 +36,7 @@
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <form action="#">
+                        <!-- <form action="#"> -->
                             <h3>SHIPPING ADDRESS</h3>
                             <div class="row">
                             <!-- List of address here -->
@@ -83,65 +83,75 @@
 
                                     <div id="collapsetwo" class="collapse one" data-parent="#accordion">
                                       <!-- Form starts -->
-<form id="addAddressCheckout">
-    <div class="row">
-        <div class="col-12 mb-20">
-            <label><strong>Name</strong> <span>*</span></label>
-            <input type="text" name="name">
-        </div>
-        <div class="col-12 mb-20">
-            <label><strong>State</strong> <span>*</span></label>
-            <input type="text" name="state">
-        </div>
-        <div class="col-12 mb-20">
-            <div class="select_form_select">
-                <label><strong>City</strong> <span></span></label>
-                <select class="select_option" name="city" id="city_name">
-                    <option value="1">Bangalore</option>
-                    <option value="2">Kochi</option>
-                    <option value="3">Chennai</option>
-                    <option value="4">Mangalore</option>
-                    <option value="5">Mumbai</option>
-                    <option value="6">Hyderabad</option>
-                    <option value="7">Kolkata</option>
-                    <option value="8">Delhi</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-12 mb-20">
-            <label><strong>Street Address</strong> <span>*</span></label>
-            <input placeholder="House number and street name" type="text" name="addressLine">
-        </div>
-        <div class="col-12 mb-20">
-            <label><strong>PIN:</strong> <span>*</span></label>
-            <input type="number" name="pincode">
-        </div>
-        <div class="col-lg-6 mb-20">
-            <label><strong>Phone</strong> <span>*</span></label>
-            <input type="text" name="phone">
-        </div>
-        <div class="col-lg-6">
-            <label><strong>Email Address</strong> <span>*</span></label>
-            <input type="text" name="email">
-        </div>
+                                      <form id="addAddressCheckout">
+                                        <div class="row">
+                                            <div class="col-12 mb-20">
+                                                <label><strong>Name</strong> <span>*</span></label>
+                                                <input type="text" name="name">
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <label><strong>State</strong> <span>*</span></label>
+                                                <input type="text" name="state">
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <div class="select_form_select">
+                                                    <label><strong>City</strong> <span></span></label>
+                                                    <select class="select_option" name="city" id="city_name">
+                                                        <option value="1">Bangalore</option>
+                                                        <option value="2">Kochi</option>
+                                                        <option value="3">Chennai</option>
+                                                        <option value="4">Mangalore</option>
+                                                        <option value="5">Mumbai</option>
+                                                        <option value="6">Hyderabad</option>
+                                                        <option value="7">Kolkata</option>
+                                                        <option value="8">Delhi</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <label><strong>Street Address</strong> <span>*</span></label>
+                                                <input placeholder="House number and street name" type="text" name="addressLine">
+                                            </div>
+                                            <div class="col-12 mb-20">
+                                                <label><strong>PIN:</strong> <span>*</span></label>
+                                                <input type="number" name="pincode">
+                                            </div>
+                                            <div class="col-lg-6 mb-20">
+                                                <label><strong>Phone</strong> <span>*</span></label>
+                                                <input type="text" name="phone">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label><strong>Email Address</strong> <span>*</span></label>
+                                                <input type="text" name="email">
+                                            </div>
+                                    
+                                            
+                                            <div class="col-12 mt-20 text-end">
+                                                <button type="submit">Save Address</button>
+                                            </div>
+                                        </div>
+                                    </form>
 
-        <!-- Save Address button -->
-        <div class="col-12 mt-20 text-end">
-            <button type="submit">Save Address</button>
-        </div>
-    </div>
-</form>
+
 <!-- Form end -->
 
+
+
+
+<script>
+    const addAddressCheckout = document.getElementById("addAddressCheckout");
+console.log(455)
+console.log(addAddressCheckout)
+</script>
 
                                     </div>
                                 </div>
                               
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <form action="#">
+                        <!-- <form action="#"> -->
                             <h3>Your order</h3>
                             <div class="order_table table-responsive">
                                 <table>
@@ -210,7 +220,7 @@
                                     <button type="submit">Proceed to PayPal</button>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
                 </div>
             </div>
@@ -231,7 +241,7 @@
     <!-- JS
 ============================================ -->
     <!--jquery min js-->
-    <script src="assets/js/vendor/jquery-3.4.1.min.js"></scrip>
+    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
     <!--popper min js-->
     <script src="assets/js/popper.js"></script>
     <!--bootstrap min js-->
@@ -261,7 +271,7 @@
     <script src="assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-    <script src="assets/js/user.js"></script>
+    <!-- <script src="assets/js/user.js"></script> -->
 
 
 
