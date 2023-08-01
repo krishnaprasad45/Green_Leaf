@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 
 const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
+const Category = require("../model/category");
 
 const productData = productmodel.products;
 
@@ -29,11 +30,29 @@ const shop = async (req, res) => {
 const index = async (req, res) => {
   try {
     const productDatas = await productData.find();
+  
+
     if(req.session.user){
       const userDatas = req.session.user
+      //PASSING MINI CART DETAILS
+    req.session.checkout = true
+
+    const userId = userDatas._id
+    // walletBalance=userDatas.wallet.balance
+    const categoryData = await Category.find({ is_blocked: false });
+
+    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
+    const cart = user.cart;
+    let subTotal = 0;
+
+    cart.forEach((val) => {
+        val.total = val.product.price * val.quantity;
+        subTotal += val.total;
+    });
+
+    //
       
-      
-      res.render("index", { productDatas, userDatas, message: "true" });
+      res.render("index", { productDatas,userDatas, cart, subTotal, categoryData,loggedIn:true , message: "true" });
     }else{
       res.render("index",{productDatas, message:"false"});
 
@@ -46,15 +65,15 @@ const index = async (req, res) => {
 };
 
 const contact = (req, res) => {
-  res.render("contact");
+  res.render("contact",{message:""});
 };
 
 const about = (req, res) => {
-  res.render("about");
+  res.render("about",{message:""});
 };
 
 const checkout = (req, res) => {
-  res.render("checkout");
+  res.render("checkout",{message:""});
 };
 
 const my_account = (req, res) => {

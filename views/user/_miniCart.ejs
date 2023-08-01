@@ -8,32 +8,24 @@
                 <a href="javascript:void(0)"><i class="icon-x"></i></a>
             </div>
         </div>
+        <% cart.forEach((item) => { %>
+        
         <div class="cart_item">
             <div class="cart_img">
-                <a href="#"><img src="assets/img/s-product/product.jpg"
+                <a href="#"><img src="<%= item.product.imageUrl[0].url %>"
                         alt=""></a>
             </div>
             <div class="cart_info">
-                <a href="#">Primis In Faucibus</a>
-                <p>1 x <span> $65.00 </span></p>
+                <a href="#"><%= item.product.product_name %></a>
+                <p><%= item.quantity %> x <span> <%= item.product.price %>/-</span></p>
             </div>
             <div class="cart_remove">
                 <a href="#"><i class="icon-x"></i></a>
             </div>
         </div>
-        <div class="cart_item">
-            <div class="cart_img">
-                <a href="#"><img src="assets/img/s-product/product2.jpg"
-                        alt=""></a>
-            </div>
-            <div class="cart_info">
-                <a href="#">Letraset Sheets</a>
-                <p>1 x <span> $60.00 </span></p>
-            </div>
-            <div class="cart_remove">
-                <a href="#"><i class="icon-x"></i></a>
-            </div>
-        </div>
+        <% }) %>
+       
+
     </div>
     <div class="mini_cart_table">
         <div class="cart_table_border">

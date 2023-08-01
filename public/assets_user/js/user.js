@@ -1,22 +1,17 @@
 const addToCart = async (productId) => {
-    console.log(111);
     
-    console.log(productId);
 
 
     try {
-    console.log("try");
     event.preventDefault();
         const addToCartButton = document.getElementById("addToCartBtn");
         let quantity = document.getElementById(productId).value;
-        console.log(`quantity before: ${quantity}`);
         
         if(quantity === null){
             quantity = 1
         }
         
         
-        console.log(`quantity: ${quantity}`);
 
         const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
 
@@ -25,13 +20,9 @@ const addToCart = async (productId) => {
                 "Content-Type": "application/json",
             },
         });
-        console.log("before response line")
         
         let data = await response.json();
-        console.log("after response line")
 
-        console.log(data.message)
-        console.log(data)
 
 
         if (data.message === "Item already in cart!!") {
@@ -59,7 +50,6 @@ const addToCart = async (productId) => {
 
 
 const totalPrice = async (id, act, stock) => {
-    console.log(11);
     const elem = document.getElementById(id);
     
     if (act == "inc") elem.value ? (elem.value = Number(elem.value) + 1) : "";
@@ -68,7 +58,6 @@ const totalPrice = async (id, act, stock) => {
     let subTotal = 0;
     let datas = [];
     let length = document.getElementsByName("productTotal").length;
-    console.log(length);
     
     for (let i = 0; i < length; i++) {
         
@@ -87,10 +76,8 @@ const totalPrice = async (id, act, stock) => {
         });
     }
     // console.log(document.getElementById("subTotal")); 
-    console.log(subTotal);
     document.getElementById("subTotal").innerText = "₹ " + subTotal.toFixed();
     document.getElementById("subTotal2").innerText = "₹ " + subTotal.toFixed();
-    console.log(33);
     let data = await fetch("/cartUpdation", {
         method: "POST",
         headers: {
