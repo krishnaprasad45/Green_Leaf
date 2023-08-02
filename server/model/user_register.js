@@ -34,7 +34,7 @@ var schema = new mongoose.Schema({
         {
             product: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Product",
+                ref: "productCollection",
             },
             quantity: {
                 type: Number,
@@ -45,7 +45,7 @@ var schema = new mongoose.Schema({
     wishlist: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Product",
+            ref: "productCollection",
         },
     ],
 

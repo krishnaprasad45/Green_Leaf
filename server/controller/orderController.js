@@ -52,15 +52,16 @@ const placeOrder = async (req, res) => {
       console.log("placorder middleware..")
         const userDatas = req.session.user;
         // walletBalance=userDatas.wallet.balance
-        const userId = userDatas.id;
+        const userId = userDatas._id;
+        console.log(userId)
         const addressId = req.body.selectedAddress;
         const amount = req.body.amount;
         const paymentMethod = req.body.selectedPayment;
-        // const couponData = req.body.couponData;
+        const couponData = req.body.couponData;
 
         const user = await userData.findOne({ _id: userId }).populate("cart.product");
         // const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
-
+      console.log(user)
         const userCart = user.cart;
 
         let subTotal = 0;

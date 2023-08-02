@@ -52,7 +52,7 @@ const index = async (req, res) => {
 
     //
       
-      res.render("index", { productDatas,userDatas, cart, subTotal, categoryData,loggedIn:true , message: "true" });
+      res.render("index", { productDatas,userDatas, cart, subTotal, categoryData,loggedIn:true , message: "true"});
     }else{
       res.render("index",{productDatas, message:"false"});
 
