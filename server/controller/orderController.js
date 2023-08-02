@@ -79,10 +79,10 @@ const placeOrder = async (req, res) => {
             }
         });
 
-        let productData = userCart.map((item) => {
+        let productDatas = userCart.map((item) => {
             return {
                 id: item.product._id,
-                name: item.product.name,
+                name: item.product.product_name,
                 category: item.product.category,
                 price: item.product.price,
                 quantity: item.quantity,
@@ -102,7 +102,7 @@ const placeOrder = async (req, res) => {
             if (couponData) {
                 const order = new Order({
                     userId: userId,
-                    product: productData,
+                    product: productDatas,
                     address: addressId,
                     orderId: orderId,
                     total: amount,
@@ -124,7 +124,7 @@ const placeOrder = async (req, res) => {
              else {
                 const order = new Order({
                     userId: userId,
-                    product: productData,
+                    product: productDatas,
                     address: addressId,
                     orderId: orderId,
                     total: subTotal,
@@ -184,6 +184,17 @@ const placeOrder = async (req, res) => {
     }
 };
 
+const orderSuccess = async (req, res) => {
+  try {
+      const userData = req.session.user;
+      const categoryData = await Category.find({ is_blocked: false });
+      var useremail=req.session.user.email
+      res.render("orderSuccess", { userData, categoryData ,loggedIn:true,useremail,});
+  } catch (error) {
+      console.log(error.message);
+  }
+};
+
 
 
 
@@ -197,5 +208,6 @@ const placeOrder = async (req, res) => {
   module.exports = {
     checkout,
     placeOrder,
+    orderSuccess,
 
   }
