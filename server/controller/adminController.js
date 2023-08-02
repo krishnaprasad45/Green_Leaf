@@ -53,16 +53,14 @@ const payments = async(req, res) => {
         
     
         const orderData = await Order.find()
-        // console.log("orderdata-")
-        // console.log(orderData)
+        
           const userDatas = await userData.findOne()
-        // const addressID = orderData[0].address;
-        // console.log("adrsid")
-        // console.log(addressID)
-        // const userInfo = await Address.findById(addressID)
-        // console.log("userInfo")
-        // console.log(userInfo)
-        // const customerName = a;
+       
+        const userID = orderData[0].userId
+        const userInfo = await userData.findById(userID)
+
+        const customerName = userInfo.user_name
+        console.log(customerName)
         const userId = userDatas._id
         // walletBalance=userDatas.wallet.balance
         const categoryData = await Category.find({ is_blocked: false });
@@ -76,7 +74,7 @@ const payments = async(req, res) => {
             subTotal += val.total;
         });
     
-          res.render("payments", { productDatas,userDatas,orderData, cart, subTotal, categoryData , message: "true"});
+          res.render("payments", { productDatas,userDatas,orderData,customerName, cart, subTotal, categoryData , message: "true"});
        
        
       } catch (error) {
