@@ -20,7 +20,15 @@ let password;
 const shop = async (req, res) => {
   try {
     const data = await productData.find();
-    res.render("shop", { data,message:"" });
+    
+    if(req.session.user){
+        
+    
+    res.render("shop", { data,message:"true",cart:{} });
+    }
+    res.render("shop", { data,message:"false",cart:{} });
+
+
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -30,11 +38,12 @@ const shop = async (req, res) => {
 const index = async (req, res) => {
   try {
     const productDatas = await productData.find();
-  
+    const logged = req.session.user
+    
 
     if(req.session.user){
       const userDatas = req.session.user
-      //PASSING MINI CART DETAILS
+      
     req.session.checkout = true
 
     const userId = userDatas._id
@@ -50,11 +59,9 @@ const index = async (req, res) => {
         subTotal += val.total;
     });
 
-    //
-      
-      res.render("index", { productDatas,userDatas, cart, subTotal, categoryData,loggedIn:true , message: "true"});
+      res.render("index", { productDatas,userDatas, cart, subTotal, categoryData , message: "true"});
     }else{
-      res.render("index",{productDatas, message:"false"});
+      res.render("index",{productDatas,logged ,message:"false"});
 
     }
    
