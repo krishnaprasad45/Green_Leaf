@@ -130,17 +130,24 @@
                             <div class="tab-pane" id="address">
                                 <p>The following addresses will be used on the checkout page by default.</p>
                                 <h4 class="billing-address">Billing address</h4>
-                                <a href="#" class="view">Edit</a>
-                                <p><strong>Bobby Jackson</strong></p>
-                                <address>
-                                    <span><strong>City:</strong> Seattle</span>,
+                                <% addressData.forEach((Data)=> { %>
+                                    <address>
+                                <a href="#" class="view" style="color: blue;">Edit</a>
+                                <br>
+                                <span><strong> Name: </strong><%=Data.name%></span>
+                                <span><strong>Email:  </strong><%=Data.email%></span>
+                                <span><strong>Address </strong><%=Data.mobile%> </span>
+                                    <span><strong>City:</strong>  <%=Data.city%></span>,
                                     <br>
-                                    <span><strong>State:</strong> Washington(WA)</span>,
+                                    <span><strong>State:</strong> <%=Data.state%> </span>,
                                     <br>
-                                    <span><strong>ZIP:</strong> 98101</span>,
+                                    <span><strong>Address:</strong> <%=Data.addressLine%> </span>,
                                     <br>
-                                    <span><strong>Country:</strong> USA</span>
+                                    <span><strong>PIN:</strong>  <%=Data.pincode%></span>
+                                    <br>
+                                    <hr>
                                 </address>
+                                <% }) %>
                             </div>
                             <div class="tab-pane fade" id="account-details">
                                 <h3>Account details </h3>

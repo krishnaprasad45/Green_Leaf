@@ -139,8 +139,42 @@ const about = (req, res) => {
 
 
 
-const my_account = (req, res) => {
-  res.render("my_account",{message:""});
+const my_account =async (req, res) => {
+
+
+  try {
+
+    if(req.session.user){
+    const userDatas = req.session.user;
+    const userId = userDatas._id;
+    const categoryData = await Category.find({ is_blocked: false });
+    const addressData = await Address.find({ userId: userId });
+    const productDatas = await productData.find();
+
+    console.log("helo")
+    console.log(addressData)
+    //transactions data here
+    req.session.checkout = true
+    // walletBalance=userDatas.wallet.balance
+    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
+    const profilename=userDatas.user_name
+   
+    const cart = user.cart;
+    let subTotal = 0;
+    
+    cart.forEach((val) => {
+        val.total = val.product.price * val.quantity;
+        subTotal += val.total;
+    });
+    res.render("my_account", { userDatas, categoryData,cart, addressData ,profilename,message:"true",productDatas, subTotal});
+  }else{
+    res.render("my_account", { cart, addressData ,profilename,message:"false"});
+
+  }
+} catch (error) {
+    console.log(error.message);
+}
+ 
 };
 
 const wishlist = (req, res) => {

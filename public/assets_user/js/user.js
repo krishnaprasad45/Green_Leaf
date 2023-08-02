@@ -32,7 +32,7 @@ const addToCart = async (productId) => {
                 icon: "success",
                 title: "Product is already in cart.\n So quantity increased",
                 showConfirmButton: true,
-                confirmButtonColor: "#00A300",
+                confirmButtonColor: "#79a206",
             });
         } else {
             Swal.fire({
@@ -40,7 +40,7 @@ const addToCart = async (productId) => {
                 icon: "success",
                 title: "Product successfully added to cart",
                 showConfirmButton: true,
-                confirmButtonColor: "#00A300",
+                confirmButtonColor: "#79a206",
             });
         }
     } catch (error) {
@@ -98,7 +98,7 @@ const addToWishlist = async (productId, cartId) => {
             icon: "success",
             title: "Product added to wishlist",
             showConfirmButton: true,
-            confirmButtonColor: "#00A300",
+            confirmButtonColor: "#79a206",
         });
 
         document.getElementById("row" + productId).innerHTML = "";
@@ -108,7 +108,7 @@ const addToWishlist = async (productId, cartId) => {
             icon: "warning",
             title: "Product is already in wishlist!",
             showConfirmButton: true,
-            confirmButtonColor: "#00A300",
+            confirmButtonColor: "#79a206",
         });
     }
 };
