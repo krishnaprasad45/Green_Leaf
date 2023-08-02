@@ -19,14 +19,37 @@ let password;
 // Function to render views
 const shop = async (req, res) => {
   try {
-    const data = await productData.find();
+    const productDatas = await productData.find();
+    const logged = req.session.user
     
+
     if(req.session.user){
-        
-    
-    res.render("shop", { data,message:"true",cart:{} });
+      const userDatas = req.session.user
+      
+    req.session.checkout = true
+
+    const userId = userDatas._id
+    // walletBalance=userDatas.wallet.balance
+    const categoryData = await Category.find({ is_blocked: false });
+
+    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
+    const cart = user.cart;
+    let subTotal = 0;
+
+    cart.forEach((val) => {
+        val.total = val.product.price * val.quantity;
+        subTotal += val.total;
+    });
+
+      res.render("shop", { productDatas,userDatas, cart, subTotal, categoryData , message: "true"});
     }
-    res.render("shop", { data,message:"false",cart:{} });
+    else{
+      res.render("shop",{productDatas,logged ,message:"false"});
+
+    }
+
+
+    
 
 
   } catch (error) {
