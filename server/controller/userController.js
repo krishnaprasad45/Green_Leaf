@@ -6,6 +6,8 @@ const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 const Category = require("../model/category");
 const Address =  require("../model/address");
+const Order = require("../model/order");
+
 const productData = productmodel.products;
 
 const userData = model.user_register;
@@ -149,10 +151,12 @@ const my_account =async (req, res) => {
     const userId = userDatas._id;
     const categoryData = await Category.find({ is_blocked: false });
     const addressData = await Address.find({ userId: userId });
+    const orderData = await Order.find({ userId: userId });
     const productDatas = await productData.find();
 
-    console.log("helo")
-    console.log(addressData)
+    console.log("orderdata")
+    console.log(orderData)
+    
     //transactions data here
     req.session.checkout = true
     // walletBalance=userDatas.wallet.balance
@@ -166,7 +170,7 @@ const my_account =async (req, res) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;
     });
-    res.render("my_account", { userDatas, categoryData,cart, addressData ,profilename,message:"true",productDatas, subTotal});
+    res.render("my_account", { userDatas,orderData, categoryData,cart, addressData ,profilename,message:"true",productDatas, subTotal});
   }else{
     res.render("my_account", { cart, addressData ,profilename,message:"false"});
 
