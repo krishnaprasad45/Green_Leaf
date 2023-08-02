@@ -47,6 +47,8 @@ user_route.post('/index', userController.index)
 user_route.post('/otp_verification', userController.otp_verification)
 
 user_route.post('/addNewAddress', userController.addNewAddress)
+user_route.post('/placeOrder', orderController.placeOrder)
+
 
 
 module.exports = user_route

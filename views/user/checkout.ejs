@@ -179,6 +179,8 @@
                                         </tr> -->
                                         <tr class="order_total">
                                             <th>Order Total</th>
+                                <input type="hidden" id="subTotalValue" value="<%= subTotal %>">
+
                                             <td><strong><%=subTotal%>/-</strong></td>
                                         </tr>
                                     </tfoot>
@@ -186,7 +188,7 @@
                             </div>
                             <div class="payment_method">
                                 <div class="panel-default">
-                                    <input id="payment" name="check_method" type="radio"
+                                    <input id="pay1" name="check_method" class="payment-radio" value="Cash On Delivery" type="radio"
                                         data-bs-target="createp_account" />
                                     <label for="payment" data-bs-toggle="collapse" data-bs-target="#method"
                                         aria-controls="method">Cash On Delivery (COD)</label>
@@ -198,7 +200,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-default">
-                                    <input id="payment_defult" name="check_method" type="radio"
+                                    <input id="pay2" name="check_method" class="payment-radio"  value="Razorpay"type="radio"
                                         data-bs-target="createp_account" />
                                     <label for="payment_defult" data-bs-toggle="collapse" data-bs-target="#collapsedefult"
                                         aria-controls="collapsedefult">PayPal <img src="assets/img/icon/papyel.png"
