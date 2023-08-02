@@ -48,40 +48,41 @@ const earnings = (req, res) => {
 
 const payments = async(req, res) => {
     
-  try {
-
-    if(req.session.user){
-    const userDatas = req.session.user;
-    const userId = userDatas._id;
-    const categoryData = await Category.find({ is_blocked: false });
-    const addressData = await Address.find({ userId: userId });
-    const orderData = await Order.find({ userId: userId });
-    const productDatas = await productData.find();
-
-    console.log("orderdata")
-    console.log(orderData)
+    try {
+        const productDatas = await productData.find();
+        
     
-    //transactions data here
-    req.session.checkout = true
-    // walletBalance=userDatas.wallet.balance
-    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
-    const profilename=userDatas.user_name
-   
-    const cart = user.cart;
-    let subTotal = 0;
+        const orderData = await Order.find()
+        // console.log("orderdata-")
+        // console.log(orderData)
+          const userDatas = await userData.findOne()
+        // const addressID = orderData[0].address;
+        // console.log("adrsid")
+        // console.log(addressID)
+        // const userInfo = await Address.findById(addressID)
+        // console.log("userInfo")
+        // console.log(userInfo)
+        // const customerName = a;
+        const userId = userDatas._id
+        // walletBalance=userDatas.wallet.balance
+        const categoryData = await Category.find({ is_blocked: false });
     
-    cart.forEach((val) => {
-        val.total = val.product.price * val.quantity;
-        subTotal += val.total;
-    });
-    res.render("payments", { userDatas,orderData, categoryData ,message:"true",productDatas, subTotal});
-  }else{
-    res.render("payments", {   message:"false"});
-
-  }
-} catch (error) {
-    console.log(error.message);
-}
+        const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
+        const cart = user.cart;
+        let subTotal = 0;
+    
+        cart.forEach((val) => {
+            val.total = val.product.price * val.quantity;
+            subTotal += val.total;
+        });
+    
+          res.render("payments", { productDatas,userDatas,orderData, cart, subTotal, categoryData , message: "true"});
+       
+       
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+      }
  
 };
 
