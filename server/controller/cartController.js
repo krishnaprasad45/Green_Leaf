@@ -55,6 +55,7 @@ const addToCart = async (req, res) => {
 var  walletBalance=0
 const viewCart = async (req, res) => {
     try {
+        if(req.session.user){
         req.session.checkout = true
         const userDatas = req.session.user;
 
@@ -70,12 +71,17 @@ const viewCart = async (req, res) => {
             val.total = val.product.price * val.quantity;
             subTotal += val.total;
         });
-      
+       
         if (cart.length === 0) {
             res.render("emptyCart", { userDatas, categoryData ,loggedIn:true, walletBalance});
         } else {
-            res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,walletBalance,message:""});
+            res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,walletBalance,message:"true"});
         }
+    }else{
+        res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,walletBalance,message:"false"});
+
+    }
+
     } catch (error) {
         console.log(error.message);
         const userDatas = req.session.user;

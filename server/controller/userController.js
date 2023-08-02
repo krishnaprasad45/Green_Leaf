@@ -94,8 +94,43 @@ const index = async (req, res) => {
   }
 };
 
-const contact = (req, res) => {
-  res.render("contact",{message:""});
+const contact = async (req, res) => {
+  try {
+    const productDatas = await productData.find();
+    const logged = req.session.user
+    
+
+    if(req.session.user){
+      const userDatas = req.session.user
+      
+    req.session.checkout = true
+
+    const userId = userDatas._id
+    // walletBalance=userDatas.wallet.balance
+    const categoryData = await Category.find({ is_blocked: false });
+
+    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
+    const cart = user.cart;
+    let subTotal = 0;
+
+    cart.forEach((val) => {
+        val.total = val.product.price * val.quantity;
+        subTotal += val.total;
+    });
+
+      res.render("contact", { productDatas,userDatas, cart, subTotal, categoryData , message: "true"});
+    }else{
+      res.render("contact",{productDatas,logged ,message:"false"});
+
+    }
+   
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+
+   
+
 };
 
 const about = (req, res) => {

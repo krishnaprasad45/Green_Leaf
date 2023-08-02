@@ -1,33 +1,21 @@
+const productDatas = await productData.find();
+const logged = req.session.user
 
 
+if(req.session.user){
+  const userDatas = req.session.user
+  
+req.session.checkout = true
 
-<td class="product_name"><a href="#"><%=item.product.product_name%></a></td>
-<td class="product-price"><%=item.product.price%>/-</td>
-<td class="product_quantity">
-    <label>Quantity</label>
-    <input min="1" max="100" value="<%=item.quantity%>" type="number">
-</td>
-<td class="product_total">"i need to show the product total here"</td>
+const userId = userDatas._id
+// walletBalance=userDatas.wallet.balance
+const categoryData = await Category.find({ is_blocked: false });
 
-<script>
-    // Get the product price and quantity elements
-    const priceElement = document.querySelector('.product-price');
-    const quantityElement = document.querySelector('.product_quantity input');
-    const totalElement = document.querySelector('.product_total');
+const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
+const cart = user.cart;
+let subTotal = 0;
 
-    // Function to update the product total
-    function updateProductTotal() {
-        const price = parseFloat(priceElement.textContent);
-        const quantity = parseInt(quantityElement.value);
-        const total = price * quantity;
-
-        // Update the content of the "product_total" td element
-        totalElement.textContent = `"${total}/-"`;
-    }
-
-    // Call the function initially to set the initial total
-    updateProductTotal();
-
-    // Add an event listener to update the total whenever the quantity changes
-    quantityElement.addEventListener('input', updateProductTotal);
-</script>
+cart.forEach((val) => {
+    val.total = val.product.price * val.quantity;
+    subTotal += val.total;
+});
