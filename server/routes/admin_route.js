@@ -1,8 +1,12 @@
 var express = require('express')
+const moment = require("moment");
+
 var admin_route = express()
 admin_route.set('views','./views/admin')
 const auth = require("../../middleware/adminAuth.js")
 const adminController = require("../controller/adminController")
+const bannerController = require("../controller/bannerController")
+
 const productController = require("../controller/productController")
 const store = require("../../middleware/multer");
 
@@ -31,14 +35,17 @@ admin_route.post('/update_product_post/:id',isLogin,store.array("product_image",
 
 admin_route.get('/addCategory',isLogin,productController.addCategory)
 admin_route.post('/addCategory',store.single("category_image"),isLogin,productController.addCategoryPost)
-
 admin_route.get('/viewCategory',isLogin,productController.viewCategory)
-
 admin_route.get('/updateCategory/:id',isLogin,productController.updateCategory)
 admin_route.post('/updateCategoryPost/:id',store.single("category_image"),isLogin,productController.updateCategoryPost)
 admin_route.get('/deleteCategory/:id',isLogin,productController.deleteCategory)
 
-
+admin_route.get("/banners", isLogin, bannerController.loadBanners)
+admin_route.get("/addBanner", isLogin, bannerController.addBanner)
+admin_route.post('/addBanner', isLogin, store.single('image') , bannerController.addNewBanner)
+admin_route.get('/updateBanner/:id', isLogin, bannerController.editBanner)
+admin_route.post('/updateBanner/:id', isLogin, store.single('image') , bannerController.updateBanner)
+admin_route.get('/bannerStatus/:id', isLogin, bannerController.bannerStatus)
 
 
 

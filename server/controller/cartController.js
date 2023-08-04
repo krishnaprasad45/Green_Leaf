@@ -60,7 +60,6 @@ const viewCart = async (req, res) => {
         const userDatas = req.session.user;
 
         const userId = userDatas._id
-        // walletBalance=userDatas.wallet.balance
         const categoryData = await Category.find({ is_blocked: false });
 
         const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});

@@ -59,7 +59,7 @@ const payments = async(req, res) => {
         const userID = orderData[0].userId
         const userInfo = await userData.findById(userID)
 
-        const customerName = userInfo.user_name
+        const customerName = userInfo.email
         console.log(customerName)
         const userId = userDatas._id
         // walletBalance=userDatas.wallet.balance

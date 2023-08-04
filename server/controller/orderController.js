@@ -22,7 +22,6 @@ const checkout = async (req, res) => {
         const userId = userDatas._id
         const addressData = await Address.find({ userId: userId });
 
-        // walletBalance=userDatas.wallet.balance
         const categoryData = await Category.find({ is_blocked: false });
     
         const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
