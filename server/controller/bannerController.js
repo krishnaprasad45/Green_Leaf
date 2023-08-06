@@ -9,44 +9,51 @@ const loadBanners = async (req, res) => {
         const bannerData = await Banner.find();
 
         if (req.session.bannerSave) {
-           res.render("banners", {
+           res.render("viewBanners", {
                 bannerData,
                 bannerSave: "Banner created successfully!",
                 user: req.session.admin,
+                data:null
             });
             req.session.bannerSave = false;
         } else if (req.session.bannerExist) {
-            res.render("banners", {
+            res.render("viewBanners", {
                 bannerData,
                 bannerSave:"",
                 bannerExist: "Banner alreddy exitsts!",
                 bannerDelete: "",
                 user: req.session.admin,
+                data:null
+
             });
             req.session.bannerExist = false;
         } else if (req.session.bannerUpdate) {
-            res.render("banners", {
+            res.render("viewBanners", {
                 bannerData,
                 bannerUpdate: "Banner updated successfully!",
                 bannerDelete: "",
                 bannerSave:"",
                 bannerExist:"",
                 user: req.session.admin,
+                data:null
+
             });
             req.session.bannerUpdate = false;
         }else if (req.session.bannerDelete) {
-            res.render("banners", {
+            res.render("viewBanners", {
                 bannerData,
                 bannerDelete: "Banner deleted successfully!",
                 bannerUpdate:"",
                 bannerSave:"",
                 bannerExist:"",
                 user: req.session.admin,
+                data:null
+
             });
             req.session.bannerDelete = false;
         }
         else {
-            res.render("banners", { bannerData, user: req.session.admin,bannerSave:"",bannerExist:"",bannerUpdate:"", bannerDelete: ""});
+            res.render("viewBanners", { bannerData, user: req.session.admin,bannerSave:"",bannerExist:"",bannerUpdate:"", bannerDelete: "", data:null});
         }
     } catch (error) {
         console.log(error.message);
@@ -103,9 +110,9 @@ const addNewBanner = async (req,res)=>{
             });
 
             await banner.save();
-
+            console.log("banner added")
             req.session.bannerSave = true;
-            res.redirect("/admin/banners");
+            res.redirect("/banners");
         }
         
     } catch (error) {

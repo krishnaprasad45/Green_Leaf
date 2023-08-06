@@ -1,6 +1,33 @@
 
 
 //CART MANAGEMENT
+
+const proceedToCheckout = async () => {
+    const response = await fetch("/checkStock", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const data = await response.json();
+
+    if (data.message === "In stock") {
+        window.location.href = "/checkout";
+    } else {
+        data.forEach((element) => {
+            Swal.fire({
+                icon: "error",
+                title: `${element.name}\nis out of stock!!`,
+                showConfirmButton: true,
+                confirmButtonText: "CANCEL",
+                confirmButtonColor: "#D22B2B",
+            });
+        });
+    }
+};
+
+
 const addToCart = async (productId) => {
 
     try {

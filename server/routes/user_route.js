@@ -36,6 +36,8 @@ user_route.get('/my_account',isLogin,blockCheck, userController.my_account)
 user_route.get('/viewCart',isLogin,blockCheck, cartController.viewCart)
 user_route.get('/addToCart',isLogin,blockCheck, cartController.addToCart)
 user_route.get('/removeCart',isLogin,blockCheck,cartController.removeCart)
+user_route.get('/checkStock', cartController.checkStock)
+
 
 
 user_route.get('/wishlist',isLogin,blockCheck, userController.wishlist)
