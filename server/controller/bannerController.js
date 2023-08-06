@@ -122,7 +122,7 @@ const addNewBanner = async (req,res)=>{
 const editBanner = async (req, res) => {
     
     try {
-
+        console.log("edit banner middleware")
         const bannerId = req.params.id;
         const bannerData = await Banner.findById({ _id: bannerId });
 
