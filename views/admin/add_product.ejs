@@ -61,8 +61,9 @@
                     Price:
                   </label>
                   <div class="input-group">
-                    <input type="text" class="form-control green-border" name="price">
-                  </div>
+                    <input type="number" class="form-control green-border" min="0" name="price" oninput="validatePrice(this)">
+                    <div class="error-message" id="price-error"> &nbsp Price cannot be a negative number</div>
+                                      </div>
                 </div>
             
                 <div class="from-group mt-4">
@@ -110,6 +111,19 @@
 
       <!-- Main Theme file -->
       <script src="/assets_admin/js/theme.min.js"></script>
+      <script>
+        function validatePrice(input) {
+            if (input.validity.rangeUnderflow) {
+                input.setCustomValidity("Price cannot be a negative number");
+                document.getElementById('price-error').style.display = 'block';
+            } else {
+                input.setCustomValidity("");
+                document.getElementById('price-error').style.display = 'none';
+            }
+        }
+        </script>
+        
+        
 
   </body>
 
