@@ -1,0 +1,252 @@
+<%-include('_header')-%>
+
+
+  <body>
+
+    <%-include('_left_sidebar')-%>
+
+
+
+
+      <div class="main-content">
+        <%-include('_navbar')-%>
+
+
+
+          <div class="container-fluid mt-4 pt-2 mb-7">
+            <!-- header -->
+            <div class="d-md-flex align-items-center">
+              <h3 class="mb-3 mb-md-0">
+                Coupons
+              </h3>
+              
+              <a href="#!" class="btn btn-white hover-lift-light ms-auto me-3">
+                <span class="svg-icon svg-icon-xs text-dark me-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                    <title>ionicons-v5-a</title>
+                    <polyline points="112 268 256 412 400 268"
+                      style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px" />
+                    <line x1="256" y1="392" x2="256" y2="100"
+                      style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px" />
+                  </svg>
+                </span>
+                Export
+              </a>
+              <a href="/add_product" class="btn btn-purple hover-lift-light shadow-light-sm">
+                <span class="svg-icon svg-icon-sm text-white me-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                    <title>ionicons-v5-a</title>
+                    <line x1="256" y1="112" x2="256" y2="400"
+                      style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                    <line x1="400" y1="256" x2="112" y2="256"
+                      style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                  </svg>
+                </span>
+                Add coupon
+              </a>
+            </div>
+            <br>
+
+            <!-- filters -->
+            <ul class="nav nav-tabs nav-overflow mt-3 mt-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#!">
+                  All
+                  <span class="badge bg-purple rounded-pill ms-1"><%=couponData.length%></span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">
+                  Archived
+                </a>
+              </li>
+           
+            </ul>
+
+            <!-- report -->
+            <div id="customers" class="card mt-4">
+              <div class="card-header">
+                <form class="flex-grow-1 pe-3">
+                  <div class="input-group input-group-flush pt-2">
+                    <div class="input-group-text ps-0">
+                      <i class="fas fa-search relative-top--2"></i>
+                    </div>
+                    <input type="search" class="search form-control" placeholder="Search...">
+                  </div>
+                </form>
+
+                <div class="ms-auto mt-2 mt-md-0">
+                  <button type="button" class="btn btn-white btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="svg-icon svg-icon-sm me-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                        <title>ionicons-v5-n</title>
+                        <path
+                          d="M35.4,87.12,204.05,283.56A16.07,16.07,0,0,1,208,294V413.32a7.93,7.93,0,0,0,5.39,7.59l80.15,26.67A7.94,7.94,0,0,0,304,440V294A16.07,16.07,0,0,1,308,283.56L476.6,87.12A14,14,0,0,0,466,64H46.05A14,14,0,0,0,35.4,87.12Z"
+                          style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                      </svg>
+                    </i>
+
+                    Filter
+                  </button>
+
+
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-sm card-table table-nowrap">
+                  <thead>
+                    <br>
+                    <tr>
+
+                      <th>
+                        <strong>NO</strong>
+                      </th>
+                      <th>
+                        <strong>COUPON CODE</strong>
+                      </th>
+                      <th>
+                        <strong>DISCOUNT PERCENT</strong>
+                      </th>
+                      <th>
+                        <strong>MIN DISCOUNT AMT</strong>
+                      </th>
+                      <th>
+                        <strong>MAX DISCOUNT AMT</strong>
+                      </th>
+                      <th>
+                        <strong>STATUS</strong>
+                      </th>
+                      <th>
+                        <strong>EXPIRY DATE</strong>
+                      </th>
+                      <th>
+                        <strong>ACTION</strong>
+                      </th>
+                      
+
+
+                    </tr>
+                  
+                  </thead>
+                  
+                  <tbody>
+                    <% couponData.forEach((coupon, adjindex) => { %>
+                        <% var index = adjindex + 1; %>
+                    <tr id="couponRow<%= coupon._doc._id %>">
+                        <td scope="row"><%= index %></td>
+                        <td><%= coupon._doc.code %></td>
+                        <td><%= coupon._doc.discount %>%</td>
+                        <td>₹ <%= coupon._doc.minDiscount %></td>
+                        <td>₹ <%= coupon._doc.maxDiscount %></td>
+                        <% if (coupon._doc.status) { %>
+                        <td style="color: green; font-weight: 600;"> ACTIVE</td>
+                        <% } else { %>
+                        <td style="color: red; font-weight: 600;">INACTIVE</td>
+                        <% } %>
+                        <td><%= coupon.expiryDate %></td>
+                        <td>
+                            <button onclick="deleteCoupon('<%= coupon._doc._id %>')"
+                                class="btn btn-sm btn-danger">DELETE</button>
+                            <button onclick="blockCoupon('<%= coupon._doc._id %>')"
+                                class="btn btn-sm btn-primary">BLOCK</button>
+                        </td>
+                    </tr>
+                    <% }); %>
+                  </tbody>
+
+
+
+
+                </table>
+              </div>
+
+              <div class="card-footer d-flex justify-content-center p-0">
+                <ul class="nav-pagination">
+                  <li>
+                    <a class="page" href="#!">1</a>
+                  </li>
+                  <li>
+                    <a class="page" href="#!">2</a>
+                  </li>
+                  <li>
+                    <a class="page" href="#!">3</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="list-alert alert alert-dark w-300 w-md-400 border-0 shadow-light-lg fade fixed-bottom start-50 translate-middle-x mb-4"
+            role="alert" style="z-index: -1;">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" id="listAlertCheckbox" type="checkbox" checked
+                    onclick="return false;">
+                  <label class="form-check-label text-white relative-top-2 ms-1" for="listAlertCheckbox">
+                    <span class="list-alert-count">0</span> customers(s)
+                  </label>
+                </div>
+              </div>
+              <div class="col-12 col-sm-auto ms-3 mt-3 mt-md-0">
+                <button class="btn btn-sm btn-pastel-purple">
+                  Send refund
+                </button>
+                <button class="btn btn-link list-alert-close btn-sm text-white">Close</button>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <!-- JAVASCRIPT
+  ============================================-->
+
+      <!-- Vendor -->
+      <script src="/assets_admin/js/vendor.min.js"></script>
+
+
+      <!-- Main Theme file -->
+      <script src="/assets_admin/js/theme.min.js"></script>
+
+
+      <script type="text/javascript">
+        $(function () {
+          var options = {
+            valueNames: ['item-name', 'item-email', 'item-role'],
+            page: 10,
+            pagination: {
+              paginationClass: 'nav-pagination'
+            }
+          };
+
+          var customersList = new List('customers', options);
+        })
+      </script>
+      <!-- JavaScript code to apply word wrapping for each product -->
+      <script>
+        window.addEventListener("DOMContentLoaded", function () {
+          const productDetailContainers = document.querySelectorAll(".product-details");
+          const wordsPerLine = 6;
+
+          productDetailContainers.forEach((productDetailsContainer) => {
+            const words = productDetailsContainer.innerText.split(" ");
+            let formattedContent = "";
+            for (let i = 0; i < words.length; i++) {
+              formattedContent += words[i] + " ";
+              if ((i + 1) % wordsPerLine === 0) {
+                formattedContent += "<br>";
+              }
+            }
+            productDetailsContainer.innerHTML = formattedContent.trim();
+          });
+        });
+      </script>
+
+
+  </body>
+
+  <!-- Mirrored from themeforesight.netlify.app//customers by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Jul 2023 05:40:24 GMT -->
+
+  </html>

@@ -4,6 +4,7 @@ const productmodel = require("../model/product");
 
 const productData = productmodel.products;
 const Category = require("../model/category");
+const Coupon = require("../model/couponModel");
 const userData = model.user_register;
 
 const addToCart = async (req, res) => {

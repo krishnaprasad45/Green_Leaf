@@ -1,0 +1,85 @@
+<%-include('./_header')-%>
+
+  <body>
+    <%-include('_left_sidebar')-%>
+
+
+
+     
+
+
+      <div class="main-content">
+        <%-include('_navbar')-%>
+
+
+        
+
+
+
+
+
+
+          <div class="row justify-content-center mt-5">
+            <div class="col-12 col-xl-7">
+              <h3 class="mb-3 mb-md-0">
+                Add Coupon
+              </h3>
+              <form id="addCoupon">
+                <div class="form-group mt-4 pt-3">
+                  <label class="form-label">
+                    Coupon Code:
+                  </label>
+                  <input type="text" class="form-control green-border" id="couponCode" name="couponCode">
+                </div>
+
+                <div class="form-group mt-4 pt-3">
+                    <label class="form-label">
+                      Discount:
+                    </label>
+                    <input type="text" class="form-control green-border" id="couponDiscount" name="couponDiscount">
+                  </div>
+              
+                <div class="form-group mt-4">
+                  <label class="form-label">
+                    Min Discount :
+                  </label>
+                  <input type="number" class="form-control green-border" id="minDiscount" name="minDiscount">
+
+                </div>
+                <div class="form-group mt-4">
+                  <label class="form-label">
+                    Mix Discount :
+                  </label>
+                  <input type="number" class="form-control green-border" id="maxDiscount" name="maxDiscount">
+
+                </div>
+                <div class="form-group mt-4">
+                  <label class="form-label">
+                    Expiry Date :
+                  </label>
+                  <input type="date" class="form-control green-border" id="couponDate" name="couponDate">
+
+                </div>
+              
+               
+              
+              
+            
+             
+              
+                <div class="d-grid gap-3 mt-5">
+                  <button class="btn btn-primary btn-lg hover-lift-light" type="submit">Add</button>
+                  <!-- <button class="btn btn-link">Cancel</button> -->
+                  <br>
+                </div>
+              </form>
+              
+            </div>
+          </div>
+        
+      </div>
+
+ 
+
+
+      <%-include('_footer')-%>

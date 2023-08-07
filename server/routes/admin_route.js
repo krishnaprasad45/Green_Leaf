@@ -8,6 +8,7 @@ const adminController = require("../controller/adminController")
 const bannerController = require("../controller/bannerController")
 
 const productController = require("../controller/productController")
+const couponController = require("../controller/couponController")
 const store = require("../../middleware/multer");
 
 
@@ -47,6 +48,11 @@ admin_route.get('/updateBanner/:id', isLogin, bannerController.editBanner)
 admin_route.post('/updateBanner/:id', isLogin, store.single('image') , bannerController.updateBanner)
 admin_route.get('/bannerStatus/:id', isLogin, bannerController.bannerStatus)
 
+admin_route.get('/viewCoupon', isLogin, couponController.loadCoupons)
+admin_route.get('/addCoupon',isLogin, couponController.loadAddCoupon)
+admin_route.post('/addCoupon', couponController.addCouponPost)
+admin_route.post('/blockCoupon', couponController.blockCoupon)
+admin_route.post('/deleteCoupon', couponController.deleteCoupon)
 
 
 

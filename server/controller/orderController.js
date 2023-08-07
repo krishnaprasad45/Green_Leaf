@@ -34,7 +34,15 @@ const checkout = async (req, res) => {
         });
     
         //
-          res.render("checkout", { addressData,productDatas,userDatas, cart, subTotal, categoryData,loggedIn:true , message: "true" });
+
+        const now = new Date();
+        const availableCoupons = await Coupon.find({
+            expiryDate: { $gte: now },
+            usedBy: { $nin: [userId] },
+            status: true,
+        });
+
+          res.render("checkout", { addressData,productDatas,userDatas, cart,availableCoupons, subTotal, categoryData,loggedIn:true , message: "true" });
         }
        
       } catch (error) {
@@ -46,6 +54,9 @@ const checkout = async (req, res) => {
 
     const updateCart = async (req, res) => {
       try {
+        
+       
+
           
       } catch (error) {
           console.log(error);
@@ -206,6 +217,65 @@ const orderSuccess = async (req, res) => {
 };
 
 
+const validateCoupon = async (req, res) => {
+  try {
+      const { coupon, subTotal } = req.body;
+      const couponData = await Coupon.findOne({ code: coupon });
+
+      if (!couponData) {
+          res.json("invalid");
+      } else if (couponData.expiryDate < new Date()) {
+          res.json("expired");
+      } else {
+          const couponId = couponData._id;
+          const discount = couponData.discount;
+          const minDiscount = couponData.minDiscount
+          const maxDiscount = couponData.maxDiscount
+          const userId = req.session.user._id;
+
+          const couponUsed = await Coupon.findOne({ _id: couponId, usedBy: { $in: [userId] } });
+
+          if (couponUsed) {
+              res.json("already used");
+          } else {
+
+              let discountAmount
+              let maximum
+
+              const discountValue = Number(discount);
+              const couponDiscount = (subTotal * discountValue) / 100;
+
+              if(couponDiscount < minDiscount){
+
+                  res.json("minimum value not met")
+
+              }else{
+                  if(couponDiscount > maxDiscount){
+                      discountAmount = maxDiscount
+                      maximum = "maximum"
+                  }else{
+                      discountAmount = couponDiscount
+                  }
+                  
+                  const newTotal = subTotal - discountAmount;
+                  const couponName = coupon;
+  
+                  res.json({
+                      couponName,
+                      discountAmount,
+                      newTotal,
+                      maximum
+                  });
+              }
+              
+              
+          }
+      }
+  } catch (error) {
+      console.log(error.message);
+  }
+};
+
 
 
 
@@ -220,5 +290,6 @@ const orderSuccess = async (req, res) => {
     placeOrder,
     orderSuccess,
     updateCart,
+    validateCoupon,
 
   }

@@ -22,8 +22,6 @@ user_route.get('/otp_verification',isLogout, userController.otp_verification)
 user_route.post('/otp_verification_post',isLogout, userController.otp_verification_post)
 user_route.get("/resentOtp",isLogout,userController.resendOtp )
 
-
-
 user_route.get('/user_login',isLogout, userController.user_login)
 user_route.post("/user_login_post",isLogout, userController.user_login_post)
 

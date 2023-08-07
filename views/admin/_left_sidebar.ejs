@@ -220,11 +220,11 @@
         
         <li class="nav-item">
           <a
-            href="#sidebar-pages-product"
+            href="#sidebar-pages-banner"
             class="nav-link"
             data-bs-toggle="collapse"
             aria-expanded=""
-            aria-controls="sidebar-pages-product"
+            aria-controls="sidebar-pages-banner"
           >
             <span class="svg-icon text-primary me-2 relative-top--2">
               <svg
@@ -265,7 +265,7 @@
           </a>
           <div
             class="collapse"
-            id="sidebar-pages-product"
+            id="sidebar-pages-banner"
             data-bs-parent="#sidebar-nav"
           >
             <ul class="nav nav-sm flex-column pb-2">
@@ -279,6 +279,69 @@
           </div>
         </li>
         <!-- BANNER ENDS -->
+
+        <!-- COUPON STARTS -->
+        <li class="nav-item">
+          <a
+            href="#sidebar-pages-coupon"
+            class="nav-link"
+            data-bs-toggle="collapse"
+            aria-expanded=""
+            aria-controls="sidebar-pages-coupon"
+          >
+            <span class="svg-icon text-primary me-2 relative-top--2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="512"
+                height="512"
+                viewBox="0 0 512 512"
+              >
+                <title>ionicons-v5-e</title>
+                <rect
+                  x="128"
+                  y="128"
+                  width="336"
+                  height="336"
+                  rx="57"
+                  ry="57"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+                <path
+                  d="M383.5,128l.5-24a56.16,56.16,0,0,0-56-56H112a64.19,64.19,0,0,0-64,64V328a56.16,56.16,0,0,0,56,56h24"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+              </svg>
+            </span>
+            Coupons
+            <i class="fas fa-chevron-down fa-xs collapse-icon ms-auto"></i>
+          </a>
+          <div
+            class="collapse"
+            id="sidebar-pages-coupon"
+            data-bs-parent="#sidebar-nav"
+          >
+            <ul class="nav nav-sm flex-column pb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="/addCoupon"> Add Coupon </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/viewCoupon"> View Coupon </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <!-- COUPON ENDS -->
       </ul>
     </div>
   </div>

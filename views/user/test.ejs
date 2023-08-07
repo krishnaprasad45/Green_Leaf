@@ -1,21 +1,24 @@
-const productDatas = await productData.find();
-const logged = req.session.user
-
-
-if(req.session.user){
-  const userDatas = req.session.user
-  
-req.session.checkout = true
-
-const userId = userDatas._id
-// walletBalance=userDatas.wallet.balance
-const categoryData = await Category.find({ is_blocked: false });
-
-const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
-const cart = user.cart;
-let subTotal = 0;
-
-cart.forEach((val) => {
-    val.total = val.product.price * val.quantity;
-    subTotal += val.total;
-});
+<tbody>
+  <% couponData.forEach((coupon, adjindex) => { %>
+      <% var index = adjindex + 1; %>
+  <tr id="couponRow<%= coupon._doc._id %>">
+      <td scope="row"><%= index %></td>
+      <td><%= coupon._doc.code %></td>
+      <td><%= coupon._doc.discount %>%</td>
+      <td>₹ <%= coupon._doc.minDiscount %></td>
+      <td>₹ <%= coupon._doc.maxDiscount %></td>
+      <% if (coupon._doc.status) { %>
+      <td style="color: green; font-weight: 600;"> ACTIVE</td>
+      <% } else { %>
+      <td style="color: red; font-weight: 600;">INACTIVE</td>
+      <% } %>
+      <td><%= coupon.expiryDate %></td>
+      <td>
+          <button onclick="deleteCoupon('<%= coupon._doc._id %>')"
+              class="btn btn-sm btn-danger">DELETE</button>
+          <button onclick="blockCoupon('<%= coupon._doc._id %>')"
+              class="btn btn-sm btn-primary">BLOCK</button>
+      </td>
+  </tr>
+  <% }); %>
+</tbody>
