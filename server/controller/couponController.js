@@ -37,7 +37,6 @@ const addCouponPost = async (req, res) => {
         console.log("coupon post")
 
         const { couponCode, couponDiscount, couponDate, minDiscount, maxDiscount } = req.body;
-        console.log(`coupon details ${couponCode, couponDiscount, couponDate, minDiscount, maxDiscount}`)
         const couponCodeUpperCase = couponCode.toUpperCase();
 
         const couponExist = await Coupon.findOne({ code: couponCodeUpperCase });
@@ -55,10 +54,10 @@ const addCouponPost = async (req, res) => {
             console.log("coupon added")
             res.json({ message: "coupon addedd" });
         } else {
-            res.json({ messaage: "coupon exists" });
+            res.json({ message: "coupon exists" });
         }
     } catch (error) {
-        console.log(error.messaage);
+        console.log(error.message);
     }
 };
 

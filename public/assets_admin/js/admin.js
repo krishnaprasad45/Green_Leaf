@@ -27,12 +27,12 @@
            title: "New Coupon added Successfully",
            showConfirmButton: true,
            confirmButtonText: "OK",
-           confirmButtonColor: "#4CAF50"
+           confirmButtonColor: "#79a206"
            
        });
            if(result.value){
                form.reset()
-               window.location.href = '/coupons'
+               window.location.href = '/viewCoupon'
            }
        
      } else {

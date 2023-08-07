@@ -32,7 +32,7 @@
                 </span>
                 Export
               </a>
-              <a href="/add_product" class="btn btn-purple hover-lift-light shadow-light-sm">
+              <a href="/addCoupon" class="btn btn-purple hover-lift-light shadow-light-sm">
                 <span class="svg-icon svg-icon-sm text-white me-1">
                   <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
                     <title>ionicons-v5-a</title>
@@ -99,9 +99,7 @@
                     <br>
                     <tr>
 
-                      <th>
-                        <strong>NO</strong>
-                      </th>
+                      
                       <th>
                         <strong>COUPON CODE</strong>
                       </th>
@@ -134,7 +132,7 @@
                     <% couponData.forEach((coupon, adjindex) => { %>
                         <% var index = adjindex + 1; %>
                     <tr id="couponRow<%= coupon._doc._id %>">
-                        <td scope="row"><%= index %></td>
+                        <!-- <td scope="row"><%= index %></td> -->
                         <td><%= coupon._doc.code %></td>
                         <td><%= coupon._doc.discount %>%</td>
                         <td>₹ <%= coupon._doc.minDiscount %></td>
@@ -245,8 +243,5 @@
       </script>
 
 
-  </body>
-
-  <!-- Mirrored from themeforesight.netlify.app//customers by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Jul 2023 05:40:24 GMT -->
-
-  </html>
+<%-include('_footer')-%>
+ 

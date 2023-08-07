@@ -81,6 +81,7 @@ const index = async (req, res) => {
     const cart = user.cart;
     let subTotal = 0;
 
+    
     cart.forEach((val) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;

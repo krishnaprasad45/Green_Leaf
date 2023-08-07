@@ -1,5 +1,4 @@
-
-    <%-include('./_header.ejs') -%>
+<%-include('_header.ejs') -%>
 
 
     <!--header area start-->
@@ -8,132 +7,143 @@
     <div class="off_canvars_overlay">
 
     </div>
-   
+
 
     <!--offcanvas menu area end-->
-    <%-include('./_head_section.ejs') -%>
-    <!--header area end-->
+    <%-include('_head_section.ejs') -%>
+        <!--header area end-->
 
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <h3>Checkout</h3>
-                       
+        <!--breadcrumbs area start-->
+        <div class="breadcrumbs_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb_content">
+                            <h3>Checkout</h3>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--breadcrumbs area end-->
+        <!--breadcrumbs area end-->
 
-    <!--Checkout page section-->
-    <div class="Checkout_section  mt-3" id="accordion">
-        <div class="container">
-          
-            <div class="checkout_form">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <!-- <form action="#"> -->
+        <!--Checkout page section-->
+        <div class="Checkout_section  mt-3" id="accordion">
+            <div class="container">
+
+                <div class="checkout_form">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <!-- <form action="#"> -->
                             <h3>SHIPPING ADDRESS</h3>
                             <div class="row">
-                            <!-- List of address here -->
-                            <div class="ec-checkout-wrap margin-bottom-30">
-                                <% addressData.forEach(address => { %>
-                                    <div class="col-lg-5">
-                                        <div class="card card-dashboard">
-                                            <div class="card-body">
-                                                <input type="radio" id="address<%= address.id %>" name="selectedAddress" value="<%= address.id %>" onchange="handleAddressSelection()">
-                                                <label for="address<%= address.id %>">
-                                                    <strong>Name:</strong> <%= address.name %><br>
-                                                    <strong>State</strong> <%= address.state %><br>
-                                                    <strong>City:</strong> <%= address.city %><br>
-                                                    <strong>Address:</strong> <%= address.addressLine %><br>
+                                <!-- List of address here -->
+                                <div class="ec-checkout-wrap margin-bottom-30">
+                                    <% addressData.forEach(address=> { %>
+                                        <div class="col-lg-5">
+                                            <div class="card card-dashboard">
+                                                <div class="card-body">
+                                                    <input type="radio" id="address<%= address.id %>"
+                                                        name="selectedAddress" value="<%= address.id %>"
+                                                        onchange="handleAddressSelection()">
+                                                    <label for="address<%= address.id %>">
+                                                        <strong>Name:</strong>
+                                                        <%= address.name %><br>
+                                                            <strong>State</strong>
+                                                            <%= address.state %><br>
+                                                                <strong>City:</strong>
+                                                                <%= address.city %><br>
+                                                                    <strong>Address:</strong>
+                                                                    <%= address.addressLine %><br>
 
-                                                    <strong>Pincode:</strong> <%= address.pincode %><br>
+                                                                        <strong>Pincode:</strong>
+                                                                        <%= address.pincode %><br>
 
-                                                    <strong>Mobile number:</strong> <%= address.mobile %><br>
+                                                                            <strong>Mobile number:</strong>
+                                                                            <%= address.mobile %><br>
 
-                                                    <strong>Email:</strong> <%= address.email %><br>
-                                                    <!-- <a href="/profile">Edit <i class="icon-edit"></i></a> -->
-                                                </label>
-                                            </div><!-- End .card-body -->
-                                        </div><!-- End .card-dashboard -->
-                                    </div><!-- End .col-lg-6 -->
-                                <% }); %>
-    
-                                
-                        
-    
-                            </div>
+                                                                                <strong>Email:</strong>
+                                                                                <%= address.email %><br>
+                                                                                    <!-- <a href="/profile">Edit <i class="icon-edit"></i></a> -->
+                                                    </label>
+                                                </div><!-- End .card-body -->
+                                            </div><!-- End .card-dashboard -->
+                                        </div><!-- End .col-lg-6 -->
+                                        <% }); %>
 
-                            <!-- List of address here ends here -->
 
-                                
-                                
+
+
+                                </div>
+
+                                <!-- List of address here ends here -->
+
+
+
                                 <div class="col-12 mb-20">
                                     <!-- <input id="address" type="checkbox" data-bs-target="createp_account" /> -->
-                                    <label class="righ_0" for="address" data-bs-toggle="collapse" data-bs-target="#collapsetwo" aria-controls="collapseOne">
+                                    <label class="righ_0" for="address" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsetwo" aria-controls="collapseOne">
                                         <i class="bi bi-plus-circle text-white"></i> Add address +
-                                      </label>
-                                      
-                                      <br>
+                                    </label>
+
+                                    <br>
 
                                     <div id="collapsetwo" class="collapse one" data-parent="#accordion">
-                                      <!-- Form starts -->
-                                      <form id="addAddressCheckout">
-                                        <div class="row">
-                                            <div class="col-12 mb-20">
-                                                <label><strong>Name</strong> <span>*</span></label>
-                                                <input type="text" name="name">
-                                            </div>
-                                            <div class="col-12 mb-20">
-                                                <label><strong>State</strong> <span>*</span></label>
-                                                <input type="text" name="state">
-                                            </div>
-                                            <div class="col-12 mb-20">
-                                                <div class="select_form_select">
-                                                    <label><strong>City</strong> <span></span></label>
-                                                    <select class="select_option" name="city" id="city_name">
-                                                        <option value="1">Bangalore</option>
-                                                        <option value="2">Kochi</option>
-                                                        <option value="3">Chennai</option>
-                                                        <option value="4">Mangalore</option>
-                                                        <option value="5">Mumbai</option>
-                                                        <option value="6">Hyderabad</option>
-                                                        <option value="7">Kolkata</option>
-                                                        <option value="8">Delhi</option>
-                                                    </select>
+                                        <!-- Form starts -->
+                                        <form id="addAddressCheckout">
+                                            <div class="row">
+                                                <div class="col-12 mb-20">
+                                                    <label><strong>Name</strong> <span>*</span></label>
+                                                    <input type="text" name="name">
+                                                </div>
+                                                <div class="col-12 mb-20">
+                                                    <label><strong>State</strong> <span>*</span></label>
+                                                    <input type="text" name="state">
+                                                </div>
+                                                <div class="col-12 mb-20">
+                                                    <div class="select_form_select">
+                                                        <label><strong>City</strong> <span></span></label>
+                                                        <select class="select_option" name="city" id="city_name">
+                                                            <option value="1">Bangalore</option>
+                                                            <option value="2">Kochi</option>
+                                                            <option value="3">Chennai</option>
+                                                            <option value="4">Mangalore</option>
+                                                            <option value="5">Mumbai</option>
+                                                            <option value="6">Hyderabad</option>
+                                                            <option value="7">Kolkata</option>
+                                                            <option value="8">Delhi</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-20">
+                                                    <label><strong>Street Address</strong> <span>*</span></label>
+                                                    <input placeholder="House number and street name" type="text"
+                                                        name="addressLine">
+                                                </div>
+                                                <div class="col-12 mb-20">
+                                                    <label><strong>PIN:</strong> <span>*</span></label>
+                                                    <input type="number" name="pincode">
+                                                </div>
+                                                <div class="col-lg-6 mb-20">
+                                                    <label><strong>Mobile</strong> <span>*</span></label>
+                                                    <input type="text" name="mobile">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label><strong>Email Address</strong> <span>*</span></label>
+                                                    <input type="text" name="email">
+                                                </div>
+
+
+                                                <div class="col-12 mt-20 text-end">
+                                                    <button type="submit">Save Address</button>
                                                 </div>
                                             </div>
-                                            <div class="col-12 mb-20">
-                                                <label><strong>Street Address</strong> <span>*</span></label>
-                                                <input placeholder="House number and street name" type="text" name="addressLine">
-                                            </div>
-                                            <div class="col-12 mb-20">
-                                                <label><strong>PIN:</strong> <span>*</span></label>
-                                                <input type="number" name="pincode">
-                                            </div>
-                                            <div class="col-lg-6 mb-20">
-                                                <label><strong>Mobile</strong> <span>*</span></label>
-                                                <input type="text" name="mobile">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label><strong>Email Address</strong> <span>*</span></label>
-                                                <input type="text" name="email">
-                                            </div>
-                                    
-                                            
-                                            <div class="col-12 mt-20 text-end">
-                                                <button type="submit">Save Address</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
 
 
-<!-- Form end -->
+                                        <!-- Form end -->
 
 
 
@@ -142,12 +152,12 @@
 
                                     </div>
                                 </div>
-                              
+
                             </div>
-                        <!-- </form> -->
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <!-- <form action="#"> -->
+                            <!-- </form> -->
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <!-- <form action="#"> -->
                             <h3>Your order</h3>
                             <div class="order_table table-responsive">
                                 <table>
@@ -158,20 +168,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-        <% cart.forEach((item) => { %>
-                                      
-                                        <tr>
-                                            <td> <%= item.product.product_name %> <strong> × 2</strong></td>
-                                            <td> <%= item.product.price %></td>
-                                        </tr>
+                                        <% cart.forEach((item)=> { %>
 
-        <% }) %>
-                                    
+                                            <tr>
+                                                <td>
+                                                    <%= item.product.product_name %> <strong> × 2</strong>
+                                                </td>
+                                                <td>
+                                                    <%= item.product.price %>
+                                                </td>
+                                            </tr>
+
+                                            <% }) %>
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>Cart Subtotal</th>
-                                            <td><%=subTotal%>/-</td>
+                                            <td>
+                                                <%=subTotal%>/-
+                                            </td>
                                         </tr>
                                         <!-- <tr>
                                             <th>Shipping</th>
@@ -179,17 +195,19 @@
                                         </tr> -->
                                         <tr class="order_total">
                                             <th>Order Total</th>
-                                <input type="hidden" id="subTotalValue" value="<%= subTotal %>">
+                                            <input type="hidden" id="subTotalValue" value="<%= subTotal %>">
 
-                                            <td><strong><%=subTotal%>/-</strong></td>
+                                            <td><strong>
+                                                    <%=subTotal%>/-
+                                                </strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <div class="payment_method">
                                 <div class="panel-default">
-                                    <input id="pay1" name="check_method" class="payment-radio" value="Cash On Delivery" type="radio"
-                                        data-bs-target="createp_account" />
+                                    <input id="pay1" name="check_method" class="payment-radio" value="Cash On Delivery"
+                                        type="radio" data-bs-target="createp_account" />
                                     <label for="payment" data-bs-toggle="collapse" data-bs-target="#method"
                                         aria-controls="method">Cash On Delivery (COD)</label>
 
@@ -200,11 +218,11 @@
                                     </div>
                                 </div>
                                 <div class="panel-default">
-                                    <input id="pay2" name="check_method" class="payment-radio"  value="Razorpay"type="radio"
-                                        data-bs-target="createp_account" />
-                                    <label for="payment_defult" data-bs-toggle="collapse" data-bs-target="#collapsedefult"
-                                        aria-controls="collapsedefult">PayPal <img src="assets/img/icon/papyel.png"
-                                            alt=""></label>
+                                    <input id="pay2" name="check_method" class="payment-radio" value="Razorpay"
+                                        type="radio" data-bs-target="createp_account" />
+                                    <label for="payment_defult" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsedefult" aria-controls="collapsedefult">PayPal <img
+                                            src="assets/img/icon/papyel.png" alt=""></label>
 
                                     <div id="collapsedefult" class="collapse one" data-parent="#accordion">
                                         <div class="card-body1">
@@ -214,84 +232,88 @@
                                     </div>
                                 </div>
                                 <div class="order_button">
-                                    <button type="submit" disable onclick="placeOrder()" id="place-order-btn">Place Order</button>
+                                    <button type="submit" disable onclick="placeOrder()" id="place-order-btn">Place
+                                        Order</button>
                                 </div>
                             </div>
-                        <!-- </form> -->
+                            <!-- </form> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--Checkout page section end-->
+        <!--Checkout page section end-->
 
-    <!--brand area start-->
-  
-    <!--brand area end-->
+        <!--brand area start-->
 
-    <!--footer area start-->
-    <%-include('./_footer.ejs') -%>
+        <!--brand area end-->
 
-    <!--footer area end-->
-<!-- Place the JavaScript code in a <script> tag at the end of your file, just before the closing </body> tag -->
-    <script>
-        // Wait for the DOM to load
-        document.addEventListener("DOMContentLoaded", function () {
-            // Get all radio buttons with the name "selectedAddress"
-            var radioButtons = document.querySelectorAll('input[name="selectedAddress"]');
-    
-            // Loop through each radio button and apply the desired styles to make them smaller
-            radioButtons.forEach(function (radioBtn) {
-                radioBtn.style.width = "16px";
-                radioBtn.style.height = "16px";
-                radioBtn.style.margin = "0";
-                radioBtn.style.padding = "0";
-            });
-        });
-    </script>
-    
+        <!--footer area start-->
+        <%-include('_footer.ejs') -%>
 
-    <!-- JS
+            <!--footer area end-->
+            <!-- Place the JavaScript code in a <script> tag at the end of your file, just before the closing </body> tag -->
+            <script>
+                // Wait for the DOM to load
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Get all radio buttons with the name "selectedAddress"
+                    var radioButtons = document.querySelectorAll('input[name="selectedAddress"]');
+
+                    // Loop through each radio button and apply the desired styles to make them smaller
+                    radioButtons.forEach(function (radioBtn) {
+                        radioBtn.style.width = "16px";
+                        radioBtn.style.height = "16px";
+                        radioBtn.style.margin = "0";
+                        radioBtn.style.padding = "0";
+                    });
+                });
+            </script>
+
+
+            <!-- JS
 ============================================ -->
-    <!--jquery min js-->
-    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
-    <!--popper min js-->
-    <script src="assets/js/popper.js"></script>
-    <!--bootstrap min js-->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!--owl carousel min js-->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <!--slick min js-->
-    <script src="assets/js/slick.min.js"></script>
-    <!--magnific popup min js-->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!--counterup min js-->
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <!--jquery countdown min js-->
-    <script src="assets/js/jquery.countdown.js"></script>
-    <!--jquery ui min js-->
-    <script src="assets/js/jquery.ui.js"></script>
-    <!--jquery elevatezoom min js-->
-    <script src="assets/js/jquery.elevatezoom.js"></script>
-    <!--isotope packaged min js-->
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <!--slinky menu js-->
-    <script src="assets/js/slinky.menu.js"></script>
-    <!-- Plugins JS -->
-    <script src="assets/js/plugins.js"></script>
+            <!--jquery min js-->
+            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+            <!--popper min js-->
+            <script src="assets/js/popper.js"></script>
+            <!--bootstrap min js-->
+            <script src="assets/js/bootstrap.min.js"></script>
+            <!--owl carousel min js-->
+            <script src="assets/js/owl.carousel.min.js"></script>
+            <!--slick min js-->
+            <script src="assets/js/slick.min.js"></script>
+            <!--magnific popup min js-->
+            <script src="assets/js/jquery.magnific-popup.min.js"></script>
+            <!--counterup min js-->
+            <script src="assets/js/jquery.counterup.min.js"></script>
+            <!--jquery countdown min js-->
+            <script src="assets/js/jquery.countdown.js"></script>
+            <!--jquery ui min js-->
+            <script src="assets/js/jquery.ui.js"></script>
+            <!--jquery elevatezoom min js-->
+            <script src="assets/js/jquery.elevatezoom.js"></script>
+            <!--isotope packaged min js-->
+            <script src="assets/js/isotope.pkgd.min.js"></script>
+            <!--slinky menu js-->
+            <script src="assets/js/slinky.menu.js"></script>
+            <!-- Plugins JS -->
+            <script src="assets/js/plugins.js"></script>
 
-    <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-    <!-- <script src="assets/js/user.js"></script> -->
-
-
-
-
-
-</body>
+            <!-- Main JS -->
+            <script src="assets/js/main.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+                integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+            <!-- <script src="assets/js/user.js"></script> -->
 
 
-<!-- Mirrored from htmldemo.net/lukani/lukani/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:47 GMT -->
-</html>
+
+
+
+            </body>
+
+
+            <!-- Mirrored from htmldemo.net/lukani/lukani/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:47 GMT -->
+
+            </html>
