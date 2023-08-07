@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 const Category = require("../model/category");
-const Address =  require("../model/address");
+const Address = require("../model/address");
 const Order = require("../model/order");
 
 const productData = productmodel.products;
@@ -25,35 +25,35 @@ const shop = async (req, res) => {
   try {
     const productDatas = await productData.find();
     const logged = req.session.user
-    
 
-    if(req.session.user){
+
+    if (req.session.user) {
       const userDatas = req.session.user
-      
-    req.session.checkout = true
 
-    const userId = userDatas._id
-    // walletBalance=userDatas.wallet.balance
-    const categoryData = await Category.find({ is_blocked: false });
+      req.session.checkout = true
 
-    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
-    const cart = user.cart;
-    let subTotal = 0;
+      const userId = userDatas._id
+      // walletBalance=userDatas.wallet.balance
+      const categoryData = await Category.find({ is_blocked: false });
 
-    cart.forEach((val) => {
+      const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
+      const cart = user.cart;
+      let subTotal = 0;
+
+      cart.forEach((val) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;
-    });
+      });
 
-      res.render("shop", { productDatas,userDatas, cart, subTotal, categoryData , message: "true"});
+      res.render("shop", { productDatas, userDatas, cart, subTotal, categoryData, message: "true" });
     }
-    else{
-      res.render("shop",{productDatas,logged ,message:"false"});
+    else {
+      res.render("shop", { productDatas, logged, message: "false" });
 
     }
 
 
-    
+
 
 
   } catch (error) {
@@ -66,33 +66,36 @@ const index = async (req, res) => {
   try {
     const productDatas = await productData.find();
     const logged = req.session.user
-    
 
-    if(req.session.user){
+
+    if (req.session.user) {
       const userDatas = req.session.user
-      
-    req.session.checkout = true
 
-    const userId = userDatas._id
-    // walletBalance=userDatas.wallet.balance
-    const categoryData = await Category.find({ is_blocked: false });
+      req.session.checkout = true
 
-    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
-    const cart = user.cart;
-    let subTotal = 0;
+      const userId = userDatas._id
+      // walletBalance=userDatas.wallet.balance
+      const categoryData = await Category.find({ is_blocked: false });
 
-    
-    cart.forEach((val) => {
-        val.total = val.product.price * val.quantity;
-        subTotal += val.total;
-    });
-
-      res.render("index", { productDatas,userDatas, cart, subTotal, categoryData , message: "true"});
-    }else{
-      res.render("index",{productDatas,logged ,message:"false"});
+      const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
+      const cart = user.cart;
+      let subTotal = 0;
+      console.log(user)
+      console.log(cart)
+      if (cart.length == 0) {
+        return res.render("index", { productDatas, logged, message: "false" });
+      } else {
+        cart.forEach((val) => {
+          val.total = val.product.price * val.quantity;
+          subTotal += val.total;
+        });
+        res.render("index", { productDatas, userDatas, cart, subTotal, categoryData, message: "true" });
+      }
+    } else {
+      res.render("index", { productDatas, logged, message: "false" });
 
     }
-   
+
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -103,85 +106,85 @@ const contact = async (req, res) => {
   try {
     const productDatas = await productData.find();
     const logged = req.session.user
-    
 
-    if(req.session.user){
+
+    if (req.session.user) {
       const userDatas = req.session.user
-      
-    req.session.checkout = true
 
-    const userId = userDatas._id
-    // walletBalance=userDatas.wallet.balance
-    const categoryData = await Category.find({ is_blocked: false });
+      req.session.checkout = true
 
-    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
-    const cart = user.cart;
-    let subTotal = 0;
+      const userId = userDatas._id
+      // walletBalance=userDatas.wallet.balance
+      const categoryData = await Category.find({ is_blocked: false });
 
-    cart.forEach((val) => {
+      const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
+      const cart = user.cart;
+      let subTotal = 0;
+
+      cart.forEach((val) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;
-    });
+      });
 
-      res.render("contact", { productDatas,userDatas, cart, subTotal, categoryData , message: "true"});
-    }else{
-      res.render("contact",{productDatas,logged ,message:"false"});
+      res.render("contact", { productDatas, userDatas, cart, subTotal, categoryData, message: "true" });
+    } else {
+      res.render("contact", { productDatas, logged, message: "false" });
 
     }
-   
+
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 
-   
+
 
 };
 
 const about = (req, res) => {
-  res.render("about",{message:""});
+  res.render("about", { message: "" });
 };
 
 
 
-const my_account =async (req, res) => {
+const my_account = async (req, res) => {
 
 
   try {
 
-    if(req.session.user){
-    const userDatas = req.session.user;
-    const userId = userDatas._id;
-    const categoryData = await Category.find({ is_blocked: false });
-    const addressData = await Address.find({ userId: userId });
-    const orderData = await Order.find({ userId: userId });
-    const productDatas = await productData.find();
+    if (req.session.user) {
+      const userDatas = req.session.user;
+      const userId = userDatas._id;
+      const categoryData = await Category.find({ is_blocked: false });
+      const addressData = await Address.find({ userId: userId });
+      const orderData = await Order.find({ userId: userId });
+      const productDatas = await productData.find();
 
-    console.log("orderdata")
-    console.log(orderData)
-    
-    //transactions data here
-    req.session.checkout = true
-    // walletBalance=userDatas.wallet.balance
-    const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
-    const profilename=userDatas.user_name
-   
-    const cart = user.cart;
-    let subTotal = 0;
-    
-    cart.forEach((val) => {
+      console.log("orderdata")
+      console.log(orderData)
+
+      //transactions data here
+      req.session.checkout = true
+      // walletBalance=userDatas.wallet.balance
+      const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
+      const profilename = userDatas.user_name
+
+      const cart = user.cart;
+      let subTotal = 0;
+
+      cart.forEach((val) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;
-    });
-    res.render("my_account", { userDatas,orderData, categoryData,cart, addressData ,profilename,message:"true",productDatas, subTotal});
-  }else{
-    res.render("my_account", { cart, addressData ,profilename,message:"false"});
+      });
+      res.render("my_account", { userDatas, orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
+    } else {
+      res.render("my_account", { cart, addressData, profilename, message: "false" });
 
-  }
-} catch (error) {
+    }
+  } catch (error) {
     console.log(error.message);
-}
- 
+  }
+
 };
 
 const updateProfile = async (req, res) => {
@@ -198,7 +201,7 @@ const updateProfile = async (req, res) => {
       { new: true }
     );
 
-   
+
 
   } catch (error) {
     console.log(error);
@@ -220,8 +223,8 @@ const productDetails = async (req, res) => {
 
   try {
     const product = await productData.findById(productId);
-    const image=product.imageUrl
-    res.render("productDetails", { product ,image, message:""});
+    const image = product.imageUrl
+    res.render("productDetails", { product, image, message: "" });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -399,57 +402,57 @@ const user_login_post = async (req, res) => {
 
 const addNewAddress = async (req, res) => {
   try {
-      const userData = req.session.user;
-      const userId = userData._id;
+    const userData = req.session.user;
+    const userId = userData._id;
 
-      const address = new Address({
-          userId: userId,
-          name: req.body.name,
-          mobile: req.body.mobile,
-          addressLine: req.body.addressLine,
-          city: req.body.city,
-          email: req.body.email,
-          state: req.body.state,
-          pincode: req.body.pincode,
-          is_default: false,
-      });
-      console.log(`ship adrs..${address}`);
+    const address = new Address({
+      userId: userId,
+      name: req.body.name,
+      mobile: req.body.mobile,
+      addressLine: req.body.addressLine,
+      city: req.body.city,
+      email: req.body.email,
+      state: req.body.state,
+      pincode: req.body.pincode,
+      is_default: false,
+    });
+    console.log(`ship adrs..${address}`);
 
-      await address.save();
-      res.status(200).send();
+    await address.save();
+    res.status(200).send();
   } catch (error) {
-      res.status(500).send();
-      console.log(error.message);
+    res.status(500).send();
+    console.log(error.message);
   }
 };
 
 const updateAddress = async (req, res) => {
   try {
-      const addressId = req.query.addressId;
+    const addressId = req.query.addressId;
 
-      console.log(addressId);
+    console.log(addressId);
 
-      const updatedAddress = await Address.findByIdAndUpdate(
-          addressId,
-          {
-              name: req.body.name,
-              mobile: req.body.mobile,
-              addressLine: req.body.addressLine,
-              email: req.body.email,
-              city: req.body.city,
-              state: req.body.state,
-              pincode: req.body.pincode,
-          },
-          { new: true }
-      );
+    const updatedAddress = await Address.findByIdAndUpdate(
+      addressId,
+      {
+        name: req.body.name,
+        mobile: req.body.mobile,
+        addressLine: req.body.addressLine,
+        email: req.body.email,
+        city: req.body.city,
+        state: req.body.state,
+        pincode: req.body.pincode,
+      },
+      { new: true }
+    );
 
-      if (updatedAddress) {
-          res.status(200).send();
-      } else {
-          res.status(500).send();
-      }
+    if (updatedAddress) {
+      res.status(200).send();
+    } else {
+      res.status(500).send();
+    }
   } catch (error) {
-      console.log(error.message);
+    console.log(error.message);
   }
 };
 
@@ -475,5 +478,5 @@ module.exports = {
   addNewAddress,
   updateAddress,
   updateProfile,
-  
+
 };
