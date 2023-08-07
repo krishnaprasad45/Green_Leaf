@@ -2,6 +2,8 @@
 const model = require("../model/user_register");
 const bcrypt = require("bcrypt");
 
+
+
 const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 const Category = require("../model/category");
@@ -180,6 +182,34 @@ const my_account =async (req, res) => {
 }
  
 };
+
+const updateProfile = async (req, res) => {
+  try {
+    const userId = req.session.user;
+    const updatedProfile = await userData.findByIdAndUpdate(
+      userId,
+      {
+        user_name: req.body.user_name,
+        phone: req.body.phone,
+        address: req.body.address,
+        email: req.body.email,
+      },
+      { new: true }
+    );
+
+   
+
+  } catch (error) {
+    console.log(error);
+
+  }
+};
+
+
+
+
+
+
 
 const wishlist = (req, res) => {
   res.render("wishlist");
@@ -392,6 +422,36 @@ const addNewAddress = async (req, res) => {
   }
 };
 
+const updateAddress = async (req, res) => {
+  try {
+      const addressId = req.query.addressId;
+
+      console.log(addressId);
+
+      const updatedAddress = await Address.findByIdAndUpdate(
+          addressId,
+          {
+              name: req.body.name,
+              mobile: req.body.mobile,
+              addressLine: req.body.addressLine,
+              email: req.body.email,
+              city: req.body.city,
+              state: req.body.state,
+              pincode: req.body.pincode,
+          },
+          { new: true }
+      );
+
+      if (updatedAddress) {
+          res.status(200).send();
+      } else {
+          res.status(500).send();
+      }
+  } catch (error) {
+      console.log(error.message);
+  }
+};
+
 
 
 // Exporting the functions
@@ -412,5 +472,7 @@ module.exports = {
   user_login_post,
   productDetails,
   addNewAddress,
+  updateAddress,
+  updateProfile,
   
 };

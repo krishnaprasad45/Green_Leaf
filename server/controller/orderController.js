@@ -43,6 +43,16 @@ const checkout = async (req, res) => {
       }
     };
 
+
+    const updateCart = async (req, res) => {
+      try {
+          
+      } catch (error) {
+          console.log(error);
+         
+      }
+  };
+
     ////////////////////ORDER CONTROLLERS/////////////////////////////
 var  walletBalance=0
 
@@ -209,5 +219,6 @@ const orderSuccess = async (req, res) => {
     checkout,
     placeOrder,
     orderSuccess,
+    updateCart,
 
   }

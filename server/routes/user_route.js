@@ -32,7 +32,11 @@ user_route.get('/shop',blockCheck, userController.shop)
 user_route.get('/contact', userController.contact)
 user_route.get('/about', userController.about)
 user_route.get('/checkout',isLogin,blockCheck, orderController.checkout)
+user_route.get('/updateCart',isLogin,blockCheck, orderController.updateCart)
+
 user_route.get('/my_account',isLogin,blockCheck, userController.my_account)
+user_route.post('/updateProfile', userController.updateProfile)
+
 user_route.get('/viewCart',isLogin,blockCheck, cartController.viewCart)
 user_route.get('/addToCart',isLogin,blockCheck, cartController.addToCart)
 user_route.get('/removeCart',isLogin,blockCheck,cartController.removeCart)
@@ -47,6 +51,9 @@ user_route.post('/index', userController.index)
 user_route.post('/otp_verification', userController.otp_verification)
 
 user_route.post('/addNewAddress', userController.addNewAddress)
+user_route.post('/updateAddress', userController.updateAddress)
+
+
 user_route.post('/placeOrder', orderController.placeOrder)
 user_route.get('/orderSuccess', orderController.orderSuccess)
 

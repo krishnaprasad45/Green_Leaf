@@ -464,5 +464,52 @@ const deleteAddress = async (addressId) => {
     }
 };
 
+///////////////////////////////// User Profile Management ///////////////////
 
+const updateProfile = document.getElementById("updateProfile");
+
+if (updateProfile) {
+    updateProfile.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        const addressId = document.getElementById("addressId").value;
+
+        if ($(form).valid()) {
+            try {
+                const response = await fetch(`/updateAddress?addressId=${addressId}`, {
+                    method: "POST",
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (response.ok) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Successfully Updated address",
+                        showConfirmButton: true,
+                        confirmButtonText: "OK",
+                        confirmButtonColor: "#4CAF50",
+                    });
+                    editAddressPanel.style.display = "none";
+                    form.reset();
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Some error occured",
+                        showConfirmButton: true,
+                        confirmButtonText: "CANCEL",
+                        confirmButtonColor: "#D22B2B",
+                    });
+                }
+            } catch (error) {
+                console.log("Error:", error.message);
+            }
+        }
+    });
+}
 

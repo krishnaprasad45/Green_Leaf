@@ -24,7 +24,9 @@
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
     "nocache": "^4.0.0",
+    "node-notifier": "^10.0.1",
     "nodemailer": "^6.9.3",
+    "sweetalert2": "^11.6.13",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
