@@ -144,7 +144,7 @@
                                 <td>Unlisted</td>
                             <% } %>
                             <td style="width: 200px;">
-                                <a href="updateBanner/<%= banner.id %>" class="btn btn-sm btn-primary">Update</a>
+                                <a href="updateBanner/<%=banner.id%>" class="btn btn-sm btn-primary">Update</a>
                                 <% if (banner.active) { %>
                                     <a href="bannerStatus/<%= banner.id %>" class="btn btn-sm btn-danger">Unlist</a>
                                 <% } else { %>

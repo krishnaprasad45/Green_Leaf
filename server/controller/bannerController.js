@@ -1,5 +1,6 @@
 const Banner = require("../model/bannerModel");
 const cloudinary = require("../../config/cloudinary");
+const mongoose = require('mongoose');
 require("dotenv").config();
 
 
@@ -120,28 +121,44 @@ const addNewBanner = async (req,res)=>{
 }
 
 const editBanner = async (req, res) => {
-    
     try {
-        console.log("edit banner middleware")
+       
         const bannerId = req.params.id;
-        const bannerData = await Banner.findById({ _id: bannerId });
+        
+        if (!mongoose.Types.ObjectId.isValid(bannerId)) {
+            return res.status(400).send("Invalid Banner ID");
+        }
 
-        res.render("updateBanner", { bannerData, user: req.session.admin });
+        const bannerData = await Banner.findById(bannerId);
+
+        if (!bannerData) {
+            return res.status(404).send("Banner not found");
+        }
+
+        res.render("updateBanner", { bannerData });
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
+        res.status(500).send("Internal Server Error");
     }
 };
 
 
+
 const updateBanner = async (req, res) => {
     try {
-
+        console.log("update banner post")
         const { title, label, bannerSubtitle } = req.body
         const bannerId = req.params.id;
+        console.log(`bannerId ${bannerId}`)
         const newImage = req.file;
-
+        console.log(`newImage ${newImage}`)
+        
         const banner = await Banner.findById(bannerId);
+        console.log(`bannerDetails ${banner}`)
+
         const bannerImageUrl = banner.image.url;
+        console.log(`bannerImageUrl ${bannerImageUrl}`)
+
         
         let result;
         if (newImage) {
