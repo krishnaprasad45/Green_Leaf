@@ -80,8 +80,7 @@ const index = async (req, res) => {
       const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
       const cart = user.cart;
       let subTotal = 0;
-      console.log(user)
-      console.log(cart)
+  
       if (cart.length == 0) {
         return res.render("index", { productDatas, logged, message: "false" });
       } else {
@@ -160,8 +159,7 @@ const my_account = async (req, res) => {
       const orderData = await Order.find({ userId: userId });
       const productDatas = await productData.find();
 
-      console.log("orderdata")
-      console.log(orderData)
+     
 
       //transactions data here
       req.session.checkout = true
@@ -259,7 +257,6 @@ const otp_verification_post = async (req, res) => {
 
 
       await newUser.save();
-      console.log("-user data saved in the database-");
       res.render("user_login", {
         message: "Successfully registered!",
         loggedIn: false,
@@ -430,7 +427,7 @@ const updateAddress = async (req, res) => {
   try {
     const addressId = req.query.addressId;
 
-    console.log(addressId);
+    // console.log(addressId);
 
     const updatedAddress = await Address.findByIdAndUpdate(
       addressId,

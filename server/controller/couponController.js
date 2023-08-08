@@ -34,13 +34,13 @@ const loadAddCoupon = async (req, res) => {
 
 const addCouponPost = async (req, res) => {
     try {
-        console.log("coupon post")
+        // console.log("coupon post")
 
         const { couponCode, couponDiscount, couponDate, minDiscount, maxDiscount } = req.body;
         const couponCodeUpperCase = couponCode.toUpperCase();
 
         const couponExist = await Coupon.findOne({ code: couponCodeUpperCase });
-         console.log(`couponExist ${couponExist}`)
+        //  console.log(`couponExist ${couponExist}`)
         if (!couponExist) {
             const coupon = new Coupon({
                 code: couponCodeUpperCase,

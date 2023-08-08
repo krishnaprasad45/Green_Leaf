@@ -69,11 +69,11 @@ var  walletBalance=0
 
 const placeOrder = async (req, res) => {
     try {
-      console.log("placorder middleware..")
+    //   console.log("placorder middleware..")
         const userDatas = req.session.user;
         // walletBalance=userDatas.wallet.balance
         const userId = userDatas._id;
-        console.log(userId)
+        // console.log(userId)
         const addressId = req.body.selectedAddress;
         const amount = req.body.amount;
         const paymentMethod = req.body.selectedPayment;
@@ -81,7 +81,7 @@ const placeOrder = async (req, res) => {
 
         const user = await userData.findOne({ _id: userId }).populate("cart.product");
         // const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
-      console.log(user)
+    //   console.log(user)
         const userCart = user.cart;
 
         let subTotal = 0;

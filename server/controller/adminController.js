@@ -60,7 +60,6 @@ const payments = async(req, res) => {
         const userInfo = await userData.findById(userID)
 
         const customerName = userInfo.email
-        console.log(customerName)
         const userId = userDatas._id
         // walletBalance=userDatas.wallet.balance
         const categoryData = await Category.find({ is_blocked: false });

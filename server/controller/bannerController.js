@@ -65,12 +65,12 @@ const addBanner = async (req, res) => {
 
 const addNewBanner = async (req,res)=>{
     try {
-        console.log("addNewBanner Post middleware")
+        // console.log("addNewBanner Post middleware")
         const { title, label, bannerSubtitle } = req.body
         const image = req.file
-            console.log(`image ${image}`)
+            // console.log(`image ${image}`)
 
-        console.log(1)
+        // console.log(1)
 
         if (!image) {
             // Handle the case when no image is uploaded
@@ -86,7 +86,7 @@ const addNewBanner = async (req,res)=>{
             req.session.bannerExist = true;
             res.redirect("/banners");
         } else {
-        console.log("addnewbanner else condition")
+        // console.log("addnewbanner else condition")
 
             const result = await cloudinary.uploader.upload(image.path, {
                 folder: "Banners",
