@@ -86,6 +86,7 @@ function selectCoupon(code) {
     // You can also perform additional actions with the discount value if needed
 }
 
+// COUPON VALIDATION STARTS
 const validateCoupon = async () => {
     console.log(60);
     coupon = document.getElementById("checkout-discount-input").value;
@@ -109,7 +110,9 @@ const validateCoupon = async () => {
     });
 
     couponData = await response.json();
-    console.log(couponData);
+    console.log(`couponData${couponData}`);
+    console.log(`newTotal${couponData.newTotal}`);
+
 
     const couponModel = document.getElementById("couponModel");
     const couponDiscount = document.getElementById("couponDiscount");
@@ -193,6 +196,9 @@ const validateCoupon = async () => {
         $('#couponButton').attr('onclick', 'couponDelete()');
     };
 }
+
+// COUPON VALIDATION ENDS
+
 
 couponDelete = async () => {
 

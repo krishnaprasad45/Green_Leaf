@@ -123,10 +123,74 @@ const updateCart = async (req, res) => {
     }
 };
 
+const validateCoupon = async (req, res) => {
+    try {
+        console.log("validate Coupon middleware")
+        const { coupon, subTotal } = req.body;
+        console.log(`coupon , subTotal ${coupon }, ${subTotal}`)
+        const couponData = await Coupon.findOne({ code: coupon });
+        console.log(`couponData , subTotal ${couponData}`)
+         
+        if (!couponData) {
+            res.json("invalid");
+        } else if (couponData.expiryDate < new Date()) {
+            res.json("expired");
+        } else {
+            const couponId = couponData._id;
+            const discount = couponData.discount;
+            const minDiscount = couponData.minDiscount
+            const maxDiscount = couponData.maxDiscount
+            const userId = req.session.user._id;
+
+            const couponUsed = await Coupon.findOne({ _id: couponId, usedBy: { $in: [userId] } });
+        console.log(`couponUsed  ${couponUsed}`)
+            
+            if (couponUsed) {
+                res.json("already used");
+            } else {
+
+                let discountAmount
+                let maximum
+
+                const discountValue = Number(discount);
+                const couponDiscount = (subTotal * discountValue) / 100;
+
+                if(couponDiscount < minDiscount){
+
+                    res.json("minimum value not met")
+
+                }else{
+                    if(couponDiscount > maxDiscount){
+                        discountAmount = maxDiscount
+                        maximum = "maximum"
+                    }else{
+                        discountAmount = couponDiscount
+                    }
+                    
+                    const newTotal = subTotal - discountAmount;
+                    const couponName = coupon;
+    
+                    res.json({
+                        couponName,
+                        discountAmount,
+                        newTotal,
+                        maximum
+                    });
+                }
+                
+                
+            }
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
 
 module.exports = {
     addToCart,
     viewCart,
     removeCart,
     updateCart,
+    validateCoupon,
 }
