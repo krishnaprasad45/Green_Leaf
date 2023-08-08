@@ -107,9 +107,26 @@ const removeCart = async (req, res) => {
     }
 };
 
+const updateCart = async (req, res) => {
+    try {
+        const userDatas = req.session.user;
+        const data = await userData.find({ _id: userDatas._id }, { _id: 0, cart: 1 }).lean();
+
+        data[0].cart.forEach((val, i) => {
+            val.quantity = req.body.datas[i].quantity;
+        });
+
+        await userData.updateOne({ _id: userDatas._id }, { $set: { cart: data[0].cart } });
+        res.status(200).send();
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
 
 module.exports = {
     addToCart,
     viewCart,
     removeCart,
+    updateCart,
 }

@@ -73,22 +73,63 @@
                                                     <td class="product-price" id="product-price-<%= item.product.id %>">
                                                         <%= item.product.price %>/-
                                                     </td>
-                                                    <td class="product_quantity"
-                                                        id="product-quantity-<%= item.product.id %>">
-                                                        <label>Quantity</label>
-                                                        <input onclick="findTotal('<%= item.product.id %>')" min="1"
-                                                            max="100" value="<%= item.quantity %>" type="number">
+                                                    <input type="hidden" name="productId"
+                                                        value="<%= item.product._id %>">
+
+                                                    <input type="hidden" name="productprice"
+                                                        value="<%= item.product.price %>">
+
+
+                                                    <td class="product_quantity">
+                                                        <div class="cart-product-quantity">
+
+                                                            <div class="input-group  input-spinner">
+                                                                <div class="input-group-prepend">
+                                                                    <button
+                                                                        onclick="totalPrice('<%= item.product._id %>','dec')"
+                                                                        style="min-width: 26px"
+                                                                        class="btn btn-decrement btn-spinner"
+                                                                        type="button">
+                                                                        -
+                                                                    </button>
+                                                                </div>
+
+                                                                <input disabled type="number"
+                                                                    id="<%= item.product._id %>"
+                                                                    style="text-align: center;" class="form-control"
+                                                                    name="num-product" value="<%= item.quantity %>">
+
+
+                                                                <div class="input-group-append">
+                                                                    <button
+                                                                        onclick="totalPrice('<%= item.product._id %>','inc','<%= item.product.stock %>')"
+                                                                        style="min-width: 26px"
+                                                                        class="btn btn-increment btn-spinner"
+                                                                        type="button">
+                                                                        +
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
                                                     </td>
-                                                    <td class="product_total" id="product_total-<%= item.product.id %>">
+
+                                                    <!--  -->
+                                                    <td name="productTotal" data-label="Total"
+                                                        class="ec-cart-pro-subtotal">
+                                                        <span id="total-<%= item.product._id %>">
+                                                            <%= item.total %>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                                 <% }) %>
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="cart_submit">
+                                <!-- <div class="cart_submit">
                                     <a href="/updateCart"> <button type="submit">update cart</button></a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -123,25 +164,33 @@
 
                                 <!--coupon code area end-->
                             </div>
+
                             <div class="col-lg-6 col-md-6">
                                 <div class="coupon_code right">
                                     <h3>Cart Totals</h3>
                                     <div class="coupon_inner">
                                         <div class="cart_subtotal">
                                             <p>Subtotal</p>
-                                            <p class="cart_amount subtotal-placeholder"></p>
+                                            <strong class="text-right" id="subTotal2">
+                                                <%=subTotal%>/-
+                                            </strong>
+
+
 
 
                                         </div>
-                                        <!-- <div class="cart_subtotal ">
+                                        <div class="cart_subtotal ">
                                             <p>Shipping</p>
-                                            <p class="cart_amount"><span>Flat Rate:</span> £255.00</p>
+                                            <p class="cart_amount"><span></span> 0.00</p>
                                         </div>
-                                        <a href="#">Calculate shipping</a> -->
+                                        <!-- <a href="#">Calculate shipping</a> -->
 
                                         <div class="cart_subtotal">
                                             <p>Total</p>
-                                            <p class="cart_amount subtotal-placeholder"></p>
+                                            <h4><strong class="text-right" id="subTotal2">
+                                                    <%=subTotal%> /-
+                                                </strong></h4>
+
 
                                         </div>
                                         <div class="checkout_btn">
@@ -158,10 +207,7 @@
         </div>
         <!--shopping cart area end -->
 
-        <!--brand area start-->
-
-        <!--brand area end-->
-
+    
         <!--footer area start-->
         <%-include('_footer.ejs') -%>
 
@@ -174,70 +220,3 @@
 
 
             <!--footer area end-->
-
-            <!-- JS
-============================================ -->
-            <!--jquery min js-->
-            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
-            <!--popper min js-->
-            <script src="assets/js/popper.js"></script>
-            <!--bootstrap min js-->
-            <script src="assets/js/bootstrap.min.js"></script>
-            <!--owl carousel min js-->
-            <script src="assets/js/owl.carousel.min.js"></script>
-            <!--slick min js-->
-            <script src="assets/js/slick.min.js"></script>
-            <!--magnific popup min js-->
-            <script src="assets/js/jquery.magnific-popup.min.js"></script>
-            <!--counterup min js-->
-            <script src="assets/js/jquery.counterup.min.js"></script>
-            <!--jquery countdown min js-->
-            <script src="assets/js/jquery.countdown.js"></script>
-            <!--jquery ui min js-->
-            <script src="assets/js/jquery.ui.js"></script>
-            <!--jquery elevatezoom min js-->
-            <script src="assets/js/jquery.elevatezoom.js"></script>
-            <!--isotope packaged min js-->
-            <script src="assets/js/isotope.pkgd.min.js"></script>
-            <!--slinky menu js-->
-            <script src="assets/js/slinky.menu.js"></script>
-            <!-- Plugins JS -->
-            <script src="assets/js/plugins.js"></script>
-
-            <!-- Main JS -->
-            <script src="assets/js/main.js"></script>
-            <script src="assets/js/user.js"></script>
-
-
-
-            <script>
-                // Function to update the product total
-                function findTotal(productId) {
-                    const priceElement = document.getElementById('product-price-' + productId);
-                    const quantityElement = document.getElementById('product-quantity-' + productId).querySelector('input');
-
-                    const price = parseFloat(priceElement.textContent.replace('/-', '')); // Extract the price from the inner text
-                    const quantity = parseInt(quantityElement.value);
-
-                    const total = price * quantity;
-
-                    const totalElement = document.getElementById('product_total-' + productId);
-                    totalElement.textContent = `${total}/-`; // Update the total in the HTML
-
-                    // Call the calculateSubtotal function to update the subtotal
-                    calculateSubtotal();
-                }
-
-                document.addEventListener('DOMContentLoaded', function () {
-                    <% cart.forEach((item) => { %>
-                    findTotal('<%= item.product.id %>');
-                    <% }) %>
-                });
-
-            </script>
-            <!-- ... Existing HTML code ... -->
-
-
-            <%-include('_footer.ejs') -%>
-
-          

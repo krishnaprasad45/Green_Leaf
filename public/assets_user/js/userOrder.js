@@ -87,7 +87,7 @@ function selectCoupon(code) {
 }
 
 const validateCoupon = async () => {
-    console.log(111);
+    console.log(60);
     coupon = document.getElementById("checkout-discount-input").value;
     console.log(`coupon${coupon}`);
 

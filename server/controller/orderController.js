@@ -5,6 +5,7 @@ const productmodel = require("../model/product");
 const productData = productmodel.products;
 const Category = require("../model/category");
 const Address = require("../model/address");
+const Coupon = require("../model/couponModel");
 
 const userData = model.user_register;
 const Order = require("../model/order");
