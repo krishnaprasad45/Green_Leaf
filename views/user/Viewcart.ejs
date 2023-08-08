@@ -1,4 +1,4 @@
-<%-include('./_header.ejs') -%>
+<%-include('_header.ejs') -%>
 
 
 
@@ -11,7 +11,7 @@
 
 
     <!--offcanvas menu area end-->
-    <%-include('./_head_section.ejs') -%>
+    <%-include('_head_section.ejs') -%>
 
         <!--header area end-->
 
@@ -87,23 +87,41 @@
                                     </table>
                                 </div>
                                 <div class="cart_submit">
-                                   <a href="/updateCart"> <button type="submit">update cart</button></a>
+                                    <a href="/updateCart"> <button type="submit">update cart</button></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--coupon code area start-->
                     <div class="coupon_area">
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
+                                <!--coupon code area start-->
+
+                                <tr id="couponModel" class="summary-total">
+                                    <td>
+                                        <p id="couponMessage"></p>
+                                    </td>
+                                    <td>
+                                        <p id="couponDiscount">
+                                    </td>
+                                </tr>
+
                                 <div class="coupon_code left">
                                     <h3>Coupon</h3>
                                     <div class="coupon_inner">
                                         <p>Enter your coupon code if you have one.</p>
-                                        <input placeholder="Coupon code" type="text">
-                                        <button type="submit">Apply coupon</button>
+
+                                        <input id="checkout-discount-input" placeholder="Coupon code" required=""
+                                            value="" type="text">
+                                        <br>
+                                        <br>
+                                        <button onclick="validateCoupon()" value="" type="submit">Apply coupon</button>
                                     </div>
+
                                 </div>
+
+
+                                <!--coupon code area end-->
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="coupon_code right">
@@ -134,7 +152,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--coupon code area end-->
+
                 </form>
             </div>
         </div>
@@ -145,7 +163,7 @@
         <!--brand area end-->
 
         <!--footer area start-->
-        <%-include('./_footer.ejs') -%>
+        <%-include('_footer.ejs') -%>
 
 
 
@@ -220,9 +238,6 @@
             <!-- ... Existing HTML code ... -->
 
 
+            <%-include('_footer.ejs') -%>
 
-            </body>
-
-
-
-            </html>
+          
