@@ -8,6 +8,41 @@
     <div class="off_canvars_overlay">
 
     </div>
+    <style>
+        /* Styling for the offer details table row */
+        #couponModel {
+            background-color: #f7f7f7;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+    
+        /* Styling for the coupon message */
+        #couponMessage {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    
+        /* Styling for the coupon discount */
+        #couponDiscount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c; /* Red color for emphasis */
+        }
+    
+        /* Styling for the sub total text */
+        #subTotalText {
+            font-size: 16px;
+            color: #666;
+        }
+    
+        /* Styling for the sub total */
+        #subTotal {
+            font-size: 22px;
+            font-weight: bold;
+            color: #27ae60; /* Green color for emphasis */
+        }
+    </style>
 
 
     <!--offcanvas menu area end-->
@@ -136,16 +171,12 @@
                     <div class="coupon_area">
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
-                                <!--coupon code area start-->
 
-                                <tr id="couponModel" class="summary-total">
-                                    <td>
-                                        <p id="couponMessage"></p>
-                                    </td>
-                                    <td>
-                                        <p id="couponDiscount">
-                                    </td>
-                                </tr>
+
+
+                                <!--coupon code area start-->
+                              
+                           
 
                                 <div class="coupon_code left">
                                     <h3>Coupon</h3>
@@ -160,6 +191,29 @@
                                     </div>
 
                                 </div>
+                                      <!-- offer notification starts -->
+                                      <table>
+                                        <tr id="couponModel" class="summary-total">
+                                            <td>
+                                                <p id="couponMessage"></p>
+                                            </td>
+                                            <td>
+                                                <p id="couponDiscount"></p>
+                                            </td>
+                                            
+                                            <td>
+                                                <p id="subTotalText"></p>
+                                            </td>
+                                            <td>
+                                                <p id="subTotal"></p>
+                                            </td>
+                                        </tr>
+                                        <br>
+                                    </table>
+                                    <!-- offer notification ends -->
+                               
+
+                              
 
 
                                 <!--coupon code area end-->
@@ -171,7 +225,7 @@
                                     <div class="coupon_inner">
                                         <div class="cart_subtotal">
                                             <p>Subtotal</p>
-                                            <strong class="text-right" id="subTotal2">
+                                            <strong class="text-right" id="subTotal">
                                                 <%=subTotal%>/-
                                             </strong>
 
@@ -189,7 +243,7 @@
                                             <p>Total</p>
                                             <input type="hidden" id="subTotalValue" value="<%= subTotal %>">
 
-                                            <h4><strong class="text-right" id="subTotal2">
+                                            <h4><strong class="text-right" id="subTotal">
                                                     <%=subTotal%> /-
                                                 </strong></h4>
 

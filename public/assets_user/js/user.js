@@ -114,8 +114,7 @@ function calculateSubtotal() {
     }
     // console.log(document.getElementById("subTotal")); 
     console.log(subTotal);
-
-    document.getElementById("subTotal2").innerText = "₹ " + subTotal.toFixed();
+    document.getElementById("subTotal").innerText = "₹ " + subTotal.toFixed();
     console.log(33);
     let data = await fetch("/cartUpdation", {
         method: "POST",
