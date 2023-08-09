@@ -37,6 +37,10 @@ user_route.post('/updateProfile', userController.updateProfile)
 
 user_route.get('/viewCart',isLogin,blockCheck, cartController.viewCart)
 user_route.get('/addToCart',isLogin,blockCheck, cartController.addToCart)
+user_route.post('/cartUpdation',cartController.updateCart)
+user_route.post('/validateCoupon', cartController.validateCoupon)
+
+
 user_route.get('/removeCart',isLogin,blockCheck,cartController.removeCart)
 
 

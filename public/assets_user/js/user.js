@@ -76,6 +76,56 @@ function calculateSubtotal() {
       element.textContent = `${subtotal}/-`;
     });
   }
+
+
+
+  const totalPrice = async (id, act, stock) => {
+    console.log(11);
+    const elem = document.getElementById(id);
+    console.log(`elem ${elem}`)
+    if (act == "inc") elem.value ? (elem.value = Number(elem.value) + 1) : "";
+    else if (act == "dec") elem.value > 1 ? (elem.value = Number(elem.value) - 1) : "";
+
+    let subTotal = 0;
+    let datas = [];
+    let length = document.getElementsByName("productTotal").length;
+    console.log(`length ${length}`)
+
+    for (let i = 0; i < length; i++) {
+        
+        const quantity = parseFloat(document.getElementsByName("num-product")[i].value);
+    console.log(`quantity ${quantity}`)
+        
+        const price = parseFloat(document.getElementsByName("productprice")[i].value);
+        console.log(`price ${price}`)
+
+        const productTotal = isNaN(quantity) || isNaN(price) ? 0 : quantity * price;
+        console.log(`productTotal ${productTotal}`)
+
+        document.getElementsByName("productTotal")[i].innerText = "₹ " + productTotal.toFixed();
+        subTotal += productTotal;
+        console.log(`subTotal ${subTotal}`)
+        
+
+        datas.push({
+            id: document.getElementsByName("productId")[i].value,
+            quantity: Number(document.getElementsByName("num-product")[i].value),
+        });
+    }
+    // console.log(document.getElementById("subTotal")); 
+    console.log(subTotal);
+    document.getElementById("subTotal").innerText = "₹ " + subTotal.toFixed();
+    console.log(33);
+    let data = await fetch("/cartUpdation", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            datas,
+        }),
+    });
+};
   
 
 
@@ -223,7 +273,7 @@ const addAddressCheckout = document.getElementById("addAddressCheckout");
 console.log(10)
 console.log(addAddressCheckout)
 if (addAddressCheckout) {
-console.log(11)
+console.log(22)
 
     addAddressCheckout.addEventListener("submit", async function (event) {
         event.preventDefault();
