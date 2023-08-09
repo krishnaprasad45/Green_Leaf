@@ -46,8 +46,11 @@
                   <label class="form-label">
                     Banner Subtitle :
                   </label>
-                  <textarea rows="4" class="form-control green-border" id="bannerSubtitle"
-                    value="<%= bannerData.subtitle %>" name="bannerSubtitle"></textarea>
+                  
+
+                    <textarea rows="4" class="form-control green-border" id="bannerSubtitle" name="bannerSubtitle"><%= bannerData.subtitle %>
+                    </textarea>
+                    
                 </div>
 
                 <div class="from-group mt-4">
@@ -57,17 +60,13 @@
                   <p class="form-text">
                     Upload a JPG or PNG. No larger than 1200px.
                   </p>
-                  <div class="file-input-container">
-                    <input type="file" class="form-control green-border file-input" id="image" name="image"
-                      accept="image/*" required>
-
-                  </div>
-
-
                   
-                  <img id="preview1" src="#" alt="Image Preview" src="<%= bannerData.image.url %>"
-                    style="display: none;">
-                  
+                    <div class="file-input-container">
+                      <input type="file" class="form-control green-border file-input" id="image" name="image" accept="image/*" required>
+                    </div>
+                    
+                    <img id="preview1" src="<%= bannerData.image.url %>" alt="Image Preview" style="display: none;">
+                    
                   
                 </div>
                 
@@ -96,6 +95,7 @@
       <!-- validate -->
 
       <script src="/assets_admin/js/validate.js"></script>
+     
 
 
   </body>

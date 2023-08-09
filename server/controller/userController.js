@@ -7,6 +7,7 @@ const productmodel = require("../model/product");
 const Category = require("../model/category");
 const Address =  require("../model/address");
 const Order = require("../model/order");
+const Banner = require("../model/bannerModel");
 
 const productData = productmodel.products;
 
@@ -64,6 +65,7 @@ const index = async (req, res) => {
   try {
     const productDatas = await productData.find();
     const logged = req.session.user
+    const bannerData = await Banner.find({ active: true });
     
 
     if(req.session.user){
@@ -84,9 +86,9 @@ const index = async (req, res) => {
         subTotal += val.total;
     });
 
-      res.render("index", { productDatas,userDatas, cart, subTotal, categoryData , message: "true"});
+      res.render("index", { productDatas,userDatas, cart, bannerData,subTotal, categoryData , message: "true"});
     }else{
-      res.render("index",{productDatas,logged ,message:"false"});
+      res.render("index",{productDatas,logged,bannerData ,message:"false"});
 
     }
    
