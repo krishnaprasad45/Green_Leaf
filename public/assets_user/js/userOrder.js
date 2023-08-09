@@ -190,6 +190,7 @@ const validateCoupon = async () => {
         subTotalText.innerHTML = "Total After Coupon Discount:";
         console.log(222);
         document.getElementById('subTotalValue').value = couponData.newTotal
+        document.getElementById('subTotal').value = couponData.newTotal
 
         $('#couponIcon').removeClass('icon-long-arrow-right').addClass('fa-regular fa-trash-can p-1');
 
