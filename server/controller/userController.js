@@ -1,6 +1,7 @@
 // userController.js
 const model = require("../model/user_register");
 const bcrypt = require("bcrypt");
+const Razorpay = require("razorpay");
 
 
 

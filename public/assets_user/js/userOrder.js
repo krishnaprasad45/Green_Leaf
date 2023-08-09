@@ -18,6 +18,36 @@ const placeOrder = async()=>{
         console.log(error.message);
     }
 }
+/////////// Address selection ///////////
+
+const addressRadios = document.querySelectorAll('input[name="selectedAddress"]');
+const paymentRadios = document.querySelectorAll(".payment-radio");
+const placeOrderBtn = document.getElementById("place-order-btn");
+
+
+addressRadios.forEach((radio) => {
+    radio.addEventListener("change", handleAddressSelection);
+});
+
+paymentRadios.forEach((radio) => {
+    radio.addEventListener("change", handleAddressSelection);
+});
+
+
+
+function handleAddressSelection() {
+    
+    const selectedAddress = document.querySelector('input[name="selectedAddress"]:checked');
+    const selectedPayment = document.querySelector(".payment-radio:checked");
+    
+
+    if (selectedAddress && selectedPayment) {
+        placeOrderBtn.disabled = false;
+    } else {
+        placeOrderBtn.disabled = true;
+    }
+
+}
 
 
 const cashOnDelivery = async(selectedPayment, updatedBalance)=>{
@@ -58,6 +88,41 @@ const cashOnDelivery = async(selectedPayment, updatedBalance)=>{
         console.log(error.message);
     }
 }
+
+
+///  RAZOR PAY ///
+const razorpay = async (selectedPayment)=>{
+    try {
+
+        const subTotal = Number(document.getElementById('subTotalValue').value)
+
+        var options = {
+            "key": "rzp_test_22xYD9iPqzsIzH", // Enter the Key ID generated from the Dashboard
+            "amount": subTotal * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Green Leaf",
+            "description": "Order payment",
+            "image": "/images/demos/demo-8/logo.png",
+            "order_id": undefined, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response){
+                cashOnDelivery(selectedPayment)
+                console.log(response);
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        }
+
+        var rzp1 = new Razorpay(options);
+        
+        rzp1.open();
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
 
 /////////// Coupon Management ///////////
 

@@ -1,6 +1,7 @@
 const Usermodel = require("../model/user_register");
 const customerData = Usermodel.user_register;
-//
+const Razorpay = require("razorpay");
+
 const model = require("../model/user_register");
 
 const productmodel = require("../model/product");
