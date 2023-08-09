@@ -220,9 +220,10 @@ const productDetails = async (req, res) => {
   const productId = req.query.id;
 
   try {
+    const userData = req.session.user
     const product = await productData.findById(productId);
     const image = product.imageUrl
-    res.render("productDetails", { product, image, message: "" });
+    res.render("productDetails", { product,userData, image, message: "" });
   } catch (error) {
     res.status(500).send(error.message);
   }

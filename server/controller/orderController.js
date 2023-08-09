@@ -165,8 +165,8 @@ const placeOrder = async (req, res) => {
                 const quantity = item.quantity;
 
                 const product = await productData.findById(productId);
-                // const stock = product.stock;
-                const stock = 100;
+                const stock = product.stock;
+                
                 const updatedStock = stock - quantity;
 
                 await productData.findByIdAndUpdate(

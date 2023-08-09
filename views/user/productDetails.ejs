@@ -109,9 +109,38 @@
                             <div class="product_variant quantity">
                                 <label>quantity</label>
                                 <input min="1" max="100" id="<%= product.id %>" value="1" type="number">
-                                
+                                <% if (product.stock) { %>
+
+
+                                          <% if (userData) { %>
+
+
+                                                  <% if (product.isOnCart) { %>
+
+                                                    <button class="button" ><a href="/viewCart?id=<%= userData._id %>">Go To Cart</a></button>
+
+                                                   <% } else { %>
+                                                    <button class="button" onclick="addToCart('<%= product.id %>')" id="addToCartBtn">add to cart</button>
+
+
+                                                   <% } %>
+                                                 
+
+                                          <% } else { %>
+                                            <button class="button" ><a href="/user_login">Add to cart</a></button>
+
+                                          <% } %>
+
+
+                                <% } else { %>
+
+                                  &nbsp; &nbsp;  <a class="btn btn-danger">Out of stock</a>
+
+
+
+                                 <% } %>
                           
-                                <button class="button" onclick="addToCart('<%= product.id %>')" id="addToCartBtn">add to cart</button>
+                               
 
                             </div>
                     

@@ -2,7 +2,7 @@
 
 //CART MANAGEMENT
 const addToCart = async (productId) => {
-
+    
     try {
     event.preventDefault();
         const addToCartButton = document.getElementById("addToCartBtn");

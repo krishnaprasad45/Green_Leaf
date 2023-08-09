@@ -97,7 +97,7 @@ const updateCategory = async (req, res) => {
 };
 
 const updateProductPost = async (req, res) => {
-  const { product_name, product_details, category, price } = req.body;
+  const { product_name, product_details, category, price, quantity } = req.body;
   const id = req.params.id;
 
   try {
@@ -109,6 +109,7 @@ const updateProductPost = async (req, res) => {
     product.product_name = product_name;
     product.product_details = product_details;
     product.category = category;
+    product.stock = quantity;
     product.price = price;
 
     await product.save();
@@ -167,6 +168,7 @@ const deleteProduct = async (req, res) => {
 const viewProducts = async (req, res) => {
   try {
     const data = await productData.find();
+    console.log(data)
     res.render("view_products", { data });
   } catch (error) {
     console.error(error);
