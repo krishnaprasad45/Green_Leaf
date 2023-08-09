@@ -47,6 +47,7 @@ const addProductPost = async (req, res) => {
         product_details: req.body.product_details,
         category: req.body.category,
         price: req.body.price,
+        stock: req.body.quantity,
         imageUrl:productImages
       });
 
