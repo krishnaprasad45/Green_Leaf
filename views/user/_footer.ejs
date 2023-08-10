@@ -138,7 +138,24 @@
 <!-- Razorpay SDK -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+<!-- ACTIVE NAV BAR -->
 
+<script>
+    function setActiveLink() {
+        const currentPage = window.location.pathname; // Get the current URL path
+        const navLinks = document.querySelectorAll('nav ul li a'); // Select all navigation links
 
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active'); // Add 'active' class to the current page's link
+            } else {
+                link.classList.remove('active'); // Remove 'active' class from other links
+            }
+        });
+    }
+
+    // Call the setActiveLink function when the page loads
+    window.addEventListener('load', setActiveLink);
+</script>
 
 
