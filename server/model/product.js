@@ -15,6 +15,7 @@ var schema = new mongoose.Schema({
     category: {
         type: String,
         require: true
+        
     },
     price: {
         type: Number,
@@ -32,7 +33,7 @@ var schema = new mongoose.Schema({
     }],
     stock:{
         type:Number,
-        // required:true
+        required:true
     },
 
     isOnCart:{

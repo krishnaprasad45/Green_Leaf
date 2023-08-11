@@ -10,6 +10,7 @@ const productmodel = require("../model/product");
 const Category = require("../model/category");
 const Address = require("../model/address");
 const Order = require("../model/order");
+const Banner = require("../model/bannerModel");
 
 const productData = productmodel.products;
 
@@ -67,6 +68,8 @@ const index = async (req, res) => {
   try {
     const productDatas = await productData.find();
     const logged = req.session.user
+    const bannerData = await Banner.find({ active: true });
+    
 
 
     if (req.session.user) {

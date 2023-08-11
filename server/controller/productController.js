@@ -49,6 +49,7 @@ const addProductPost = async (req, res) => {
         category: req.body.category,
         price: req.body.price,
         stock: req.body.quantity,
+        
         imageUrl:productImages
       });
 
@@ -64,17 +65,18 @@ const addProductPost = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const productId = req.params.id;
-
+ 
   try {
     const product = await productData.findById(productId);
-
+    const categoryDatas = await categoryData.find();
+    
 
 
     if (!product) {
       return res.render("update_product", { message: "Product not found" });
     }
 
-    res.render("update_product", { product });
+    res.render("update_product", { product, categoryDatas});
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -104,7 +106,7 @@ const updateProductPost = async (req, res) => {
   try {
     const product = await productData.findById(id);
     if (!product) {
-      return res.render("update_product", { message: "Product not found" });
+      return res.render("update_product", { message: "Product not found",data:null });
     }
 
     product.product_name = product_name;
@@ -112,7 +114,8 @@ const updateProductPost = async (req, res) => {
     product.category = category;
     product.stock = quantity;
     product.price = price;
-
+    product.stock = quantity,
+    
     await product.save();
 
     res.redirect("/view_products");

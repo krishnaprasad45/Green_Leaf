@@ -27,7 +27,7 @@
         <!--slider area start-->
         <section class="slider_section">
             <div class="slider_area owl-carousel">
-                <div class="single_slider d-flex align-items-center" data-bgimg="assets/img/slider/slider1.jpg">
+                <!-- <div class="single_slider d-flex align-items-center" data-bgimg="assets/img/slider/slider1.jpg">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
@@ -39,33 +39,28 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="single_slider d-flex align-items-center" data-bgimg="assets/img/slider/slider2.jpg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="slider_content">
-                                    <h1>TOP SALE</h1>
-                                    <p>Discount <span>20% Off </span> For Lukani Members </p>
-                                    <a class="button" href="/shop">Discover Now </a>
+                </div> -->
+        
+              
+
+                <%bannerData.forEach(function(data){%>
+                    <div class="single_slider d-flex align-items-center" data-bgimg="<%=data.image.url%>">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="slider_content">
+                                        <h1><%=data.title%></h1>
+                                        <h4><%=data.subtitle%></h4>
+    
+                                        <p><%=data.label%></p>
+                                        <a class="button" href="/shop">Discover Now </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="single_slider d-flex align-items-center" data-bgimg="assets/img/slider/slider3.jpg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="slider_content">
-                                    <h1>Lovely Plants </h1>
-                                    <p>Discount <span>20% Off </span> For Lukani Members </p>
-                                    <a class="button" href="/shop">Discover Now </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
+               <%})%>
             </div>
         </section>
         <!--slider area end-->

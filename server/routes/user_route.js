@@ -42,6 +42,8 @@ user_route.post('/validateCoupon', cartController.validateCoupon)
 
 
 user_route.get('/removeCart',isLogin,blockCheck,cartController.removeCart)
+user_route.get('/checkStock', cartController.checkStock)
+
 
 
 user_route.get('/wishlist',isLogin,blockCheck, userController.wishlist)

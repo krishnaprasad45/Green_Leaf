@@ -1,18 +1,20 @@
-<%-include('./_header')-%>
-
+<%-include('_header')-%>
+<style>
+ 
+</style>
   <body>
     <%-include('_left_sidebar')-%>
 
 
 
-     
+
 
 
       <div class="main-content">
         <%-include('_navbar')-%>
 
 
-        
+
 
 
 
@@ -31,14 +33,14 @@
                   </label>
                   <input type="text" class="form-control green-border" name="product_name">
                 </div>
-              
+
                 <div class="form-group mt-4">
                   <label class="form-label">
                     Project details:
                   </label>
                   <textarea rows="4" class="form-control green-border" name="product_details"></textarea>
                 </div>
-              
+
                 <div class="form-group mt-4">
                   <label class="form-label">
                     Category:
@@ -46,16 +48,27 @@
                   <div class="input-group">
                     <select class="form-control green-border" name="category">
                       <option value="" disabled selected> - Select -</option>
-                     <% data.forEach(async (i)=> { %>
+                      <% data.forEach(async (i)=> { %>
 
-                      <option value="<%=i.category %>"><%=i.category%></option>
-                      
-                     <% }) %>
-                     
+                        <option value="<%=i.category %>">
+                          <%=i.category%>
+                        </option>
+
+                        <% }) %>
+
                     </select>
                   </div>
                 </div>
-              
+
+                <div class="form-group mt-4">
+                  <label class="form-label">
+                    Quantity:
+                  </label>
+                  <div class="input-group">
+                    <input type="number" class="form-control green-border" id="quantity" name="quantity">
+                  </div>
+                </div>
+
                 <div class="form-group mt-4">
                   <label class="form-label">
                     Price:
@@ -75,7 +88,7 @@
                     <div class="error-message" > &nbsp quantity cannot be a negative number</div>
                                       </div>
                 </div>
-            
+
                 <div class="from-group mt-4">
                   <label class="form-label mb-0">
                     Product Images:
@@ -84,39 +97,44 @@
                     Upload a JPG or PNG. No larger than 1200px.
                   </p>
                   <div class="file-input-container">
-					<input type="file" id="product_image1" class="form-control green-border file-input" name="product_image" accept="image">
-					<input type="file" id="product_image2" class="form-control green-border file-input" name="product_image" accept="image">
-					<input type="file" id="product_image3" class="form-control green-border file-input" name="product_image" accept="image">
-					<input type="file" id="product_image4" class="form-control green-border file-input" name="product_image" accept="image">
-				  </div>
-				  
+                    <input type="file" id="product_image1" class="form-control green-border file-input"
+                      name="product_image" accept="image">
+                    <input type="file" id="product_image2" class="form-control green-border file-input"
+                      name="product_image" accept="image">
+                    <input type="file" id="product_image3" class="form-control green-border file-input"
+                      name="product_image" accept="image">
+                    <input type="file" id="product_image4" class="form-control green-border file-input"
+                      name="product_image" accept="image">
+                  </div>
 
-                  <img id="preview1" src="#" alt="Image Preview" style="display: none;">
-                  <img id="preview2" src="#" alt="Image Preview" style="display: none;">
-                  <img id="preview3" src="#" alt="Image Preview" style="display: none;">
-                  
-                  <img id="preview4" src="#" alt="Image Preview" style="display: none;">
 
-  
+                  <div class="image-preview-container">
+                    <img id="preview1" src="#" class="image-preview" alt="Image Preview" style="display: none;">
+                    <img id="preview2" src="#" class="image-preview" alt="Image Preview" style="display: none;">
+                    <img id="preview3" src="#" class="image-preview" alt="Image Preview" style="display: none;">
+                    <img id="preview4" src="#" class="image-preview" alt="Image Preview" style="display: none;">
                 </div>
-              
+
+
+                </div>
+
                 <div class="d-grid gap-3 mt-5">
                   <button class="btn btn-primary btn-lg hover-lift-light" type="submit">Add</button>
                   <!-- <button class="btn btn-link">Cancel</button> -->
                   <br>
                 </div>
               </form>
-              
+
             </div>
           </div>
-        
+
       </div>
 
       <!-- JAVASCRIPT
   ============================================-->
 
       <!-- Vendor -->
-      <script src="/assets_admin/js/vendor.min.js"></script>
+      <script src="assets_admin/js/vendor.min.js"></script>
 
 
       <!-- Main Theme file -->
@@ -134,6 +152,47 @@
         </script>
         
         
+      <script src="assets_admin/js/theme.min.js"></script>
+
+      <!-- Image Preview -->
+      <script>
+        // Image preview code
+        function previewImage(event, imageNumber) {
+          var preview = document.getElementById(`preview${imageNumber}`);
+          var file = event.target.files[0];
+          var reader = new FileReader();
+    
+          reader.onload = function() {
+            preview.src = reader.result;
+            preview.style.display = "block";
+          }
+    
+          if (file) {
+            reader.readAsDataURL(file);
+          } else {
+            preview.src = "#";
+            preview.style.display = "none";
+          }
+        }
+    
+        // Add event listeners for image previews
+        document.getElementById("product_image1").addEventListener("change", function(event) {
+          previewImage(event, 1);
+        });
+    
+        document.getElementById("product_image2").addEventListener("change", function(event) {
+          previewImage(event, 2);
+        });
+    
+        document.getElementById("product_image3").addEventListener("change", function(event) {
+          previewImage(event, 3);
+        });
+    
+        document.getElementById("product_image4").addEventListener("change", function(event) {
+          previewImage(event, 4);
+        });
+    </script>
+    
 
   </body>
 
