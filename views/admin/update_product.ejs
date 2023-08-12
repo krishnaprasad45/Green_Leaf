@@ -1,7 +1,8 @@
 <%-include('_header')-%>
-<style>
- 
-</style>
+  <style>
+
+  </style>
+
   <body>
     <%-include('_left_sidebar')-%>
 
@@ -13,32 +14,26 @@
       <div class="main-content">
         <%-include('_navbar')-%>
 
-
-
-
-
-
-
-
-
           <div class="row justify-content-center mt-5">
             <div class="col-12 col-xl-7">
               <h3 class="mb-3 mb-md-0">
                 Update Product
               </h3>
-              <form action="/add_product_post" method="post" enctype="multipart/form-data">
+              <form action="/update_product_post/<%=product._id%>" method="post" enctype="multipart/form-data">
                 <div class="form-group mt-4 pt-3">
                   <label class="form-label">
                     Product name:
                   </label>
-                  <input type="text" class="form-control green-border" value="<%=product.product_name %>" name="product_name">
+                  <input type="text" class="form-control green-border" value="<%=product.product_name %>"
+                    name="product_name">
                 </div>
 
                 <div class="form-group mt-4">
                   <label class="form-label">
                     Project details:
                   </label>
-                  <textarea rows="4" class="form-control green-border" value="<%=product.product_details %>" name="product_details"></textarea>
+                  <textarea rows="4" class="form-control green-border"
+                    name="product_details"><%=product.product_details%></textarea>
                 </div>
                 <div class="form-group mt-4">
                   <label class="form-label">
@@ -46,7 +41,9 @@
                   </label>
                   <div class="input-group">
                     <select class="form-control green-border" name="category">
-                      <option value="<%=product.category %>" disabled selected><%=product.category %></option>
+                      <option value="<%=product.category %>" disabled selected>
+                        <%=product.category %>
+                      </option>
                       <% categoryDatas.forEach(async (i)=> { %>
 
                         <option value="<%=i.category %>">
@@ -58,21 +55,14 @@
                     </select>
                   </div>
                 </div>
-                <div class="from-group mt-4">
-                  <label class="form-label">
-                    Stock:
-                  </label>
-                  <div class="input-group">
-                    <input type="text" class="form-control yellow-border" value="<%=product.stock %>" name="price">
-                  </div>
-                </div>
 
                 <div class="form-group mt-4">
                   <label class="form-label">
                     Quantity:
                   </label>
                   <div class="input-group">
-                    <input type="number" class="form-control green-border" id="quantity" value="<%=product.stock %>" name="quantity">
+                    <input type="number" class="form-control green-border" id="quantity" value="<%=product.stock %>"
+                      name="quantity">
                   </div>
                 </div>
 
@@ -93,23 +83,44 @@
                     Upload a JPG or PNG. No larger than 1200px.
                   </p>
                   <div class="file-input-container">
-                    <input type="file" id="product_image1" value="<%=product.imageUrl[0].url %>"  class="form-control green-border file-input"
+                    <input type="file" id="product_image1" class="form-control green-border file-input"
                       name="product_image" accept="image">
-                    <input type="file" id="product_image2" value="<%=product.imageUrl[1].url %>"  class="form-control green-border file-input"
+                    <input type="file" id="product_image2" class="form-control green-border file-input"
                       name="product_image" accept="image">
-                    <input type="file" id="product_image3" value="<%=product.imageUrl[2].url %>" class="form-control green-border file-input"
+                    <input type="file" id="product_image3" class="form-control green-border file-input"
                       name="product_image" accept="image">
-                    <input type="file" id="product_image4" value="<%=product.imageUrl[3].url %>"  class="form-control green-border file-input"
+                    <input type="file" id="product_image4" class="form-control green-border file-input"
                       name="product_image" accept="image">
                   </div>
 
+                       <input name="product-id" type="hidden" value="<%=product._id%>">
 
+                       <div class="container-fluid">
+                        <div class="row">
+                          <% product.imageUrl.forEach(function(image, index) { %>
+                            <div class="col-lg-3 col-md-6">
+                              <div class="image-container">
+                                <p onclick="deleteProImg()" class="close-button" data-image-index="<%= index %>"
+                                  style="text-decoration: none;">×</p>
+
+                             
+
+                                <img src="<%= image.url %>" alt="images" style="width: 100px; height: 100px;"
+                                  class="m-2 pro-image" data-image-index="<%= index %>">
+                              </div>
+                            </div>
+                          <% }); %>
+                        </div>
+                      </div>
+
+
+                  
                   <div class="image-preview-container">
                     <img id="preview1" src="#" class="image-preview" alt="Image Preview" style="display: none;">
                     <img id="preview2" src="#" class="image-preview" alt="Image Preview" style="display: none;">
                     <img id="preview3" src="#" class="image-preview" alt="Image Preview" style="display: none;">
                     <img id="preview4" src="#" class="image-preview" alt="Image Preview" style="display: none;">
-                </div>
+                  </div>
 
 
                 </div>
@@ -138,43 +149,91 @@
 
       <!-- Image Preview -->
       <script>
-        // Image preview code
-        function previewImage(event, imageNumber) {
-          var preview = document.getElementById(`preview${imageNumber}`);
-          var file = event.target.files[0];
-          var reader = new FileReader();
-    
-          reader.onload = function() {
-            preview.src = reader.result;
-            preview.style.display = "block";
-          }
-    
-          if (file) {
-            reader.readAsDataURL(file);
-          } else {
-            preview.src = "#";
-            preview.style.display = "none";
-          }
+
+         //For deleting Image
+
+         const deleteImage = async (productId, imageIndex) => {
+            console.log(imageIndex)
+            console.log(14)
+
+            try {
+                const response = await fetch(`/product_img_delete?id=${productId}&image=${imageIndex}`, {
+                    method: 'DELETE'
+                });
+               
+                const data = await response.json();
+                console.log(data.message);
+
+                if (data) {
+                    const imageElem = document.querySelector(`.pro-image[data-image-index="${imageIndex}"]`);
+                    if (imageElem) {
+
+                        imageElem.remove(); // remove the image element completely
+                    }
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+
+        const deleteProImg = () => {
+
+            const deleteButtons = document.querySelectorAll('.close-button')
+            const productId = document.getElementsByName('product-id')[0].value
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', async (event) => {
+                    const imageIndex = event.target.dataset.imageIndex;
+                    deleteImage(productId, imageIndex);
+                });
+            });
+
         }
-    
+
+
+
+
+  
+         // Image preview code
+         function previewImage(event, imageNumber) {
+            var preview = document.getElementById(`preview${imageNumber}`);
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                preview.src = reader.result;
+                preview.style.display = "block";
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "#";
+                preview.style.display = "none";
+            }
+        }
+
         // Add event listeners for image previews
-        document.getElementById("product_image1").addEventListener("change", function(event) {
-          previewImage(event, 1);
+        document.getElementById("image1").addEventListener("change", function (event) {
+            previewImage(event, 1);
         });
-    
-        document.getElementById("product_image2").addEventListener("change", function(event) {
-          previewImage(event, 2);
+
+        document.getElementById("image2").addEventListener("change", function (event) {
+            previewImage(event, 2);
         });
-    
-        document.getElementById("product_image3").addEventListener("change", function(event) {
-          previewImage(event, 3);
+
+        document.getElementById("image3").addEventListener("change", function (event) {
+            previewImage(event, 3);
         });
-    
-        document.getElementById("product_image4").addEventListener("change", function(event) {
-          previewImage(event, 4);
+
+        document.getElementById("image4").addEventListener("change", function (event) {
+            previewImage(event, 4);
         });
-    </script>
-    
+
+      </script>
+
 
   </body>
 

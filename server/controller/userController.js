@@ -1,11 +1,11 @@
 // userController.js
 const model = require("../model/user_register");
 const bcrypt = require("bcrypt");
-const Razorpay = require("razorpay");
 
 
 
-const helperFunction = require("../../helperFunctions/userHelper");
+
+ const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 const Category = require("../model/category");
 const Address = require("../model/address");
@@ -86,16 +86,16 @@ const index = async (req, res) => {
       let subTotal = 0;
   
       if (cart.length == 0) {
-        return res.render("index", { productDatas, logged, message: "false" });
+        return res.render("index", { productDatas,bannerData, logged, message: "false" });
       } else {
         cart.forEach((val) => {
           val.total = val.product.price * val.quantity;
           subTotal += val.total;
         });
-        res.render("index", { productDatas, userDatas, cart, subTotal, categoryData, message: "true" });
+        res.render("index", { productDatas,bannerData, userDatas, cart, subTotal, categoryData, message: "true" });
       }
     } else {
-      res.render("index", { productDatas, logged, message: "false" });
+      res.render("index", { productDatas,bannerData, logged, message: "false" });
 
     }
 

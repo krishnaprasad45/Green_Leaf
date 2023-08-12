@@ -124,31 +124,7 @@ const updateCart = async (req, res) => {
     }
 };
 
-const checkStock = async (req, res) => {
-    try {
-        const userData = req.session.user;
-        const userId = userData._id;
 
-        const userCart = await User.findOne({ _id: userId }).populate("cart.product").lean();
-        const cart = userCart.cart;
-
-        let stock = [];
-
-        cart.forEach((element) => {
-            if (element.product.stock - element.quantity <= 0) {
-                stock.push(element.product);
-            }
-        });
-
-        if (stock.length > 0) {
-            res.json(stock);
-        } else {
-            res.json({ message: "In stock" });
-        }
-    } catch (error) {
-        console.log(error.message);
-    }
-};
 
 const validateCoupon = async (req, res) => {
     try {

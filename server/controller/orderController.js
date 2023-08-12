@@ -7,9 +7,11 @@ const Category = require("../model/category");
 const Address = require("../model/address");
 const Coupon = require("../model/couponModel");
 const Razorpay = require("razorpay");
+const Banner = require("../model/bannerModel");
 
 const userData = model.user_register;
 const Order = require("../model/order");
+
 
 const checkout = async (req, res) => {
 
@@ -23,6 +25,7 @@ const checkout = async (req, res) => {
 
             const userId = userDatas._id
             const addressData = await Address.find({ userId: userId });
+            const bannerData = await Banner.find({ active: true });
 
             const categoryData = await Category.find({ is_blocked: false });
 
@@ -44,7 +47,7 @@ const checkout = async (req, res) => {
                 status: true,
             });
 
-            res.render("checkout", { addressData, productDatas, userDatas, cart, availableCoupons, subTotal, categoryData, loggedIn: true, message: "true" });
+            res.render("checkout", { addressData, bannerData, productDatas, userDatas, cart, availableCoupons, subTotal, categoryData, loggedIn: true, message: "true" });
         }
 
     } catch (error) {
@@ -167,7 +170,7 @@ const placeOrder = async (req, res) => {
 
                 const product = await productData.findById(productId);
                 const stock = product.stock;
-                
+
                 const updatedStock = stock - quantity;
 
                 await productData.findByIdAndUpdate(
@@ -227,8 +230,10 @@ const orderSuccess = async (req, res) => {
     try {
         const userData = req.session.user;
         const categoryData = await Category.find({ is_blocked: false });
+        const bannerData = await Banner.find({ active: true });
+
         var useremail = req.session.user.email
-        res.render("orderSuccess", { userData, categoryData, loggedIn: true, useremail, });
+        res.render("orderSuccess", { userData, categoryData, bannerData, loggedIn: true, useremail, });
     } catch (error) {
         console.log(error.message);
     }

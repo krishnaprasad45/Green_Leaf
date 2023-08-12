@@ -12,15 +12,6 @@
 
       <div class="main-content">
         <%-include('_navbar')-%>
-
-
-
-
-
-
-
-
-
           <div class="row justify-content-center mt-5">
             <div class="col-12 col-xl-7">
               <h3 class="mb-3 mb-md-0">
@@ -48,10 +39,10 @@
                   <div class="input-group">
                     <select class="form-control green-border" name="category">
                       <option value="" disabled selected> - Select -</option>
-                      <% data.forEach(async (i)=> { %>
+                      <% categorydata.forEach(async (data)=> { %>
 
-                        <option value="<%=i.category %>">
-                          <%=i.category%>
+                        <option value="<%=data.category %>">
+                          <%=data.category%>
                         </option>
 
                         <% }) %>
@@ -60,14 +51,7 @@
                   </div>
                 </div>
 
-                <div class="form-group mt-4">
-                  <label class="form-label">
-                    Quantity:
-                  </label>
-                  <div class="input-group">
-                    <input type="number" class="form-control green-border" id="quantity" name="quantity">
-                  </div>
-                </div>
+                
 
                 <div class="form-group mt-4">
                   <label class="form-label">

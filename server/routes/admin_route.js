@@ -33,6 +33,8 @@ admin_route.get('/view_products',isLogin,productController.viewProducts)
 admin_route.get('/delete_product/:id',isLogin,productController.deleteProduct)
 admin_route.get('/update_product/:id',isLogin,productController.updateProduct)
 admin_route.post('/update_product_post/:id',isLogin,store.array("product_image",4),productController.updateProductPost)
+admin_route.delete('/product_img_delete', adminController.deleteProductImage)
+
 
 admin_route.get('/addCategory',isLogin,productController.addCategory)
 admin_route.post('/addCategory',store.single("category_image"),isLogin,productController.addCategoryPost)

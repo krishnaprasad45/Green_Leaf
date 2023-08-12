@@ -12,8 +12,8 @@ require("dotenv").config();
 
 const addProduct = async (req, res) => {
   try {
-    const data = await categoryData.find();
-    res.render("add_product", { data });
+    const categorydata = await categoryData.find();
+    res.render("add_product", { categorydata });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -69,8 +69,6 @@ const updateProduct = async (req, res) => {
   try {
     const product = await productData.findById(productId);
     const categoryDatas = await categoryData.find();
-    
-
 
     if (!product) {
       return res.render("update_product", { message: "Product not found" });
@@ -112,7 +110,6 @@ const updateProductPost = async (req, res) => {
     product.product_name = product_name;
     product.product_details = product_details;
     product.category = category;
-    product.stock = quantity;
     product.price = price;
     product.stock = quantity,
     
@@ -176,7 +173,7 @@ const viewProducts = async (req, res) => {
     res.render("view_products", { data });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).send("Internal Server Error...........");
   }
 };
 ////                                CATEGORY                                                  ///

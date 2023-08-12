@@ -7754,7 +7754,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .login_submit label input[type="checkbox"] {
   width: 15px;
   height: 13px;
- 
+  margin-right: 3px;
 }
 
 .login_submit {
@@ -7766,20 +7766,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 height: 45px;
   margin: 0 auto; /* Center-align horizontally */
 }
-
-/* .login_submit button {
-  text-align: center;
-  margin: 0 auto; 
-  max-width: 150px; 
-  display: block; 
-} */
-
-
-
-
-
-
-
 .login_submit a {
   font-size: 15px;
   float: left;
