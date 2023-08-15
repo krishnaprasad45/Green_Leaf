@@ -40,7 +40,7 @@ const earnings = (req, res) => {
     res.render('earnings');
 };
 
-const payments = async (req, res) => {
+const viewOrders = async (req, res) => {
     try {
         const [productDatas, orderData, userDatas, categoryData] = await Promise.all([
             productData.find(),
@@ -63,7 +63,7 @@ const payments = async (req, res) => {
             subTotal += val.total;
         });
 
-        res.render("payments", { productDatas,user, userDatas, orderData, cart, subTotal, categoryData, message: "true" });
+        res.render("viewOrders", { productDatas,user, userDatas, orderData, cart, subTotal, categoryData, message: "true" });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
@@ -121,77 +121,7 @@ const deleteProductImage = async (req, res) => {
     }
 };
 
-const orderDetails = async (req, res) => {
-    try {
-        console.log("orderDetails mdleware")
-        const orderId = req.query.orderId;
 
-        const orderDetails = await Order.findById(orderId);
-        const orderProductData = orderDetails.product;
-        const addressId = orderDetails.address;
-
-        const addressData = await Address.findById(addressId);
-
-        res.render("orderDetails", {
-            orderDetails,
-            orderProductData,
-            addressData,
-            user: req.session.admin 
-        });
-    } catch (error) {
-        console.log(error.message);
-    }
-};
-const updateOrder = async (req, res) => {
-    try {
-        console.log("update midle ware")
-        const orderId = req.query.orderId;
-        const status = req.body.status;
-        console.log(orderId, status);
-
-
-        if (status === "Delivered") {
-
-            const returnEndDate = new Date()
-            returnEndDate.setDate(returnEndDate.getDate() + 7)
-
-            await Order.findByIdAndUpdate(orderId, 
-                { $set: { 
-                    status: status, 
-                    deliveredDate: new Date(), 
-                    returnEndDate: returnEndDate,                    
-                },
-                $unset: { ExpectedDeliveryDate: "" }
-            }, 
-                { new: true });
-        }else if (status === "Cancelled") {
-
-            await Order.findByIdAndUpdate(orderId, 
-                { $set: { 
-                    status: status,                   
-                },
-                $unset: { ExpectedDeliveryDate: "" }
-            }, 
-                { new: true });
-        }
-        
-        
-        else {
-            await Order.findByIdAndUpdate(orderId, 
-                { $set: { 
-                    status: status } }, 
-                { new: true });
-        }
-        console.log("update midle ware done")
-
-
-        res.json({
-            messaage: "Success",
-        });
-    } catch (error) {
-        console.log(error.message);
-    }
-};
 
 module.exports = {
     adminSignin,
@@ -199,11 +129,10 @@ module.exports = {
     adminLogout,
     adminDashboard,
     earnings,
-    payments,
+    viewOrders,
     customers,
     viewCustomers,
     blockUser,
     deleteProductImage,
-    orderDetails,
-    updateOrder,
+   
 };

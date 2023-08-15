@@ -217,9 +217,7 @@ const updateProfile = async (req, res) => {
 
 
 
-const wishlist = (req, res) => {
-  res.render("wishlist");
-};
+
 const productDetails = async (req, res) => {
   const productId = req.query.id;
 
@@ -227,7 +225,7 @@ const productDetails = async (req, res) => {
     const userData = req.session.user
     const product = await productData.findById(productId);
     const image = product.imageUrl
-    res.render("productDetails", { product,userData, image, message: "" });
+    res.render("productDetails", { product,userData,cartId:null, image, message: "" });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -467,7 +465,6 @@ module.exports = {
   contact,
   about,
   my_account,
-  wishlist,
   otp_verification,
   otp_verification_post,
   resendOtp,

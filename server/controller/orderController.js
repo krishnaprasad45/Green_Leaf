@@ -298,6 +298,77 @@ const validateCoupon = async (req, res) => {
         console.log(error.message);
     }
 };
+const orderDetails = async (req, res) => {
+    try {
+        console.log("orderDetails mdleware")
+        const orderId = req.query.orderId;
+
+        const orderDetails = await Order.findById(orderId);
+        const orderProductData = orderDetails.product;
+        const addressId = orderDetails.address;
+
+        const addressData = await Address.findById(addressId);
+
+        res.render("orderDetails", {
+            orderDetails,
+            orderProductData,
+            addressData,
+            user: req.session.admin 
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+const updateOrder = async (req, res) => {
+    try {
+        console.log("update midle ware")
+        const orderId = req.query.orderId;
+        const status = req.body.status;
+        console.log(orderId, status);
+
+
+        if (status === "Delivered") {
+
+            const returnEndDate = new Date()
+            returnEndDate.setDate(returnEndDate.getDate() + 7)
+
+            await Order.findByIdAndUpdate(orderId, 
+                { $set: { 
+                    status: status, 
+                    deliveredDate: new Date(), 
+                    returnEndDate: returnEndDate,                    
+                },
+                $unset: { ExpectedDeliveryDate: "" }
+            }, 
+                { new: true });
+        }else if (status === "Cancelled") {
+
+            await Order.findByIdAndUpdate(orderId, 
+                { $set: { 
+                    status: status,                   
+                },
+                $unset: { ExpectedDeliveryDate: "" }
+            }, 
+                { new: true });
+        }
+        
+        
+        else {
+            await Order.findByIdAndUpdate(orderId, 
+                { $set: { 
+                    status: status } }, 
+                { new: true });
+        }
+        console.log("update midle ware done")
+
+
+        res.json({
+            messaage: "Success",
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
 
 
 
@@ -314,5 +385,7 @@ module.exports = {
     orderSuccess,
     updateCart,
     validateCoupon,
+    orderDetails,
+    updateOrder,
 
 }

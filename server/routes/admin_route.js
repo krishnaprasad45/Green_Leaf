@@ -6,6 +6,7 @@ admin_route.set('views','./views/admin')
 const auth = require("../../middleware/adminAuth.js")
 const adminController = require("../controller/adminController")
 const bannerController = require("../controller/bannerController")
+const orderController = require("../controller/orderController")
 
 const productController = require("../controller/productController")
 const couponController = require("../controller/couponController")
@@ -24,9 +25,9 @@ admin_route.post('/add_product_post',store.array("product_image",4),isLogin,prod
 
 
 admin_route.get('/earnings',isLogin,adminController.earnings)
-admin_route.get('/payments',isLogin,adminController.payments)
-admin_route.get('/orderDetails',isLogin,adminController.orderDetails)
-admin_route.post('/updateOrder',isLogin, adminController.updateOrder)
+admin_route.get('/viewOrders',isLogin,adminController.viewOrders)
+admin_route.get('/orderDetails',isLogin,orderController.orderDetails)
+admin_route.post('/updateOrder',isLogin, orderController.updateOrder)
 
 
 admin_route.get('/customers',isLogin,adminController.viewCustomers)
