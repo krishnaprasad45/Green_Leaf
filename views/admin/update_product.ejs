@@ -93,28 +93,29 @@
                       name="product_image" accept="image">
                   </div>
 
-                       <input name="product-id" type="hidden" value="<%=product._id%>">
+                  <input name="product-id" type="hidden" value="<%=product._id%>">
 
-                       <div class="container-fluid">
-                        <div class="row">
-                          <% product.imageUrl.forEach(function(image, index) { %>
-                            <div class="col-lg-3 col-md-6">
-                              <div class="image-container">
-                                <p onclick="deleteProImg()" class="close-button" data-image-index="<%= index %>"
-                                  style="text-decoration: none;">×</p>
+                  <div class="container-fluid">
+                    <div class="row">
+                      <% product.imageUrl.forEach(function(image, index) { %>
 
-                             
+                        <div class="col-lg-3 col-md-6">
+                          <div class="image-container">
+                            <button onclick="deleteProImg()" class="close-button" data-image-index="<%= index %>"
+                              style="text-decoration: none;">×</button>
 
-                                <img src="<%= image.url %>" alt="images" style="width: 100px; height: 100px;"
-                                  class="m-2 pro-image" data-image-index="<%= index %>">
-                              </div>
-                            </div>
-                          <% }); %>
+
+
+                            <img src="<%= image.url %>" alt="images" style="width: 100px; height: 100px;"
+                              class="m-2 pro-image" data-image-index="<%= index %>">
+                          </div>
                         </div>
-                      </div>
+                        <% }); %>
+                    </div>
+                  </div>
 
 
-                  
+
                   <div class="image-preview-container">
                     <img id="preview1" src="#" class="image-preview" alt="Image Preview" style="display: none;">
                     <img id="preview2" src="#" class="image-preview" alt="Image Preview" style="display: none;">
@@ -142,6 +143,7 @@
 
       <!-- Vendor -->
       <script src="assets_admin/js/vendor.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
       <!-- Main Theme file -->
@@ -150,86 +152,92 @@
       <!-- Image Preview -->
       <script>
 
-         //For deleting Image
+        //For deleting Image
 
-         const deleteImage = async (productId, imageIndex) => {
-            console.log(imageIndex)
-            console.log(14)
+        const deleteImage = async (productId, imageIndex) => {
+          console.log(imageIndex)
+          console.log(14)
 
-            try {
-                const response = await fetch(`/product_img_delete?id=${productId}&image=${imageIndex}`, {
-                    method: 'DELETE'
+          try {
+            const response = await fetch(`/product_img_delete?id=${productId}&image=${imageIndex}`, {
+              method: 'DELETE'
+            });
+
+            const data = await response.json();
+            console.log(data.message);
+
+            if (data) {
+              const imageElem = document.querySelector(`.pro-image[data-image-index="${imageIndex}"]`);
+              if (imageElem) {
+                imageElem.remove();
+
+                // Show SweetAlert notification here
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Image Deleted',
+                  text: 'The image has been successfully deleted.',
                 });
-               
-                const data = await response.json();
-                console.log(data.message);
-
-                if (data) {
-                    const imageElem = document.querySelector(`.pro-image[data-image-index="${imageIndex}"]`);
-                    if (imageElem) {
-
-                        imageElem.remove(); // remove the image element completely
-                    }
-                }
-
-            } catch (error) {
-                console.error(error);
+              }
             }
+
+          } catch (error) {
+            console.error(error);
+          }
         };
 
 
         const deleteProImg = () => {
 
-            const deleteButtons = document.querySelectorAll('.close-button')
-            const productId = document.getElementsByName('product-id')[0].value
+          const deleteButtons = document.querySelectorAll('.close-button')
+          const productId = document.getElementsByName('product-id')[0].value
 
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', async (event) => {
-                    const imageIndex = event.target.dataset.imageIndex;
-                    deleteImage(productId, imageIndex);
-                });
+          deleteButtons.forEach(button => {
+            button.addEventListener('click', async (event) => {
+              const imageIndex = event.target.dataset.imageIndex;
+              deleteImage(productId, imageIndex);
             });
+          });
 
         }
 
 
 
 
-  
-         // Image preview code
-         function previewImage(event, imageNumber) {
-            var preview = document.getElementById(`preview${imageNumber}`);
-            var file = event.target.files[0];
-            var reader = new FileReader();
 
-            reader.onload = function () {
-                preview.src = reader.result;
-                preview.style.display = "block";
-            }
+        // Image preview code
+        function previewImage(event, imageNumber) {
+          var preview = document.getElementById(`preview${imageNumber}`);
+          var file = event.target.files[0];
+          var reader = new FileReader();
 
-            if (file) {
-                reader.readAsDataURL(file);
-            } else {
-                preview.src = "#";
-                preview.style.display = "none";
-            }
+          reader.onload = function () {
+            preview.src = reader.result;
+            preview.style.display = "block";
+          }
+
+          if (file) {
+            reader.readAsDataURL(file);
+          } else {
+            preview.src = "#";
+            preview.style.display = "none";
+          }
         }
 
         // Add event listeners for image previews
         document.getElementById("image1").addEventListener("change", function (event) {
-            previewImage(event, 1);
+          previewImage(event, 1);
         });
 
         document.getElementById("image2").addEventListener("change", function (event) {
-            previewImage(event, 2);
+          previewImage(event, 2);
         });
 
         document.getElementById("image3").addEventListener("change", function (event) {
-            previewImage(event, 3);
+          previewImage(event, 3);
         });
 
         document.getElementById("image4").addEventListener("change", function (event) {
-            previewImage(event, 4);
+          previewImage(event, 4);
         });
 
       </script>

@@ -25,6 +25,10 @@ admin_route.post('/add_product_post',store.array("product_image",4),isLogin,prod
 
 admin_route.get('/earnings',isLogin,adminController.earnings)
 admin_route.get('/payments',isLogin,adminController.payments)
+admin_route.get('/orderDetails',isLogin,adminController.orderDetails)
+admin_route.post('/updateOrder',isLogin, adminController.updateOrder)
+
+
 admin_route.get('/customers',isLogin,adminController.viewCustomers)
 admin_route.get("/blockUser/:id",isLogin, adminController.blockUser);
 

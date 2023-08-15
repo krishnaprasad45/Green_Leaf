@@ -4,6 +4,7 @@ const model = require("../model/user_register");
 const productmodel = require("../model/product");
 const Category = require("../model/category");
 const Order = require("../model/order");
+const Address = require("../model/address");
 const productData = productmodel.products;
 const userData = model.user_register;
 const cloudinary = require("../../config/cloudinary")
@@ -47,24 +48,22 @@ const payments = async (req, res) => {
             userData.findOne(),
             Category.find({ is_blocked: false })
         ]);
-        console.log(`ordercollection  ${orderData}`)
 
-        const userID = orderData[0].userId;
-        const userInfo = await userData.findById(userID);
-        const customerName = userInfo.email;
+       
         const userId = userDatas._id;
 
         const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
-        console.log(`user populated ${user}`)
+        const customerName = user.email;
+        
         const cart = user.cart;
-
+        
         let subTotal = 0;
         cart.forEach((val) => {
             val.total = val.product.price * val.quantity;
             subTotal += val.total;
         });
 
-        res.render("payments", { productDatas, userDatas, orderData, customerName, cart, subTotal, categoryData, message: "true" });
+        res.render("payments", { productDatas,user, userDatas, orderData, cart, subTotal, categoryData, message: "true" });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
@@ -122,6 +121,78 @@ const deleteProductImage = async (req, res) => {
     }
 };
 
+const orderDetails = async (req, res) => {
+    try {
+        console.log("orderDetails mdleware")
+        const orderId = req.query.orderId;
+
+        const orderDetails = await Order.findById(orderId);
+        const orderProductData = orderDetails.product;
+        const addressId = orderDetails.address;
+
+        const addressData = await Address.findById(addressId);
+
+        res.render("orderDetails", {
+            orderDetails,
+            orderProductData,
+            addressData,
+            user: req.session.admin 
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+const updateOrder = async (req, res) => {
+    try {
+        console.log("update midle ware")
+        const orderId = req.query.orderId;
+        const status = req.body.status;
+        console.log(orderId, status);
+
+
+        if (status === "Delivered") {
+
+            const returnEndDate = new Date()
+            returnEndDate.setDate(returnEndDate.getDate() + 7)
+
+            await Order.findByIdAndUpdate(orderId, 
+                { $set: { 
+                    status: status, 
+                    deliveredDate: new Date(), 
+                    returnEndDate: returnEndDate,                    
+                },
+                $unset: { ExpectedDeliveryDate: "" }
+            }, 
+                { new: true });
+        }else if (status === "Cancelled") {
+
+            await Order.findByIdAndUpdate(orderId, 
+                { $set: { 
+                    status: status,                   
+                },
+                $unset: { ExpectedDeliveryDate: "" }
+            }, 
+                { new: true });
+        }
+        
+        
+        else {
+            await Order.findByIdAndUpdate(orderId, 
+                { $set: { 
+                    status: status } }, 
+                { new: true });
+        }
+        console.log("update midle ware done")
+
+
+        res.json({
+            messaage: "Success",
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
 module.exports = {
     adminSignin,
     adminSigninPost,
@@ -133,4 +204,6 @@ module.exports = {
     viewCustomers,
     blockUser,
     deleteProductImage,
+    orderDetails,
+    updateOrder,
 };

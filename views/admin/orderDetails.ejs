@@ -1,6 +1,13 @@
 <%-include('_header')-%>
 
 
+<style>
+    .custom-table {
+      background-color: #504e481f; /* Replace with your desired background color */
+      border-color: #79a206; /* Replace with your desired border color */
+    }
+    </style>
+
 <body>
   <%-include('_left_sidebar')-%>
   
@@ -531,199 +538,163 @@
     </nav>
 
 
-    <div class="container-fluid mt-4 pt-2 mb-6">
-      <!-- header -->
-      <div class="d-md-flex align-items-center">
-        <h3 class="mb-3 mb-md-0">
-          Orders
-        </h3>
+    <div class="container order-details-container mb-5">
+      
+  <div class="row " >
+    <div class="d-md-flex align-items-center">
+       
         <a href="#!" class="btn btn-white hover-lift-light ms-auto me-3">
           <span class="svg-icon svg-icon-xs text-dark me-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-a</title><polyline points="112 268 256 412 400 268" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px"/><line x1="256" y1="392" x2="256" y2="100" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px"/></svg>
           </span>
           Export
         </a>
-        <!-- <a href="#!" class="btn btn-purple hover-lift-light shadow-light-sm">
-          <span class="svg-icon svg-icon-sm text-white me-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-a</title><line x1="256" y1="112" x2="256" y2="400" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="400" y1="256" x2="112" y2="256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-          </span>
-          Create payment
-        </a> -->
+       
       </div>
-
-      <!-- filters -->
-      <ul class="nav nav-tabs nav-overflow mt-3 mt-md-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#!">
-            All
-          </a>
+    <div class="col-md-4">
+      <h5>Order Details</h5>
+      <ul class="order-details-list mt-3">
+        <li>
+          <span class="detail-label">Order Id:</span>
+          <span class="detail-value"><%= orderDetails.orderId %></span>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#!">
-            Succeeded
-          </a>
+        <li>
+          <span class="detail-label">Order Date:</span>
+          <span class="detail-value"><%= orderDetails.date %></span>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#!">
-            Refunded
-          </a>
+        <% if (orderDetails.deliveredDate) { %>
+        <li>
+          <span class="detail-label">Delivered Date:</span>
+          <span class="detail-value"><%= orderDetails.deliveredDate %></span>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#!">
-            Archived
-          </a>
+        <% } %>
+        <% if (orderDetails.returnEndDate) { %>
+        <li>
+          <span class="detail-label">Return End Date:</span>
+          <span class="detail-value"><%= orderDetails.returnEndDate %></span>
         </li>
+        <% } %>
+        <li>
+          <span class="detail-label">Payment Method:</span>
+          <span class="detail-value"><%= orderDetails.paymentMethod %></span>
+        </li>
+        <li>
+          <span class="detail-label">Total:</span>
+          <span class="detail-value">₹ <%= orderDetails.total %></span>
+        </li>
+        <% if (orderDetails.couponName) { %>
+        <li>
+          <span class="detail-label">Coupon Name:</span>
+          <span class="detail-value"><%= orderDetails.couponName %></span>
+        </li>
+        <li>
+          <span class="detail-label">Discount Amount:</span>
+          <span class="detail-value">₹ <%= orderDetails.discountAmount %></span>
+        </li>
+        <% } else { %>
+        <li>
+          <span class="detail-label">Coupon Used:</span>
+          <span class="detail-value">No coupon used</span>
+        </li>
+        <% } %>
+        <!-- Add more order details here -->
       </ul>
+    </div>
+    <div class="col-md-4">
+      <h5>Shipping Address</h5>
+      <p class="mt-3">
+        <%= addressData.name %><br>
+        <%= addressData.mobile %><br>
+        <%= addressData.email %><br>
+        <%= addressData.addressLine %><br>
+        <%= addressData.city %><br>
+        <%= addressData.state %><br>
+        <%= addressData.pincode %><br>
+      </p>
+    </div>
+    <div class="col-md-4">
+      <h5>Order-Status</h5>
+      <div class="mt-3">
+        <% if (orderDetails.status === "Pending") { %>
+        <h4 style="color: orange;"><%= orderDetails.status %></h4>
+        <% } else if (orderDetails.status === "Shipped") { %>
+        <h4 style="color: green;"><%= orderDetails.status %></h4>
+        <% } else if (orderDetails.status === "Delivered") { %>
+        <h4 style="color: teal;"><%= orderDetails.status %></h4>
+        <% } else if (orderDetails.status === "Cancelled") { %>
+        <h4 style="color: red;"><%= orderDetails.status %></h4>
+        <% } else if (orderDetails.status === "Returned") { %>
+        <h4 style="color: purple;"><%= orderDetails.status %></h4>
+        <% } %>
+      </div>
+      <h6 class="mt-3">Change Order Status</h6>
 
-      <!-- report -->
-      <div id="payments" class="card mt-4">
-        <div class="card-header">
-          <form class="flex-grow-1 pe-3">
-            <div class="input-group input-group-flush pt-2">
-              <div class="input-group-text ps-0">
-                <i class="fas fa-search relative-top--2"></i>
-              </div>
-              <input type="search" class="search form-control" placeholder="Search...">
-            </div>
-          </form>
-
-          <div class="ms-auto mt-2 mt-md-0">
-            <button type="button" class="btn btn-white btn-sm dropdown-toggle" data-bs-toggle="dropdown">
-              <i class="svg-icon svg-icon-sm me-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-n</title><path d="M35.4,87.12,204.05,283.56A16.07,16.07,0,0,1,208,294V413.32a7.93,7.93,0,0,0,5.39,7.59l80.15,26.67A7.94,7.94,0,0,0,304,440V294A16.07,16.07,0,0,1,308,283.56L476.6,87.12A14,14,0,0,0,466,64H46.05A14,14,0,0,0,35.4,87.12Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-              </i>
-
-              Filter
-            </button>
-
-            <div class="dropdown-menu dropdown-menu-card shadow-light">
-              <div class="card-header">
-                <div class="card-header-title">
-                  Filters
-                </div>
-              </div>
-              <div class="card-body p-0">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex align-items-center justify-content-between px-4">
-                    <span>
-                      Payment method
-                    </span>
-                    <select class="form-select form-select-sm w-auto">
-                      <option>Card</option>
-                      <option>PayPal</option>
-                    </select>
-                  </li>
-                  <li class="list-group-item d-flex align-items-center justify-content-between px-4">
-                    <span>
-                      Status
-                    </span>
-                    <select class="form-select form-select-sm w-auto">
-                      <option>Active</option>
-                      <option>In progress</option>
-                      <option>Refunded</option>
-                    </select>
-                  </li>
-                </ul>
-              </div>
-              <a href="#!" class="card-footer-btn btn btn-purple justify-content-center">
-                Apply filter
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="table-responsive">
-          <table class="table table-sm card-table table-nowrap">
+      <% if (orderDetails.status === "Pending") { %>
+      <select name="orderUpdate" id="orderUpdate-<%= orderDetails._id %>" class="form-select">
+        <option value="" disabled selected><%= orderDetails.status %></option>
+        <option value="Shipped">Shipped</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+      <% } else if (orderDetails.status === "Shipped") { %>
+      <select name="orderUpdate" id="orderUpdate-<%= orderDetails._id %>" class="form-select">
+        <option value="" disabled selected><%= orderDetails.status %></option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+      <% } else if (orderDetails.status === "Cancelled") { %>
+      <select name="orderUpdate" id="orderUpdate-<%= orderDetails._id %>" class="form-select">
+        <option value="" disabled selected><%= orderDetails.status %></option>
+      </select>
+      <% } else if (orderDetails.status === "Returned") { %>
+      <select name="orderUpdate" id="orderUpdate-<%= orderDetails._id %>" class="form-select">
+        <option value="" disabled selected><%= orderDetails.status %></option>
+      </select>
+      <% } else { %>
+      <td>
+        <select name="orderUpdate" id="orderUpdate-<%= orderDetails._id %>" class="form-select">
+          <option value="" disabled selected><%= orderDetails.status %></option>
+          <option value="Returned">Returned</option>
+        </select>
+      </td>
+      <% } %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-lg-10 w-100 m-auto">
+      <div class="table-container">
+        <h5>Order Items</h5>
+        <table class="table table-hover mt-4 table-bordered custom-table">
             <thead>
               <tr>
-                <th>
-                  <div class="form-check m-0">
-                    <input class="form-check-input list-checkbox-all" type="checkbox">
-                  </div>
-                </th>
-                <th>
-                  <a class="sort text-dark" data-sort="item-amount" href="#!">Amount</a>
-                </th>
-                <th>
-                  <a class="sort text-dark" data-sort="item-status" href="#!">Status</a>
-                </th>
-                <th>
-                  <span class="text-dark">Payment Method</span>
-                </th>
-                <th>
-                  <a class="sort text-dark" data-sort="item-customer" href="#!">Customer</a>
-                </th>
-                <th>
-                  <span class="text-dark">Date</span>
-                </th>
-                <th>&nbsp;</th>
+                <th scope="col">NO</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">NAME</th>
+                <th scope="col">QUANTITY</th>
+                <th scope="col">PRICE</th>
               </tr>
             </thead>
-            <tbody class="list">
-                <% orderData.forEach((data)=> { %>
-
+            <tbody>
+              <% orderProductData.forEach(function(product, index) { %>
               <tr>
+                <td><%= index+1 %></td>
                 <td>
-                  <div class="form-check">
-                    <input class="form-check-input list-checkbox" type="checkbox">
-                  </div>
+                  <img style="width: 80px; height: 80px;" src="<%= product.image %>" alt="Product Image">
                 </td>
-                <td class="item-amount">
-                  
-                  <span class="text-muted fs-sm ms-1"><%=data.total%></span>
+                <td class="name-Cell" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<%= product.name %>">
+                  <%= product.name %>
                 </td>
-                <td class="item-status">
-                  <div class="badge bg-pastel-success text-success text-uppercase-xs">
-                    
-                    <%=data.status%>
-                  </div>
-                </td>
-                <td>
-                  <%=data.paymentMethod%>
-                </td>
-                <td class="item-customer">
-                  <%=user.email%>
-                </td>
-                <td class="fs-sm text-muted">
-                  <%= (new Date(data.date)).toDateString() %>
-                  
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <a href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="svg-icon text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-f</title><circle cx="256" cy="256" r="32" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px"/><circle cx="416" cy="256" r="32" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px"/><circle cx="96" cy="256" r="32" style="fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px"/></svg>
-                      </span>
-                    </a>
-                    <div class="dropdown-menu shadow-light-sm" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="/orderDetails?orderId=<%= data._id %>">View Details</a>
-                      <a class="dropdown-item" href="">Refund payment</a>
-                      <!-- <a class="dropdown-item" href="#!">Send receipt</a> -->
-                    </div>
-                  </div>
-                </td>
+                <td><%= product.quantity %></td>
+                <td><%= product.price %></td>
               </tr>
-              <%})%>
-              
+              <% }); %>
             </tbody>
           </table>
-        </div>
-
-        <div class="card-footer d-flex justify-content-center p-0">
-          <ul class="nav-pagination">
-            <li>
-              <a class="page" href="#!">1</a>
-            </li>
-            <li>
-              <a class="page" href="#!">2</a>
-            </li>
-            <li>
-              <a class="page" href="#!">3</a>
-            </li>
-          </ul>
-        </div>
+          
       </div>
     </div>
+  </div>
+</div>
 
     <div class="list-alert alert alert-dark w-300 w-md-400 border-0 shadow-light-lg fade fixed-bottom start-50 translate-middle-x mb-4" role="alert" style="z-index: -1;">
       <div class="row align-items-center">
@@ -754,6 +725,12 @@
 
   <!-- Main Theme file -->
   <script src="/assets_admin/js/theme.min.js"></script>
+  <!-- orderUpdate js -->
+  <script src="/assets_admin/js/admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+
 
 
   <script type="text/javascript">
