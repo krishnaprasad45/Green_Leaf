@@ -76,6 +76,7 @@ const addToCart = async (productId) => {
     }
 };
 const moveToCart = async (productId) => {
+    alert("move to cart script user.js")
     try {
         const response = await fetch(`/addToCartFromWishlist?productId=${productId}`, {
             method: "GET",
@@ -201,6 +202,8 @@ function calculateSubtotal() {
 
 
 const addToWishlist = async (productId, cartId) => {
+    alert("204")
+    console.log(205)
     const response = await fetch(`/addToWishlist?productId=${productId}&cartId=${cartId}`, {
         method: "GET",
         headers: {

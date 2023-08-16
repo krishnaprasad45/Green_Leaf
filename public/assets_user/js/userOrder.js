@@ -67,8 +67,8 @@ const cashOnDelivery = async(selectedPayment, updatedBalance)=>{
                 selectedAddress: selectedAddress,
                 selectedPayment: selectedPayment,
                 amount: subTotal,
-                // walletBalance: updatedBalance,
-                // couponData: couponData,
+                walletBalance: updatedBalance,
+                couponData: couponData,
                 
               })
         })
@@ -120,6 +120,47 @@ const razorpay = async (selectedPayment)=>{
     } catch (error) {
         console.log(error.message);
     }
+}
+
+// Wallet
+
+const wallet = async(selectedPayment)=>{
+    try {
+          console.log("wallet script code")
+        const balance = document.getElementById('userWallet').value
+        const subTotal = Number(document.getElementById('subTotalValue').value)
+        const insufficientBalanceAlert = document.getElementById('insufficientBalanceAlert');
+
+
+        if(balance > subTotal){
+            const updatedBalance = balance - subTotal
+            cashOnDelivery(selectedPayment, updatedBalance )
+        }else{
+            insufficientBalanceAlert.classList.remove('d-none');
+            insufficientBalanceAlert.classList.add('d-flex');
+        }
+
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+window.addEventListener("load", function () {
+    const insufficientBalanceAlert = document.getElementById("insufficientBalanceAlert");
+    if (insufficientBalanceAlert) {
+        insufficientBalanceAlert.classList.remove("d-flex");
+        insufficientBalanceAlert.classList.add("d-none");
+    }
+});
+
+const closeButton = document.querySelector(".btn-close");
+if(closeButton){
+    closeButton.addEventListener("click", function () {
+        const insufficientBalanceAlert = document.getElementById("insufficientBalanceAlert");
+        insufficientBalanceAlert.classList.remove("d-flex");
+        insufficientBalanceAlert.classList.add("d-none");
+    });
 }
 
 

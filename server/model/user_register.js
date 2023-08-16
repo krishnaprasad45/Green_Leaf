@@ -48,6 +48,28 @@ var schema = new mongoose.Schema({
             ref: "productCollection",
         },
     ],
+    wallet: {
+        balance: {
+            type: Number,
+            default: 0,
+        },
+        transactions: [
+            {
+                date: {
+                    type: Date,
+                },
+                details: {
+                  type: String,
+                },
+                amount: {
+                    type: Number,
+                },
+                status: {
+                    type: String,
+                },
+            },
+        ],
+    },
 
 })
 const user_register = mongoose.model("usercollection", schema)

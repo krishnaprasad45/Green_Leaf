@@ -1,5 +1,27 @@
 <%-include('_header.ejs') -%>
+<style>
+    .payment-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
+.payment-radio {
+    margin-right: 10px;
+}
+
+
+
+.label-text {
+    margin-left: 10px;
+}
+
+.panel-default {
+    background-color: #f0f0f0; /* Replace with your desired background color */
+    padding: 20px; /* Add some padding to create separation from the content */
+}
+
+</style>
 
     <!--header area start-->
 
@@ -106,21 +128,7 @@
                                                     <label><strong>City</strong> <span>*</span></label>
                                                     <input type="text" name="city">
                                                 </div>
-                                                <!-- <div class="col-12 mb-20">
-                                                    <div class="select_form_select">
-                                                        <label><strong>City</strong> <span></span></label>
-                                                        <select class="select_option" name="city" id="city_name">
-                                                            <option value="Bangalore">Bangalore</option>
-                                                            <option value="Kochi">Kochi</option>
-                                                            <option value="Chennai">Chennai</option>
-                                                            <option value="Mangalore">Mangalore</option>
-                                                            <option value="Mumbai">Mumbai</option>
-                                                            <option value="Hyderabad">Hyderabad</option>
-                                                            <option value="Kolkata">Kolkata</option>
-                                                            <option value="Delhi">Delhi</option>
-                                                        </select>
-                                                    </div>
-                                                </div> -->
+
                                                 <div class="col-12 mb-20">
                                                     <label><strong>Street Address</strong> <span>*</span></label>
                                                     <input placeholder="House number and street name" type="text"
@@ -209,8 +217,9 @@
                                     </tfoot>
                                 </table>
                             </div>
+                            <!-- payment method starts -->
                             <div class="payment_method">
-                                <div class="panel-default">
+                                <!-- <div class="panel-default">
                                     <input id="pay1" name="payment" class="payment-radio" value="Cash On Delivery"
                                         type="radio" data-bs-target="createp_account" />
                                     <label for="payment" data-bs-toggle="collapse" data-bs-target="#method"
@@ -221,108 +230,170 @@
                                             <p>Cash on delivery take time to deliver..</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="panel-default">
-                                    <input id="pay2" class="payment-radio" value="Razorpay"
-                                        onchange="handleAddressSelection()" name="payment" type="radio"
-                                        data-bs-target="createp_account" />
-                                    <label for="payment_defult" data-bs-toggle="collapse"
-                                        data-bs-target="#collapsedefult" aria-controls="collapsedefult">Razorpay <img
-                                            src="assets/img/icon/logo-razor-trim.png" alt=""></label>
-
-                                    <div id="collapsedefult" class="collapse one" data-parent="#accordion">
-                                        <div class="card-body1">
-                                            <p>Easy Digital Payment</p>
+                                    <div class="payment-option">
+                                        <input id="pay1" class="payment-radio" value="Cash On Delivery" onchange="handleAddressSelection()"
+                                            name="payment" type="radio" data-bs-target="createp_account" />
+                                        <label for="pay3" data-bs-toggle="collapse" data-bs-target="#collapseCashOnDelivery"
+                                            aria-controls="collapseCashOnDelivery">
+                                            <div class="icon-container">
+                                                <img src="assets/img/icon/cash-on-delivery.png" alt="" style="width: 50px; height: 50px;" class="payment-icon">
+                                            </div>
+                                            <div class="label-text"></div>
+                                        </label>
+                                      
+                                    </div>
+                                    
+                                    <div class="payment-option">
+                                        <input id="pay2" class="payment-radio" value="Razorpay" onchange="handleAddressSelection()" name="payment"
+                                            type="radio" data-bs-target="createp_account" />
+                                        <label for="pay2" data-bs-toggle="collapse" data-bs-target="#collapseRazorPay"
+                                            aria-controls="collapseRazorPay">
+                                            <div class="icon-container">
+                                                <img src="assets/img/icon/logo-razor-trim.png" alt="" class="payment-icon">
+                                            </div>
+                                            <div class="label-text"></div>
+                                        </label>
+                                      
+                                    </div>
+                                    
+                                    <div class="payment-option">
+                                        <input id="pay3" class="payment-radio" value="Wallet" onchange="handleAddressSelection()" name="payment"
+                                            type="radio" data-bs-target="createp_account" />
+                                        <label for="pay3" data-bs-toggle="collapse" data-bs-target="#collapseDigitalWallet"
+                                            aria-controls="collapseDigitalWallet">
+                                            <div class="icon-container">
+                                                <img src="assets/img/icon/wallet.png" alt="" style="width: 50px; height: 50px;" class="payment-icon">
+                                            </div>
+                                            <div class="label-text"></div>
+                                        </label>
+                                        <div id="collapseDigitalWallet" class="collapse one" data-parent="#accordion">
+                                            <div class="card-body">
+                                               <span>Your Wallet Balance is</span> <strong><h4 class="text-warning"><%= walletBalance %>/-</h4></strong>
+                                            </div>
                                         </div>
                                     </div>
+                                    
+                                    <input type="hidden" id="userWallet" value="<%= walletBalance %>">
+                                    
+                                    <div class="order_button">
+                                        <button type="submit" disabled onclick="placeOrder()" id="place-order-btn">Place Order</button>
+                                    </div>
                                 </div>
-                                <div class="order_button">
-                                    <button type="submit" disable onclick="placeOrder()" id="place-order-btn">Place
-                                        Order</button>
-                                </div>
+                                <br>
+                                
+                                <!-- </form> -->
                             </div>
-                            <!-- </form> -->
+
+                            <!-- payment method ends -->
+
+                            <!-- insufficient balance alert starts -->
+
+                            <div class="col-lg-12 d-flex justify-content-end sticky-alert p-0">
+
+                                <div class="col-lg-4">
+                                    <div class="row ">
+                            
+                                
+                            
+                                <div id="insufficientBalanceAlert" class="alert alert-danger d-none align-items-center alert-dismissible" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+                                        <use xlink:href="#exclamation-triangle-fill" />
+                                    </svg>
+                                    <div style="margin-left: 7px;">
+                                        Insufficient balance in your wallet <br> Please choose another payment method
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                
+                                
+                            
+                                    </div>
+                                </div>
+                            
+                                </div>
+                            <!-- insufficient balance alert ends -->
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--Checkout page section end-->
+            <!--Checkout page section end-->
 
-        <!--brand area start-->
+            <!--brand area start-->
 
-        <!--brand area end-->
+            <!--brand area end-->
 
-        <!--footer area start-->
-        <%-include('_footer.ejs') -%>
+            <!--footer area start-->
+            <%-include('_footer.ejs') -%>
 
-            <!--footer area end-->
-            <!-- Place the JavaScript code in a <script> tag at the end of your file, just before the closing </body> tag -->
-            <script>
-                // Wait for the DOM to load
-                document.addEventListener("DOMContentLoaded", function () {
-                    // Get all radio buttons with the name "selectedAddress"
-                    var radioButtons = document.querySelectorAll('input[name="selectedAddress"]');
+                <!--footer area end-->
+                <!-- Place the JavaScript code in a <script> tag at the end of your file, just before the closing </body> tag -->
+                <script>
+                    // Wait for the DOM to load
+                    document.addEventListener("DOMContentLoaded", function () {
+                        // Get all radio buttons with the name "selectedAddress"
+                        var radioButtons = document.querySelectorAll('input[name="selectedAddress"]');
 
-                    // Loop through each radio button and apply the desired styles to make them smaller
-                    radioButtons.forEach(function (radioBtn) {
-                        radioBtn.style.width = "16px";
-                        radioBtn.style.height = "16px";
-                        radioBtn.style.margin = "0";
-                        radioBtn.style.padding = "0";
+                        // Loop through each radio button and apply the desired styles to make them smaller
+                        radioButtons.forEach(function (radioBtn) {
+                            radioBtn.style.width = "16px";
+                            radioBtn.style.height = "16px";
+                            radioBtn.style.margin = "0";
+                            radioBtn.style.padding = "0";
+                        });
                     });
-                });
-            </script>
+                </script>
 
 
-            <!-- JS
+                <!-- JS
 ============================================ -->
-            <!--jquery min js-->
-            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
-            <!--popper min js-->
-            <script src="assets/js/popper.js"></script>
-            <!--bootstrap min js-->
-            <script src="assets/js/bootstrap.min.js"></script>
-            <!--owl carousel min js-->
-            <script src="assets/js/owl.carousel.min.js"></script>
-            <!--slick min js-->
-            <script src="assets/js/slick.min.js"></script>
-            <!--magnific popup min js-->
-            <script src="assets/js/jquery.magnific-popup.min.js"></script>
-            <!--counterup min js-->
-            <script src="assets/js/jquery.counterup.min.js"></script>
-            <!--jquery countdown min js-->
-            <script src="assets/js/jquery.countdown.js"></script>
-            <!--jquery ui min js-->
-            <script src="assets/js/jquery.ui.js"></script>
-            <!--jquery elevatezoom min js-->
-            <script src="assets/js/jquery.elevatezoom.js"></script>
-            <!--isotope packaged min js-->
-            <script src="assets/js/isotope.pkgd.min.js"></script>
-            <!--slinky menu js-->
-            <script src="assets/js/slinky.menu.js"></script>
-            <!-- Plugins JS -->
-            <script src="assets/js/plugins.js"></script>
-            <script src="assets/js/user.js"></script>
-            <script src="assets/js/userOrder.js"></script>
-            
-
-
-            <!-- Main JS -->
-            <script src="assets/js/main.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-                integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-            <!-- <script src="assets/js/user.js"></script> -->
+                <!--jquery min js-->
+                <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+                <!--popper min js-->
+                <script src="assets/js/popper.js"></script>
+                <!--bootstrap min js-->
+                <script src="assets/js/bootstrap.min.js"></script>
+                <!--owl carousel min js-->
+                <script src="assets/js/owl.carousel.min.js"></script>
+                <!--slick min js-->
+                <script src="assets/js/slick.min.js"></script>
+                <!--magnific popup min js-->
+                <script src="assets/js/jquery.magnific-popup.min.js"></script>
+                <!--counterup min js-->
+                <script src="assets/js/jquery.counterup.min.js"></script>
+                <!--jquery countdown min js-->
+                <script src="assets/js/jquery.countdown.js"></script>
+                <!--jquery ui min js-->
+                <script src="assets/js/jquery.ui.js"></script>
+                <!--jquery elevatezoom min js-->
+                <script src="assets/js/jquery.elevatezoom.js"></script>
+                <!--isotope packaged min js-->
+                <script src="assets/js/isotope.pkgd.min.js"></script>
+                <!--slinky menu js-->
+                <script src="assets/js/slinky.menu.js"></script>
+                <!-- Plugins JS -->
+                <script src="assets/js/plugins.js"></script>
+                <script src="assets/js/user.js"></script>
+                <script src="assets/js/userOrder.js"></script>
 
 
 
+                <!-- Main JS -->
+                <script src="assets/js/main.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+                    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+                <!-- <script src="assets/js/user.js"></script> -->
 
 
-            </body>
 
 
-            <!-- Mirrored from htmldemo.net/lukani/lukani/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:47 GMT -->
 
-            </html>
+                </body>
+
+
+                <!-- Mirrored from htmldemo.net/lukani/lukani/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:47 GMT -->
+
+                </html>

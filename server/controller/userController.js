@@ -167,7 +167,7 @@ const my_account = async (req, res) => {
 
       //transactions data here
       req.session.checkout = true
-      // walletBalance=userDatas.wallet.balance
+      walletBalance=userDatas.wallet.balance
       const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
       const profilename = userDatas.user_name
 
@@ -178,7 +178,7 @@ const my_account = async (req, res) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;
       });
-      res.render("my_account", { userDatas, orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
+      res.render("my_account", { userDatas, walletBalance , orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
     } else {
       res.render("my_account", { cart, addressData, profilename, message: "false" });
 
