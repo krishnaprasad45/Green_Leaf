@@ -211,6 +211,30 @@ const updateProfile = async (req, res) => {
   }
 };
 
+const userOrderDetails = async (req, res) => {
+  try {
+
+      const orderId = req.query.orderId;
+
+      const orderDetails = await Order.findById(orderId);
+      const orderProductData = orderDetails.product;
+      const addressId = orderDetails.address;
+
+      const addressData = await Address.findById(addressId);
+
+      res.render("userOrderDetails", {
+          orderDetails,
+          orderProductData,
+          addressData,
+          user: req.session.admin,
+          message:"",
+          
+      });
+  } catch (error) {
+      console.log(error.message);
+  }
+};
+
 
 
 
@@ -477,5 +501,6 @@ module.exports = {
   addNewAddress,
   updateAddress,
   updateProfile,
+  userOrderDetails,
 
 };

@@ -32,10 +32,15 @@
 
                                 </div>
                                 <% if (message==="true" ) { %>
-                                    <div class="header_account-list header_wishlist">
-                                        <a href="/wishlist"><i class="icon-heart"></i></a>
-                                    </div>
+                                   
 
+                                    <div class="header_account-list  mini_cart_wrapper_wlist">
+                                        <a href="/wishlist" ><i class="icon-heart"></i><span
+                                                class="item_count">
+                                                <%=cart.length%>
+                                            </span></a>
+
+                                    </div>
                                     <div class="header_account-list  mini_cart_wrapper">
                                         <a href="javascript:void(0)"><i class="icon-shopping-bag"></i><span
                                                 class="item_count">

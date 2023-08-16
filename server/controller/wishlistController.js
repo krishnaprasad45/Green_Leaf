@@ -34,7 +34,6 @@ const loadWishlist = async (req, res) => {
 };
 
 const addToWishlist = async (req, res) => {
-    console.log(37)
     try {
         const userDatas = req.session.user;
         const userId = userDatas._id;
@@ -42,16 +41,11 @@ const addToWishlist = async (req, res) => {
         const cartId = req.query.cartId;
 
         const existItem = await userData.findOne({ _id: userId, wishlist: { $in: [productId] } });
-        console.log(productId)
         if (!existItem) {
             await userData.updateOne({ _id: userId }, { $push: { wishlist: productId } });
-            // await productData.updateOne({ _id: productId }, { isWishlisted: true });
-            const product = await productData.findById(productId);
-            if (product) {
-                product.isOnCart = false;
-                await product.save();
-            }
-            // await productData.findOneAndUpdate({ _id: productId }, { $set: { isOnCart: false } }, { new: true });
+            await productData.updateOne({ _id: productId }, { isWishlisted: true });
+           
+            await productData.findOneAndUpdate({ _id: productId }, { $set: { isOnCart: false } }, { new: true });
             await userData.updateOne({ _id: userId }, { $pull: { cart: { _id: cartId } } });
 
             res.json({
