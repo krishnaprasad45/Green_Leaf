@@ -203,7 +203,7 @@ function calculateSubtotal() {
 
 const addToWishlist = async (productId, cartId) => {
    
-    
+    alert(123)
     const response = await fetch(`/addToWishlist?productId=${productId}&cartId=${cartId}`, {
         method: "GET",
         headers: {
