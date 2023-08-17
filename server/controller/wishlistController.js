@@ -38,15 +38,18 @@ const addToWishlist = async (req, res) => {
         const userDatas = req.session.user;
         const userId = userDatas._id;
         const productId = req.query.productId;
-        const cartId = req.query.cartId;
+        const cartId = req.query.id;
+        console.log(`cartid = ${cartId}`)
 
         const existItem = await userData.findOne({ _id: userId, wishlist: { $in: [productId] } });
+        console.log(existItem)
         if (!existItem) {
+            console.log(46)
             await userData.updateOne({ _id: userId }, { $push: { wishlist: productId } });
             await productData.updateOne({ _id: productId }, { isWishlisted: true });
            
             await productData.findOneAndUpdate({ _id: productId }, { $set: { isOnCart: false } }, { new: true });
-            await userData.updateOne({ _id: userId }, { $pull: { cart: { _id: cartId } } });
+            await userData.findOneAndUpdate({ _id: userId }, { $pull: { cart: { _id: cartId } } },{new:true} );
 
             res.json({
                 message: "Added to wishlist",
@@ -57,7 +60,7 @@ const addToWishlist = async (req, res) => {
             });
         }
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 };
 

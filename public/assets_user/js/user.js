@@ -203,7 +203,6 @@ function calculateSubtotal() {
 
 const addToWishlist = async (productId, cartId) => {
    
-    alert(123)
     const response = await fetch(`/addToWishlist?productId=${productId}&cartId=${cartId}`, {
         method: "GET",
         headers: {
@@ -212,7 +211,7 @@ const addToWishlist = async (productId, cartId) => {
     });
 
     const data = await response.json();
-
+    console.log(data.message)
     if (data.message === "Added to wishlist") {
         Swal.fire({
             position: "center",
