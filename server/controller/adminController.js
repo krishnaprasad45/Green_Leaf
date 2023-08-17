@@ -102,11 +102,9 @@ const blockUser = async (req, res) => {
     }
 };
 const deleteProductImage = async (req, res) => {
-    console.log("delete img mdlware")
     try {
         const { id, image } = req.query;
-        console.log("id,image")
-        console.log(id, image);
+     
         const product = await productData.findById(id);
         const imageUrl = product.imageUrl[image];
 

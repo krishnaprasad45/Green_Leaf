@@ -171,24 +171,24 @@
                                 <div class="tab-pane" id="profile">
                                     <h4>
                                         <strong>
-                                            <%=userDatas.user_name%>
+                                            <%=userMeta.user_name%>
                                         </strong>
                                     </h4>
                                     <br>
                                     <address>
 
                                         <span><strong>Email: </strong>
-                                            <%=userDatas.email%>
+                                            <%=userMeta.email%>
                                         </span>
                                         <br>
                                         <br>
                                         <span><strong>Phone:</strong>
-                                            <%=userDatas.phone%>
+                                            <%=userMeta.phone%>
                                         </span>,
                                         <br>
                                         <br>
                                         <span><strong>Address </strong>
-                                            <%=userDatas.address%>
+                                            <%=userMeta.address%>
                                         </span>
 
                                         <br>
@@ -250,18 +250,18 @@
                                     <div class="login">
                                         <div class="login_form_container">
                                             <div class="account_login_form">
-                                                <form action="/updateProfile" method="post">
+                                                <form id="profileUpdate">
 
                                                     <label>Name</label>
-                                                    <input type="text" value="<%=userDatas.user_name%>"
+                                                    <input type="text" value="<%=userMeta.user_name%>"
                                                         name="user_name">
 
                                                     <label>Email</label>
-                                                    <input type="text" value="<%=userDatas.email%>" name="email">
+                                                    <input type="text" value="<%=userMeta.email%>" name="email">
                                                     <label>Phone</label>
-                                                    <input type="text" value="<%=userDatas.phone%>" name="phone">
+                                                    <input type="text" value="<%=userMeta.phone%>" name="phone">
                                                     <label>Address</label>
-                                                    <input type="text" value="<%=userDatas.address%>" name="address">
+                                                    <input type="text" value="<%=userMeta.address%>" name="address">
 
 
 

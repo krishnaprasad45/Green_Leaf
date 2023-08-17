@@ -34,13 +34,11 @@ const loadAddCoupon = async (req, res) => {
 
 const addCouponPost = async (req, res) => {
     try {
-        // console.log("coupon post")
 
         const { couponCode, couponDiscount, couponDate, minDiscount, maxDiscount } = req.body;
         const couponCodeUpperCase = couponCode.toUpperCase();
 
         const couponExist = await Coupon.findOne({ code: couponCodeUpperCase });
-        //  console.log(`couponExist ${couponExist}`)
         if (!couponExist) {
             const coupon = new Coupon({
                 code: couponCodeUpperCase,
@@ -51,7 +49,6 @@ const addCouponPost = async (req, res) => {
             });
 
             await coupon.save();
-            console.log("coupon added")
             res.json({ message: "coupon addedd" });
         } else {
             res.json({ message: "coupon exists" });
@@ -103,7 +100,6 @@ const validateCoupon = async (req, res) => {
             const userId = req.session.user._id;
 
             const couponUsed = await Coupon.findOne({ _id: couponId, usedBy: { $in: [userId] } });
-        console.log(`couponUsed  ${couponUsed}`)
             
             if (couponUsed) {
                 res.json("already used");

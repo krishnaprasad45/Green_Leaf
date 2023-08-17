@@ -73,20 +73,16 @@ const addBanner = async (req, res) => {
 
 const addNewBanner = async (req, res) => {
     try {
-        // console.log("addNewBanner Post middleware")
         const { title, label, bannerSubtitle } = req.body
         const image = req.file
       
 
         if (!image) {
-            // Handle the case when no image is uploaded
             console.log("No image uploaded");
-            // You might want to return an error response or redirect the user back to the form page.
             return;
         }
 
         const existing = await Banner.findOne({ title: title })
-        console.log(2)
 
         if (existing) {
             req.session.bannerExist = true;
@@ -109,7 +105,6 @@ const addNewBanner = async (req, res) => {
             });
 
             await banner.save();
-            console.log("banner added")
             req.session.bannerSave = true;
             res.redirect("/banners");
         }
@@ -129,7 +124,6 @@ const updateBanner = async (req, res) => {
         }
 
         const bannerData = await Banner.findById(bannerId);
-        console.log(`banner details.. ${bannerData}`)
         if (!bannerData) {
             return res.status(404).send("Banner not found");
         }
@@ -145,18 +139,13 @@ const updateBanner = async (req, res) => {
 
 const updateBannerPost = async (req, res) => {
     try {
-        console.log("update banner post")
         const { title, label, bannerSubtitle } = req.body
         const bannerId = req.params.id;
-        console.log(`bannerId ${bannerId}`)
         const newImage = req.file;
-        console.log(`newImage ${newImage}`)
 
         const banner = await Banner.findById(bannerId);
-        console.log(`bannerDetails ${banner}`)
 
         const bannerImageUrl = banner.image.url;
-        console.log(`bannerImageUrl ${bannerImageUrl}`)
 
 
         let result;

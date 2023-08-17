@@ -293,13 +293,10 @@ const orderDetails = async (req, res) => {
 };
 const updateOrder = async (req, res) => {
     try {
-        console.log("update midle ware");
         const orderId = req.query.orderId;
         const userId = req.session.user._id;
-        console.log(`userId....${userId}`)
         const status = req.query.orderStatus;
         const updatedBalance = req.body.wallet
-        console.log(orderId, status, updatedBalance);
 
         if (status === "Delivered") {
             const returnEndDate = new Date();
@@ -350,7 +347,6 @@ const updateOrder = async (req, res) => {
                 { new: true }
             );
         }
-        console.log("update midle ware done");
 
         res.json({
             message: "Cancelled",

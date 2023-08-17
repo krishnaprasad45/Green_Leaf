@@ -54,7 +54,6 @@ const addProductPost = async (req, res) => {
       });
 
       await product.save();
-      console.log("******Data stored in the database******")
 
       res.redirect("/view_products");
     }
@@ -169,7 +168,6 @@ const deleteProduct = async (req, res) => {
 const viewProducts = async (req, res) => {
   try {
     const data = await productData.find();
-    console.log(data)
     res.render("view_products", { data });
   } catch (error) {
     console.error(error);
@@ -216,7 +214,6 @@ const addCategoryPost = async (req, res) => {
       });
 
       await category.save();
-      console.log("******Data stored in the database******")
       req.session.categorySave = true;
       res.redirect("/viewCategory");
     } else {

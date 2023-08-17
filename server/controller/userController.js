@@ -170,7 +170,7 @@ const my_account = async (req, res) => {
      const userMeta = await userData.findById(userId)
      const walletBalance = userMeta.wallet.balance;
       const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
-      const profilename = userDatas.user_name
+      const profilename = userMeta.user_name
 
       const cart = user.cart;
       let subTotal = 0;
@@ -179,7 +179,7 @@ const my_account = async (req, res) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;
       });
-      res.render("my_account", { userDatas, walletBalance, orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
+      res.render("my_account", { userDatas,userMeta, walletBalance, orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
     } else {
       res.render("my_account", { cart, addressData, profilename, message: "false" });
 
@@ -203,14 +203,18 @@ const updateProfile = async (req, res) => {
       },
       { new: true }
     );
-
-
+   
+     res.status(200).send()
+    
 
   } catch (error) {
+    res.status(500).send();
+
     console.log(error);
 
   }
 };
+
 
 const userOrderDetails = async (req, res) => {
   try {
@@ -218,11 +222,9 @@ const userOrderDetails = async (req, res) => {
     const orderId = req.query.orderId;
     const user = req.session.user;
     const orderDetails = await Order.findById(orderId);
-    console.log(orderDetails)
     const orderProductData = orderDetails.product;
     const addressId = orderDetails.address;
     const walletBalance = user.wallet.balance
-    console.log(`user walletBalance${walletBalance}`)
     const addressData = await Address.findById(addressId);
 
     res.render("userOrderDetails", {
@@ -443,7 +445,6 @@ const addNewAddress = async (req, res) => {
       pincode: req.body.pincode,
       is_default: false,
     });
-    console.log(`ship adrs..${address}`);
 
     await address.save();
     res.status(200).send();
@@ -457,7 +458,6 @@ const updateAddress = async (req, res) => {
   try {
     const addressId = req.query.addressId;
 
-    // console.log(addressId);
 
     const updatedAddress = await Address.findByIdAndUpdate(
       addressId,

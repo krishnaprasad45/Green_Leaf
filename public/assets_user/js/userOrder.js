@@ -74,11 +74,9 @@ const updateOrder = async (orderId, orderStatus) => {
 
         const walletBalance = Number(document.getElementById('userWallet').value)
         const grandTotal = Number(document.getElementById('grandTotal').value)
-        console.log(`.....${walletBalance}`);
-        console.log(grandTotal);
+     
 
         const updatedBalance = walletBalance + grandTotal
-        console.log(`..updatedBalance...${updatedBalance}`);
         
         const paymentMethod = document.getElementById('paymentMethod').innerHTML
 
@@ -94,9 +92,7 @@ const updateOrder = async (orderId, orderStatus) => {
                 total: grandTotal
             })
         })
-        console.log("waiting for response")
         const data = await response.json()
-        console.log(`res-data ${data.message}`)
 
         const orderStatusBtn = document.getElementById('orderStatusBtn')
 
@@ -112,7 +108,6 @@ const updateOrder = async (orderId, orderStatus) => {
 
             if (result.value) {
 
-                console.log(data.refund)
 
                 const expectedDate = document.getElementById('expectedDate')
                 expectedDate.classList.add("d-none")
@@ -179,12 +174,9 @@ paymentRadios.forEach((radio) => {
 
 
 function handleAddressSelection() {
-    console.log("fn handle address selection")
     const selectedAddress = document.querySelector('input[name="selectedAddress"]:checked');
-    console.log(`selectedAddress ${selectedAddress}`)
 
     const selectedPayment = document.querySelector(".payment-radio:checked");
-    console.log(`selectedPayment ${selectedPayment}`)
 
 
     if (selectedAddress && selectedPayment) {
@@ -272,7 +264,6 @@ const razorpay = async (selectedPayment) => {
 
 const wallet = async (selectedPayment) => {
     try {
-        console.log(`wallet section${selectedPayment}`)
 
         const balance = document.getElementById('userWallet').value
         const subTotal = Number(document.getElementById('subTotalValue').value)

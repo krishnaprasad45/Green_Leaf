@@ -1,13 +1,24 @@
-<div class="single-zoom-thumb">
-  <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
-      <% image.forEach(function(img, index) { %>
-          <li>
-              <a class="elevatezoom-gallery active" data-update=""
-                 data-image="<%= img.url %>"
-                 data-zoom-image="<%= image[0].url %>">
-                  <img src="<%= img.url %>" alt="zo-th-<%= index + 1 %>" />
-              </a>
-          </li>
-      <% }); %>
-  </ul>
-</div>
+const addNewAddress = async (req, res) => {
+    try {
+      const userData = req.session.user;
+      const userId = userData._id;
+  
+      const address = new Address({
+        userId: userId,
+        name: req.body.name,
+        mobile: req.body.mobile,
+        addressLine: req.body.addressLine,
+        city: req.body.city,
+        email: req.body.email,
+        state: req.body.state,
+        pincode: req.body.pincode,
+        is_default: false,
+      });
+  
+      await address.save();
+      res.status(200).send();
+    } catch (error) {
+      res.status(500).send();
+      console.log(error.message);
+    }
+  };

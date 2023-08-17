@@ -39,12 +39,9 @@ const addToWishlist = async (req, res) => {
         const userId = userDatas._id;
         const productId = req.query.productId;
         const cartId = req.query.id;
-        console.log(`cartid = ${cartId}`)
 
         const existItem = await userData.findOne({ _id: userId, wishlist: { $in: [productId] } });
-        console.log(existItem)
         if (!existItem) {
-            console.log(46)
             await userData.updateOne({ _id: userId }, { $push: { wishlist: productId } });
             await productData.updateOne({ _id: productId }, { isWishlisted: true });
            

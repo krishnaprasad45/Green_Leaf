@@ -258,7 +258,7 @@ const removeFromWishlist = async (productId) => {
                 title: "Product has been removed successfully",
                 showConfirmButton: true,
                 confirmButtonText: "OK",
-                confirmButtonColor: "#4CAF50",
+                confirmButtonColor: "#79a206",
             });
 
             document.getElementById("row" + productId).innerHTML = "";
@@ -288,7 +288,7 @@ const removeFromCart = async (productId, cartId) => {
         title: "Product has been removed successfully",
         showConfirmButton: true,
         confirmButtonText: "OK",
-        confirmButtonColor: "#4CAF50",
+        confirmButtonColor: "#79a206",
       });
       document.getElementById("row" + productId).innerHTML = "";
     }
@@ -360,7 +360,7 @@ if (addAddress) {
                         title: "Successfully added new address",
                         showConfirmButton: true,
                         confirmButtonText: "OK",
-                        confirmButtonColor: "#4CAF50",
+                        confirmButtonColor: "#79a206",
                     });
                     addAddressPanel.style.display = "none";
                     form.reset();
@@ -379,6 +379,55 @@ if (addAddress) {
         }
     });
 }
+
+
+// USER PROFILE UPDATE - STARTS
+
+const profileUpdate = document.getElementById("profileUpdate");
+
+if (profileUpdate) {
+    profileUpdate.addEventListener("submit", async function (event) {
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        
+            try {
+                const response = await fetch("/profileUpdate", {
+                    method: "POST",
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (response.ok) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Profile updated",
+                        showConfirmButton: true,
+                        confirmButtonText: "OK",
+                        confirmButtonColor: "#79a206",
+                    });
+                    addAddressPanel.style.display = "none";
+                    form.reset();
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Some error occured",
+                        showConfirmButton: true,
+                        confirmButtonText: "CANCEL",
+                        confirmButtonColor: "#D22B2B",
+                    });
+                }
+            } catch (error) {
+                console.log("Error:", error.message);
+            }
+        
+    });
+}
+
+// USER PROFILE UPDATE - ENDS
 
 const addAddressCheckout = document.getElementById("addAddressCheckout");
 
@@ -409,7 +458,7 @@ if (addAddressCheckout) {
                         title: "Successfully added new address",
                         showConfirmButton: true,
                         confirmButtonText: "OK",
-                        confirmButtonColor: "#4CAF50",
+                        confirmButtonColor: "#79a206",
                     });
                     if (result.value) {
                         form.reset();
@@ -557,7 +606,7 @@ if (updateAddress) {
                         title: "Successfully Updated address",
                         showConfirmButton: true,
                         confirmButtonText: "OK",
-                        confirmButtonColor: "#4CAF50",
+                        confirmButtonColor: "#79a206",
                     });
                     editAddressPanel.style.display = "none";
                     form.reset();
@@ -606,7 +655,7 @@ const deleteAddress = async (addressId) => {
                     title: "Address has been deleted successfully",
                     showConfirmButton: true,
                     confirmButtonText: "OK",
-                    confirmButtonColor: "#4CAF50",
+                    confirmButtonColor: "#79a206",
                 });
                 document.getElementById("addressCard" + addressId).innerHTML = "";
             } else {
@@ -653,7 +702,7 @@ if (updateProfile) {
                         title: "Successfully Updated address",
                         showConfirmButton: true,
                         confirmButtonText: "OK",
-                        confirmButtonColor: "#4CAF50",
+                        confirmButtonColor: "#79a206",
                     });
                     editAddressPanel.style.display = "none";
                     form.reset();
