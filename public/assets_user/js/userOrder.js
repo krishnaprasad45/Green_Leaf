@@ -106,7 +106,7 @@ const razorpay = async (selectedPayment)=>{
             "order_id": undefined, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response){
                 cashOnDelivery(selectedPayment)
-                console.log(response);
+               
             },
             "theme": {
                 "color": "#3399cc"
@@ -126,7 +126,7 @@ const razorpay = async (selectedPayment)=>{
 
 const wallet = async(selectedPayment)=>{
     try {
-          console.log("wallet script code")
+       
         const balance = document.getElementById('userWallet').value
         const subTotal = Number(document.getElementById('subTotalValue').value)
         const insufficientBalanceAlert = document.getElementById('insufficientBalanceAlert');
@@ -194,14 +194,14 @@ function selectCoupon(code) {
 
 // COUPON VALIDATION STARTS
 const validateCoupon = async () => {
-    console.log(60);
+   
     coupon = document.getElementById("checkout-discount-input").value;
-    console.log(`coupon${coupon}`);
+   
 
     const subTotal = Number(document.getElementById("subTotalValue").value);
-    console.log(`subtotal${subTotal}`);
 
-    console.log(222);
+
+ 
 
     const response = await fetch("/validateCoupon", {
         method: "POST",
@@ -216,14 +216,13 @@ const validateCoupon = async () => {
     });
 
     couponData = await response.json();
-    console.log(`couponData${couponData}`);
-    console.log(`newTotal${couponData.newTotal}`);
+
 
 
     const couponModel = document.getElementById("couponModel");
     const couponDiscount = document.getElementById("couponDiscount");
     const couponMessage = document.getElementById("couponMessage")
-    console.log(couponMessage);
+  
 
     const subTotalElement = document.getElementById("subTotal");
     const subTotalText = document.getElementById("subTotalText");
@@ -294,7 +293,7 @@ const validateCoupon = async () => {
 
         subTotalElement.innerHTML = `₹ ${couponData.newTotal}`;
         subTotalText.innerHTML = "Total After Coupon Discount:";
-        console.log(222);
+       
         document.getElementById('subTotalValue').value = couponData.newTotal
         document.getElementById('subTotal').value = couponData.newTotal
 

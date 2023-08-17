@@ -62,7 +62,6 @@ const addToWishlist = async (req, res) => {
 };
 
 const addToCartFromWishlist = async (req, res) => {
-    console.log("addToCartFromWishlist - wishlist controller")
     try {
         const userDatas = req.session.user;
         const userId = userDatas._id;

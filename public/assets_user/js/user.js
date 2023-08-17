@@ -76,7 +76,7 @@ const addToCart = async (productId) => {
     }
 };
 const moveToCart = async (productId) => {
-    alert("move to cart script user.js")
+   
     try {
         const response = await fetch(`/addToCartFromWishlist?productId=${productId}`, {
             method: "GET",
@@ -149,31 +149,31 @@ function calculateSubtotal() {
 
 
   const totalPrice = async (id, act, stock) => {
-    console.log(11);
+   
     const elem = document.getElementById(id);
-    console.log(`elem ${elem}`)
+
     if (act == "inc") elem.value ? (elem.value = Number(elem.value) + 1) : "";
     else if (act == "dec") elem.value > 1 ? (elem.value = Number(elem.value) - 1) : "";
 
     let subTotal = 0;
     let datas = [];
     let length = document.getElementsByName("productTotal").length;
-    console.log(`length ${length}`)
+   
 
     for (let i = 0; i < length; i++) {
         
         const quantity = parseFloat(document.getElementsByName("num-product")[i].value);
-    console.log(`quantity ${quantity}`)
+   
         
         const price = parseFloat(document.getElementsByName("productprice")[i].value);
-        console.log(`price ${price}`)
+       
 
         const productTotal = isNaN(quantity) || isNaN(price) ? 0 : quantity * price;
-        console.log(`productTotal ${productTotal}`)
+
 
         document.getElementsByName("productTotal")[i].innerText = "₹ " + productTotal.toFixed();
         subTotal += productTotal;
-        console.log(`subTotal ${subTotal}`)
+        
         
 
         datas.push({
@@ -182,9 +182,9 @@ function calculateSubtotal() {
         });
     }
     // console.log(document.getElementById("subTotal")); 
-    console.log(subTotal);
+
     document.getElementById("subTotal").innerText = "₹ " + subTotal.toFixed();
-    console.log(33);
+ 
     let data = await fetch("/cartUpdation", {
         method: "POST",
         headers: {
@@ -202,8 +202,8 @@ function calculateSubtotal() {
 
 
 const addToWishlist = async (productId, cartId) => {
-    alert("204")
-    console.log(205)
+   
+    
     const response = await fetch(`/addToWishlist?productId=${productId}&cartId=${cartId}`, {
         method: "GET",
         headers: {
@@ -261,7 +261,7 @@ const removeFromWishlist = async (productId) => {
                 confirmButtonText: "OK",
                 confirmButtonColor: "#4CAF50",
             });
-            console.log(`.......${productId}`);
+
             document.getElementById("row" + productId).innerHTML = "";
         } else {
             Swal.fire({
@@ -324,11 +324,11 @@ const removeFromCart = async (productId, cartId) => {
 ///////////Add Address///////////
 
 const addAddressBtn = document.getElementById("addAddressBtn");
-console.log(100)
+
 const addAddressPanel = document.getElementById("addAddressPanel");
 
 if (addAddressBtn) {
-console.log(101)
+
 
     addAddressBtn.addEventListener("click", function () {
         addAddressPanel.style.display = "block";
@@ -382,21 +382,20 @@ if (addAddress) {
 }
 
 const addAddressCheckout = document.getElementById("addAddressCheckout");
-console.log(10)
-console.log(addAddressCheckout)
+
+
 if (addAddressCheckout) {
-console.log(22)
 
     addAddressCheckout.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const form = event.target;
-        console.log(`f-details ${form}`);
+     
         const formData = new FormData(form);
        
         // if ($(form).valid()) {
             try {
-                console.log("try")
+             
                 const response = await fetch("/addNewAddress", {
                     method: "POST",
                     body: JSON.stringify(Object.fromEntries(formData)),
