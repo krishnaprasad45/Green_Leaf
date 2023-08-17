@@ -250,6 +250,7 @@ const totalPrice = async (id, act, stock) => {
 
 
 const addToWishlist = async (productId, cartId) => {
+   
 
     const response = await fetch(`/addToWishlist?productId=${productId}&cartId=${cartId}`, {
         method: "GET",
