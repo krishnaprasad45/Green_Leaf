@@ -18,6 +18,8 @@ const checkout = async (req, res) => {
 
         if (req.session.user) {
             const userDatas = req.session.user;
+            const userMeta = await userData.findById(userDatas._id)
+            const walletBalance = userMeta.wallet.balance;
             req.session.checkout = true;
 
             const userId = userDatas._id;
@@ -75,13 +77,13 @@ const updateCart = async (req, res) => {
 };
 
 
-var walletBalance = 0;
+
 
 const placeOrder = async (req, res) => {
     try {
 
         const userDatas = req.session.user;
-        walletBalance = userDatas.wallet.balance
+        const walletBalance = userDatas.wallet.balance
         const userId = userDatas._id;
 
         const addressId = req.body.selectedAddress;
@@ -293,8 +295,11 @@ const updateOrder = async (req, res) => {
     try {
         console.log("update midle ware");
         const orderId = req.query.orderId;
-        const status = req.body.status;
-        console.log(orderId, status);
+        const userId = req.session.user._id;
+        console.log(`userId....${userId}`)
+        const status = req.query.orderStatus;
+        const updatedBalance = req.body.wallet
+        console.log(orderId, status, updatedBalance);
 
         if (status === "Delivered") {
             const returnEndDate = new Date();
@@ -313,6 +318,7 @@ const updateOrder = async (req, res) => {
                 { new: true }
             );
         } else if (status === "Cancelled") {
+
             await Order.findByIdAndUpdate(
                 orderId,
                 {
@@ -323,6 +329,16 @@ const updateOrder = async (req, res) => {
                 },
                 { new: true }
             );
+            await userData.findByIdAndUpdate(
+                userId,
+                {
+                    $set: {
+                        'wallet.balance': updatedBalance
+                    }
+                },
+                { new: true }
+            );
+
         } else {
             await Order.findByIdAndUpdate(
                 orderId,
@@ -337,7 +353,7 @@ const updateOrder = async (req, res) => {
         console.log("update midle ware done");
 
         res.json({
-            messaage: "Success",
+            message: "Cancelled",
         });
     } catch (error) {
         console.log(error.message);

@@ -164,6 +164,32 @@
 
                                     </div>
                                 </div>
+                                                    <!-- insufficient balance alert starts -->
+
+                            <div class="col-lg-12 d-flex justify-content-end sticky-alert p-0">
+
+                                <div class="col-lg-4">
+                                    <div class="row ">
+                            
+                                
+                            
+                                <div id="insufficientBalanceAlert" class="alert alert-danger d-none align-items-center alert-dismissible" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+                                        <use xlink:href="#exclamation-triangle-fill" />
+                                    </svg>
+                                    <div style="margin-left: 7px;">
+                                        Insufficient balance in your wallet <br> Please choose another payment method
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                
+                                
+                            
+                                    </div>
+                                </div>
+                            
+                                </div>
+                            <!-- insufficient balance alert ends -->
 
                             </div>
                             <!-- </form> -->
@@ -235,7 +261,7 @@
                                     <div class="payment-option">
                                         <input id="pay1" class="payment-radio" value="Cash On Delivery" onchange="handleAddressSelection()"
                                             name="payment" type="radio" data-bs-target="createp_account" />
-                                        <label for="pay3" data-bs-toggle="collapse" data-bs-target="#collapseCashOnDelivery"
+                                        <label for="pay1" data-bs-toggle="collapse" data-bs-target="#collapseCashOnDelivery"
                                             aria-controls="collapseCashOnDelivery">
                                             <div class="icon-container">
                                                 <img src="assets/img/icon/cash-on-delivery.png" alt="" style="width: 50px; height: 50px;" class="payment-icon">
@@ -288,32 +314,7 @@
 
                             <!-- payment method ends -->
 
-                            <!-- insufficient balance alert starts -->
-
-                            <div class="col-lg-12 d-flex justify-content-end sticky-alert p-0">
-
-                                <div class="col-lg-4">
-                                    <div class="row ">
-                            
-                                
-                            
-                                <div id="insufficientBalanceAlert" class="alert alert-danger d-none align-items-center alert-dismissible" role="alert">
-                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
-                                        <use xlink:href="#exclamation-triangle-fill" />
-                                    </svg>
-                                    <div style="margin-left: 7px;">
-                                        Insufficient balance in your wallet <br> Please choose another payment method
-                                    </div>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                                
-                                
-                            
-                                    </div>
-                                </div>
-                            
-                                </div>
-                            <!-- insufficient balance alert ends -->
+        
                         </div>
                     </div>
                 </div>

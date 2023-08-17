@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 
 
- const helperFunction = require("../../helperFunctions/userHelper");
+const helperFunction = require("../../helperFunctions/userHelper");
 const productmodel = require("../model/product");
 const Category = require("../model/category");
 const Address = require("../model/address");
@@ -69,7 +69,7 @@ const index = async (req, res) => {
     const productDatas = await productData.find();
     const logged = req.session.user
     const bannerData = await Banner.find({ active: true });
-    
+
 
 
     if (req.session.user) {
@@ -84,18 +84,18 @@ const index = async (req, res) => {
       const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
       const cart = user.cart;
       let subTotal = 0;
-  
+
       if (cart.length == 0) {
-        return res.render("index", { productDatas,bannerData, logged, message: "false" });
+        return res.render("index", { productDatas, bannerData, logged, message: "false" });
       } else {
         cart.forEach((val) => {
           val.total = val.product.price * val.quantity;
           subTotal += val.total;
         });
-        res.render("index", { productDatas,bannerData, userDatas, cart, subTotal, categoryData, message: "true" });
+        res.render("index", { productDatas, bannerData, userDatas, cart, subTotal, categoryData, message: "true" });
       }
     } else {
-      res.render("index", { productDatas,bannerData, logged, message: "false" });
+      res.render("index", { productDatas, bannerData, logged, message: "false" });
 
     }
 
@@ -163,11 +163,12 @@ const my_account = async (req, res) => {
       const orderData = await Order.find({ userId: userId });
       const productDatas = await productData.find();
 
-     
+
 
       //transactions data here
       req.session.checkout = true
-      walletBalance=userDatas.wallet.balance
+     const userMeta = await userData.findById(userId)
+     const walletBalance = userMeta.wallet.balance;
       const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
       const profilename = userDatas.user_name
 
@@ -178,7 +179,7 @@ const my_account = async (req, res) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;
       });
-      res.render("my_account", { userDatas, walletBalance , orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
+      res.render("my_account", { userDatas, walletBalance, orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
     } else {
       res.render("my_account", { cart, addressData, profilename, message: "false" });
 
@@ -214,24 +215,26 @@ const updateProfile = async (req, res) => {
 const userOrderDetails = async (req, res) => {
   try {
 
-      const orderId = req.query.orderId;
+    const orderId = req.query.orderId;
+    const user = req.session.user;
+    const orderDetails = await Order.findById(orderId);
+    console.log(orderDetails)
+    const orderProductData = orderDetails.product;
+    const addressId = orderDetails.address;
+    const walletBalance = user.wallet.balance
+    console.log(`user walletBalance${walletBalance}`)
+    const addressData = await Address.findById(addressId);
 
-      const orderDetails = await Order.findById(orderId);
-      const orderProductData = orderDetails.product;
-      const addressId = orderDetails.address;
+    res.render("userOrderDetails", {
+      orderDetails,
+      orderProductData,
+      addressData,
+      walletBalance,
+      message: "",
 
-      const addressData = await Address.findById(addressId);
-
-      res.render("userOrderDetails", {
-          orderDetails,
-          orderProductData,
-          addressData,
-          user: req.session.admin,
-          message:"",
-          
-      });
+    });
   } catch (error) {
-      console.log(error.message);
+    console.log(error.message);
   }
 };
 
@@ -249,7 +252,7 @@ const productDetails = async (req, res) => {
     const userData = req.session.user
     const product = await productData.findById(productId);
     const image = product.imageUrl
-    res.render("productDetails", { product,userData,cartId:null, image, message: "" });
+    res.render("productDetails", { product, userData, cartId: null, image, message: "" });
   } catch (error) {
     res.status(500).send(error.message);
   }

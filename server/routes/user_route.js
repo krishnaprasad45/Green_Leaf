@@ -61,6 +61,8 @@ user_route.post('/updateAddress', userController.updateAddress)
 
 user_route.post('/placeOrder', orderController.placeOrder)
 user_route.get('/orderSuccess', orderController.orderSuccess)
+user_route.post('/updateOrder', orderController.updateOrder)
+
 user_route.get('/userOrderDetails', userController.userOrderDetails)
 
 user_route.get('/wishlist', isLogin, blockCheck, wishlistController.loadWishlist)

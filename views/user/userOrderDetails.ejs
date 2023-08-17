@@ -132,7 +132,7 @@
                     <% } %>
                       <li>
                         <span class="detail-label">Payment Method:</span>
-                        <span class="detail-value">
+                        <span class="detail-value" id="paymentMethod">
                           <%= orderDetails.paymentMethod %>
                         </span>
                       </li>
@@ -160,10 +160,136 @@
                             <br>
                             <h4 class="detail-label">Total:</h4>
                            <strong><h4 class="detail-value">₹ <%= orderDetails.total %>/-</h4></strong> 
+                           <input type="hidden" id="grandTotal" value="<%= orderDetails.total %>">
+
                           </li>
                             <!-- Add more order details here -->
             </ul>
           </div>
+
+          <!-- extra -->
+          <div class="row">
+
+            <div class="col-lg-12 product product-list pb-0">
+                <div class="product-desc-content">
+                    <h6>Delivery & returns</h6>
+                    <p>
+                        We hope you’ll love every purchase, but if you ever need to return an item you can do so
+                        within <strong>7 days </strong>of receipt. For further assistance, contact our customer support team.
+                        We're here to help!"</p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+             
+                <script>
+                    function momentLoadedSuccessfully() {
+                      console.log('Moment.js loaded successfully.');
+                      // You can do additional tasks or operations here
+                    }
+                  </script>
+                
+                <% if (orderDetails.ExpectedDeliveryDate) { %>
+                <div id="expectedDate" class="dates pt-2">
+                    <div class="row ">
+
+                        <div class="col-lg-10 d-flex align-items-center m-0">
+
+                            <h4 class="m-0">Sit back and relax. Your items will arrive by  :</h4>
+
+                            <h4 class="ml-2 mb-0" style="color: green;"><%= (new Date(orderDetails.ExpectedDeliveryDate)).toDateString() %></h4>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <% } %>
+                <% if (orderDetails.deliveredDate) { %>
+                    <div class="dates pt-2">
+                        <div class="row ">
+                           
+                            <div class="col-lg-4 d-flex align-items-center ml-2">
+                                <b class="m-0">Return Valid Till : </b>
+                                <b class="ml-2"> <%= (new Date(orderDetails.returnEndDate)).toDateString() %>
+                                </b>
+                                
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                <input type="hidden" id="userWallet" value="<%= walletBalance %>" >
+
+                <div class="refund-return-information mb-2 pt-1">
+                    <div class="row">
+                        <div class="col-lg-3 mt-2">
+                            <div class="product">
+                            
+                                <% if (orderDetails.status === "Delivered") { %>
+                                <% if (returnEndDate <= currentDate) { %>
+                                <div id="orderStatusBtn">
+                                    <p style="color: #c96;" class="disabled btn-product btn-cart icon-info-circle"><span>Return Period Over</span></p>
+                                </div>
+                                <% } else { %>
+                                <div id="orderStatusBtn">
+                                    <p onclick="returnOrder()" class="btn-product btn-cart icon-info-circle"><span id="updateOrder" class="btn btn-sm btn-primary " >Return Order</span></p>
+                                </div>
+                                <% } %>
+                                <% } else if (orderDetails.status === "Cancelled") { %>
+                                <div id="orderStatusBtn">
+                                    <p style="color: rgb(219, 19, 19);" class="disabled btn-product btn-cart icon-info-circle"><span>Order Cancelled </span></p>
+                                </div>
+                                <% } else if (orderDetails.status === "Returned") { %>
+                                <div id="orderStatusBtn">
+                                    <h3 style="color: rgb(250, 141, 32);" class="disabled btn-product btn-cart icon-info-circle"><span>Order Returned</span></h3>
+                                </div>
+                                <% } else if (orderDetails.status === "Pending") { %>
+                                <div id="orderStatusBtn">
+                                    <p onclick="cancelOrder()" class="btn btn-sm btn-primary "><span id="updateOrder" >Cancel Order</span></p>
+                                </div>
+                                <% } %>
+                                <input type="hidden" id="orderId" value="<%= orderDetails._id %>">
+                            </div>
+                        </div>
+
+                        <% if (orderDetails.status === "Returned") { %>
+                        <div class="col-lg-8 ml-4 mr-4">
+                            <div class="success-message">
+                                <i class="fa-solid fa-circle-check" style="color: #2fad01;"></i>
+                                <h4 class="error-title">Refund Initiated</h4>
+                            </div>
+                            <div class="refund-message">
+                                <p>wil be refelected in your wallet within <strong>7 business days</strong></p>
+                            </div>
+                        </div>
+                        <% } %>
+
+                        <% if ((orderDetails.status === "Cancelled") && (orderDetails.paymentMethod === "Razorpay" || orderDetails.paymentMethod === "Wallet")) { %>
+                        <div class="col-lg-8 ml-4 mr-4">
+                            <div class="success-message">
+                                <i class="fa-solid fa-circle-check" style="color: #2fad01;"></i>
+                                <h4 class="error-title">Refund Initiated</h4>
+                            </div>
+                            <div class="refund-message">
+                                <p>wil be refelected in your wallet within <strong>7 business days</strong></p>
+                            </div>
+                        </div>
+                        <% } %>
+
+                        <div id="refundMessage" class="col-lg-8 ml-4 mr-4 d-none">
+                            <div class="success-message">
+                                <i class="fa-solid fa-circle-check" style="color: #2fad01;"></i>
+                                <h1 class="error-title">Refund Initiated</h1>
+                            </div>
+                            <div class="refund-message">
+                                <p>wil be refelected in your wallet within <strong>7 business days</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <!-- extra -->
+          
+
        
       
         </div>

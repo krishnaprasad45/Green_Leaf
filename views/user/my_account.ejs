@@ -81,10 +81,10 @@
                                                     <th>Order ID</th>
                                                     <th>Orderd Date</th>
                                                     <!-- <th>Expected Date</th> -->
-                                                    <th>Status</th>
                                                     <th>Total</th>
-                                                    <th>Actions</th>
-                                                    <th><strong>X</strong></th>
+                                                    <th>Status</th>
+                                                    <th>Details</th>
+                                                    <!-- <th><strong>X</strong></th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -99,18 +99,38 @@
                                                             <%= (new Date(data.date)).toDateString() %>
                                                         </td>
 
-                                                        <!-- Assuming data.ExpectedDeliveryDate contains the given timestamp -->
-                                                        <!-- <td>
-                                                            <%= (new Date(data.ExpectedDeliveryDate)).toDateString() %>
-                                                        </td> -->
-                                                        <td><span class="success">
-                                                                <%=data.status%>
-                                                            </span></td>
                                                         <td>
                                                             <%=data.total%>/-
                                                         </td>
-                                                        <td><a href="/userOrderDetails?orderId=<%= data._id %>" class="view">view</a></td>
-                                                        <td><a href="cart.html" class="view">cancel</a></td>
+                                                        <!-- order status -->
+                                                        <% if (data.status==="Pending" ) { %>
+                                                            <td style="color: orange; font-weight: 400;">
+                                                                <%= data.status %>
+                                                            </td>
+                                                            <% } else if (data.status==="Shipped" ) { %>
+                                                                <td style="color: green; font-weight: 400;">
+                                                                    <%= data.status %>
+                                                                </td>
+                                                                <% } else if (data.status==="Delivered" ) { %>
+                                                                    <td style="color: teal; font-weight: 400;">
+                                                                        <%= data.status %>
+                                                                    </td>
+                                                                    <% } else if (data.status==="Cancelled" ) { %>
+                                                                        <td style="color: red; font-weight: 400;">
+                                                                            <%= data.status %>
+                                                                        </td>
+                                                                        <% } else if (data.status==="Returned" ) { %>
+                                                                            <td
+                                                                                style="color: purple; font-weight: 400;">
+                                                                                <%= data.status %>
+                                                                            </td>
+                                                                            <% } %>
+                                                                                <!-- order status ends -->
+                                                                               
+                                                                                <td><a href="/userOrderDetails?orderId=<%= data._id %>"
+                                                                                        class="view">view</a></td>
+                                                                                <!-- <td><a href="cart.html"
+                                                                                        class="view">cancel</a></td> -->
                                                     </tr>
                                                     <%})%>
                                             </tbody>
@@ -150,11 +170,13 @@
                                 </div>
                                 <div class="tab-pane" id="profile">
                                     <h4>
-                                       <strong><%=userDatas.user_name%></strong> 
+                                        <strong>
+                                            <%=userDatas.user_name%>
+                                        </strong>
                                     </h4>
                                     <br>
                                     <address>
-                                       
+
                                         <span><strong>Email: </strong>
                                             <%=userDatas.email%>
                                         </span>
@@ -179,7 +201,7 @@
                                     <h4 class="billing-address">Billing address</h4>
                                     <% addressData.forEach((Data)=> { %>
                                         <address>
-                                            <a href="#" class="view" style="color: blue;" >Edit</a>
+                                            <a href="#" class="view" style="color: blue;">Edit</a>
                                             <br>
                                             <span><strong> Name: </strong>
                                                 <%=Data.name%>
@@ -216,10 +238,12 @@
                                 <div class="tab-pane" id="mywallet">
 
                                     <h3>Wallet Money</h3>
-                                   <h3><%=walletBalance%>/-</h3> 
-                                 
+                                    <h3>
+                                        <%=walletBalance%>/-
+                                    </h3>
+
                                 </div>
-                                   
+
 
                                 <div class="tab-pane fade" id="account-details">
                                     <h3>Account details </h3>
@@ -229,7 +253,8 @@
                                                 <form action="/updateProfile" method="post">
 
                                                     <label>Name</label>
-                                                    <input type="text" value="<%=userDatas.user_name%>" name="user_name">
+                                                    <input type="text" value="<%=userDatas.user_name%>"
+                                                        name="user_name">
 
                                                     <label>Email</label>
                                                     <input type="text" value="<%=userDatas.email%>" name="email">
@@ -237,7 +262,7 @@
                                                     <input type="text" value="<%=userDatas.phone%>" name="phone">
                                                     <label>Address</label>
                                                     <input type="text" value="<%=userDatas.address%>" name="address">
-                                                    
+
 
 
                                                     <div class="save_button primary_btn default_button">
@@ -257,7 +282,7 @@
 
                                                     <label>Name</label>
                                                     <input type="text" name="user_name">
-                                                    
+
                                                     <label>Email</label>
                                                     <input type="text" name="email-name">
                                                     <label>Phone</label>
@@ -270,7 +295,7 @@
                                                     <input type="text" name="address">
                                                     <label>PIN </label>
                                                     <input type="text" name="pincode">
-                                                    
+
 
 
                                                     <div class="save_button primary_btn default_button">
@@ -360,7 +385,7 @@
 
             </script>
 
-<!-- address edit -->
+            <!-- address edit -->
 
 
 
