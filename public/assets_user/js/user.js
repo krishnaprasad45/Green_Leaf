@@ -26,20 +26,54 @@ const proceedToCheckout = async () => {
         });
     }
 };
+const userEditAddress = async () => {
+    try {
+        alert("userEditAddress script ")
+        event.preventDefault();
+        const addressId = document.getElementById("userAddressId").value;
+        console.log("addressId...." +addressId )
+
+        const response = await fetch(`/editAddressPost?addressId=${addressId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await response.json();
+
+        if (data.message === "ok") {
+            window.location.href = "/my_account";
+        } else {
+            data.forEach((element) => {
+                Swal.fire({
+                    icon: "success",
+                    title: `Address updated`,
+                    showConfirmButton: true,
+                    confirmButtonText: "CANCEL",
+                    confirmButtonColor: "#D22B2B",
+                });
+            });
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+};
 
 
 const addToCart = async (productId) => {
-    
+
     try {
-    event.preventDefault();
+        event.preventDefault();
         const addToCartButton = document.getElementById("addToCartBtn");
         let quantity = document.getElementById(productId).value;
-        
-        if(quantity === null){
+
+        if (quantity === null) {
             quantity = 1
         }
-        
-        
+
+
 
         const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
 
@@ -48,7 +82,7 @@ const addToCart = async (productId) => {
                 "Content-Type": "application/json",
             },
         });
-        
+
         let data = await response.json();
 
 
@@ -76,7 +110,7 @@ const addToCart = async (productId) => {
     }
 };
 const moveToCart = async (productId) => {
-   
+
     try {
         const response = await fetch(`/addToCartFromWishlist?productId=${productId}`, {
             method: "GET",
@@ -126,30 +160,30 @@ const moveToCart = async (productId) => {
 function calculateSubtotal() {
     let cartItems = document.querySelectorAll('tbody#cart-container tr');
     let subtotal = 0;
-  
+
     cartItems.forEach((item) => {
-      let productId = item.querySelector('[id^="product_id"]').value;
-      let productPrice = parseFloat(item.querySelector(`#product-price-${productId}`).textContent.replace('/-', ''));
-      let quantity = parseInt(item.querySelector(`#product-quantity-${productId} input`).value);
-      let productTotalElement = item.querySelector(`#product_total-${productId}`);
-  
-      let productTotal = productPrice * quantity;
-      subtotal += productTotal;
-  
-      productTotalElement.textContent = `${productTotal}/-`;
+        let productId = item.querySelector('[id^="product_id"]').value;
+        let productPrice = parseFloat(item.querySelector(`#product-price-${productId}`).textContent.replace('/-', ''));
+        let quantity = parseInt(item.querySelector(`#product-quantity-${productId} input`).value);
+        let productTotalElement = item.querySelector(`#product_total-${productId}`);
+
+        let productTotal = productPrice * quantity;
+        subtotal += productTotal;
+
+        productTotalElement.textContent = `${productTotal}/-`;
     });
-  
+
     // Display the subtotal in all the places with the class "subtotal-placeholder"
     let subtotalElements = document.querySelectorAll('.subtotal-placeholder');
     subtotalElements.forEach((element) => {
-      element.textContent = `${subtotal}/-`;
+        element.textContent = `${subtotal}/-`;
     });
-  }
+}
 
 
 
-  const totalPrice = async (id, act, stock) => {
-   
+const totalPrice = async (id, act, stock) => {
+
     const elem = document.getElementById(id);
 
     if (act == "inc") elem.value ? (elem.value = Number(elem.value) + 1) : "";
@@ -158,23 +192,23 @@ function calculateSubtotal() {
     let subTotal = 0;
     let datas = [];
     let length = document.getElementsByName("productTotal").length;
-   
+
 
     for (let i = 0; i < length; i++) {
-        
+
         const quantity = parseFloat(document.getElementsByName("num-product")[i].value);
-   
-        
+
+
         const price = parseFloat(document.getElementsByName("productprice")[i].value);
-       
+
 
         const productTotal = isNaN(quantity) || isNaN(price) ? 0 : quantity * price;
 
 
         document.getElementsByName("productTotal")[i].innerText = "₹ " + productTotal.toFixed();
         subTotal += productTotal;
-        
-        
+
+
 
         datas.push({
             id: document.getElementsByName("productId")[i].value,
@@ -184,7 +218,7 @@ function calculateSubtotal() {
     // console.log(document.getElementById("subTotal")); 
 
     document.getElementById("subTotal").innerText = "₹ " + subTotal.toFixed();
- 
+
     let data = await fetch("/cartUpdation", {
         method: "POST",
         headers: {
@@ -195,14 +229,14 @@ function calculateSubtotal() {
         }),
     });
 };
-  
+
 
 
 
 
 
 const addToWishlist = async (productId, cartId) => {
-   
+
     const response = await fetch(`/addToWishlist?productId=${productId}&cartId=${cartId}`, {
         method: "GET",
         headers: {
@@ -276,45 +310,45 @@ const removeFromWishlist = async (productId) => {
 
 const removeFromCart = async (productId, cartId) => {
     const response = await fetch(`/removeCart?productId=${productId}&cartId=${cartId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
     });
-  
+
     if (response.ok) {
-      Swal.fire({
-        icon: "success",
-        title: "Product has been removed successfully",
-        showConfirmButton: true,
-        confirmButtonText: "OK",
-        confirmButtonColor: "#79a206",
-      });
-      document.getElementById("row" + productId).innerHTML = "";
+        Swal.fire({
+            icon: "success",
+            title: "Product has been removed successfully",
+            showConfirmButton: true,
+            confirmButtonText: "OK",
+            confirmButtonColor: "#79a206",
+        });
+        document.getElementById("row" + productId).innerHTML = "";
     }
-  };
-  
-  const removeCartalert = async (productId, cartId) => {
+};
+
+const removeCartalert = async (productId, cartId) => {
     const result = await Swal.fire({
-      title: "Remove item from cart",
-      text: "Do you want to remove this product from your cart?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Move to wishlist",
-      cancelButtonText: "Yes, remove",
+        title: "Remove item from cart",
+        text: "Do you want to remove this product from your cart?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Move to wishlist",
+        cancelButtonText: "Yes, remove",
     });
-  
+
     // Handle the user's response
     if (result.value) {
-      addToWishlist(productId, cartId);
+        addToWishlist(productId, cartId);
     } else if (result.dismiss === Swal.DismissReason.cancel) {
-      removeFromCart(productId, cartId);
+        removeFromCart(productId, cartId);
     }
-  };
-  
-  
+};
+
+
 //
 
 
@@ -391,39 +425,39 @@ if (profileUpdate) {
         const form = event.target;
         const formData = new FormData(form);
 
-        
-            try {
-                const response = await fetch("/profileUpdate", {
-                    method: "POST",
-                    body: JSON.stringify(Object.fromEntries(formData)),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
 
-                if (response.ok) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Profile updated",
-                        showConfirmButton: true,
-                        confirmButtonText: "OK",
-                        confirmButtonColor: "#79a206",
-                    });
-                    addAddressPanel.style.display = "none";
-                    form.reset();
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Some error occured",
-                        showConfirmButton: true,
-                        confirmButtonText: "CANCEL",
-                        confirmButtonColor: "#D22B2B",
-                    });
-                }
-            } catch (error) {
-                console.log("Error:", error.message);
+        try {
+            const response = await fetch("/profileUpdate", {
+                method: "POST",
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Profile updated",
+                    showConfirmButton: true,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#79a206",
+                });
+                addAddressPanel.style.display = "none";
+                form.reset();
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Some error occured",
+                    showConfirmButton: true,
+                    confirmButtonText: "CANCEL",
+                    confirmButtonColor: "#D22B2B",
+                });
             }
-        
+        } catch (error) {
+            console.log("Error:", error.message);
+        }
+
     });
 }
 
@@ -438,44 +472,44 @@ if (addAddressCheckout) {
         event.preventDefault();
 
         const form = event.target;
-     
-        const formData = new FormData(form);
-       
-        // if ($(form).valid()) {
-            try {
-             
-                const response = await fetch("/addNewAddress", {
-                    method: "POST",
-                    body: JSON.stringify(Object.fromEntries(formData)),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
 
-                if (response.ok) {
-                    const result = await Swal.fire({
-                        icon: "success",
-                        title: "Successfully added new address",
-                        showConfirmButton: true,
-                        confirmButtonText: "OK",
-                        confirmButtonColor: "#79a206",
-                    });
-                    if (result.value) {
-                        form.reset();
-                        location.reload();
-                    }
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Some error occured",
-                        showConfirmButton: true,
-                        confirmButtonText: "CANCEL",
-                        confirmButtonColor: "#D22B2B",
-                    });
+        const formData = new FormData(form);
+
+        // if ($(form).valid()) {
+        try {
+
+            const response = await fetch("/addNewAddress", {
+                method: "POST",
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
+                const result = await Swal.fire({
+                    icon: "success",
+                    title: "Successfully added new address",
+                    showConfirmButton: true,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#79a206",
+                });
+                if (result.value) {
+                    form.reset();
+                    location.reload();
                 }
-            } catch (error) {
-                console.log("Error:", error.message);
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Some error occured",
+                    showConfirmButton: true,
+                    confirmButtonText: "CANCEL",
+                    confirmButtonColor: "#D22B2B",
+                });
             }
+        } catch (error) {
+            console.log("Error:", error.message);
+        }
         // }
     });
 }

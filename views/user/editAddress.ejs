@@ -1,0 +1,145 @@
+<%-include('_header.ejs') -%>
+
+
+    <!--header area start-->
+
+    <!--offcanvas menu area start-->
+    <div class="off_canvars_overlay">
+
+    </div>
+
+
+    <!--offcanvas menu area end-->
+    <%-include('_head_section.ejs') -%>
+        <!--header area end-->
+
+        <!--breadcrumbs area start-->
+        <div class="breadcrumbs_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb_content">
+                            <h3>Edit Address</h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--breadcrumbs area end-->
+
+        <!-- customer login start -->
+        <div class="customer_login">
+            <div class="container">
+                <div class="row">
+                    <!--login area start-->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="account_form">
+                            <form id="userEditAddress">
+
+                                <input type="text" id="userAddressId" value="<%= address.id %>" hidden>
+
+                                <p>
+                                </p>
+
+                                <p>
+                                    <label>Name <span>*</span></label>
+                                    <input type="text" name="name" value="<%=address.name%>">
+                                </p>
+                                <p>
+                                    <label>Mobile <span>*</span></label>
+                                    <input type="text" name="mobile" value="<%=address.mobile%>">
+                                </p>
+                                <p>
+                                    <label>Email <span>*</span></label>
+                                    <input type="text" name="email" value="<%=address.email%>">
+                                </p>
+                                <p>
+                                    <label>Address <span>*</span></label>
+                                    <!-- <input type="text" name="addressLine" value="<%=address.addressLine%>"> -->
+                                    <textarea name="addressLine" id="" cols="30"
+                                        rows="10"><%=address.addressLine%> </textarea>
+                                </p>
+                                <p>
+                                    <label>City <span>*</span></label>
+                                    <input type="text" name="city" value="<%=address.city%>">
+                                </p>
+                                <p>
+                                    <label>State <span>*</span></label>
+                                    <input type="text" name="state" value="<%=address.state%>">
+                                </p>
+                                <p>
+                                    <label>PIN <span>*</span></label>
+                                    <input type="text" name="pincode" value="<%=address.pincode%>">
+                                </p>
+                                <div class="login_submit">
+
+                                    <button type="submit" style="background-color: #79a206;">Update</button>
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <!--login area start-->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- customer login end -->
+
+        <!--brand area start-->
+
+        <!--brand area end-->
+
+        <!--footer area start-->
+        <%-include('_footer.ejs') -%>
+
+            <!--footer area end-->
+
+
+            <!-- JS
+============================================ -->
+            <!--jquery min js-->
+            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+            <!--popper min js-->
+            <script src="assets/js/popper.js"></script>
+            <!--bootstrap min js-->
+            <script src="assets/js/bootstrap.min.js"></script>
+            <!--owl carousel min js-->
+            <script src="assets/js/owl.carousel.min.js"></script>
+            <!--slick min js-->
+            <script src="assets/js/slick.min.js"></script>
+            <!--magnific popup min js-->
+            <script src="assets/js/jquery.magnific-popup.min.js"></script>
+            <!--counterup min js-->
+            <script src="assets/js/jquery.counterup.min.js"></script>
+            <!--jquery countdown min js-->
+            <script src="assets/js/jquery.countdown.js"></script>
+            <!--jquery ui min js-->
+            <script src="assets/js/jquery.ui.js"></script>
+            <!--jquery elevatezoom min js-->
+            <script src="assets/js/jquery.elevatezoom.js"></script>
+            <!--isotope packaged min js-->
+            <script src="assets/js/isotope.pkgd.min.js"></script>
+            <!--slinky menu js-->
+            <script src="assets/js/slinky.menu.js"></script>
+            <!-- Plugins JS -->
+            <script src="assets/js/plugins.js"></script>
+
+            <!-- Main JS -->
+            <script src="assets/js/main.js"></script>
+            <script src="assets/js/user.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+
+
+            </body>
+
+
+            <!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
+
+            </html>

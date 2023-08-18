@@ -204,7 +204,7 @@
                                     <h4 class="billing-address">Billing address</h4>
                                     <% addressData.forEach((Data)=> { %>
                                         <address>
-                                            <a class="view" style="color: blue;">Edit</a>
+                                            <a href="/editAddress?addressId=<%=Data._id%>" class="view" style="color: blue;">Edit</a>
                                             <br>
                                             <span><strong> Name: </strong>
                                                 <%=Data.name%>

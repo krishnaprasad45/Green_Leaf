@@ -500,6 +500,48 @@ const updateAddress = async (req, res) => {
   }
 };
 
+const editAddress = async (req,res) => {
+  try{
+    const addressId = req.query.addressId;
+    const address = await Address.findById(addressId)
+    console.log(address + "address")
+    res.render("editAddress",{address,message:""})
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+const editAddressPost = async (req, res) => {
+  try {
+    console.log("editAddressPost m.w")
+    const addressId = req.query.addressId;
+
+     console.log("addressID" + addressId)
+    const updatedAddress = await Address.findByIdAndUpdate(
+      addressId,
+      {
+        name: req.body.name,
+        mobile: req.body.mobile,
+        addressLine: req.body.addressLine,
+        email: req.body.email,
+        city: req.body.city,
+        state: req.body.state,
+        pincode: req.body.pincode,
+      },
+      { new: true }
+    );
+
+    if (updatedAddress) {
+      res.status(200).send();
+    } else {
+      res.status(500).send();
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 
 
 // Exporting the functions
@@ -522,5 +564,7 @@ module.exports = {
   updateAddress,
   updateProfile,
   userOrderDetails,
+  editAddress,
+  editAddressPost,
 
 };
