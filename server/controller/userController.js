@@ -33,9 +33,13 @@ const shop = async (req, res) => {
 
     if (search) {
       productDatas = await productData.find({
-        product_name: { $regex: ".*" + search + ".*", $options: "i" },
-      })
-    } else {
+        $or: [
+          { product_name: { $regex: ".*" + search + ".*", $options: "i" } },
+          { category: { $regex: ".*" + search + ".*", $options: "i" } }
+        ]
+      });
+    }
+     else {
       productDatas = await productData.find()
 
     }

@@ -42,13 +42,35 @@ const earnings = (req, res) => {
 
 const viewOrders = async (req, res) => {
     try {
-        const [productDatas, orderData, userDatas, categoryData] = await Promise.all([
-            productData.find(),
-            Order.find(),
-            userData.findOne(),
-            Category.find({ is_blocked: false })
-        ]);
+        const productDatas = await productData.find();
 
+          // Search codes here
+
+    let orderData;
+
+    const search = req.query.search;
+
+    if (search) {
+        orderData = await Order.find({
+        $or: [
+          { paymentMethod: { $regex: ".*" + search + ".*", $options: "i" } },
+          { status: { $regex: ".*" + search + ".*", $options: "i" } },
+          { orderId: { $regex: ".*" + search + ".*", $options: "i" } },
+      
+        ]
+      });
+    }
+     else {
+        orderData = await Order.find()
+
+    }
+    // Search Function ends
+
+
+
+
+        const userDatas = await userData.findOne();
+        const categoryData = await Category.find({ is_blocked: false });
        
         const userId = userDatas._id;
 
@@ -77,8 +99,34 @@ const customers = (req, res) => {
 
 const viewCustomers = async (req, res) => {
     try {
-        const data = await customerData.find();
-        res.render('customers', { data });
+       
+     
+          // Search codes here
+
+    let data;
+
+    const search = req.query.search;
+
+    if (search) {
+      data = await customerData.find({
+        $or: [
+          { user_name: { $regex: ".*" + search + ".*", $options: "i" } },
+          { email: { $regex: ".*" + search + ".*", $options: "i" } },
+          { phone: { $regex: ".*" + search + ".*", $options: "i" } },
+        ]
+      });
+    }
+     else {
+        data = await customerData.find()
+
+    }
+    // Search Function ends
+
+
+    
+
+
+        res.render('customers', { data ,search });
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');

@@ -38,10 +38,10 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#!">
             All
-            <span class="badge bg-purple rounded-pill ms-1">492</span>
+            <span class="badge bg-purple rounded-pill ms-1"><%=data.length%></span>
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#!">
             Top 100
           </a>
@@ -55,18 +55,19 @@
           <a class="nav-link" href="#!">
             Archived
           </a>
-        </li>
+        </li> -->
       </ul>
 
       <!-- report -->
       <div id="customers" class="card mt-4">
         <div class="card-header">
-          <form class="flex-grow-1 pe-3">
+          <form action="/viewCategory" method="get" class="flex-grow-1 pe-3">
             <div class="input-group input-group-flush pt-2">
               <div class="input-group-text ps-0">
-                <i class="fas fa-search relative-top--2"></i>
+                <i class=" relative-top--2"></i>
               </div>
-              <input type="search" class="search form-control" placeholder="Search...">
+              <input type="search" name="search" id="q"  class="search form-control" placeholder="Search..." >
+              <button hidden type="submit">  <i class="fas fa-search relative-top--2"></i></button>
             </div>
           </form>
 
@@ -100,6 +101,14 @@
                 <th>&nbsp;</th>
               </tr>
             </thead>
+            <% if(data.length == 0) {%>
+      
+              <div class="alert alert-warning">
+                <strong>Search not found</strong> 
+               </div>
+
+               <%}%>
+
             <tbody class="list">
               <% data.forEach(async (category)=> { %>
                 <tr>

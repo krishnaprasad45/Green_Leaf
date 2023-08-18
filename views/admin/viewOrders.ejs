@@ -25,22 +25,17 @@
           </span>
           Export
         </a>
-        <!-- <a href="#!" class="btn btn-purple hover-lift-light shadow-light-sm">
-          <span class="svg-icon svg-icon-sm text-white me-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-a</title><line x1="256" y1="112" x2="256" y2="400" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="400" y1="256" x2="112" y2="256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-          </span>
-          Create payment
-        </a> -->
+       
       </div>
 
       <!-- filters -->
       <ul class="nav nav-tabs nav-overflow mt-3 mt-md-0">
         <li class="nav-item">
-          <a class="nav-link" href="#!">
+          <a class="nav-link active" href="#!">
             All
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#!">
             Succeeded
           </a>
@@ -54,20 +49,23 @@
           <a class="nav-link" href="#!">
             Archived
           </a>
-        </li>
+        </li> -->
       </ul>
 
       <!-- report -->
       <div id="payments" class="card mt-4">
         <div class="card-header">
-          <form class="flex-grow-1 pe-3">
+          <form action="/viewOrders" method="get" class="flex-grow-1 pe-3">
             <div class="input-group input-group-flush pt-2">
               <div class="input-group-text ps-0">
-                <i class="fas fa-search relative-top--2"></i>
+                <i class=" relative-top--2"></i>
               </div>
-              <input type="search" class="search form-control" placeholder="Search...">
+              <input type="search" name="search" id="q"  class="search form-control" placeholder="Search..." required>
+              <button hidden type="submit">  <i class="fas fa-search relative-top--2"></i></button>
             </div>
           </form>
+
+        
 
           <div class="ms-auto mt-2 mt-md-0">
             <button type="button" class="btn btn-white btn-sm dropdown-toggle" data-bs-toggle="dropdown">
@@ -179,7 +177,7 @@
                     </a>
                     <div class="dropdown-menu shadow-light-sm" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" href="/orderDetails?orderId=<%= data._id %>">View Details</a>
-                      <a class="dropdown-item" href="">Refund payment</a>
+                      <!-- <a class="dropdown-item" href="">Refund payment</a> -->
                       <!-- <a class="dropdown-item" href="#!">Send receipt</a> -->
                     </div>
                   </div>

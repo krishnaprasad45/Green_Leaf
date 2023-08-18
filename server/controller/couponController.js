@@ -7,7 +7,26 @@ const moment = require("moment");
 
 const loadCoupons = async (req, res) => {
     try {
-        const coupon = await Coupon.find();
+        // const coupon = await Coupon.find();
+            // Search codes here
+
+    let coupon;
+
+    const search = req.query.search;
+
+    if (search) {
+        coupon = await Coupon.find({
+        $or: [
+          { code: { $regex: ".*" + search + ".*", $options: "i" } },
+       
+        ]
+      });
+    }
+     else {
+        coupon = await Coupon.find()
+
+    }
+    // Search Function ends
 
         const couponData = coupon.map((element) => {
             const formattedDate = moment(element.expiryDate).format("MMMM D, YYYY");
@@ -18,7 +37,7 @@ const loadCoupons = async (req, res) => {
             };
         });
 
-    res.render("viewCoupon", { couponData, user: req.session.admin  });
+        res.render("viewCoupon", { couponData, user: req.session.admin });
     } catch (error) {
         console.log(error.messaage);
     }
@@ -87,7 +106,7 @@ const validateCoupon = async (req, res) => {
     try {
         const { coupon, subTotal } = req.body;
         const couponData = await Coupon.findOne({ code: coupon });
-         
+
         if (!couponData) {
             res.json("invalid");
         } else if (couponData.expiryDate < new Date()) {
@@ -100,7 +119,7 @@ const validateCoupon = async (req, res) => {
             const userId = req.session.user._id;
 
             const couponUsed = await Coupon.findOne({ _id: couponId, usedBy: { $in: [userId] } });
-            
+
             if (couponUsed) {
                 res.json("already used");
             } else {
@@ -111,21 +130,21 @@ const validateCoupon = async (req, res) => {
                 const discountValue = Number(discount);
                 const couponDiscount = (subTotal * discountValue) / 100;
 
-                if(couponDiscount < minDiscount){
+                if (couponDiscount < minDiscount) {
 
                     res.json("minimum value not met")
 
-                }else{
-                    if(couponDiscount > maxDiscount){
+                } else {
+                    if (couponDiscount > maxDiscount) {
                         discountAmount = maxDiscount
                         maximum = "maximum"
-                    }else{
+                    } else {
                         discountAmount = couponDiscount
                     }
-                    
+
                     const newTotal = subTotal - discountAmount;
                     const couponName = coupon;
-    
+
                     res.json({
                         couponName,
                         discountAmount,
@@ -133,8 +152,8 @@ const validateCoupon = async (req, res) => {
                         maximum
                     });
                 }
-                
-                
+
+
             }
         }
     } catch (error) {

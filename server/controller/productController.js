@@ -167,7 +167,34 @@ const deleteProduct = async (req, res) => {
 
 const viewProducts = async (req, res) => {
   try {
-    const data = await productData.find();
+    // const data = await productData.find();
+
+
+        // Search codes here
+
+        let data;
+
+        const search = req.query.search;
+    
+        if (search) {
+          data = await productData.find({
+            $or: [
+              { product_name: { $regex: ".*" + search + ".*", $options: "i" } },
+              { category: { $regex: ".*" + search + ".*", $options: "i" } },
+            ]
+          });
+        }
+         else {
+            data = await productData.find()
+    
+        }
+        // Search Function ends
+
+
+
+
+
+
     res.render("view_products", { data });
   } catch (error) {
     console.error(error);
@@ -182,7 +209,28 @@ const addCategory = (req, res) => {
 
 const viewCategory = async (req, res) => {
   try {
-    const data = await categoryData.find();
+    
+
+    // Search codes here
+
+    let data;
+
+    const search = req.query.search;
+
+    if (search) {
+      data = await categoryData.find({
+        $or: [
+          { category: { $regex: ".*" + search + ".*", $options: "i" } },
+      
+        ]
+      });
+    }
+     else {
+        data = await categoryData.find()
+
+    }
+    // Search Function ends
+
     res.render("viewCategory", { data });
   } catch (error) {
     console.error(error);

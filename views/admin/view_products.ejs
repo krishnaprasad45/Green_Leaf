@@ -53,12 +53,13 @@
       <!-- report -->
       <div id="customers" class="card mt-4">
         <div class="card-header">
-          <form class="flex-grow-1 pe-3">
+          <form action="/view_products" method="get" class="flex-grow-1 pe-3">
             <div class="input-group input-group-flush pt-2">
               <div class="input-group-text ps-0">
-                <i class="fas fa-search relative-top--2"></i>
+                <i class=" relative-top--2"></i>
               </div>
-              <input type="search" class="search form-control" placeholder="Search...">
+              <input type="search" name="search" id="q"  class="search form-control" placeholder="Search..." >
+              <button hidden type="submit">  <i class="fas fa-search relative-top--2"></i></button>
             </div>
           </form>
 
@@ -77,6 +78,14 @@
 
         <div class="table-responsive">
           <table class="table table-sm card-table table-nowrap">
+            <% if(data.length == 0) {%>
+      
+              <div class="alert alert-warning">
+                <strong>Search not found</strong> 
+               </div>
+
+               <%}%>
+          
             <thead>
               <tr>
                 
@@ -102,6 +111,7 @@
                 <th>&nbsp;</th>
               </tr>
             </thead>
+        
             <tbody class="list">
               <% data.forEach(async (product)=> { %>
                 <tr>
@@ -154,8 +164,7 @@
                 </tr>
                 <% }) %>
             </tbody>
-            
-            
+
 
             
           </table>
@@ -196,6 +205,7 @@
       </div>
     </div>
   </div>
+  
 
   <!-- JAVASCRIPT
   ============================================-->

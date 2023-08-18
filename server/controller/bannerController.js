@@ -6,55 +6,73 @@ require("dotenv").config();
 
 
 const loadBanners = async (req, res) => {
+
     try {
-        const bannerData = await Banner.find();
+        let bannerData;
+        // Search codes here
+        const search = req.query.search;
 
-        if (req.session.bannerSave) {
-            res.render("viewBanners", {
-                bannerData,
-                bannerSave: "Banner created successfully!",
-                user: req.session.admin,
-                data: null
+        if (search) {
+            bannerData = await Banner.find({
+                $or: [
+                    { title: { $regex: ".*" + search + ".*", $options: "i" } },
+                    { subtitle: { $regex: ".*" + search + ".*", $options: "i" } },
+                    { label: { $regex: ".*" + search + ".*", $options: "i" } },
+                ]
             });
-            req.session.bannerSave = false;
-        } else if (req.session.bannerExist) {
-            res.render("viewBanners", {
-                bannerData,
-                bannerSave: "",
-                bannerExist: "Banner alreddy exitsts!",
-                bannerDelete: "",
-                user: req.session.admin,
-                data: null
-
-            });
-            req.session.bannerExist = false;
-        } else if (req.session.bannerUpdate) {
-            res.render("viewBanners", {
-                bannerData,
-                bannerUpdate: "Banner updated successfully!",
-                bannerDelete: "",
-                bannerSave: "",
-                bannerExist: "",
-                user: req.session.admin,
-                data: null
-
-            });
-            req.session.bannerUpdate = false;
-        } else if (req.session.bannerDelete) {
-            res.render("viewBanners", {
-                bannerData,
-                bannerDelete: "Banner deleted successfully!",
-                bannerUpdate: "",
-                bannerSave: "",
-                bannerExist: "",
-                user: req.session.admin,
-                data: null
-
-            });
-            req.session.bannerDelete = false;
         }
         else {
-            res.render("viewBanners", { bannerData, user: req.session.admin, bannerSave: "", bannerExist: "", bannerUpdate: "", bannerDelete: "", data: null });
+            bannerData = await Banner.find()
+            // Search Function ends
+
+            if (req.session.bannerSave) {
+                res.render("viewBanners", {
+                    bannerData,
+                    bannerSave: "Banner created successfully!",
+                    user: req.session.admin,
+                    data: null
+                });
+                req.session.bannerSave = false;
+            } else if (req.session.bannerExist) {
+                res.render("viewBanners", {
+                    bannerData,
+                    bannerSave: "",
+                    bannerExist: "Banner alreddy exitsts!",
+                    bannerDelete: "",
+                    user: req.session.admin,
+                    data: null
+
+                });
+                req.session.bannerExist = false;
+            } else if (req.session.bannerUpdate) {
+                res.render("viewBanners", {
+                    bannerData,
+                    bannerUpdate: "Banner updated successfully!",
+                    bannerDelete: "",
+                    bannerSave: "",
+                    bannerExist: "",
+                    user: req.session.admin,
+                    data: null
+
+                });
+                req.session.bannerUpdate = false;
+            } else if (req.session.bannerDelete) {
+                res.render("viewBanners", {
+                    bannerData,
+                    bannerDelete: "Banner deleted successfully!",
+                    bannerUpdate: "",
+                    bannerSave: "",
+                    bannerExist: "",
+                    user: req.session.admin,
+                    data: null
+
+                });
+                req.session.bannerDelete = false;
+            }
+
+            else {
+                res.render("viewBanners", { bannerData, user: req.session.admin, bannerSave: "", bannerExist: "", bannerUpdate: "", bannerDelete: "", data: null });
+            }
         }
     } catch (error) {
         console.log(error.message);
@@ -75,7 +93,7 @@ const addNewBanner = async (req, res) => {
     try {
         const { title, label, bannerSubtitle } = req.body
         const image = req.file
-      
+
 
         if (!image) {
             console.log("No image uploaded");
@@ -88,7 +106,7 @@ const addNewBanner = async (req, res) => {
             req.session.bannerExist = true;
             res.redirect("/banners");
         } else {
-      
+
 
             const result = await cloudinary.uploader.upload(image.path, {
                 folder: "Banners",
@@ -167,7 +185,7 @@ const updateBannerPost = async (req, res) => {
         const bannerExist = await Banner.findOne({ title: title });
         const imageExist = await Banner.findOne({ 'image.url': result.secure_url });
 
-        
+
 
 
 
