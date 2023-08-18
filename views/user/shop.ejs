@@ -46,23 +46,25 @@
                             <button data-role="grid_3" type="button" class=" btn-grid-3" data-bs-toggle="tooltip"
                                 title="3"></button>
 
-                            <button data-role="grid_4" type="button" class=" btn-grid-4" data-bs-toggle="tooltip"
+                            <button data-role="grid_4" type="button" class="active btn-grid-4" data-bs-toggle="tooltip"
                                 title="4"></button>
 
-                            <button data-role="grid_list" type="button" class="active btn-list" data-bs-toggle="tooltip"
+                            <button data-role="grid_list" type="button" class="btn-list" data-bs-toggle="tooltip"
                                 title="List"></button>
                         </div>
-                        <div class=" niceselect_option">
-                            <form class="select_option" action="#">
-                                <select name="orderby" id="short">
-
-                                    <option selected value="1">Sort by average rating</option>
-                                    <option value="2">Sort by popularity</option>
-                                    <option value="3">Sort by newness</option>
-                                    <option value="4">Sort by price: low to high</option>
-                                    <option value="5">Sort by price: high to low</option>
-                                    <option value="6">Product Name: Z</option>
-                                </select>
+                        <div>
+                            <form action="#">
+                                <div class="form-group">
+                             
+                                    <select class="form-control" id="sortSelect">
+                                        <option value="1">Sort by average rating</option>
+                                        <option value="2">Sort by popularity</option>
+                                        <option value="3">Sort by newness</option>
+                                        <option value="4">Sort by price: low to high</option>
+                                        <option value="5">Sort by price: high to low</option>
+                                        <option value="6">Product Name: Z</option>
+                                    </select>
+                                </div>
                             </form>
                         </div>
                         <div class="page_amount">
@@ -70,6 +72,17 @@
                         </div>
                     </div>
                     <!--shop toolbar end-->
+
+
+                     <% if(productDatas.length == 0) { %>
+
+                        <div class="alert alert-warning">
+                           <strong>Search not found</strong> 
+                          </div>
+                          
+<%}%>
+
+                   
 
                     <div class="row shop_wrapper grid_list">
                         <% productDatas.forEach(async (product)=> { %>
@@ -162,14 +175,8 @@
                       
                         <% }) %>
                        
-                        
-                       
-                        
-                      
-                      
-                    
-                       
                     </div>
+                    
 
                     <div class="shop_toolbar t_bottom">
                         <div class="pagination">
@@ -231,9 +238,9 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-    <script src="/assets/js/user.js"></script>
+    <!-- <script src="/assets/js/user.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script> -->
     
     
     

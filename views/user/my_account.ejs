@@ -1,5 +1,8 @@
 <%-include('_header.ejs') -%>
 
+
+
+
     <!--header area start-->
 
     <!--offcanvas menu area start-->
@@ -126,7 +129,7 @@
                                                                             </td>
                                                                             <% } %>
                                                                                 <!-- order status ends -->
-                                                                               
+
                                                                                 <td><a href="/userOrderDetails?orderId=<%= data._id %>"
                                                                                         class="view">view</a></td>
                                                                                 <!-- <td><a href="cart.html"
@@ -201,7 +204,7 @@
                                     <h4 class="billing-address">Billing address</h4>
                                     <% addressData.forEach((Data)=> { %>
                                         <address>
-                                            <a href="#" class="view" style="color: blue;">Edit</a>
+                                            <a class="view" style="color: blue;">Edit</a>
                                             <br>
                                             <span><strong> Name: </strong>
                                                 <%=Data.name%>
@@ -234,6 +237,12 @@
                                         <% }) %>
                                 </div>
 
+                                <!--  -->
+
+                                
+
+                                <!--  -->
+
                                 <!-- wallet -->
                                 <div class="tab-pane" id="mywallet">
 
@@ -244,6 +253,18 @@
 
                                 </div>
 
+                                <!--  -->
+                                <div class="tab-pane" id="address">
+                                    <div id="editPopup" class="popup" style="display: none;">
+                                        <div class="popup-content">
+                                            <span class="close" id="closePopup">&times;</span>
+                                            <!-- Your form elements go here -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--  -->
+
 
                                 <div class="tab-pane fade" id="account-details">
                                     <h3>Account details </h3>
@@ -253,8 +274,7 @@
                                                 <form id="profileUpdate">
 
                                                     <label>Name</label>
-                                                    <input type="text" value="<%=userMeta.user_name%>"
-                                                        name="user_name">
+                                                    <input type="text" value="<%=userMeta.user_name%>" name="user_name">
 
                                                     <label>Email</label>
                                                     <input type="text" value="<%=userMeta.email%>" name="email">
@@ -386,7 +406,6 @@
             </script>
 
             <!-- address edit -->
-
 
 
 

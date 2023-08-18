@@ -25,8 +25,21 @@ let password;
 // Function to render views
 const shop = async (req, res) => {
   try {
-    const productDatas = await productData.find();
-    const logged = req.session.user
+    // Search codes here
+
+    let productDatas;
+
+    const search = req.query.search;
+
+    if (search) {
+      productDatas = await productData.find({
+        product_name: { $regex: ".*" + search + ".*", $options: "i" },
+      })
+    } else {
+      productDatas = await productData.find()
+
+    }
+    // Search Function ends
 
 
     if (req.session.user) {
@@ -50,7 +63,7 @@ const shop = async (req, res) => {
       res.render("shop", { productDatas, userDatas, cart, subTotal, categoryData, message: "true" });
     }
     else {
-      res.render("shop", { productDatas, logged, message: "false" });
+      res.render("shop", { productDatas, message: "false" });
 
     }
 
@@ -167,8 +180,8 @@ const my_account = async (req, res) => {
 
       //transactions data here
       req.session.checkout = true
-     const userMeta = await userData.findById(userId)
-     const walletBalance = userMeta.wallet.balance;
+      const userMeta = await userData.findById(userId)
+      const walletBalance = userMeta.wallet.balance;
       const user = await userData.findOne({ _id: userId }).populate({ path: 'cart' }).populate({ path: 'cart.product', model: 'productCollection' });
       const profilename = userMeta.user_name
 
@@ -179,7 +192,7 @@ const my_account = async (req, res) => {
         val.total = val.product.price * val.quantity;
         subTotal += val.total;
       });
-      res.render("my_account", { userDatas,userMeta, walletBalance, orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
+      res.render("my_account", { userDatas, userMeta, walletBalance, orderData, categoryData, cart, addressData, profilename, message: "true", productDatas, subTotal });
     } else {
       res.render("my_account", { cart, addressData, profilename, message: "false" });
 
@@ -203,9 +216,9 @@ const updateProfile = async (req, res) => {
       },
       { new: true }
     );
-   
-     res.status(200).send()
-    
+
+    res.status(200).send()
+
 
   } catch (error) {
     res.status(500).send();
