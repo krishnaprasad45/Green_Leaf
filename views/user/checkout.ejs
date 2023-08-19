@@ -1,27 +1,28 @@
 <%-include('_header.ejs') -%>
-<style>
-    .payment-option {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
+    <style>
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-.payment-radio {
-    margin-right: 10px;
-}
+        .payment-radio {
+            margin-right: 10px;
+        }
 
 
 
-.label-text {
-    margin-left: 10px;
-}
+        .label-text {
+            margin-left: 10px;
+        }
 
-.panel-default {
-    background-color: #f0f0f0; /* Replace with your desired background color */
-    padding: 20px; /* Add some padding to create separation from the content */
-}
-
-</style>
+        .panel-default {
+            background-color: #f0f0f0;
+            /* Replace with your desired background color */
+            padding: 20px;
+            /* Add some padding to create separation from the content */
+        }
+    </style>
 
     <!--header area start-->
 
@@ -64,7 +65,8 @@
                                 <div class="ec-checkout-wrap margin-bottom-30">
                                     <% addressData.forEach(address=> { %>
                                         <div class="col-lg-5">
-                                            <div class="card card-dashboard " style="background-color: rgba(184, 206, 182, 0.36);">
+                                            <div class="card card-dashboard "
+                                                style="background-color: rgba(184, 206, 182, 0.36);">
                                                 <div class="card-body">
                                                     <input type="radio" id="address<%= address.id %>"
                                                         name="selectedAddress" value="<%= address.id %>"
@@ -90,7 +92,7 @@
                                                                                     <!-- <a href="/profile">Edit <i class="icon-edit"></i></a> -->
                                                     </label>
                                                 </div><!-- End .card-body -->
-                                                
+
                                             </div><!-- End .card-dashboard -->
                                             <br>
                                         </div><!-- End .col-lg-6 -->
@@ -166,32 +168,7 @@
 
                                     </div>
                                 </div>
-                                                    <!-- insufficient balance alert starts -->
 
-                            <div class="col-lg-12 d-flex justify-content-end sticky-alert p-0">
-
-                                <div class="col-lg-4">
-                                    <div class="row ">
-                            
-                                
-                            
-                                <div id="insufficientBalanceAlert" class="alert alert-danger d-none align-items-center alert-dismissible" role="alert">
-                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
-                                        <use xlink:href="#exclamation-triangle-fill" />
-                                    </svg>
-                                    <div style="margin-left: 7px;">
-                                        Insufficient balance in your wallet <br> Please choose another payment method
-                                    </div>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                                
-                                
-                            
-                                    </div>
-                                </div>
-                            
-                                </div>
-                            <!-- insufficient balance alert ends -->
 
                             </div>
                             <!-- </form> -->
@@ -245,6 +222,8 @@
                                     </tfoot>
                                 </table>
                             </div>
+
+
                             <!-- payment method starts -->
                             <div class="payment_method">
                                 <!-- <div class="panel-default">
@@ -261,62 +240,107 @@
                                 </div> -->
                                 <div class="panel-default">
                                     <div class="payment-option">
-                                        <input id="pay1" class="payment-radio" value="Cash On Delivery" onchange="handleAddressSelection()"
-                                            name="payment" type="radio" data-bs-target="createp_account" />
-                                        <label for="pay1" data-bs-toggle="collapse" data-bs-target="#collapseCashOnDelivery"
+                                        <input id="pay1" class="payment-radio" value="Cash On Delivery"
+                                            onchange="handleAddressSelection()" name="payment" type="radio"
+                                            data-bs-target="createp_account" />
+                                        <label for="pay1" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseCashOnDelivery"
                                             aria-controls="collapseCashOnDelivery">
                                             <div class="icon-container">
-                                                <img src="assets/img/icon/cash-on-delivery.png" alt="" style="width: 50px; height: 50px;" class="payment-icon">
+                                                <img src="assets/img/icon/cash-on-delivery.png" alt=""
+                                                    style="width: 50px; height: 50px;" class="payment-icon">
                                             </div>
                                             <div class="label-text"></div>
                                         </label>
-                                      
+
                                     </div>
-                                    
+
                                     <div class="payment-option">
-                                        <input id="pay2" class="payment-radio" value="Razorpay" onchange="handleAddressSelection()" name="payment"
-                                            type="radio" data-bs-target="createp_account" />
+                                        <input id="pay2" class="payment-radio" value="Razorpay"
+                                            onchange="handleAddressSelection()" name="payment" type="radio"
+                                            data-bs-target="createp_account" />
                                         <label for="pay2" data-bs-toggle="collapse" data-bs-target="#collapseRazorPay"
                                             aria-controls="collapseRazorPay">
                                             <div class="icon-container">
-                                                <img src="assets/img/icon/logo-razor-trim.png" alt="" class="payment-icon">
+                                                <img src="assets/img/icon/logo-razor-trim.png" alt=""
+                                                    class="payment-icon">
                                             </div>
                                             <div class="label-text"></div>
                                         </label>
-                                      
+
                                     </div>
-                                    
+
                                     <div class="payment-option">
-                                        <input id="pay3" class="payment-radio" value="Wallet" onchange="handleAddressSelection()" name="payment"
-                                            type="radio" data-bs-target="createp_account" />
-                                        <label for="pay3" data-bs-toggle="collapse" data-bs-target="#collapseDigitalWallet"
+                                        <input id="pay3" class="payment-radio" value="Wallet"
+                                            onchange="handleAddressSelection()" name="payment" type="radio"
+                                            data-bs-target="createp_account" />
+                                        <label for="pay3" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseDigitalWallet"
                                             aria-controls="collapseDigitalWallet">
                                             <div class="icon-container">
-                                                <img src="assets/img/icon/wallet.png" alt="" style="width: 50px; height: 50px;" class="payment-icon">
+                                                <img src="assets/img/icon/wallet.png" alt=""
+                                                    style="width: 50px; height: 50px;" class="payment-icon">
                                             </div>
                                             <div class="label-text"></div>
                                         </label>
                                         <div id="collapseDigitalWallet" class="collapse one" data-parent="#accordion">
                                             <div class="card-body">
-                                               <span>Your Wallet Balance is</span> <strong><h4 class="text-warning"><%= walletBalance %>/-</h4></strong>
+                                                <span>Your Wallet Balance is</span> <strong>
+                                                    <h4 class="text-warning">
+                                                        <%= walletBalance %>/-
+                                                    </h4>
+                                                </strong>
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <!-- insufficient balance alert starts -->
+
+                                    <div class="col-lg-12 d-flex justify-content-end sticky-alert p-0">
+
+                                        <div class="col-lg-4">
+                                            <div class="row ">
+
+
+
+                                                <div id="insufficientBalanceAlert"
+                                                    class="alert alert-danger d-none align-items-center alert-dismissible"
+                                                    role="alert">
+                                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                                        aria-label="Warning:">
+                                                        <use xlink:href="#exclamation-triangle-fill" />
+                                                    </svg>
+                                                    <div style="margin-left: 7px;">
+                                                        Insufficient balance in your wallet <br> Please choose another
+                                                        payment method
+                                                    </div>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- insufficient balance alert ends -->
+
                                     <input type="hidden" id="userWallet" value="<%= walletBalance %>">
-                                    
+
                                     <div class="order_button">
-                                        <button type="submit" disabled onclick="placeOrder()" id="place-order-btn">Place Order</button>
+                                        <button type="submit" disabled onclick="placeOrder()" id="place-order-btn">Place
+                                            Order</button>
                                     </div>
                                 </div>
                                 <br>
-                                
+
                                 <!-- </form> -->
+
                             </div>
 
                             <!-- payment method ends -->
 
-        
+
                         </div>
                     </div>
                 </div>
@@ -377,7 +401,7 @@
                 <script src="assets/js/slinky.menu.js"></script>
                 <!-- Plugins JS -->
                 <script src="assets/js/plugins.js"></script>
-              
+
 
 
 
@@ -389,7 +413,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
                 <script src="assets/js/user.js"></script>
 
-               
+
 
 
 
