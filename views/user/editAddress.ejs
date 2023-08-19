@@ -35,9 +35,10 @@
                     <!--login area start-->
                     <div class="col-lg-12 col-md-12">
                         <div class="account_form">
+                            <input type="text" id="userAddressIdEdit" value="<%=address._id %>" hidden>
+
                             <form id="userEditAddress">
 
-                                <input type="text" id="userAddressId" value="<%= address.id %>" hidden>
 
                                 <p>
                                 </p>
@@ -56,7 +57,6 @@
                                 </p>
                                 <p>
                                     <label>Address <span>*</span></label>
-                                    <!-- <input type="text" name="addressLine" value="<%=address.addressLine%>"> -->
                                     <textarea name="addressLine" id="" cols="30"
                                         rows="10"><%=address.addressLine%> </textarea>
                                 </p>

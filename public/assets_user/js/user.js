@@ -26,40 +26,88 @@ const proceedToCheckout = async () => {
         });
     }
 };
-const userEditAddress = async () => {
-    try {
-        alert("userEditAddress script ")
-        event.preventDefault();
-        const addressId = document.getElementById("userAddressId").value;
-        console.log("addressId...." +addressId )
+// const userEditAddress = async () => {
+//     try {
+//         alert("userEditAddress script ")
+//         event.preventDefault();
+//         const addressId = document.getElementById("userAddressIdEdit").value;
+//         console.log("addressId...." +addressId )
 
-        const response = await fetch(`/editAddressPost?addressId=${addressId}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+//         const response = await fetch(`/editAddressPost?addressId=${addressId}`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//         });
 
-        const data = await response.json();
+//         const data = await response.json();
 
-        if (data.message === "ok") {
-            window.location.href = "/my_account";
-        } else {
-            data.forEach((element) => {
+//         if (data.message === "ok") {
+            // window.location.href = "/my_account";
+//         } else {
+//             data.forEach((element) => {
+//                 Swal.fire({
+//                     icon: "success",
+//                     title: `Address updated`,
+//                     showConfirmButton: true,
+//                     confirmButtonText: "CANCEL",
+//                     confirmButtonColor: "#D22B2B",
+//                 });
+//             });
+//         }
+//     }
+//     catch (err) {
+//         console.log(err)
+//     }
+// };
+
+// user address edit
+
+const userEditAddress = document.getElementById("userEditAddress");
+const addressId = document.getElementById("userAddressIdEdit").value;
+
+if (userEditAddress) {
+    userEditAddress.addEventListener("submit", async function (event) {
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+
+        try {
+            const response = await fetch(`/editAddressPost?addressId=${addressId}`, {
+                method: "POST",
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
                 Swal.fire({
                     icon: "success",
-                    title: `Address updated`,
+                    title: "Address updated",
+                    showConfirmButton: true,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#79a206",
+                });
+                window.location.href = "/my_account";
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Some error occured",
                     showConfirmButton: true,
                     confirmButtonText: "CANCEL",
                     confirmButtonColor: "#D22B2B",
                 });
-            });
+            }
+        } catch (error) {
+            console.log("Error:", error.message);
         }
-    }
-    catch (err) {
-        console.log(err)
-    }
-};
+
+    });
+}
+
+// user address edit
 
 
 const addToCart = async (productId) => {

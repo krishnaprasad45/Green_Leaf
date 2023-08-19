@@ -538,7 +538,7 @@ const editAddressPost = async (req, res) => {
       res.status(500).send();
     }
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
