@@ -225,8 +225,6 @@
             <!-- modal area start-->
 
             <!-- modal area end-->
-
-
             <!-- JS
 ============================================ -->
             <!--jquery min js-->
@@ -254,20 +252,72 @@
             <!--slinky menu js-->
             <script src="assets/js/slinky.menu.js"></script>
             <!-- Plugins JS -->
-            <script src="assets/js/plugins.js"></script>
-            <script src="assets/js/user.js"></script>
+            <script src="/assets/js/plugins.js"></script>
+            <script src="/assets/js/user.js"></script>
 
             <!-- Main JS -->
-            <script src="assets/js/main.js"></script>
+            <script src="/assets/js/main.js"></script>
             <!-- <script src="/assets/js/user.js"></script> -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
                 integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <!-- <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script> -->
 
+            <script src="/assets/js/user.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
 
-
+            <script>
+                const addToCart = async (productId) => {
+                alert(231)
+                try {
+                event.preventDefault();
+                    const addToCartButton = document.getElementById("addToCartBtn");
+                    let quantity = document.getElementById(productId).value;
+                    
+                    if(quantity === null){
+                        quantity = 1
+                    }
+                    
+                    
+            
+                    const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
+            
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+                    
+                    let data = await response.json();
+            
+            
+            
+                    if (data.message === "Item already in cart!!") {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Product is already in cart.\n So quantity increased",
+                            showConfirmButton: true,
+                            confirmButtonColor: "#79a206",
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Product successfully added to cart",
+                            showConfirmButton: true,
+                            confirmButtonColor: "#79a206",
+                        });
+                    }
+                    }catch (error) {
+                        console.log("An error occurred:", error);
+                    // You can add code here to handle the error, show an error message, or perform any other necessary actions.
+                    }
+                };
+            </script>
+            
 
 
             </body>
