@@ -462,6 +462,7 @@ const addNewAddress = async (req, res) => {
       pincode: req.body.pincode,
       is_default: false,
     });
+    console.log(`ship adrs..${address}`);
 
     await address.save();
     res.status(200).send();

@@ -26,40 +26,7 @@ const proceedToCheckout = async () => {
         });
     }
 };
-// const userEditAddress = async () => {
-//     try {
-//         alert("userEditAddress script ")
-//         event.preventDefault();
-//         const addressId = document.getElementById("userAddressIdEdit").value;
-//         console.log("addressId...." +addressId )
 
-//         const response = await fetch(`/editAddressPost?addressId=${addressId}`, {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//         });
-
-//         const data = await response.json();
-
-//         if (data.message === "ok") {
-            // window.location.href = "/my_account";
-//         } else {
-//             data.forEach((element) => {
-//                 Swal.fire({
-//                     icon: "success",
-//                     title: `Address updated`,
-//                     showConfirmButton: true,
-//                     confirmButtonText: "CANCEL",
-//                     confirmButtonColor: "#D22B2B",
-//                 });
-//             });
-//         }
-//     }
-//     catch (err) {
-//         console.log(err)
-//     }
-// };
 
 // user address edit
 
@@ -106,7 +73,6 @@ if (userEditAddress) {
 
     });
 }
-
 // user address edit
 
 
@@ -512,52 +478,53 @@ if (profileUpdate) {
 // USER PROFILE UPDATE - ENDS
 
 const addAddressCheckout = document.getElementById("addAddressCheckout");
-
-
+console.log(10)
+console.log(addAddressCheckout)
 if (addAddressCheckout) {
+console.log(22)
 
     addAddressCheckout.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const form = event.target;
-
+        console.log(`f-details ${form}`);
         const formData = new FormData(form);
-
+       
         // if ($(form).valid()) {
-        try {
-
-            const response = await fetch("/addNewAddress", {
-                method: "POST",
-                body: JSON.stringify(Object.fromEntries(formData)),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (response.ok) {
-                const result = await Swal.fire({
-                    icon: "success",
-                    title: "Successfully added new address",
-                    showConfirmButton: true,
-                    confirmButtonText: "OK",
-                    confirmButtonColor: "#79a206",
+            try {
+                console.log("try")
+                const response = await fetch("/addNewAddress", {
+                    method: "POST",
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                 });
-                if (result.value) {
-                    form.reset();
-                    location.reload();
+
+                if (response.ok) {
+                    const result = await Swal.fire({
+                        icon: "success",
+                        title: "Successfully added new address",
+                        showConfirmButton: true,
+                        confirmButtonText: "OK",
+                        confirmButtonColor: "#4CAF50",
+                    });
+                    if (result.value) {
+                        form.reset();
+                        location.reload();
+                    }
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Some error occured",
+                        showConfirmButton: true,
+                        confirmButtonText: "CANCEL",
+                        confirmButtonColor: "#D22B2B",
+                    });
                 }
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Some error occured",
-                    showConfirmButton: true,
-                    confirmButtonText: "CANCEL",
-                    confirmButtonColor: "#D22B2B",
-                });
+            } catch (error) {
+                console.log("Error:", error.message);
             }
-        } catch (error) {
-            console.log("Error:", error.message);
-        }
         // }
     });
 }

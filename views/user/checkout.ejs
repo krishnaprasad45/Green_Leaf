@@ -64,7 +64,7 @@
                                 <div class="ec-checkout-wrap margin-bottom-30">
                                     <% addressData.forEach(address=> { %>
                                         <div class="col-lg-5">
-                                            <div class="card card-dashboard">
+                                            <div class="card card-dashboard " style="background-color: rgba(184, 206, 182, 0.36);">
                                                 <div class="card-body">
                                                     <input type="radio" id="address<%= address.id %>"
                                                         name="selectedAddress" value="<%= address.id %>"
@@ -90,7 +90,9 @@
                                                                                     <!-- <a href="/profile">Edit <i class="icon-edit"></i></a> -->
                                                     </label>
                                                 </div><!-- End .card-body -->
+                                                
                                             </div><!-- End .card-dashboard -->
+                                            <br>
                                         </div><!-- End .col-lg-6 -->
                                         <% }); %>
 
@@ -384,16 +386,15 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
                     integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
                     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script> -->
-                <!-- <script src="assets/js/user.js"></script> -->
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+                <script src="assets/js/user.js"></script>
 
-
+               
 
 
 
                 </body>
 
 
-                <!-- Mirrored from htmldemo.net/lukani/lukani/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:51:47 GMT -->
 
                 </html>
