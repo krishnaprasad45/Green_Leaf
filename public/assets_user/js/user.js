@@ -77,17 +77,17 @@ if (userEditAddress) {
 
 
 const addToCart = async (productId) => {
-
+    
     try {
-        event.preventDefault();
+    event.preventDefault();
         const addToCartButton = document.getElementById("addToCartBtn");
         let quantity = document.getElementById(productId).value;
-
-        if (quantity === null) {
+        
+        if(quantity === null){
             quantity = 1
         }
-
-
+        
+        
 
         const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
 
@@ -96,7 +96,7 @@ const addToCart = async (productId) => {
                 "Content-Type": "application/json",
             },
         });
-
+        
         let data = await response.json();
 
 
