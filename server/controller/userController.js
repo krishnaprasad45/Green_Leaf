@@ -505,7 +505,6 @@ const editAddress = async (req,res) => {
   try{
     const addressId = req.query.addressId;
     const address = await Address.findById(addressId)
-    console.log(address + "address")
     res.render("editAddress",{address,message:""})
   }
   catch(error){
@@ -515,10 +514,8 @@ const editAddress = async (req,res) => {
 
 const editAddressPost = async (req, res) => {
   try {
-    console.log("editAddressPost m.w")
     const addressId = req.query.addressId;
 
-     console.log("addressID" + addressId)
     const updatedAddress = await Address.findByIdAndUpdate(
       addressId,
       {

@@ -229,7 +229,6 @@ const totalPrice = async (id, act, stock) => {
             quantity: Number(document.getElementsByName("num-product")[i].value),
         });
     }
-    // console.log(document.getElementById("subTotal")); 
 
     document.getElementById("subTotal").innerText = "₹ " + subTotal.toFixed();
 
@@ -260,7 +259,6 @@ const addToWishlist = async (productId, cartId) => {
     });
 
     const data = await response.json();
-    console.log(data.message)
     if (data.message === "Added to wishlist") {
         Swal.fire({
             position: "center",
@@ -479,21 +477,16 @@ if (profileUpdate) {
 // USER PROFILE UPDATE - ENDS
 
 const addAddressCheckout = document.getElementById("addAddressCheckout");
-console.log(10)
-console.log(addAddressCheckout)
 if (addAddressCheckout) {
-console.log(22)
 
     addAddressCheckout.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const form = event.target;
-        console.log(`f-details ${form}`);
         const formData = new FormData(form);
        
         // if ($(form).valid()) {
             try {
-                console.log("try")
                 const response = await fetch("/addNewAddress", {
                     method: "POST",
                     body: JSON.stringify(Object.fromEntries(formData)),
