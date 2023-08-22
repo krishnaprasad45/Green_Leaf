@@ -123,48 +123,7 @@ if (userEditAddress) {
 //         // You can add code here to handle the error, show an error message, or perform any other necessary actions.
 //     }
 // };
-const moveToCart = async (productId) => {
 
-    try {
-        const response = await fetch(`/addToCartFromWishlist?productId=${productId}`, {
-            method: "GET",
-            headers: {
-                "content-Type": "application/json",
-            },
-        });
-
-        const data = await response.json();
-
-        if (data.message === "Moved to cart from wishlist") {
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Product is moved to cart",
-                showConfirmButton: true,
-                confirmButtonColor: "#00A300",
-            });
-            document.getElementById("row" + productId).innerHTML = "";
-        } else if (data.message === "Product is already in cart!!") {
-            Swal.fire({
-                position: "center",
-                icon: "warning",
-                title: "Product is already in cart",
-                showConfirmButton: true,
-                confirmButtonColor: "#00A300",
-            });
-        } else if (data.message === "Error Occured!") {
-            Swal.fire({
-                position: "center",
-                icon: "warning",
-                title: "Something error happened",
-                showConfirmButton: true,
-                confirmButtonColor: "#00A300",
-            });
-        }
-    } catch (error) {
-        console.log(error.message);
-    }
-};
 
 
 
@@ -248,37 +207,7 @@ const totalPrice = async (id, act, stock) => {
 
 
 
-const addToWishlist = async (productId, cartId) => {
-   
 
-    const response = await fetch(`/addToWishlist?productId=${productId}&cartId=${cartId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-
-    const data = await response.json();
-    if (data.message === "Added to wishlist") {
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Product added to wishlist",
-            showConfirmButton: true,
-            confirmButtonColor: "#79a206",
-        });
-
-        document.getElementById("row" + productId).innerHTML = "";
-    } else {
-        Swal.fire({
-            position: "center",
-            icon: "warning",
-            title: "Product is already in wishlist!",
-            showConfirmButton: true,
-            confirmButtonColor: "#79a206",
-        });
-    }
-};
 
 const removeFromWishlist = async (productId) => {
     const result = await Swal.fire({
@@ -321,45 +250,9 @@ const removeFromWishlist = async (productId) => {
     }
 };
 
-const removeFromCart = async (productId, cartId) => {
-    const response = await fetch(`/removeCart?productId=${productId}&cartId=${cartId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
 
-    if (response.ok) {
-        Swal.fire({
-            icon: "success",
-            title: "Product has been removed successfully",
-            showConfirmButton: true,
-            confirmButtonText: "OK",
-            confirmButtonColor: "#79a206",
-        });
-        document.getElementById("row" + productId).innerHTML = "";
-    }
-};
 
-const removeCartalert = async (productId, cartId) => {
-    const result = await Swal.fire({
-        title: "Remove item from cart",
-        text: "Do you want to remove this product from your cart?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Move to wishlist",
-        cancelButtonText: "Yes, remove",
-    });
 
-    // Handle the user's response
-    if (result.value) {
-        addToWishlist(productId, cartId);
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-        removeFromCart(productId, cartId);
-    }
-};
 
 
 //
