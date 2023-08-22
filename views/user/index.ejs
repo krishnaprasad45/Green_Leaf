@@ -116,7 +116,7 @@ display: none;
                             <div class="col-12">
                                 <div class="slider_content">
                                     <h1>BIG SALE</h1>
-                                    <p>Discount <span>20% Off </span> For Lukani Members </p>
+                                    <p>Discount <span>20% Off </span> For Green Leaf Members </p>
                                     <a class="button" href="/shop">Discover Now </a>
                                 </div>
                             </div>
@@ -206,25 +206,16 @@ display: none;
                             </div>
                             <div class="product_tab_btn">
                                 <ul class="nav" role="tablist" id="nav-tab">
+
+                                    <%categoryData.forEach(function(data){%>
                                     <li>
                                         <a class="active" data-bs-toggle="tab" href="#plant1" role="tab"
                                             aria-controls="plant1" aria-selected="true">
-                                            Indoor Plants
+                                            <%=data.category%>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a data-bs-toggle="tab" href="#plant2" role="tab" aria-controls="plant2"
-                                            aria-selected="false">
-                                            Outdoor Plants
-
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a data-bs-toggle="tab" href="#plant3" role="tab" aria-controls="plant3"
-                                            aria-selected="false">
-                                            Hanging Plants
-                                        </a>
-                                    </li>
+                                    <%})%>
+                                 
                                 </ul>
                             </div>
                         </div>
@@ -234,7 +225,7 @@ display: none;
                     <div class="tab-pane fade show active" id="plant1" role="tabpanel">
                         <div class="row">
                             <div class="product_carousel product_column4 owl-carousel">
-                                <% productDatas.forEach(async (product)=> { %>
+                                <% indoor.forEach(async (product)=> { %>
 
                                     <div class="col-lg-3">
                                         <div class="product_container">
@@ -293,96 +284,139 @@ display: none;
                                     </div>
                                     <% }) %>
 
-                                        <div class="col-lg-3">
-                                            <div class="product_items">
-                                                <h1>hello</h1>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product_items">
-                                                <h1>hello</h1>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product_items">
-                                                <h1>hello</h1>
-
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product_items">
-                                                <h1>hello</h1>
-
-                                            </div>
-                                        </div>
+                        
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="plant2" role="tabpanel">
                         <div class="row">
                             <div class="product_carousel product_column4 owl-carousel">
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                <% outdoor.forEach(async (product)=> { %>
+
+                                    <div class="col-lg-3">
+                                        <div class="product_container">
+
+                                            <article class="single_product">
+                                                <figure>
+                                                    <div class="product_thumb">
+                                                        <a class="primary_img"
+                                                            href="/productDetails/?id=<%=product.id%>">
+                                                            <img src="<%= product.imageUrl[0].url %>" alt="">
+                                                        </a>
+                                                        <div class="label_product">
+                                                            <!-- Add any product labels or badges here -->
+                                                        </div>
+                                                        <div class="action_links">
+                                                            <ul>
+
+                                                                <li class="add_to_cart">
+                                                                    <input min="1" max="100" id="<%= product.id %>"
+                                                                        value="1" type="number" hidden>
+
+                                                                    <a class="addToCartButton" title="Add to cart"
+                                                                        onclick="addToCart('<%=product.id%>')"
+                                                                        id="addToCartBtn">
+                                                                        <i class="icon-shopping-bag"></i>
+                                                                    </a>
+                                                                </li>
 
 
+                                                                <li class="wishlist">
+                                                                    <a href="wishlist.html" title="Add to Wishlist">
+                                                                        <i class="icon-heart"></i>
+                                                                    </a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <figcaption class="product_content">
+                                                        <h4 class="product_name">
+                                                            <a href="/productDetails/<%=product.id%>">
+                                                                <%= product.product_name %>
+                                                            </a>
+                                                        </h4>
+                                                        <div class="price_box">
+                                                            <span class="current_price">
+                                                                ₹<%= product.price %>/-
+                                                            </span>
+                                                        </div>
+                                                    </figcaption>
+                                                </figure>
+
+                                            </article>
+
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                    <% }) %>
 
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
-
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
-
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
-
-                                    </div>
-                                </div>
+                        
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="plant3" role="tabpanel">
                         <div class="row">
                             <div class="product_carousel product_column4 owl-carousel">
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                <% hanging.forEach(async (product)=> { %>
 
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                    <div class="col-lg-3">
+                                        <div class="product_container">
 
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                            <article class="single_product">
+                                                <figure>
+                                                    <div class="product_thumb">
+                                                        <a class="primary_img"
+                                                            href="/productDetails/?id=<%=product.id%>">
+                                                            <img src="<%= product.imageUrl[0].url %>" alt="">
+                                                        </a>
+                                                        <div class="label_product">
+                                                            <!-- Add any product labels or badges here -->
+                                                        </div>
+                                                        <div class="action_links">
+                                                            <ul>
 
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                                                <li class="add_to_cart">
+                                                                    <input min="1" max="100" id="<%= product.id %>"
+                                                                        value="1" type="number" hidden>
 
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="product_items">
+                                                                    <a class="addToCartButton" title="Add to cart"
+                                                                        onclick="addToCart('<%=product.id%>')"
+                                                                        id="addToCartBtn">
+                                                                        <i class="icon-shopping-bag"></i>
+                                                                    </a>
+                                                                </li>
 
+
+                                                                <li class="wishlist">
+                                                                    <a href="wishlist.html" title="Add to Wishlist">
+                                                                        <i class="icon-heart"></i>
+                                                                    </a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <figcaption class="product_content">
+                                                        <h4 class="product_name">
+                                                            <a href="/productDetails/<%=product.id%>">
+                                                                <%= product.product_name %>
+                                                            </a>
+                                                        </h4>
+                                                        <div class="price_box">
+                                                            <span class="current_price">
+                                                                ₹<%= product.price %>/-
+                                                            </span>
+                                                        </div>
+                                                    </figcaption>
+                                                </figure>
+
+                                            </article>
+
+                                        </div>
                                     </div>
-                                </div>
+                                    <% }) %>
+
+                        
                             </div>
                         </div>
                     </div>
@@ -440,54 +474,6 @@ display: none;
 
 
             <script src="/assets/js/user.js"></script>
-
-
-            <!-- //addToCart  popup -->
-            <!-- <script>
-                // Function to show the "Added to Cart" pop-up
-                async function addToCart(productId) {
-                    console.log(`productId:${productId}`)
-
-
-                    const quantity = document.getElementById(productId).value;
-
-
-                    console.log(`quantity: ${quantity}`)
-
-
-
-                    const response = await fetch(`/addToCart?id=${productId}&quantity=${quantity}`, {
-
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-
-                    })
-
-
-
-
-
-
-
-
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Added to Cart',
-                        text: 'The item has been successfully added to your cart.',
-                        customClass: {
-                            popup: 'small-dialog', // Add a CSS class to customize the pop-up size
-                        },
-                        position: 'center',
-                        toast: true, // Use toast mode to display the pop-up
-                        timer: 2000, // Automatically close the pop-up after 2 seconds (adjust as needed)
-                        timerProgressBar: true, // Show progress bar for the timer
-                    });
-                }
-            </script> -->
-
 
             </body>
 

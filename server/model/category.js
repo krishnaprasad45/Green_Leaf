@@ -10,11 +10,9 @@ const categorySchema = new mongoose.Schema({
     imageUrl:{
         public_id:{
             type: String,
-            required: true
         },
         url:{
             type: String,
-            required:true
         }
     },
     description:{

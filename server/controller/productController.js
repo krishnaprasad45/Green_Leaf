@@ -125,22 +125,21 @@ const updateCategoryPost = async (req, res) => {
   const { category, description, imageUrl } = req.body;
 
   const id = req.params.id;
+  console.log("category id " + id)
 
   try {
-    const categoryFields = await category.findById(id);
+    const categoryFields = await categoryData.findById(id);
 
     if (!categoryFields) {
       return res.render("updateCategory", { message: "Category not found" });
     }
 
-    // Update individual properties of categoryFields
     categoryFields.category = category;
     categoryFields.description = description;
 
-    // Since imageUrl is an object with public_id and url properties,
-    // we need to update them separately
-    categoryFields.imageUrl.public_id = imageUrl.public_id;
-    categoryFields.imageUrl.url = imageUrl.url;
+
+    // categoryFields.imageUrl.public_id = imageUrl.public_id;
+    // categoryFields.imageUrl.url = imageUrl.url;
 
     await categoryFields.save();
 
