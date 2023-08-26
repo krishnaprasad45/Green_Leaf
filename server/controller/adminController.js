@@ -4,10 +4,20 @@ const model = require("../model/user_register");
 const productmodel = require("../model/product");
 const Category = require("../model/category");
 const Order = require("../model/order");
+const xvfb = require("xvfb");
+
 const Address = require("../model/address");
 const productData = productmodel.products;
 const userData = model.user_register;
 const cloudinary = require("../../config/cloudinary")
+
+
+
+
+
+
+
+
 
 
 
@@ -32,13 +42,74 @@ const adminLogout = (req, res) => {
 };
 
 
-const adminDashboard = (req, res) => {
-    res.render('admin_dashboard');
-};
 
-const earnings = (req, res) => {
-    res.render('earnings');
-};
+
+const earnings = async(req, res) => {
+    try {
+        const sales = await Sale.find({});
+        const signups = await userData.find().count()
+        
+    
+        const salesByMonth = {};
+    
+        sales.forEach((sale) => {
+          const monthYear = moment(sale.date).format('MMMM YYYY');
+          if (!salesByMonth[monthYear]) {
+            salesByMonth[monthYear] = {
+              totalOrders: 0,
+              totalRevenue: 0
+            };
+          }
+          salesByMonth[monthYear].totalOrders += 1;
+          salesByMonth[monthYear].totalRevenue += sale.total;
+        });
+    
+        const chartData = [];
+    
+        Object.keys(salesByMonth).forEach((monthYear) => {
+          const { totalOrders, totalRevenue } = salesByMonth[monthYear];
+          chartData.push({
+            month: monthYear.split(' ')[0],
+            totalOrders: totalOrders || 0,
+            totalRevenue: totalRevenue || 0
+          });
+        });
+    
+          months = [];
+          ordersByMonth = [];
+          revenueByMonth = [];
+          totalRevenue = 0;
+          totalSales = 0;
+    
+        chartData.forEach((data) => {
+          months.push(data.month);
+          ordersByMonth.push(data.totalOrders);
+          revenueByMonth.push(data.totalRevenue);
+          totalRevenue += Number(data.totalRevenue);
+          totalSales += Number(data.totalOrders);
+        });
+    
+        const thisMonthOrder = ordersByMonth[ordersByMonth.length - 1];
+        const thisMonthSales = revenueByMonth[revenueByMonth.length - 1];
+       
+    
+        res.render("earnings", {
+          user: req.session.admin,
+          revenueByMonth,
+          months,
+          signups,
+          ordersByMonth,
+          totalRevenue,
+          totalSales,
+          thisMonthOrder,
+          thisMonthSales,
+          productUpdated:""
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+  };
+
 
 const viewOrders = async (req, res) => {
     try {
@@ -173,7 +244,7 @@ module.exports = {
     adminSignin,
     adminSigninPost,
     adminLogout,
-    adminDashboard,
+    
     earnings,
     viewOrders,
     customers,

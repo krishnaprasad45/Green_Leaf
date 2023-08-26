@@ -1,6 +1,11 @@
 const moment = require('moment');
 const Sale = require("../model/order");
 const model = require("../model/user_register");
+const Order = require("../model/order");
+const xvfb = require("xvfb");
+const ejs = require('ejs');
+
+
 const userData = model.user_register;
 
 
@@ -90,6 +95,7 @@ const chartData = async (req, res) => {
 
 const getSales = async (req, res) => {
   try {
+    console.log("getSales middleware")
       const { startDate, endDate } = req.query;
 
       const newstartDate = new Date(startDate);
@@ -102,11 +108,12 @@ const getSales = async (req, res) => {
           },
           status: "Delivered",
       }).sort({ date: "desc" });
-
       const formattedOrders = orderData.map((order) => ({
           date: moment(order.date).format("YYYY-MM-DD"),
           ...order,
       }));
+
+      console.log(orderData);
 
       let salesData = [];
       
@@ -126,10 +133,71 @@ const getSales = async (req, res) => {
           grandTotal += element.total;
       });
 
-      res.json({
+      const orderdatas = {
           grandTotal: grandTotal,
           orders: salesData,
-      });
+      };
+
+
+      const renderTemp = `
+      <%
+        function forLoop(from, to, incr, block) {
+          let accum = "";
+          for (let i = from; i < to; i += incr) {
+            accum += block(i);
+          }
+          return accum;
+        }
+        %>
+        <div class="col-xl-12">
+        <!-- Account details card-->
+        <div class="card mb-4">
+          <div class="card-header">Sales Report</div>
+          <div class="card-body ml-3 p-5">
+            <ul>
+              <table id="my-table" class="my-table table table-hover" style="border-top: 1px solid black;">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Order id</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Product Details</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% data.orders.forEach(function(order) { %>
+                  <tr>
+                    <td><%= order.date %></td>
+                    <td><%= order.orderId %></td>
+                    <td><%= order.paymentMethod %></td>
+                    <td>
+                      <% order.productName.forEach(function(product) { %>
+                      <p>Name: <%= product.name %></p>
+                      <p>Quantity: <%= product.quantity %></p>
+                      <p>Price: <span>₹</span><%= product.price %></p>
+                      <% }); %>
+                    </td>
+                    <td><span>₹</span><%= order.total %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+              <h5>Total Revenue: ₹<strong class="ml-auto"><%= data.grandTotal %></strong></h5>
+            </ul>
+          </div>
+        </div>
+        </div>
+        <div class="col-xl-12 d-flex justify-content-end mb-4">
+        <button onclick="downloadSalesReport()" class="btn btn-primary">DOWNLOAD REPORT</button>
+       
+        </div>
+        `;
+
+      const renderContent = ejs.render(renderTemp, { data: orderdatas });
+      console.log(renderContent);
+      res.status(200).json({data: renderContent});
+
   } catch (error) {
       console.log(error.message);
   }
