@@ -129,12 +129,12 @@ async function getSalesData() {
 function renderSalesReport(orderData) {
 document.getElementById("table").innerHTML = orderData;
 
-jQuery(document).ready(function ($) {
- $("#my-table").DataTable({
-   dom: "Bfrtip",
-   buttons: ["excelHtml5", "pdfHtml5"],
- });
-});
+// jQuery(document).ready(function ($) {
+//  $("#my-table").DataTable({
+//    dom: "Bfrtip",
+//    buttons: ["excelHtml5", "pdfHtml5"],
+//  });
+// });
 }
 
 

@@ -24,7 +24,7 @@ admin_route.get('/admin_dashboard',isLogin, dashboardController.adminDashboard)
 admin_route.get('/chartData', dashboardController.chartData)
 admin_route.get('/getSales', dashboardController.getSales)
 admin_route.post('/downloadSalesReport', dashboardController.downloadSalesReport)
-admin_route.get('/renderSalesReport', dashboardController.renderSalesReport)
+// admin_route.get('/renderSalesReport', dashboardController.renderSalesReport)
 
 admin_route.get('/add_product',isLogin,productController.addProduct)
 admin_route.post('/add_product_post',store.array("product_image",4),isLogin,productController.addProductPost)
