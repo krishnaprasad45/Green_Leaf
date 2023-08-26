@@ -7,6 +7,7 @@ const cartController = require("../controller/cartController")
 const orderController = require("../controller/orderController")
 const wishlistController = require("../controller/wishlistController")
 const couponController = require("../controller/couponController")
+const forgotController = require("../controller/forgotController")
 
 
 
@@ -26,6 +27,17 @@ user_route.get("/resentOtp",isLogout,userController.resendOtp )
 
 user_route.get('/user_login',isLogout, userController.user_login)
 user_route.post("/user_login_post",isLogout, userController.user_login_post)
+
+
+user_route.get('/forgotPassword',isLogout,forgotController.loadForgotPassword)
+user_route.post('/verifyEmail',isLogout,forgotController.verifyForgotEmail)
+user_route.get('/forgotOtpEnter',isLogout,forgotController.showForgotOtp)
+user_route.post('/verifyForgotOtp',isLogout,forgotController.verifyForgotOtp)
+user_route.get('/resendForgotPasswordotp', isLogout ,forgotController.resendForgotOtp)
+user_route.post('/newPassword',isLogout, forgotController.updatePassword)
+
+
+
 
 user_route.get('/index',blockCheck, userController.index)
 user_route.get('/shop',blockCheck, userController.shop)
