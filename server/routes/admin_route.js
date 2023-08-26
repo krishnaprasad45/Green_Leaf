@@ -7,6 +7,7 @@ const auth = require("../../middleware/adminAuth.js")
 const adminController = require("../controller/adminController")
 const bannerController = require("../controller/bannerController")
 const orderController = require("../controller/orderController")
+const dashboardController = require("../controller/dashboardController")
 
 const productController = require("../controller/productController")
 const couponController = require("../controller/couponController")
@@ -19,7 +20,12 @@ const {isLogin,isLogout} = auth
 admin_route.get('/admin_sign_in',isLogout, adminController.adminSignin)
 admin_route.post('/admin_signin_post',isLogout, adminController.adminSigninPost)
 
-admin_route.get('/admin_dashboard',isLogin, adminController.adminDashboard)
+admin_route.get('/admin_dashboard',isLogin, dashboardController.adminDashboard)
+admin_route.get('/chartData', dashboardController.chartData)
+admin_route.get('/getSales', dashboardController.getSales)
+admin_route.post('/downloadSalesReport', dashboardController.downloadSalesReport)
+// admin_route.get('/renderSalesReport', dashboardController.renderSalesReport)
+
 admin_route.get('/add_product',isLogin,productController.addProduct)
 admin_route.post('/add_product_post',store.array("product_image",4),isLogin,productController.addProductPost)
 

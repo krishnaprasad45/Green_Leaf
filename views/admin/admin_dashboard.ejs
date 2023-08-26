@@ -1,222 +1,388 @@
-<%-include('./_header')-%>
+<%-include('_header')-%>
 
-<body>
-   
-  <%-include('_left_sidebar')-%>
+  <body>
 
-
+    <%-include('_left_sidebar')-%>
 
 
-  <div class="main-content">
-   
-    <%-include('_navbar')-%>
 
 
-    <div class="container-fluid mt-4 mt-md-5 mb-6">
-      <div class="row text-center text-md-start">
-        <div class="col-md-6">
-          <div class="me-auto">
-            <h2>
-              Hello Admin
-            </h2>
-          
-          </div>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <a href="#!" class="btn btn-purple btn-sm hover-lift-light shadow-light-sm mt-md-n3">
-            <span class="svg-icon svg-icon-sm text-white me-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-a</title><line x1="256" y1="112" x2="256" y2="400" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="400" y1="256" x2="112" y2="256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-            </span>
-            Add report
-          </a>
+      <div class="main-content">
 
-          <div class="w-100 w-md-250 bg-white border rounded d-flex align-items-center fs-sm fw-bold ms-md-auto py-1 px-3 mt-3" role="button" data-datepicker>
-            <div class="svg-icon me-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-e</title><rect x="48" y="80" width="416" height="384" rx="48" ry="48" style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px"/><path d="M397.82,80H114.18C77.69,80,48,110.15,48,147.2V208H64c0-16,16-32,32-32H416c16,0,32,16,32,32h16V147.2C464,110.15,434.31,80,397.82,80Z"/><circle cx="296" cy="232" r="24"/><circle cx="376" cy="232" r="24"/><circle cx="296" cy="312" r="24"/><circle cx="376" cy="312" r="24"/><circle cx="136" cy="312" r="24"/><circle cx="216" cy="312" r="24"/><circle cx="136" cy="392" r="24"/><circle cx="216" cy="392" r="24"/><circle cx="296" cy="392" r="24"/><line x1="128" y1="48" x2="128" y2="80" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="384" y1="48" x2="384" y2="80" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+        <%-include('_navbar')-%>
+
+
+          <div class="container-fluid mt-4 mt-md-5 mb-6">
+            <div class="row text-center text-md-start">
+              <div class="col-md-6">
+                <div class="me-auto">
+                  <h2>
+                    Hello Admin
+                  </h2>
+
+                </div>
+              </div>
+              <div class="col-md-6 text-md-end">
+                <!-- <a href="#!" "
+                  class="btn btn-purple btn-sm hover-lift-light shadow-light-sm mt-md-n3">
+                  <span class="svg-icon svg-icon-sm text-white me-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                      <title>ionicons-v5-a</title>
+                      <line x1="256" y1="112" x2="256" y2="400"
+                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                      <line x1="400" y1="256" x2="112" y2="256"
+                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                    </svg>
+                  </span>
+                  Add report
+                </a> -->
+
+                <input id="revenue" type="hidden" value="<%= revenueByMonth %>">
+
+
+                <div
+                  class="w-100 w-md-250 bg-white border rounded d-flex align-items-center fs-sm fw-bold ms-md-auto py-1 px-3 mt-3"
+                  role="button" data-datepicker>
+                  <div class="svg-icon me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                      <title>ionicons-v5-e</title>
+                      <rect x="48" y="80" width="416" height="384" rx="48" ry="48"
+                        style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px" />
+                      <path
+                        d="M397.82,80H114.18C77.69,80,48,110.15,48,147.2V208H64c0-16,16-32,32-32H416c16,0,32,16,32,32h16V147.2C464,110.15,434.31,80,397.82,80Z" />
+                      <circle cx="296" cy="232" r="24" />
+                      <circle cx="376" cy="232" r="24" />
+                      <circle cx="296" cy="312" r="24" />
+                      <circle cx="376" cy="312" r="24" />
+                      <circle cx="136" cy="312" r="24" />
+                      <circle cx="216" cy="312" r="24" />
+                      <circle cx="136" cy="392" r="24" />
+                      <circle cx="216" cy="392" r="24" />
+                      <circle cx="296" cy="392" r="24" />
+                      <line x1="128" y1="48" x2="128" y2="80"
+                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                      <line x1="384" y1="48" x2="384" y2="80"
+                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                    </svg>
+                  </div>
+                  <span class="mt-1"></span>
+                </div>
+              </div>
             </div>
-            <span class="mt-1"></span>
+
+            <div class="row mt-4">
+              <div class="col-lg-6 col-xxl-3">
+                <div class="statcard bg-white border py-4">
+                  <h3 class="statcard-value">
+                    <%=thisMonthOrder%>
+
+                  </h3>
+                  <span class="statcard-label text-dark">This month order</span>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xxl-3 mt-3 mt-lg-0">
+                <div class="statcard bg-white border py-4">
+                  <h3 class="statcard-value">
+                    <%=thisMonthSales%>
+
+                  </h3>
+                  <span class="statcard-label text-dark">This month revenue</span>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xxl-3 mt-3 mt-xxl-0">
+                <div class="statcard bg-white border py-4">
+                  <h3 class="statcard-value">
+                    <%=totalSales%>
+
+                  </h3>
+                  <span class="statcard-label text-dark">Total order</span>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xxl-3 mt-3 mt-xxl-0">
+                <div class="statcard bg-white border py-4">
+                  <h3 class="statcard-value">
+                    <%=thisMonthSales%>
+
+                  </h3>
+                  <span class="statcard-label text-dark">Total revenue</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mt-3">
+              <div class="card-header">
+                <h6 class="card-header-title">
+                  Earnings
+                </h6>
+              </div>
+
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="earningsChart"></canvas>
+                </div>
+              </div>
+
+              <div class="card-footer bg-dark">
+                <div class="row row-cols-2 row-cols-md-5">
+                  <div class="col text-center">
+                    <div class="text-uppercase-xs text-gray-400">
+                      Churn rate
+                    </div>
+                    <h4 class="text-white mt-1 mt-md-3 mb-0">
+                      14%
+                    </h4>
+                  </div>
+                  <div class="col text-center">
+                    <div class="text-uppercase-xs text-gray-400">
+                      Visits
+                    </div>
+                    <h4 class="text-white mt-1 mt-md-3 mb-0">
+                      3,210
+                    </h4>
+                  </div>
+                  <div class="col text-center mt-4 mt-md-0">
+                    <div class="text-uppercase-xs text-gray-400">
+                      Comments
+                    </div>
+                    <h4 class="text-white mt-1 mt-md-3 mb-0">
+                      320
+                    </h4>
+                  </div>
+                  <div class="col text-center mt-4 mt-md-0">
+                    <div class="text-uppercase-xs text-gray-400">
+                      Project views
+                    </div>
+                    <h4 class="text-white mt-1 mt-md-3 mb-0">
+                      891
+                    </h4>
+                  </div>
+                  <div class="col text-center mt-4 mt-md-0">
+                    <div class="text-uppercase-xs text-gray-400">
+                      Likes
+                    </div>
+                    <h4 class="text-white mt-1 mt-md-3 mb-0">
+                      5,421
+                    </h4>
+                  </div>
+                </div>
+              </div>
+
+              <!-- graph code -->
+              <div class="row">
+                <div class="col-xl-6">
+                  <!-- Account details card-->
+                  <div class="card mb-4">
+                    <div class="card-header">Monthly Sales </div>
+                    <div class="card-body ml-3 p-5">
+                      <canvas id="myChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-6">
+                  <!-- Account details card-->
+                  <div class="card mb-4">
+                    <div class="card-header">Monthly Revenue</div>
+                    <div class="card-body ml-3 p-5">
+                      <canvas id="myChart1"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- graph code -->
+
+
+              <div class="container-fluid mt-4 mt-md-5 mb-6">
+                <div class="row">
+                  <div class="col-12">
+                    <h3 class="text-center text-md-start m-0">
+                      &nbsp;Earnings
+                    </h3>
+                  </div>
+
+                  <div class="col-12 mt-4">
+                    <div class="card">
+                      <div class="card-header text-center">
+                        <div class="card-header-title mb-2 mb-md-0">
+                          - Report
+                        </div>
+
+                        <div
+                          class="w-100 w-md-250 bg-white border rounded d-flex align-items-center fs-sm fw-bold ms-md-auto py-1 px-3"
+                          role="button" data-datepicker>
+                          <div class="svg-icon me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                              <title>ionicons-v5-e</title>
+                              <rect x="48" y="80" width="416" height="384" rx="48" ry="48"
+                                style="fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px" />
+                              <path
+                                d="M397.82,80H114.18C77.69,80,48,110.15,48,147.2V208H64c0-16,16-32,32-32H416c16,0,32,16,32,32h16V147.2C464,110.15,434.31,80,397.82,80Z" />
+                              <circle cx="296" cy="232" r="24" />
+                              <circle cx="376" cy="232" r="24" />
+                              <circle cx="296" cy="312" r="24" />
+                              <circle cx="376" cy="312" r="24" />
+                              <circle cx="136" cy="312" r="24" />
+                              <circle cx="216" cy="312" r="24" />
+                              <circle cx="136" cy="392" r="24" />
+                              <circle cx="216" cy="392" r="24" />
+                              <circle cx="296" cy="392" r="24" />
+                              <line x1="128" y1="48" x2="128" y2="80"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                              <line x1="384" y1="48" x2="384" y2="80"
+                                style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                            </svg>
+                          </div>
+                          <span class="mt-1"></span>
+                        </div>
+                      </div>
+
+                      <div class="card-body">
+                        <div class="chart">
+                          <canvas class="chart-canvas" id="ecommerceChart"></canvas>
+                        </div>
+                      </div>
+
+                      <div class="card-footer py-3 bg-dark">
+                        <div class="row row-cols-2 row-cols-md-5">
+                          <div class="col text-center">
+                            <div class="text-uppercase-xs text-pastel-purple">
+                              Total sales
+                            </div>
+                            <h4 class="text-white mt-1 mt-md-3 mb-0">
+                              <%=totalSales%>
+
+                            </h4>
+                          </div>
+                          <div class="col text-center">
+                            <div class="text-uppercase-xs text-pastel-purple">
+                              Visits
+                            </div>
+                            <h4 class="text-white mt-1 mt-md-3 mb-0">
+                              3,210
+                            </h4>
+                          </div>
+                          <div class="col text-center mt-4 mt-md-0">
+                            <div class="text-uppercase-xs text-pastel-purple">
+                              Today's orders
+                            </div>
+                            <h4 class="text-white mt-1 mt-md-3 mb-0">
+                              18
+                            </h4>
+                          </div>
+                          <div class="col text-center mt-4 mt-md-0">
+                            <div class="text-uppercase-xs text-pastel-purple">
+                              Today's visitors
+                            </div>
+                            <h4 class="text-white mt-1 mt-md-3 mb-0">
+                              891
+                            </h4>
+                          </div>
+                          <div class="col text-center mt-4 mt-md-0">
+                            <div class="text-uppercase-xs text-pastel-purple">
+                              Avg. order value
+                            </div>
+                            <h4 class="text-white mt-1 mt-md-3 mb-0">
+                              $247
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+              <div class="container ">
+                <nav class="navbar navbar-light bg-light mb-4 p-2">
+                  <div class="heading m-4">
+                    <h3> Get Sales Report </h3>
+                  </div>
+
+                  <div class="form-inline d-flex align-items-center me-3">
+                    <div class="form-group p-2">
+                      <label for="start-date">Start Date:</label>
+                      <input type="date" class="form-control" id="start-date" min="" max="">
+                    </div>
+                    <div class="form-group p-2">
+                      <label for="end-date">End Date:</label>
+                      <input type="date" class="form-control" id="end-date" min="" max="">
+                    </div>
+                    <div class="form-group p-2 mt-4">
+                      <button onclick="getSalesData()" type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                    <input id="revenue" type="hidden" value="<%= revenueByMonth %>">
+                  </div>
+                </nav>
+
+                <div class="row" id="table">
+                  <!-- Your table content here -->
+
+                  <!-- table end -->
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="mt-4 mt-md-6">
+
+            </div>
+
           </div>
-        </div>
       </div>
 
-      <div class="row mt-4">
-        <div class="col-lg-6 col-xxl-3">
-          <div class="statcard bg-white border py-4">
-            <h3 class="statcard-value">
-              1,608
-              <span class="statcard-change text-success ms-auto">
-                7.2%
-                <span class="svg-icon svg-icon-sm text-success relative-top--2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-c</title><polyline points="352 144 464 144 464 256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,368,169.37,246.63a32,32,0,0,1,45.26,0l50.74,50.74a32,32,0,0,0,45.26,0L448,160" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-                </span>
-              </span>
-            </h3>
-            <span class="statcard-label text-dark">New visits</span>
-          </div>
-        </div>
-        <div class="col-lg-6 col-xxl-3 mt-3 mt-lg-0">
-          <div class="statcard bg-white border py-4">
-            <h3 class="statcard-value">
-              2,562
-              <span class="statcard-change text-success ms-auto">
-                -17%
-                <span class="svg-icon svg-icon-sm text-success relative-top--2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-c</title><polyline points="352 144 464 144 464 256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,368,169.37,246.63a32,32,0,0,1,45.26,0l50.74,50.74a32,32,0,0,0,45.26,0L448,160" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-                </span>
-              </span>
-            </h3>
-            <span class="statcard-label text-dark">Sign-ups</span>
-          </div>
-        </div>
-        <div class="col-lg-6 col-xxl-3 mt-3 mt-xxl-0">
-          <div class="statcard bg-white border py-4">
-            <h3 class="statcard-value">
-              $132,938
-              <span class="statcard-change text-success ms-auto">
-                32%
-                <span class="svg-icon svg-icon-sm text-success relative-top--2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-c</title><polyline points="352 144 464 144 464 256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,368,169.37,246.63a32,32,0,0,1,45.26,0l50.74,50.74a32,32,0,0,0,45.26,0L448,160" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-                </span>
-              </span>
-            </h3>
-            <span class="statcard-label text-dark">Total earnings</span>
-          </div>
-        </div>
-        <div class="col-lg-6 col-xxl-3 mt-3 mt-xxl-0">
-          <div class="statcard bg-white border py-4">
-            <h3 class="statcard-value">
-              $129
-              <span class="statcard-change text-danger ms-auto">
-                -3.2%
-                <span class="svg-icon svg-icon-sm text-danger relative-top--2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><title>ionicons-v5-c</title><polyline points="352 368 464 368 464 256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,144,169.37,265.37a32,32,0,0,0,45.26,0l50.74-50.74a32,32,0,0,1,45.26,0L448,352" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
-                </span>
-              </span>
-            </h3>
-            <span class="statcard-label text-dark">Average order value</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card mt-3">
-        <div class="card-header">
-          <h6 class="card-header-title">
-            Earnings
-          </h6>
-        </div>
-
-        <div class="card-body">
-          <div class="chart">
-            <canvas id="earningsChart"></canvas>
-          </div>
-        </div>
-
-        <div class="card-footer bg-dark">
-          <div class="row row-cols-2 row-cols-md-5">
-            <div class="col text-center">
-              <div class="text-uppercase-xs text-gray-400">
-                Churn rate
-              </div>
-              <h4 class="text-white mt-1 mt-md-3 mb-0">
-                14%
-              </h4>
-            </div>
-            <div class="col text-center">
-              <div class="text-uppercase-xs text-gray-400">
-                Visits
-              </div>
-              <h4 class="text-white mt-1 mt-md-3 mb-0">
-                3,210
-              </h4>
-            </div>
-            <div class="col text-center mt-4 mt-md-0">
-              <div class="text-uppercase-xs text-gray-400">
-                Comments
-              </div>
-              <h4 class="text-white mt-1 mt-md-3 mb-0">
-                320
-              </h4>
-            </div>
-            <div class="col text-center mt-4 mt-md-0">
-              <div class="text-uppercase-xs text-gray-400">
-                Project views
-              </div>
-              <h4 class="text-white mt-1 mt-md-3 mb-0">
-                891
-              </h4>
-            </div>
-            <div class="col text-center mt-4 mt-md-0">
-              <div class="text-uppercase-xs text-gray-400">
-                Likes
-              </div>
-              <h4 class="text-white mt-1 mt-md-3 mb-0">
-                5,421
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card mt-4 mt-md-6">
-        <div class="card-header">
-          <div class="card-header-title">
-            Monthly expenses
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="chart">
-            <canvas class="chart-canvas" id="expensesChart"></canvas>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 mt-md-6">
-        
-      </div>
-
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT
+      <!-- JAVASCRIPT
   ============================================-->
 
-  <!-- Vendor -->
-  <script src="assets_admin/js/vendor.min.js"></script>
+      <!-- Vendor -->
+     <script src="assets_admin/js/vendor.min.js"></script>
 
 
-  <!-- Main Theme file -->
-  <script src="assets_admin/js/theme.min.js"></script>
+      <!-- Main Theme file -->
+      <script src="assets_admin/js/theme.min.js"></script>
+      <!-- <script src="assets_admin/js/chartgraph.js"></script> -->
+
+      <script src="assets_admin/js/sales-report.js"></script>
 
 
-  <script type="text/javascript">
-    $(function () {
-      // datepicker
-      function cb(start, end) {
-        $('[data-datepicker] span').html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'))
-      }
 
-      var startDate = moment().subtract(17, 'days')
-      var endDate = moment()
 
-      $('[data-datepicker]').daterangepicker({
-        startDate: startDate,
-        endDate: endDate,
-        opens: 'left',
-        applyButtonClasses: "btn-purple",
-        ranges: {
-          'Today': [moment(), moment()],
-          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month': [moment().startOf('month'), moment().endOf('month')],
-          'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-      }, cb)
+      <script type="text/javascript">
+        $(function () {
+          // datepicker
+          function cb(start, end) {
+            $('[data-datepicker] span').html(start.format('MMM D, YYYY') + ' - ' + end.format('MMM D, YYYY'))
+          }
 
-      cb(startDate, endDate)
-    })
-  </script>
-</body>
+          var startDate = moment().subtract(17, 'days')
+          var endDate = moment()
 
-<!-- Mirrored from themeforesight.netlify.app/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Jul 2023 05:40:14 GMT -->
-</html>
+          $('[data-datepicker]').daterangepicker({
+            startDate: startDate,
+            endDate: endDate,
+            opens: 'left',
+            applyButtonClasses: "btn-purple",
+            ranges: {
+              'Today': [moment(), moment()],
+              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+              'This Month': [moment().startOf('month'), moment().endOf('month')],
+              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+          }, cb)
+
+          cb(startDate, endDate)
+        })
+      </script>
+      <!-- <script src="/assets_admin/js/chartgraph.js"></script> -->
+      <!-- <script src="assets_admin/js/sales.js"></script>
+
+     
+  </body>
+
+
+  </html>
