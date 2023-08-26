@@ -4,7 +4,7 @@ const removeCartalert = async (productId, cartId) => {
         text: "Do you want to remove this product from your cart?",
         icon: "question",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
+        confirmButtonColor: "#79a206",
         cancelButtonColor: "#d33",
         confirmButtonText: "Move to wishlist",
         cancelButtonText: "Yes, remove",

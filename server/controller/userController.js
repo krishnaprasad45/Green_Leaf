@@ -65,6 +65,7 @@ const shop = async (req, res) => {
         productDatas,
         userDatas,
         cart,
+        
         subTotal,
         categoryData,
         message: "true",
@@ -157,7 +158,7 @@ const contact = async (req, res) => {
       req.session.checkout = true;
 
       const userId = userDatas._id;
-      // walletBalance=userDatas.wallet.balance
+      walletBalance=userDatas.wallet.balance
       const categoryData = await Category.find({ is_blocked: false });
 
       const user = await userData

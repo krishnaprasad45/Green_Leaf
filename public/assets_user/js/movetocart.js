@@ -18,6 +18,7 @@ const moveToCart = async (productId) => {
                 showConfirmButton: true,
                 confirmButtonColor: "#00A300",
             });
+            updateCartCount();
             document.getElementById("row" + productId).innerHTML = "";
         } else if (data.message === "Product is already in cart!!") {
             Swal.fire({
@@ -40,3 +41,10 @@ const moveToCart = async (productId) => {
         console.log(error.message);
     }
 };
+
+function updateCartCount() {
+    let initialcount = document.getElementById("cart_count");
+    let count = parseInt(initialcount.innerText); // Convert text to integer
+    count = count + 1; // Increment by 1
+    initialcount.innerText = count; // Update the element with the new value
+}

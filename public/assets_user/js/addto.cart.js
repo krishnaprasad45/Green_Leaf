@@ -38,9 +38,18 @@ const addToCart = async (productId) => {
                 showConfirmButton: true,
                 confirmButtonColor: "#79a206",
             });
+            updateCartCount();
         }
         }catch (error) {
             console.log("An error occurred:", error);
         // You can add code here to handle the error, show an error message, or perform any other necessary actions.
         }
     };
+
+    function updateCartCount() {
+        let initialcount = document.getElementById("cart_count");
+        let count = parseInt(initialcount.innerText); // Convert text to integer
+        count = count + 1; // Increment by 1
+        initialcount.innerText = count; // Update the element with the new value
+    }
+    

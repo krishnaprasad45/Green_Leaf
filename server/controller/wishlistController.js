@@ -11,24 +11,55 @@ const userData = model.user_register;
 
 const loadWishlist = async (req, res) => {
     try {
+        const productDatas = await productData.find();
+        const logged = req.session.user;
+    
+        if (req.session.user) {
         const userDatas = req.session.user;
-        const userId = userDatas._id;
-        const categoryData = await Category.find({ is_blocked: false });
+      req.session.checkout = true;
+
+        
+      const userId = userDatas._id;
+      walletBalance=userDatas.wallet.balance
+      const categoryData = await Category.find({ is_blocked: false });
+
+      const userMeta = await userData
+        .findOne({ _id: userId })
+        .populate({ path: "cart" })
+        .populate({ path: "cart.product", model: "productCollection" });
+      const cart = userMeta.cart;
+      let subTotal = 0;
+
+      cart.forEach((val) => {
+        val.total = val.product.price * val.quantity;
+        subTotal += val.total;
+      });
+     
 
         const user = await userData.findById(userId).populate("wishlist");
         const wishlistItems = user.wishlist;
 
         const userCart = await userData.findOne({ _id: userId }).populate("cart.product").lean();
-        const cart = userCart.cart;
-
-
-
-        if (wishlistItems.length === 0) {
-            res.render("emptyWishlist", { userDatas, categoryData });
-        } else {
-            res.render("wishlist", { userDatas, categoryData, cart, message: "", wishlistItems });
+       
+            res.render("wishlist", { 
+                productDatas,
+                userDatas,
+                userMeta,
+                cart,
+                subTotal,
+                categoryData,
+                wishlistItems,
+                message: "true",
+            });
+        
+    
         }
-    } catch (error) {
+
+         else {
+            res.render("wishlist", { userDatas:{}, productDatas:{},categoryData:{}, logged,cart, message: "false", wishlistItems });
+        }
+    
+}catch (error) {
         console.log(error.message);
     }
 };
@@ -42,9 +73,7 @@ const addToWishlist = async (req, res) => {
         console.log(`cartid = ${cartId}`)
 
         const existItem = await userData.findOne({ _id: userId, wishlist: { $in: [productId] } });
-        console.log(existItem)
         if (!existItem) {
-            console.log(46)
             await userData.updateOne({ _id: userId }, { $push: { wishlist: productId } });
             await productData.updateOne({ _id: productId }, { isWishlisted: true });
            
@@ -119,6 +148,7 @@ const removeWishlist = async (req, res) => {
         const productId = req.query.productId;
 
         const user = await userData.findById(userId);
+        
         const itemIndex = user.wishlist.indexOf(productId);
 
         if (itemIndex >= 0) {
