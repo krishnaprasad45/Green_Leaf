@@ -1,9 +1,9 @@
-<%-include('.. /admin/_header.ejs') -%>
+<%-include('../admin/_header.ejs') -%>
 
     <body>
         <div class="row justify-content-center mt-5">
             <div class="col-lg-5 text-center">
-                <form action="/otp_verification_post" method="post">
+                <form action="/verifyForgotOtp" method="post">
                     <div class="card mt-5">
                         <div class="card-body py-5 px-lg-5">
                             <div class="svg-icon svg-icon-xl text-purple">
@@ -31,7 +31,6 @@
 
                             <div class="row mt-4 pt-2">
                                 <p style="color: red;">
-                                    <%=message%>
                                 </p>
                                 <h4 class="tex">
                                     <%= invalidOtp%>
@@ -55,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-purple btn-lg w-100 hover-lift-light mt-4">
+                            <button type="submit" style="background-color: #79a206;" class="btn btn-purple btn-lg w-100 hover-lift-light mt-4">
                                 Verify my account
                             </button>
                         </div>
