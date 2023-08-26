@@ -1,0 +1,122 @@
+<%-include('../admin/_header.ejs') -%>
+
+    <body>
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-5 text-center">
+                <form action="/verifyForgotOtp" method="post">
+                    <div class="card mt-5">
+                        <div class="card-body py-5 px-lg-5">
+                            <div class="svg-icon svg-icon-xl text-purple">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+                                    <title>ionicons-v5-g</title>
+                                    <path d="M336,208V113a80,80,0,0,0-160,0v95"
+                                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                                    <rect x="96" y="208" width="320" height="272" rx="48" ry="48"
+                                        style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" />
+                                </svg>
+                            </div>
+                            <h3 class="font-weight-normal text-dark mt-4">
+                                2-step verification
+                            </h3>
+                            <p class="mt-4 mb-1">
+                                We sent a verification code to your email.
+                            </p>
+                            <p>
+                                Please enter the code in the field below.
+                            </p>
+                            <p>
+                                <!-- <label  style="color: red;" ><%= locals.message %></label> -->
+                            </p>
+
+
+                            <div class="row mt-4 pt-2">
+                                <p style="color: red;">
+                                </p>
+                                <h4 class="tex">
+                                    <%= invalidOtp%>
+                                </h4>
+
+                                <div class="col">
+                                    <input type="text" name="txt1" class="form-control form-control-lg text-center py-4"
+                                        maxlength="1" autofocus>
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="txt2" class="form-control form-control-lg text-center py-4"
+                                        maxlength="1">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="txt3" class="form-control form-control-lg text-center py-4"
+                                        maxlength="1">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="txt4" class="form-control form-control-lg text-center py-4"
+                                        maxlength="1">
+                                </div>
+                            </div>
+
+                            <button type="submit" style="background-color: #79a206;" class="btn btn-purple btn-lg w-100 hover-lift-light mt-4">
+                                Verify my account
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <p class="text-center text-muted mt-4">
+                    Didn't receive it?
+                    <a id="resendLink" href="#" class="text-decoration-none ms-2">
+                        Resend code
+                    </a>
+                </p>
+
+            </div>
+        </div>
+
+        <!-- JAVASCRIPT
+  ============================================-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+        <!-- Vendor -->
+        <script src="/assets_admin/js/vendor.min.js"></script>
+
+
+        <!-- Main Theme file -->
+        <script src="/assets_admin/js/theme.min.js"></script>
+
+
+        <script type="text/javascript">
+            $(function () {
+                var $inputs = $('input:text')
+
+                $inputs.keyup(function (e) {
+                    if (e.currentTarget.value) {
+                        var index = $inputs.index(this) + 1
+                        if (index < $inputs.length) {
+                            $inputs.get(index).focus()
+                        }
+                    }
+                })
+            })
+        </script>
+        <script>
+            // Add an event listener to the "Resend code" link
+            document.getElementById('resendLink').addEventListener('click', function (event) {
+                // Prevent the default behavior of the link (i.e., navigating to "/resentOtp")
+                event.preventDefault();
+
+                // Show the SweetAlert with the message "OTP Sent"
+                Swal.fire({
+                    icon: 'success',
+                    title: 'OTP Sent',
+                    text: 'Your one-time password has been resent.',
+                }).then(function () {
+                    // After the user confirms the SweetAlert, navigate to the "/resentOtp" route
+                    window.location.href = '/resendForgotPasswordotp';
+                });
+            });
+        </script>
+
+    </body>
+
+    <!-- Mirrored from themeforesight.netlify.app/two-step-verification.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Jul 2023 05:40:28 GMT -->
+
+    </html>

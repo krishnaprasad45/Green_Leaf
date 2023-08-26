@@ -1,4 +1,4 @@
-<%-include('./_header.ejs') -%>
+<%-include('_header.ejs') -%>
 
 
     <!--header area start-->
@@ -7,115 +7,120 @@
     <div class="off_canvars_overlay">
 
     </div>
-   
+
 
     <!--offcanvas menu area end-->
-    <%-include('./_head_section.ejs') -%>
-    <!--header area end-->
+    <%-include('_head_section.ejs') -%>
+        <!--header area end-->
 
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <h3>Login Page</h3>
-                       
+        <!--breadcrumbs area start-->
+        <div class="breadcrumbs_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb_content">
+                            <h3>Login Page</h3>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--breadcrumbs area end-->
+        <!--breadcrumbs area end-->
 
-    <!-- customer login start -->
-    <div class="customer_login">
-        <div class="container">
-            <div class="row">
-                <!--login area start-->
-                <div class="col-lg-12 col-md-12">
-                    <div class="account_form">
-                        
-                        <form method="post" action="/user_login_post">
-                            <p>
-                                <label style="<%= message === 'Successfully registered!' ? 'color: green;' : 'color: rgb(179, 15, 15);' %>"><%= message %></label>
-                            </p>
-                            
-                            <p>
-                                <label>Username  <span>*</span></label>
-                                <input type="text" name="user_name">
-                            </p>
-                            <p>
-                                <label>Password <span>*</span></label>
-                                <input type="password" name="password">
-                            </p>
-                            <div class="login_submit">
-                                <a href="/user_register">Don't have an account? Signup here</a>
-                                <label>
-                                    Lost your password?
-                                </label>
-                                <button type="submit" style="background-color: #79a206;">login</button>
+        <!-- customer login start -->
+        <div class="customer_login">
+            <div class="container">
+                <div class="row">
+                    <!--login area start-->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="account_form">
+
+                            <form method="post" action="/user_login_post">
+                                <p style="
+                            <%= message === 'Successfully registered!' ? 'color: green;' :
+                               message === 'Password Updated' ? 'color: green;' :
+                               'color: rgb(179, 15, 15);' %>">
+                                    <%= message %>
+                                </p>
+
+                                <p>
+                                    <label>Username <span>*</span></label>
+                                    <input type="text" name="user_name">
+                                </p>
+                                <p>
+                                    <label>Password <span>*</span></label>
+                                    <input type="password" name="password">
+                                </p>
+                                <div class="login_submit">
+                                    <a href="/user_register">Don't have an account? Signup here</a>
+                                    <label>
+                                        <a href="/forgotPassword">Lost your password?</a>
+                                    </label>
+
+                                    <button type="submit" style="background-color: #79a206;">login</button>
 
 
-                            </div>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <!--login area start-->
+                    <!--login area start-->
 
-               
+
+                </div>
             </div>
         </div>
-    </div>
-    <!-- customer login end -->
+        <!-- customer login end -->
 
-    <!--brand area start-->
- 
-    <!--brand area end-->
+        <!--brand area start-->
 
-    <!--footer area start-->
-<%-include('./_footer.ejs') -%>
-    
-    <!--footer area end-->
+        <!--brand area end-->
+
+        <!--footer area start-->
+        <%-include('_footer.ejs') -%>
+
+            <!--footer area end-->
 
 
-    <!-- JS
+            <!-- JS
 ============================================ -->
-    <!--jquery min js-->
-    <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
-    <!--popper min js-->
-    <script src="assets/js/popper.js"></script>
-    <!--bootstrap min js-->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!--owl carousel min js-->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <!--slick min js-->
-    <script src="assets/js/slick.min.js"></script>
-    <!--magnific popup min js-->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!--counterup min js-->
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <!--jquery countdown min js-->
-    <script src="assets/js/jquery.countdown.js"></script>
-    <!--jquery ui min js-->
-    <script src="assets/js/jquery.ui.js"></script>
-    <!--jquery elevatezoom min js-->
-    <script src="assets/js/jquery.elevatezoom.js"></script>
-    <!--isotope packaged min js-->
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <!--slinky menu js-->
-    <script src="assets/js/slinky.menu.js"></script>
-    <!-- Plugins JS -->
-    <script src="assets/js/plugins.js"></script>
+            <!--jquery min js-->
+            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+            <!--popper min js-->
+            <script src="assets/js/popper.js"></script>
+            <!--bootstrap min js-->
+            <script src="assets/js/bootstrap.min.js"></script>
+            <!--owl carousel min js-->
+            <script src="assets/js/owl.carousel.min.js"></script>
+            <!--slick min js-->
+            <script src="assets/js/slick.min.js"></script>
+            <!--magnific popup min js-->
+            <script src="assets/js/jquery.magnific-popup.min.js"></script>
+            <!--counterup min js-->
+            <script src="assets/js/jquery.counterup.min.js"></script>
+            <!--jquery countdown min js-->
+            <script src="assets/js/jquery.countdown.js"></script>
+            <!--jquery ui min js-->
+            <script src="assets/js/jquery.ui.js"></script>
+            <!--jquery elevatezoom min js-->
+            <script src="assets/js/jquery.elevatezoom.js"></script>
+            <!--isotope packaged min js-->
+            <script src="assets/js/isotope.pkgd.min.js"></script>
+            <!--slinky menu js-->
+            <script src="assets/js/slinky.menu.js"></script>
+            <!-- Plugins JS -->
+            <script src="assets/js/plugins.js"></script>
 
-    <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
-
-
-
-</body>
+            <!-- Main JS -->
+            <script src="assets/js/main.js"></script>
 
 
-<!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
-</html>
+
+            </body>
+
+
+            <!-- Mirrored from htmldemo.net/lukani/lukani/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jun 2023 10:52:01 GMT -->
+
+            </html>
