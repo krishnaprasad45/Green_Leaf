@@ -10,6 +10,7 @@ const userData = model.user_register;
 
 
 const loadWishlist = async (req, res) => {
+    console.log("loadwishlist")
     try {
         const productDatas = await productData.find();
         const logged = req.session.user;
@@ -65,6 +66,7 @@ const loadWishlist = async (req, res) => {
 };
 
 const addToWishlist = async (req, res) => {
+    
     try {
         const userDatas = req.session.user;
         const userId = userDatas._id;

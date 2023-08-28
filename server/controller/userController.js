@@ -375,9 +375,10 @@ const productDetails = async (req, res) => {
       res.render("productDetails", {
         product,
         userDatas,
-        cartId: null,
+       
         image,
-        userData:null,
+        cartId: null,
+       
         productDatas,
         cart,
         subTotal,
