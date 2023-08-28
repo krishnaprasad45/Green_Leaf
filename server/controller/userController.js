@@ -65,7 +65,7 @@ const shop = async (req, res) => {
         productDatas,
         userDatas,
         cart,
-        
+
         subTotal,
         categoryData,
         message: "true",
@@ -109,6 +109,8 @@ const index = async (req, res) => {
           productDatas,
           bannerData,
           logged,
+          cartId: null,
+
           message: "false",
         });
       } else {
@@ -121,6 +123,7 @@ const index = async (req, res) => {
           bannerData,
           userDatas,
           cart,
+          cartId: null,
           indoor,
           outdoor,
           hanging,
@@ -158,7 +161,7 @@ const contact = async (req, res) => {
       req.session.checkout = true;
 
       const userId = userDatas._id;
-      walletBalance=userDatas.wallet.balance
+      walletBalance = userDatas.wallet.balance
       const categoryData = await Category.find({ is_blocked: false });
 
       const user = await userData

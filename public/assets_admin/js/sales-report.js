@@ -35,7 +35,7 @@ const getChartData = async()=>{
 
 
 function salesGraph(months, ordersByMonth) {
-  console.log(11);
+  
   const ctx = document.getElementById('myChart');
   new Chart(ctx, {
     type: 'bar',
