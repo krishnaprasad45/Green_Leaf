@@ -10794,6 +10794,7 @@ height: 45px;
 @media (max-width: 767px) {
   .green-leaf {
     font-size: 15px;
+    font-weight: bolder;
     padding: 5px;
   }
 }

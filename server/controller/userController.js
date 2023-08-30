@@ -85,9 +85,7 @@ const index = async (req, res) => {
     const logged = req.session.user;
     const bannerData = await Banner.find({ active: true });
     const categoryData = await Category.find({ is_blocked: false });
-    const indoor = await productData.find({ category: "indoor plants" });
-    const outdoor = await productData.find({ category: "outdoor plants" });
-    const hanging = await productData.find({ category: "hanging" });
+   
 
     if (req.session.user) {
       const userDatas = req.session.user;
@@ -124,9 +122,7 @@ const index = async (req, res) => {
           userDatas,
           cart,
           cartId: null,
-          indoor,
-          outdoor,
-          hanging,
+        
           subTotal,
           categoryData,
           message: "true",
@@ -137,9 +133,7 @@ const index = async (req, res) => {
         productDatas,
         bannerData,
         categoryData,
-        indoor,
-        outdoor,
-        hanging,
+      
         logged,
         message: "false",
       });
