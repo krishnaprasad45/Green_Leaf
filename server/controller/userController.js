@@ -375,7 +375,7 @@ const productDetails = async (req, res) => {
       res.render("productDetails", {
         product,
         userDatas,
-       
+        userData:null,
         image,
         cartId: null,
        
