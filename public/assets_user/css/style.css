@@ -10790,6 +10790,20 @@ height: 45px;
   font-family: 'Satisfy', cursive;
 }
 
+/* Media Query for Mobile Devices (up to 767px) */
+@media (max-width: 767px) {
+  .green-leaf {
+    font-size: 15px;
+    padding: 5px;
+  }
+}
+
+
+
+
+
+
+
 
     .form-container {
         max-width: 500px;
