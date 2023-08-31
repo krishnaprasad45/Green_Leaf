@@ -14,59 +14,65 @@ const loadWishlist = async (req, res) => {
     try {
         const productDatas = await productData.find();
         const logged = req.session.user;
-    
+
         if (req.session.user) {
-        const userDatas = req.session.user;
-      req.session.checkout = true;
+            const userDatas = req.session.user;
+            req.session.checkout = true;
 
-        
-      const userId = userDatas._id;
-      walletBalance=userDatas.wallet.balance
-      const categoryData = await Category.find({ is_blocked: false });
 
-      const userMeta = await userData
-        .findOne({ _id: userId })
-        .populate({ path: "cart" })
-        .populate({ path: "cart.product", model: "productCollection" });
-      const cart = userMeta.cart;
-      let subTotal = 0;
+            const userId = userDatas._id;
+            const userMetas = await userData.findById(userId);
+            const wishlistLength = userMetas.wishlist.length;
+            if (wishlistLength === 0) {
+                res.render("emptyWishlist")
+            }
+            walletBalance = userDatas.wallet.balance
+            const categoryData = await Category.find({ is_blocked: false });
 
-      cart.forEach((val) => {
-        val.total = val.product.price * val.quantity;
-        subTotal += val.total;
-      });
-     
+            const userMeta = await userData
+                .findOne({ _id: userId })
+                .populate({ path: "cart" })
+                .populate({ path: "cart.product", model: "productCollection" });
+            const cart = userMeta.cart;
+            let subTotal = 0;
 
-        const user = await userData.findById(userId).populate("wishlist");
-        const wishlistItems = user.wishlist;
+            cart.forEach((val) => {
+                val.total = val.product.price * val.quantity;
+                subTotal += val.total;
+            });
 
-        const userCart = await userData.findOne({ _id: userId }).populate("cart.product").lean();
-       
-            res.render("wishlist", { 
+
+            const user = await userData.findById(userId).populate("wishlist");
+            const wishlistItems = user.wishlist;
+
+            const userCart = await userData.findOne({ _id: userId }).populate("cart.product").lean();
+
+            res.render("wishlist", {
                 productDatas,
                 userDatas,
                 userMeta,
                 cart,
+                wishlistLength:null,
                 subTotal,
                 categoryData,
                 wishlistItems,
                 message: "true",
             });
-        
-    
+
+
         }
 
-         else {
-            res.render("wishlist", { userDatas:{}, productDatas:{},categoryData:{}, logged,cart, message: "false", wishlistItems });
+        else {
+            res.render("wishlist", { userDatas: {}, productDatas: {}, categoryData: {}, logged, cart, message: "false", wishlistItems });
         }
-    
-}catch (error) {
+
+    } catch (error) {
         console.log(error.message);
     }
 };
 
 const addToWishlist = async (req, res) => {
-    
+
     try {
         const userDatas = req.session.user;
         const userId = userDatas._id;
@@ -78,9 +84,9 @@ const addToWishlist = async (req, res) => {
         if (!existItem) {
             await userData.updateOne({ _id: userId }, { $push: { wishlist: productId } });
             await productData.updateOne({ _id: productId }, { isWishlisted: true });
-           
+
             await productData.findOneAndUpdate({ _id: productId }, { $set: { isOnCart: false } }, { new: true });
-            await userData.findOneAndUpdate({ _id: userId }, { $pull: { cart: { _id: cartId } } },{new:true} );
+            await userData.findOneAndUpdate({ _id: userId }, { $pull: { cart: { _id: cartId } } }, { new: true });
 
             res.json({
                 message: "Added to wishlist",
@@ -149,13 +155,19 @@ const removeWishlist = async (req, res) => {
         const userId = userDatas._id;
         const productId = req.query.productId;
 
-        const user = await userData.findById(userId);
-        
+        let user = await userData.findById(userId);
+
         const itemIndex = user.wishlist.indexOf(productId);
 
         if (itemIndex >= 0) {
             await userData.updateOne({ _id: userId }, { $pull: { wishlist: productId } });
             await productData.updateOne({ _id: productId }, { isWishlisted: false });
+            user = await userData.findById(userId);
+            const wishlistLength = user.wishlist.length;
+            console.log("wishlishLength", wishlistLength)
+            if (wishlistLength == 0) {
+                res.render('emptyWishlist')
+            }
 
             res.status(200).send();
         } else {

@@ -4,7 +4,7 @@ const removeFromWishlist = async (productId) => {
         text: "Do you want to remove this\nproduct from your wishlist?",
         icon: "question",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
+        confirmButtonColor: "#79a206",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, remove",
     });

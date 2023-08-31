@@ -65,13 +65,14 @@ const shop = async (req, res) => {
         productDatas,
         userDatas,
         cart,
-
+        cartId:null,
+        wishlistLength:null,
         subTotal,
         categoryData,
         message: "true",
       });
     } else {
-      res.render("shop", { productDatas, message: "false" });
+      res.render("shop", { productDatas,   cartId:null, message: "false" });
     }
   } catch (error) {
     console.error(error);
@@ -89,11 +90,12 @@ const index = async (req, res) => {
 
     if (req.session.user) {
       const userDatas = req.session.user;
-
+      let cartId = null;
       req.session.checkout = true;
 
       const userId = userDatas._id;
-      // walletBalance=userDatas.wallet.balance
+     const  userMeta = await userData.findById(userId);
+      const wishlistLength = userMeta.wishlist.length;
 
       const user = await userData
         .findOne({ _id: userId })
@@ -107,7 +109,7 @@ const index = async (req, res) => {
           productDatas,
           bannerData,
           logged,
-          cartId: null,
+          cartId,
 
           message: "false",
         });
@@ -121,8 +123,8 @@ const index = async (req, res) => {
           bannerData,
           userDatas,
           cart,
-          cartId: null,
-        
+          cartId,
+          wishlistLength,
           subTotal,
           categoryData,
           message: "true",
@@ -133,7 +135,7 @@ const index = async (req, res) => {
         productDatas,
         bannerData,
         categoryData,
-      
+        cartId:null,
         logged,
         message: "false",
       });
@@ -372,7 +374,7 @@ const productDetails = async (req, res) => {
         userData:null,
         image,
         cartId: null,
-       
+        wishlistLength:null,
         productDatas,
         cart,
         subTotal,
@@ -384,6 +386,8 @@ const productDetails = async (req, res) => {
         product,
         userDatas,
         cartId: null,
+        wishlistLength:null,
+
         image,
         message: "",
         productDatas, logged, message: "false"
