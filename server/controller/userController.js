@@ -27,7 +27,7 @@ const shop = async (req, res) => {
     let productDatas;
 
     const search = req.query.search;
-
+    const filtertype = req.query.filtertype
     if (search) {
       productDatas = await productData.find({
         $or: [
@@ -35,10 +35,19 @@ const shop = async (req, res) => {
           { category: { $regex: ".*" + search + ".*", $options: "i" } },
         ],
       });
-    } else {
+    } else if(filtertype){
+      productDatas = await productData.find({ category: filtertype });
+
+    }
+    
+    else {
       productDatas = await productData.find();
     }
     // Search Function ends
+
+    //filter codes here
+
+    //filter codes here ends
 
     if (req.session.user) {
       const userDatas = req.session.user;

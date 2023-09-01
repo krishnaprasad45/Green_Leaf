@@ -181,6 +181,8 @@ const placeOrder = async (req, res) => {
                 const stock = product.stock;
 
                 const updatedStock = stock - quantity;
+                // const updatedStockPositive = updatedStock > 0 ? updatedStock : 0;
+
 
                 await productData.findByIdAndUpdate(
                     productId,

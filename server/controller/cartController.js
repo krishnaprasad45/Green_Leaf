@@ -77,7 +77,7 @@ const viewCart = async (req, res) => {
         if (cart.length === 0) {
             res.render("emptyCart", { userDatas, categoryData ,loggedIn:true, walletBalance});
         } else {
-            res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,walletBalance,message:"true"});
+            res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,wishlistLength:null,walletBalance,message:"true"});
         }
     }else{
         res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,walletBalance,message:"false"});

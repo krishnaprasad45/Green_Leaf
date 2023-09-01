@@ -53,18 +53,19 @@
                                     title="List"></button>
                             </div>
                             <div>
-                                <form action="#">
+                                <form action="/shop" method="get" id="filterForm">
                                     <div class="form-group">
-
-                                        <select class="form-control" id="sortSelect">
-                                            <option value="1">Sort by average rating</option>
-                                            <option value="2">Sort by popularity</option>
-                                            <option value="3">Sort by newness</option>
+                                        <select class="form-control" id="sortSelect" name="filtertype" onchange="submitForm()">
+                                            <option disabled selected>Sory by</option>
+                                            <option value="Indoor plants">Indoor plants</option>
+                                            <option value="Outdoor plants">Outdoor plants</option>
+                                            <option value="3">Hanging plants</option>
                                             <option value="4">Sort by price: low to high</option>
                                             <option value="5">Sort by price: high to low</option>
                                             <option value="6">Product Name: Z</option>
                                         </select>
                                     </div>
+                                    <input type="submit" style="display: none;" /> <!-- Hidden submit button -->
                                 </form>
                             </div>
                             <div class="page_amount">
@@ -99,7 +100,8 @@
                                                         </div>
                                                         <div class="action_links">
                                                             <ul>
-                                                                <li class="add_to_cart"><a onclick="addToCart('<%= product.id %>')"
+                                                                <li class="add_to_cart"><a
+                                                                        onclick="addToCart('<%= product.id %>')"
                                                                         title="Add to cart"><i
                                                                             class="icon-shopping-bag"></i></a></li>
 
@@ -181,7 +183,8 @@
                                                                         onclick="addToCart('<%=product.id%>')"
                                                                         id="addToCartBtn">Add to
                                                                         cart</a></li>
-                                                                <li class="wishlist"><a onclick="addToWishlist('<%= product._id %>','<%= cartId %>')"
+                                                                <li class="wishlist"><a
+                                                                        onclick="addToWishlist('<%= product._id %>','<%= cartId %>')"
                                                                         title="Add to Wishlist"><i
                                                                             class="icon-heart"></i></a></li>
 
@@ -263,14 +266,29 @@
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <!-- <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script> -->
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+                integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
 
             <script src="/assets/js/addto.cart.js"></script>
-           <script src="/assets/js/addto.wishlist.js"></script>
+            <script src="/assets/js/addto.wishlist.js"></script>
+       
+           
 
+
+            <script>
+                function submitForm() {
+                    document.getElementById("filterForm").submit();
+                }
+            </script>
             
+
+
+
+
+
 
 
             </body>
