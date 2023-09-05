@@ -63,6 +63,8 @@ const viewCart = async (req, res) => {
         const userDatas = req.session.user;
 
         const userId = userDatas._id
+        const  userMeta = await userData.findById(userId);
+        const wishlistLength = userMeta.wishlist.length;
         const categoryData = await Category.find({ is_blocked: false });
 
         const user = await userData.findOne({ _id: userId }).populate({path: 'cart'}).populate({path: 'cart.product', model: 'productCollection'});
@@ -77,7 +79,7 @@ const viewCart = async (req, res) => {
         if (cart.length === 0) {
             res.render("emptyCart", { userDatas, categoryData ,loggedIn:true, walletBalance});
         } else {
-            res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,wishlistLength:null,walletBalance,message:"true"});
+            res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,wishlistLength,walletBalance,message:"true"});
         }
     }else{
         res.render("viewCart", { userDatas, cart, subTotal, categoryData,loggedIn:true ,walletBalance,message:"false"});
@@ -133,6 +135,7 @@ const checkStock = async (req, res) => {
     try {
         const userData = req.session.user;
         const userId = userData._id;
+        
 
         const userCart = await User.findOne({ _id: userId }).populate("cart.product").lean();
         const cart = userCart.cart;

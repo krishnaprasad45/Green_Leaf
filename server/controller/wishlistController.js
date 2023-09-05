@@ -21,6 +21,7 @@ const loadWishlist = async (req, res) => {
 
 
             const userId = userDatas._id;
+            
             const userMetas = await userData.findById(userId);
             const wishlistLength = userMetas.wishlist.length;
             if (wishlistLength === 0) {
@@ -52,7 +53,7 @@ const loadWishlist = async (req, res) => {
                 userDatas,
                 userMeta,
                 cart,
-                wishlistLength:null,
+                wishlistLength,
                 subTotal,
                 categoryData,
                 wishlistItems,

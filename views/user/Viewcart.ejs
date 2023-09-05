@@ -8,7 +8,7 @@
     <div class="off_canvars_overlay">
 
     </div>
-   
+
 
 
     <!--offcanvas menu area end-->
@@ -141,8 +141,8 @@
 
 
                                 <!--coupon code area start-->
-                              
-                           
+
+
 
                                 <div class="coupon_code left">
                                     <h3>Coupon</h3>
@@ -157,29 +157,29 @@
                                     </div>
 
                                 </div>
-                                      <!-- offer notification starts -->
-                                      <table>
-                                        <tr id="couponModel" class="summary-total">
-                                            <td>
-                                                <p id="couponMessage"></p>
-                                            </td>
-                                            <td>
-                                                <p id="couponDiscount"></p>
-                                            </td>
-                                            
-                                            <td>
-                                                <p id="subTotalText"></p>
-                                            </td>
-                                            <td>
-                                                <!-- <p id="subTotal"></p> -->
-                                            </td>
-                                        </tr>
-                                        <br>
-                                    </table>
-                                    <!-- offer notification ends -->
-                               
+                                <!-- offer notification starts -->
+                                <table>
+                                    <tr id="couponModel" class="summary-total">
+                                        <td>
+                                            <p id="couponMessage"></p>
+                                        </td>
+                                        <td>
+                                            <p id="couponDiscount"></p>
+                                        </td>
 
-                              
+                                        <td>
+                                            <p id="subTotalText"></p>
+                                        </td>
+                                        <td>
+                                            <!-- <p id="subTotal"></p> -->
+                                        </td>
+                                    </tr>
+                                    <br>
+                                </table>
+                                <!-- offer notification ends -->
+
+
+
 
 
                                 <!--coupon code area end-->
@@ -189,7 +189,7 @@
                                 <div class="coupon_code right">
                                     <h3>Cart Totals</h3>
                                     <div class="coupon_inner">
-                                      
+
                                         <div class="cart_subtotal ">
                                             <p>Shipping</p>
                                             <p class="cart_amount"><span></span> 0.00</p>
@@ -198,10 +198,12 @@
                                         <input type="hidden" id="subTotalValue" value="<%= subTotal %>">
 
                                         <div class="cart_subtotal">
-                                           <h2><p>Total</p></h2> 
-                                           <h4> <strong class="text-right" id="subTotal">
-                                                <%=subTotal%>/-
-                                            </strong></h4>
+                                            <h2>
+                                                <p>Total</p>
+                                            </h2>
+                                            <h4> <strong class="text-right" id="subTotal">
+                                                    <%=subTotal%>/-
+                                                </strong></h4>
 
 
 
@@ -237,12 +239,14 @@
         <!--footer area start-->
         <%-include('_footer.ejs') -%>
 
-        
-        <!-- script -->
-        <script src="/assets/js/remove.fromcart.alert.js"></script>
-        <script src="/assets/js/remove.fromcart.js"></script>
 
-        <!-- script -->
+            <!-- script -->
+            <script src="/assets/js/remove.fromcart.alert.js"></script>
+            <script src="/assets/js/remove.fromcart.js"></script>
+            <script src="/assets/js/quantity.updation.js"></script>
+            
+
+            <!-- script -->
 
 
 

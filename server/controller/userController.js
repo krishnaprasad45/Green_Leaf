@@ -55,7 +55,10 @@ const shop = async (req, res) => {
       req.session.checkout = true;
 
       const userId = userDatas._id;
-      // walletBalance=userDatas.wallet.balance
+      const  userMeta = await userData.findById(userId);
+      const wishlistLength = userMeta.wishlist.length;
+      console.log("wishlistLength",wishlistLength)
+      walletBalance=userDatas.wallet.balance
       const categoryData = await Category.find({ is_blocked: false });
 
       const user = await userData
@@ -75,7 +78,7 @@ const shop = async (req, res) => {
         userDatas,
         cart,
         cartId:null,
-        wishlistLength:null,
+        wishlistLength,
         subTotal,
         categoryData,
         message: "true",
@@ -166,6 +169,9 @@ const contact = async (req, res) => {
       req.session.checkout = true;
 
       const userId = userDatas._id;
+      const  userMeta = await userData.findById(userId);
+      const wishlistLength = userMeta.wishlist.length;
+      console.log("wishlistLength",wishlistLength)
       walletBalance = userDatas.wallet.balance
       const categoryData = await Category.find({ is_blocked: false });
 
@@ -185,6 +191,7 @@ const contact = async (req, res) => {
         productDatas,
         userDatas,
         cart,
+        wishlistLength,
         subTotal,
         categoryData,
         message: "true",
@@ -209,7 +216,8 @@ const about = async (req, res) => {
       req.session.checkout = true;
 
       const userId = userDatas._id;
-      // walletBalance=userDatas.wallet.balance
+      const  userMeta = await userData.findById(userId);
+      const wishlistLength = userMeta.wishlist.length;
       const categoryData = await Category.find({ is_blocked: false });
 
       const user = await userData
@@ -228,6 +236,7 @@ const about = async (req, res) => {
         productDatas,
         userDatas,
         cart,
+        wishlistLength,
         subTotal,
         categoryData,
         message: "true",
@@ -246,6 +255,7 @@ const my_account = async (req, res) => {
     if (req.session.user) {
       const userDatas = req.session.user;
       const userId = userDatas._id;
+  
       const categoryData = await Category.find({ is_blocked: false });
       const addressData = await Address.find({ userId: userId });
       const orderData = await Order.find({ userId: userId });
@@ -254,6 +264,7 @@ const my_account = async (req, res) => {
       //transactions data here
       req.session.checkout = true;
       const userMeta = await userData.findById(userId);
+      const wishlistLength = userMeta.wishlist.length;
       const walletBalance = userMeta.wallet.balance;
       const user = await userData
         .findOne({ _id: userId })
@@ -277,6 +288,7 @@ const my_account = async (req, res) => {
         cart,
         addressData,
         profilename,
+        wishlistLength,
         message: "true",
         productDatas,
         subTotal,
@@ -359,6 +371,8 @@ const productDetails = async (req, res) => {
       req.session.checkout = true;
 
       const userId = userDatas._id;
+      const  userMeta = await userData.findById(userId);
+      const wishlistLength = userMeta.wishlist.length;
       walletBalance = userDatas.wallet.balance
       const categoryData = await Category.find({ is_blocked: false });
 
@@ -383,7 +397,7 @@ const productDetails = async (req, res) => {
         userData:null,
         image,
         cartId: null,
-        wishlistLength:null,
+        wishlistLength,
         productDatas,
         cart,
         subTotal,
