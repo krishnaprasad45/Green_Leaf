@@ -1,8 +1,8 @@
-<div style="background-color:#f8f9fa; padding: 20px; border-radius: 10px;">
+<div style="background-color:#f8f9fa; padding: 20px; border-radius: 10px; text-align: left;">
 
-<h1 align="center">Study Online - E-Learning Website</h1>
+<h1 align="left">Study Online - E-Learning Website</h1>
 
-<p align="center">
+<p align="left">
   <img src="https://img.shields.io/badge/MERN-Stack-blueviolet"  alt="MERN Stack">
   <img src="https://img.shields.io/badge/TypeScript-%E2%9D%A4-blue" alt="TypeScript">
   <img src="https://img.shields.io/badge/RESTful%20API-%E2%9C%A8-green" alt="RESTful API">
@@ -10,14 +10,14 @@
   <img src="https://img.shields.io/badge/Socket.IO-%F0%9F%92%AC-lightgrey" alt="Socket.IO">
 </p>
 
-<p align="center">
-  <a href="#about">About</a> •
-  <a href="#technologies-used">Technologies Used</a> •
-  <a href="#features">Features</a> •
-  <a href="#deployment">Deployment</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="#license">License</a>
+<p align="left">
+  <a>About</a> •
+  <a>Technologies Used</a> •
+  <a>Features</a> •
+  <a>Deployment</a> •
+  <a>Usage</a> •
+  <a>Contributing</a> •
+  <a>Feedback</a>
 </p>
 
 ---
